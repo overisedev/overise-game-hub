@@ -304,7 +304,6 @@ export function CatalogSection({
             grid-template-columns: 1fr; 
             gap: 16px;
           }
-          .side { position: relative; top: auto; }
         }
         
         .side {
@@ -315,6 +314,14 @@ export function CatalogSection({
           border: 1px solid rgba(255,255,255,.10);
           background: rgba(255,255,255,.04);
           box-shadow: var(--shadowSoft);
+          z-index: 10;
+        }
+        @media (max-width: 980px) {
+          .side {
+            position: relative;
+            top: auto;
+            z-index: 1;
+          }
         }
         @media (max-width: 640px) {
           .side {
