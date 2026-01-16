@@ -2,8 +2,17 @@ export function HowItWorksSection() {
   return (
     <section id="como-funciona" className="section container-main">
       <div className="demo-grid">
-        {/* Left - Info */}
-        <div className="card pad">
+        {/* Left - Video (MAIOR e À ESQUERDA) */}
+        <div className="card video-wrap">
+          <div className="video-placeholder">
+            <span>▶</span>
+            <p>Demonstração em vídeo</p>
+          </div>
+          <div className="video-overlay" />
+        </div>
+
+        {/* Right - Info */}
+        <div className="card pad info-card">
           <h2 className="card-title">Como funciona</h2>
           <p className="card-text">
             Um fluxo simples: você entra, explora por categorias e abre detalhes em segundos.
@@ -25,21 +34,12 @@ export function HowItWorksSection() {
             </div>
           </div>
         </div>
-
-        {/* Right - Video placeholder */}
-        <div className="card video-wrap">
-          <div className="video-placeholder">
-            <span>▶</span>
-            <p>Demonstração em vídeo</p>
-          </div>
-          <div className="video-overlay" />
-        </div>
       </div>
 
       <style>{`
         .demo-grid {
           display: grid;
-          grid-template-columns: 1fr 420px;
+          grid-template-columns: 1.4fr 1fr;
           gap: 18px;
           align-items: stretch;
         }
@@ -55,6 +55,11 @@ export function HowItWorksSection() {
           position: relative;
         }
         .card.pad { padding: 24px; }
+        .info-card {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
         .card-title {
           font-size: 22px;
           font-weight: 950;
@@ -72,19 +77,15 @@ export function HowItWorksSection() {
         }
         .how-grid {
           margin-top: 24px;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          display: flex;
+          flex-direction: column;
           gap: 12px;
-        }
-        @media (max-width: 980px) {
-          .how-grid { grid-template-columns: 1fr; }
         }
         .how {
           background: rgba(0,0,0,.25);
           border: 1px solid rgba(255,255,255,.08);
           border-radius: 16px;
           padding: 16px;
-          min-height: 92px;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -106,9 +107,9 @@ export function HowItWorksSection() {
           line-height: 1.5;
         }
         .video-wrap {
-          height: 100%;
-          min-height: 340px;
+          min-height: 420px;
           background: #000;
+          aspect-ratio: 16 / 9;
         }
         .video-placeholder {
           position: absolute;
@@ -119,14 +120,24 @@ export function HowItWorksSection() {
           justify-content: center;
           color: var(--muted);
           z-index: 2;
+          cursor: pointer;
+          transition: .25s ease;
+        }
+        .video-placeholder:hover {
+          color: #fff;
+        }
+        .video-placeholder:hover span {
+          transform: scale(1.1);
+          color: var(--neon);
         }
         .video-placeholder span {
-          font-size: 48px;
-          margin-bottom: 10px;
+          font-size: 64px;
+          margin-bottom: 14px;
+          transition: .25s ease;
         }
         .video-placeholder p {
-          font-size: 14px;
-          font-weight: 600;
+          font-size: 15px;
+          font-weight: 700;
         }
         .video-overlay {
           position: absolute;
