@@ -39,7 +39,7 @@ export function HowItWorksSection() {
       <style>{`
         .demo-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 1fr 420px;
           gap: 18px;
           align-items: stretch;
         }

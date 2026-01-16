@@ -9,9 +9,8 @@ export function PricingSection() {
       features: [
         'Suporte Prioritário (24/7)',
         'Acesso Imediato & Instantâneo',
-        'Garantia 7 dias (pagamento pela plataforma)',
+        'Garantia 7 dias',
       ],
-      color: '#00d4ff',
     },
     {
       name: 'Modo Pro',
@@ -24,10 +23,9 @@ export function PricingSection() {
       features: [
         'Suporte Prioritário (24/7)',
         'Acesso Imediato & Instantâneo',
-        'Garantia 7 dias (pagamento pela plataforma)',
-        'Grupo de Atualizações (Discord/Telegram)',
+        'Garantia 7 dias',
+        'Grupo de Atualizações',
       ],
-      color: '#a855f7',
     },
     {
       name: 'Modo Vitalício',
@@ -39,10 +37,9 @@ export function PricingSection() {
         'Suporte Prioritário (24/7)',
         'Acesso Imediato & Instantâneo',
         'Garantia 7 dias',
-        'Atualização gratuita para sempre',
+        'Atualização vitalícia',
         'BÔNUS: 100 Jogos extras',
       ],
-      color: '#00FF41',
     },
   ];
 
@@ -54,11 +51,10 @@ export function PricingSection() {
       </div>
 
       <div className="pricing-grid">
-        {plans.map((plan) => (
+        {plans.map((plan, index) => (
           <div 
             key={plan.name} 
             className={`pricing-card ${plan.featured ? 'featured' : ''}`}
-            style={{ '--plan-color': plan.color } as React.CSSProperties}
           >
             {/* Badge */}
             {plan.badge && (
@@ -91,11 +87,11 @@ export function PricingSection() {
             </ul>
 
             {/* CTA */}
-            <button className="plan-cta">
+            <button className={`plan-cta ${plan.featured ? 'cta-featured' : ''}`}>
               Assinar agora
             </button>
 
-            <p className="plan-note">Acesso imediato após pagamento</p>
+            <p className="plan-note">🔒 Pagamento seguro • Acesso imediato</p>
           </div>
         ))}
       </div>
@@ -140,8 +136,8 @@ export function PricingSection() {
           position: relative;
           padding: 28px 24px;
           border-radius: var(--r2);
-          border: 1px solid rgba(255,255,255,.10);
-          background: rgba(10,10,15,.8);
+          border: 1px solid rgba(255,255,255,.08);
+          background: rgba(255,255,255,.03);
           backdrop-filter: blur(10px);
           transition: .3s ease;
           display: flex;
@@ -150,13 +146,19 @@ export function PricingSection() {
         
         .pricing-card:hover {
           transform: translateY(-6px);
-          border-color: var(--plan-color, rgba(255,255,255,.20));
+          border-color: rgba(0,255,65,.25);
           box-shadow: 0 20px 60px rgba(0,0,0,.4);
         }
         
         .pricing-card.featured {
-          border-color: var(--plan-color);
-          box-shadow: 0 0 40px rgba(168, 85, 247, .15);
+          border-color: rgba(0,255,65,.40);
+          background: rgba(0,255,65,.03);
+          box-shadow: 0 0 60px rgba(0,255,65,.08);
+        }
+        
+        .pricing-card.featured:hover {
+          border-color: rgba(0,255,65,.55);
+          box-shadow: 0 20px 60px rgba(0,255,65,.12);
         }
         
         .pricing-badge {
@@ -166,19 +168,20 @@ export function PricingSection() {
           transform: translateX(-50%);
           padding: 8px 16px;
           border-radius: 999px;
-          background: linear-gradient(135deg, #a855f7, #7c3aed);
-          color: #fff;
+          background: linear-gradient(135deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
+          color: #000;
           font-size: 11px;
           font-weight: 900;
           text-transform: uppercase;
           letter-spacing: 0.5px;
           white-space: nowrap;
+          box-shadow: 0 4px 20px rgba(0,255,65,.3);
         }
         
         .pricing-card-header {
           text-align: center;
           margin-bottom: 20px;
-          padding-top: ${10}px;
+          padding-top: 10px;
         }
         
         .pricing-card.featured .pricing-card-header {
@@ -186,7 +189,7 @@ export function PricingSection() {
         }
         
         .plan-name {
-          font-size: 20px;
+          font-size: 18px;
           font-weight: 900;
           color: #fff;
           margin: 0 0 12px;
@@ -204,7 +207,7 @@ export function PricingSection() {
         .price-value {
           font-size: 42px;
           font-weight: 950;
-          color: var(--plan-color);
+          color: var(--neon);
           letter-spacing: -2px;
           line-height: 1;
         }
@@ -216,12 +219,17 @@ export function PricingSection() {
         }
         
         .pack-info {
-          background: rgba(255,255,255,.05);
-          border: 1px solid rgba(255,255,255,.08);
+          background: rgba(0,0,0,.25);
+          border: 1px solid rgba(255,255,255,.06);
           border-radius: 14px;
           padding: 14px;
           text-align: center;
           margin-bottom: 20px;
+        }
+        
+        .pricing-card.featured .pack-info {
+          border-color: rgba(0,255,65,.15);
+          background: rgba(0,255,65,.05);
         }
         
         .pack-title {
@@ -249,7 +257,7 @@ export function PricingSection() {
           align-items: flex-start;
           gap: 10px;
           padding: 10px 0;
-          border-bottom: 1px solid rgba(255,255,255,.05);
+          border-bottom: 1px solid rgba(255,255,255,.04);
           font-size: 13px;
           color: var(--muted);
           line-height: 1.4;
@@ -260,7 +268,7 @@ export function PricingSection() {
         }
         
         .check-icon {
-          color: var(--plan-color);
+          color: var(--neon);
           font-weight: 900;
           flex-shrink: 0;
         }
@@ -269,10 +277,10 @@ export function PricingSection() {
           width: 100%;
           padding: 14px;
           border-radius: 14px;
-          border: none;
-          background: var(--plan-color);
-          color: #000;
-          font-size: 14px;
+          border: 1px solid rgba(255,255,255,.12);
+          background: rgba(255,255,255,.05);
+          color: #fff;
+          font-size: 13px;
           font-weight: 900;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -281,13 +289,20 @@ export function PricingSection() {
         }
         
         .plan-cta:hover {
-          transform: scale(1.02);
-          box-shadow: 0 10px 30px rgba(0,0,0,.3);
+          transform: translateY(-2px);
+          border-color: rgba(0,255,65,.35);
+          background: rgba(0,255,65,.08);
         }
         
-        .pricing-card.featured .plan-cta {
-          background: linear-gradient(135deg, #a855f7, #7c3aed);
-          color: #fff;
+        .plan-cta.cta-featured {
+          background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
+          color: #000;
+          border: none;
+        }
+        
+        .plan-cta.cta-featured:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(0,255,65,.25);
         }
         
         .plan-note {

@@ -2,12 +2,13 @@ import type { Game } from '@/types/game';
 
 interface HeroSectionProps {
   featuredGame: Game | undefined;
+  isTransitioning?: boolean;
   onPrev: () => void;
   onNext: () => void;
   onOpenDetails: (game: Game) => void;
 }
 
-export function HeroSection({ featuredGame, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
+export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
     <section className="section-top section" style={{ paddingTop: '120px' }}>
       <div className="container-main">
@@ -34,25 +35,11 @@ export function HeroSection({ featuredGame, onPrev, onNext, onOpenDetails }: Her
               <a href="#catalogo" className="btn btn-outline">Ver catálogo</a>
             </div>
 
-            <div className="hero-stats">
-              <div className="stat">
-                <b>Carregamento rápido</b>
-                <span>Catálogo local</span>
-              </div>
-              <div className="stat">
-                <b>Organização por categorias</b>
-                <span>Experiência premium</span>
-              </div>
-              <div className="stat">
-                <b>Busca inteligente</b>
-                <span>Atalhos (GTA, RDR2…)</span>
-              </div>
-            </div>
           </div>
 
           {/* Right - Featured Card */}
           {featuredGame && (
-            <div className="hero-card animate-fade-left">
+            <div className={`hero-card ${isTransitioning ? 'transitioning' : ''}`}>
               <div className="hero-card-glow" />
               <div className="hero-card-media">
                 <img
@@ -139,31 +126,7 @@ export function HeroSection({ featuredGame, onPrev, onNext, onOpenDetails }: Her
           display: flex;
           gap: 12px;
           flex-wrap: wrap;
-          margin-bottom: 18px;
         }
-        .hero-stats {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
-          margin-top: 10px;
-        }
-        @media (max-width: 980px) {
-          .hero-stats { grid-template-columns: 1fr; }
-        }
-        .stat {
-          background: rgba(255,255,255,.04);
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          padding: 14px;
-          box-shadow: var(--shadowSoft);
-          transition: .25s ease;
-        }
-        .stat:hover {
-          transform: translateY(-3px);
-          border-color: rgba(0,255,65,.25);
-        }
-        .stat b { display: block; font-size: 16px; color: #fff; }
-        .stat span { font-size: 12px; color: var(--muted2); }
 
         .hero-card {
           border-radius: var(--r2);
@@ -174,6 +137,11 @@ export function HeroSection({ featuredGame, onPrev, onNext, onOpenDetails }: Her
           position: relative;
           isolation: isolate;
           min-height: 320px;
+          transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hero-card.transitioning {
+          opacity: 0;
+          transform: scale(0.98);
         }
         .hero-card-glow {
           position: absolute;

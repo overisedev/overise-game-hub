@@ -16,7 +16,7 @@ const PREFERRED_GAMES: Record<string, string[]> = {
   'Elden Ring': ['elden ring'],
   'Cyberpunk': ['2077'],
   'Baldurs Gate': ['gate 3', 'bg3'],
-  'GTA': ['gta v', 'grand theft auto v'],
+  'GTA': ['v', 'gta v', 'grand theft auto v'],
 };
 
 // Palavras-chave de franquias para agrupar
