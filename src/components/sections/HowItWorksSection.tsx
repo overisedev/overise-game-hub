@@ -68,9 +68,9 @@ export function HowItWorksSection() {
 
         .demo-grid {
           display: grid;
-          grid-template-columns: 1.5fr 1fr;
+          grid-template-columns: 1.4fr 1fr;
           gap: 20px;
-          align-items: stretch;
+          align-items: start;
         }
         @media (max-width: 980px) {
           .demo-grid { grid-template-columns: 1fr; }
@@ -87,7 +87,7 @@ export function HowItWorksSection() {
         .info-card {
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: flex-start;
         }
         .card-title {
           font-size: 20px;
@@ -157,9 +157,8 @@ export function HowItWorksSection() {
           box-shadow: 0 10px 30px rgba(0,255,65,.25);
         }
         .video-wrap {
-          min-height: 380px;
+          height: 400px;
           background: #000;
-          aspect-ratio: 16 / 9;
         }
         .video-placeholder {
           position: absolute;
