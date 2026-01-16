@@ -2,25 +2,90 @@ import { useState, useEffect, useMemo } from 'react';
 import type { Game } from '@/types/game';
 import { AAA_GAME_NAMES, SEARCH_ALIASES } from '@/types/game';
 
-// Lista de jogos que devem ser excluídos (sequências, remasters, spin-offs)
-const EXCLUDED_GAMES = [
-  'assassin\'s creed',
-  'god of war',
-  'call of duty',
-  'ghost of tsushima',
-  'dark souls ii',
-  'dark souls 2',
-  'resident evil 4',
-  'resident evil 2',
-  'resident evil 3',
-  'cod:',
-  'cod ',
-  'modern warfare',
-  'warzone',
-  'black ops',
-  'vanguard',
-  'cold war',
+// Jogos preferidos por franquia (estes serão priorizados)
+const PREFERRED_GAMES: Record<string, string[]> = {
+  'Spider-Man': ['remastered', 'spider-man remastered'],
+  'The Last of Us': ['part i', 'part 1'],
+  'Red Dead': ['redemption 2', 'rdr2'],
+  'Dark Souls': ['dark souls iii', 'dark souls 3'],
+  'Resident Evil': ['village', 're village'],
+  'Monster Hunter': ['world'],
+  'Horizon': ['zero dawn'],
+  'The Witcher': ['witcher 3', 'wild hunt'],
+  'Death Stranding': ["director's cut", 'directors cut'],
+  'Elden Ring': ['elden ring'],
+  'Cyberpunk': ['2077'],
+  'Baldurs Gate': ['gate 3', 'bg3'],
+  'GTA': ['gta v', 'grand theft auto v'],
+};
+
+// Palavras-chave de franquias para agrupar
+const FRANCHISE_KEYWORDS = [
+  { key: 'spider-man', franchise: 'Spider-Man' },
+  { key: 'spiderman', franchise: 'Spider-Man' },
+  { key: 'last of us', franchise: 'The Last of Us' },
+  { key: 'red dead', franchise: 'Red Dead' },
+  { key: 'dark souls', franchise: 'Dark Souls' },
+  { key: 'resident evil', franchise: 'Resident Evil' },
+  { key: 'monster hunter', franchise: 'Monster Hunter' },
+  { key: 'horizon', franchise: 'Horizon' },
+  { key: 'witcher', franchise: 'The Witcher' },
+  { key: 'death stranding', franchise: 'Death Stranding' },
+  { key: 'elden ring', franchise: 'Elden Ring' },
+  { key: 'cyberpunk', franchise: 'Cyberpunk' },
+  { key: 'baldur', franchise: 'Baldurs Gate' },
+  { key: 'gta', franchise: 'GTA' },
+  { key: 'grand theft auto', franchise: 'GTA' },
+  { key: 'sekiro', franchise: 'Sekiro' },
+  { key: 'hogwarts', franchise: 'Hogwarts' },
+  { key: 'hollow knight', franchise: 'Hollow Knight' },
 ];
+
+// Função para identificar a franquia de um jogo
+function getFranchise(gameName: string): string | null {
+  const lower = gameName.toLowerCase();
+  for (const { key, franchise } of FRANCHISE_KEYWORDS) {
+    if (lower.includes(key)) {
+      return franchise;
+    }
+  }
+  return null;
+}
+
+// Verificar se é o jogo preferido da franquia
+function isPreferredGame(gameName: string, franchise: string): boolean {
+  const preferred = PREFERRED_GAMES[franchise];
+  if (!preferred) return true;
+  
+  const lower = gameName.toLowerCase();
+  return preferred.some(pref => lower.includes(pref));
+}
+
+// Função para filtrar apenas 1 jogo por franquia (priorizando os preferidos)
+function filterOnlyOnePerFranchise(games: Game[]): Game[] {
+  const franchiseGames = new Map<string, Game>();
+  const noFranchiseGames: Game[] = [];
+  
+  for (const game of games) {
+    const franchise = getFranchise(game.name);
+    
+    if (franchise) {
+      const existing = franchiseGames.get(franchise);
+      
+      // Se é o jogo preferido, sempre usar
+      if (isPreferredGame(game.name, franchise)) {
+        franchiseGames.set(franchise, game);
+      } else if (!existing) {
+        // Se não há nenhum ainda, usar este como fallback
+        franchiseGames.set(franchise, game);
+      }
+    } else {
+      noFranchiseGames.push(game);
+    }
+  }
+  
+  return [...franchiseGames.values(), ...noFranchiseGames];
+}
 
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
@@ -39,26 +104,18 @@ export function useGames() {
       });
   }, []);
 
-  // Filtrar jogos AAA sem sequências
+  // Filtrar jogos AAA e manter apenas 1 por franquia
   const aaaGames = useMemo(() => {
-    const filtered = games.filter((game) => {
-      const gameName = game.name.toLowerCase();
-      
-      // Verificar se está na lista de exclusão
-      const isExcluded = EXCLUDED_GAMES.some(excluded => 
-        gameName.includes(excluded.toLowerCase())
-      );
-      
-      if (isExcluded) return false;
-      
-      // Verificar se está na lista AAA
+    // Primeiro, filtrar jogos que correspondem à lista AAA
+    const matchedGames = games.filter((game) => {
       return AAA_GAME_NAMES.some((aaa) => 
-        gameName.includes(aaa.toLowerCase()) || 
-        aaa.toLowerCase().includes(gameName)
+        game.name.toLowerCase().includes(aaa.toLowerCase()) || 
+        aaa.toLowerCase().includes(game.name.toLowerCase())
       );
     });
     
-    return filtered;
+    // Depois, filtrar para manter apenas 1 por franquia
+    return filterOnlyOnePerFranchise(matchedGames);
   }, [games]);
 
   const searchGames = (query: string): Game[] => {

@@ -5,7 +5,9 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeSection } from '@/components/sections/MarqueeSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { CatalogSection } from '@/components/sections/CatalogSection';
+import { AboutSection } from '@/components/sections/AboutSection';
 import { PricingSection } from '@/components/sections/PricingSection';
+import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { Footer } from '@/components/layout/Footer';
 import { GameModal } from '@/components/ui/GameModal';
@@ -69,7 +71,11 @@ const Index = () => {
         onOpenDetails={setSelectedGame}
       />
       
+      <AboutSection />
+      
       <PricingSection />
+      
+      <GuaranteeSection />
       
       <FAQSection />
       
