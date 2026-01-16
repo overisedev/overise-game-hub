@@ -67,12 +67,15 @@ function filterOnlyOnePerFranchise(games: Game[]): Game[] {
   const noFranchiseGames: Game[] = [];
   
   for (const game of games) {
+    // Ignorar jogos sem cover ou steam_appid válido
+    if (!game.cover || !game.steam_appid) continue;
+    
     const franchise = getFranchise(game.name);
     
     if (franchise) {
       const existing = franchiseGames.get(franchise);
       
-      // Se é o jogo preferido, sempre usar
+      // Se é o jogo preferido E tem cover, sempre usar
       if (isPreferredGame(game.name, franchise)) {
         franchiseGames.set(franchise, game);
       } else if (!existing) {
