@@ -31,7 +31,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="btn btn-primary-lg">Quero começar</a>
+              <a href="#como-funciona" className="btn btn-primary-lg">Quero começar</a>
               <a href="#catalogo" className="btn btn-outline">Ver catálogo</a>
             </div>
 
