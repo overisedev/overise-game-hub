@@ -16,7 +16,7 @@ const PREFERRED_GAMES: Record<string, string[]> = {
   'Elden Ring': ['elden ring'],
   'Cyberpunk': ['2077'],
   'Baldurs Gate': ['gate 3', 'bg3'],
-  'GTA': ['v', 'gta v', 'grand theft auto v'],
+  'GTA': ['enhanced', 'grand theft auto v enhanced'],
 };
 
 // Palavras-chave de franquias para agrupar
@@ -106,8 +106,11 @@ export function useGames() {
 
   // Filtrar jogos AAA e manter apenas 1 por franquia
   const aaaGames = useMemo(() => {
-    // Primeiro, filtrar jogos que correspondem à lista AAA
+    // Primeiro, filtrar jogos que correspondem à lista AAA E têm dados válidos
     const matchedGames = games.filter((game) => {
+      // Ignorar jogos sem cover ou steam_appid
+      if (!game.cover || !game.steam_appid) return false;
+      
       return AAA_GAME_NAMES.some((aaa) => 
         game.name.toLowerCase().includes(aaa.toLowerCase()) || 
         aaa.toLowerCase().includes(game.name.toLowerCase())
