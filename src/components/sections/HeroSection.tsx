@@ -10,7 +10,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section" style={{ paddingTop: '120px' }}>
+    <section className="section-top section" style={{ paddingTop: 'clamp(100px, 15vw, 120px)' }}>
       <div className="container-main">
         <div className="hero-grid">
           {/* Left Content */}
@@ -104,15 +104,30 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           align-items: center;
         }
         @media (max-width: 980px) {
-          .hero-grid { grid-template-columns: 1fr; gap: 18px; }
+          .hero-grid { 
+            grid-template-columns: 1fr; 
+            gap: 24px; 
+          }
+        }
+        @media (max-width: 640px) {
+          .hero-grid { 
+            gap: 20px; 
+          }
         }
         .hero-title {
           margin: 18px 0 14px;
           font-weight: 950;
-          font-size: clamp(36px, 5.2vw, 60px);
+          font-size: clamp(28px, 5.2vw, 60px);
           line-height: 1.02;
           letter-spacing: -2px;
           color: #fff;
+        }
+        @media (max-width: 640px) {
+          .hero-title {
+            font-size: 28px;
+            letter-spacing: -1px;
+            margin: 14px 0 12px;
+          }
         }
         .hero-title .accent { color: var(--neon); }
         .hero-sub {
@@ -122,10 +137,25 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           color: var(--muted);
           margin-bottom: 26px;
         }
+        @media (max-width: 640px) {
+          .hero-sub {
+            font-size: 14px;
+            margin-bottom: 20px;
+          }
+        }
         .hero-actions {
           display: flex;
           gap: 12px;
           flex-wrap: wrap;
+        }
+        @media (max-width: 640px) {
+          .hero-actions {
+            gap: 10px;
+          }
+          .hero-actions .btn {
+            flex: 1 1 auto;
+            min-width: 140px;
+          }
         }
 
         .hero-card {
@@ -136,8 +166,13 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           overflow: hidden;
           position: relative;
           isolation: isolate;
-          min-height: 320px;
+          min-height: 280px;
           transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (max-width: 640px) {
+          .hero-card {
+            min-height: 220px;
+          }
         }
         .hero-card.transitioning {
           opacity: 0;
@@ -152,9 +187,14 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         .hero-card-media {
           position: relative;
-          height: 320px;
+          height: 280px;
           background: #000;
           overflow: hidden;
+        }
+        @media (max-width: 640px) {
+          .hero-card-media {
+            height: 220px;
+          }
         }
         .hero-card-media img {
           width: 100%;
@@ -172,19 +212,33 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         .hero-card-info {
           position: absolute;
-          left: 18px;
-          right: 18px;
-          bottom: 18px;
+          left: 14px;
+          right: 14px;
+          bottom: 14px;
           display: flex;
           align-items: flex-end;
           justify-content: space-between;
-          gap: 14px;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+        @media (max-width: 640px) {
+          .hero-card-info {
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+          }
         }
         .hero-card-text { max-width: 62%; min-width: 0; }
         @media (max-width: 980px) {
           .hero-card-text { max-width: 100%; }
         }
         .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+        @media (max-width: 640px) {
+          .badge-row { gap: 6px; margin-bottom: 8px; }
+        }
         .chip {
           display: inline-flex;
           align-items: center;
@@ -202,6 +256,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           backdrop-filter: blur(10px);
           white-space: nowrap;
         }
+        @media (max-width: 640px) {
+          .chip {
+            padding: 6px 8px;
+            font-size: 10px;
+          }
+        }
         .chip.green {
           border-color: rgba(0,255,65,.35);
           box-shadow: 0 0 0 1px rgba(0,255,65,.10) inset;
@@ -209,12 +269,17 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         .hero-card-name {
           margin: 0;
           font-weight: 950;
-          font-size: 26px;
+          font-size: 22px;
           color: #fff;
           letter-spacing: -1px;
           text-transform: uppercase;
           text-shadow: 0 10px 40px rgba(0,0,0,.95);
           line-height: 1.05;
+        }
+        @media (max-width: 640px) {
+          .hero-card-name {
+            font-size: 18px;
+          }
         }
         .hero-card-desc {
           margin-top: 8px;
@@ -224,14 +289,26 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           text-shadow: 0 10px 30px rgba(0,0,0,.9);
           max-width: 55ch;
         }
+        @media (max-width: 640px) {
+          .hero-card-desc {
+            font-size: 12px;
+            margin-top: 6px;
+          }
+        }
         .hero-card-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+        @media (max-width: 640px) {
+          .hero-card-btns { 
+            justify-content: flex-start;
+            width: 100%;
+          }
+        }
         
         .feat-nav {
           position: absolute;
           top: 14px;
-          width: 42px;
-          height: 42px;
-          border-radius: 14px;
+          width: 38px;
+          height: 38px;
+          border-radius: 12px;
           border: 1px solid rgba(255,255,255,.14);
           background: rgba(0,0,0,.35);
           color: #fff;
@@ -242,12 +319,23 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           z-index: 5;
           font-size: 18px;
         }
+        @media (max-width: 640px) {
+          .feat-nav {
+            width: 34px;
+            height: 34px;
+            font-size: 16px;
+          }
+        }
         .feat-nav:hover {
           transform: translateY(-1px);
           border-color: rgba(255,255,255,.22);
         }
-        .feat-prev { right: 64px; }
+        .feat-prev { right: 58px; }
         .feat-next { right: 14px; }
+        @media (max-width: 640px) {
+          .feat-prev { right: 52px; }
+          .feat-next { right: 12px; }
+        }
 
         .btn {
           position: relative;
@@ -268,6 +356,13 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           transition: .22s ease;
           overflow: hidden;
           white-space: nowrap;
+          font-size: 13px;
+        }
+        @media (max-width: 640px) {
+          .btn {
+            padding: 10px 14px;
+            font-size: 12px;
+          }
         }
         .btn:hover {
           transform: translateY(-2px);
@@ -289,6 +384,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           padding: 10px 14px;
           border-radius: 12px;
           font-size: 12px;
+        }
+        @media (max-width: 640px) {
+          .btn-small {
+            padding: 8px 12px;
+            font-size: 11px;
+          }
         }
         .btn-primary-sm {
           background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
