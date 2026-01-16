@@ -138,7 +138,7 @@ export function CatalogSection({
                 <div className="game-info">
                   <span className="game-name">{game.name}</span>
                   <div className="tag-row">
-                    {game.categories.slice(0, 2).map((c) => (
+                    {game.categories.slice(0, 1).map((c) => (
                       <span key={c} className="tag">{c}</span>
                     ))}
                     <span className="tag ok">Disponível</span>
@@ -488,27 +488,39 @@ export function CatalogSection({
             font-size: 11px;
           }
         }
-        .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .tag-row { 
+          display: flex; 
+          gap: 6px; 
+          flex-wrap: wrap;
+          max-width: 100%;
+          overflow: hidden;
+        }
         @media (max-width: 640px) {
-          .tag-row { gap: 6px; }
+          .tag-row { 
+            gap: 5px; 
+          }
         }
         .tag {
           font-size: 10px;
           font-weight: 950;
-          letter-spacing: .5px;
+          letter-spacing: .4px;
           text-transform: uppercase;
-          padding: 7px 9px;
+          padding: 6px 8px;
           border-radius: 999px;
           background: rgba(0,0,0,.30);
           border: 1px solid rgba(255,255,255,.10);
           color: #fff;
           text-shadow: 0 10px 30px rgba(0,0,0,.95);
           white-space: nowrap;
+          max-width: 120px;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         @media (max-width: 640px) {
           .tag {
             padding: 5px 7px;
             font-size: 9px;
+            max-width: 100px;
           }
         }
         .tag.ok { border-color: rgba(0,255,65,.30); }
@@ -517,9 +529,13 @@ export function CatalogSection({
           gap: 10px;
           align-items: center;
           justify-content: space-between;
+          margin-top: 4px;
         }
         @media (max-width: 640px) {
-          .game-cta { gap: 8px; }
+          .game-cta { 
+            gap: 8px;
+            margin-top: 2px; 
+          }
         }
         .tiny {
           font-size: 11px;
