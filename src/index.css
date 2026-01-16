@@ -139,17 +139,37 @@
     width: min(var(--max), calc(100% - 40px));
     margin: 0 auto;
   }
+  @media (max-width: 640px) {
+    .container-main {
+      width: calc(100% - 32px);
+    }
+  }
 
   .section {
-    padding: 110px 0;
+    padding: 90px 0;
+  }
+  @media (max-width: 640px) {
+    .section {
+      padding: 60px 0;
+    }
   }
 
   .section-tight {
-    padding: 80px 0;
+    padding: 70px 0;
+  }
+  @media (max-width: 640px) {
+    .section-tight {
+      padding: 50px 0;
+    }
   }
 
   .section-top {
-    padding-top: 140px;
+    padding-top: 120px;
+  }
+  @media (max-width: 640px) {
+    .section-top {
+      padding-top: 100px;
+    }
   }
 
   .animate-float-in {

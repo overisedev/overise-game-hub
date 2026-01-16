@@ -237,10 +237,17 @@ export function CatalogSection({
       <style>{`
         .catalog-header {
           display: flex;
-          align-items: flex-end;
+          align-items: flex-start;
           justify-content: space-between;
           gap: 18px;
           margin-bottom: 18px;
+          flex-wrap: wrap;
+        }
+        @media (max-width: 640px) {
+          .catalog-header {
+            flex-direction: column;
+            gap: 14px;
+          }
         }
         .catalog-header h2 {
           margin: 0;
@@ -250,22 +257,43 @@ export function CatalogSection({
           color: #fff;
           text-transform: uppercase;
         }
+        @media (max-width: 640px) {
+          .catalog-header h2 {
+            font-size: 22px;
+          }
+        }
         .catalog-header p {
           margin: 8px 0 0;
           color: var(--muted);
           max-width: 56ch;
           line-height: 1.6;
+          font-size: 14px;
+        }
+        @media (max-width: 640px) {
+          .catalog-header p {
+            font-size: 13px;
+            line-height: 1.5;
+          }
         }
         .catalog-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+        @media (max-width: 640px) {
+          .catalog-actions {
+            width: 100%;
+            justify-content: flex-start;
+          }
+        }
         
         .catalog-shell {
           display: grid;
-          grid-template-columns: 320px 1fr;
+          grid-template-columns: 280px 1fr;
           gap: 14px;
           align-items: start;
         }
         @media (max-width: 980px) {
-          .catalog-shell { grid-template-columns: 1fr; }
+          .catalog-shell { 
+            grid-template-columns: 1fr; 
+            gap: 16px;
+          }
           .side { position: relative; top: auto; }
         }
         
@@ -277,6 +305,11 @@ export function CatalogSection({
           border: 1px solid rgba(255,255,255,.10);
           background: rgba(255,255,255,.04);
           box-shadow: var(--shadowSoft);
+        }
+        @media (max-width: 640px) {
+          .side {
+            padding: 12px;
+          }
         }
         .side-title {
           font-weight: 950;
@@ -296,6 +329,11 @@ export function CatalogSection({
           gap: 8px;
           margin-top: 8px;
         }
+        @media (max-width: 640px) {
+          .cats {
+            gap: 6px;
+          }
+        }
         .cat {
           cursor: pointer;
           user-select: none;
@@ -310,6 +348,13 @@ export function CatalogSection({
           transition: .2s ease;
           text-transform: uppercase;
           white-space: nowrap;
+        }
+        @media (max-width: 640px) {
+          .cat {
+            padding: 8px 10px;
+            font-size: 11px;
+            border-radius: 12px;
+          }
         }
         .cat:hover {
           transform: translateY(-1px);
@@ -328,11 +373,20 @@ export function CatalogSection({
           align-items: stretch;
         }
         @media (max-width: 980px) {
-          .showcase-row { grid-template-columns: 1fr; }
+          .showcase-row { 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px;
+          }
+        }
+        @media (max-width: 640px) {
+          .showcase-row { 
+            grid-template-columns: 1fr; 
+            gap: 12px;
+          }
         }
         
         .game {
-          border-radius: 18px;
+          border-radius: 16px;
           border: 1px solid rgba(255,255,255,.10);
           background: rgba(255,255,255,.04);
           box-shadow: var(--shadowSoft);
@@ -340,6 +394,11 @@ export function CatalogSection({
           cursor: pointer;
           transform: translateZ(0);
           min-width: 0;
+        }
+        @media (max-width: 640px) {
+          .game {
+            border-radius: 14px;
+          }
         }
         
         /* Animação suave de fade */
@@ -408,6 +467,12 @@ export function CatalogSection({
           gap: 10px;
           min-width: 0;
         }
+        @media (max-width: 640px) {
+          .game-info {
+            padding: 10px;
+            gap: 8px;
+          }
+        }
         .game-name {
           font-weight: 950;
           font-size: 12px;
@@ -418,7 +483,15 @@ export function CatalogSection({
           overflow: hidden;
           text-overflow: ellipsis;
         }
+        @media (max-width: 640px) {
+          .game-name {
+            font-size: 11px;
+          }
+        }
         .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        @media (max-width: 640px) {
+          .tag-row { gap: 6px; }
+        }
         .tag {
           font-size: 10px;
           font-weight: 950;
@@ -432,6 +505,12 @@ export function CatalogSection({
           text-shadow: 0 10px 30px rgba(0,0,0,.95);
           white-space: nowrap;
         }
+        @media (max-width: 640px) {
+          .tag {
+            padding: 5px 7px;
+            font-size: 9px;
+          }
+        }
         .tag.ok { border-color: rgba(0,255,65,.30); }
         .game-cta {
           display: flex;
@@ -439,10 +518,16 @@ export function CatalogSection({
           align-items: center;
           justify-content: space-between;
         }
+        @media (max-width: 640px) {
+          .game-cta { gap: 8px; }
+        }
         .tiny {
           font-size: 11px;
           color: var(--muted2);
           letter-spacing: .4px;
+        }
+        @media (max-width: 640px) {
+          .tiny { font-size: 10px; }
         }
         .ghost-btn {
           padding: 10px 12px;
