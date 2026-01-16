@@ -2,6 +2,26 @@ import { useState, useEffect, useMemo } from 'react';
 import type { Game } from '@/types/game';
 import { AAA_GAME_NAMES, SEARCH_ALIASES } from '@/types/game';
 
+// Lista de jogos que devem ser excluídos (sequências, remasters, spin-offs)
+const EXCLUDED_GAMES = [
+  'assassin\'s creed',
+  'god of war',
+  'call of duty',
+  'ghost of tsushima',
+  'dark souls ii',
+  'dark souls 2',
+  'resident evil 4',
+  'resident evil 2',
+  'resident evil 3',
+  'cod:',
+  'cod ',
+  'modern warfare',
+  'warzone',
+  'black ops',
+  'vanguard',
+  'cold war',
+];
+
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,13 +39,26 @@ export function useGames() {
       });
   }, []);
 
+  // Filtrar jogos AAA sem sequências
   const aaaGames = useMemo(() => {
-    return games.filter((game) =>
-      AAA_GAME_NAMES.some((aaa) => 
-        game.name.toLowerCase().includes(aaa.toLowerCase()) || 
-        aaa.toLowerCase().includes(game.name.toLowerCase())
-      )
-    );
+    const filtered = games.filter((game) => {
+      const gameName = game.name.toLowerCase();
+      
+      // Verificar se está na lista de exclusão
+      const isExcluded = EXCLUDED_GAMES.some(excluded => 
+        gameName.includes(excluded.toLowerCase())
+      );
+      
+      if (isExcluded) return false;
+      
+      // Verificar se está na lista AAA
+      return AAA_GAME_NAMES.some((aaa) => 
+        gameName.includes(aaa.toLowerCase()) || 
+        aaa.toLowerCase().includes(gameName)
+      );
+    });
+    
+    return filtered;
   }, [games]);
 
   const searchGames = (query: string): Game[] => {

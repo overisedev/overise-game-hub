@@ -22,34 +22,50 @@ export function CatalogSection({
   const [showFullCatalog, setShowFullCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fullCatalogPage, setFullCatalogPage] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
     return getGamesByCategory(selectedCategory);
   }, [selectedCategory, games, getGamesByCategory]);
 
+  // Jogos aleatórios na vitrine
+  const shuffledGames = useMemo(() => {
+    const shuffled = [...filteredGames];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }, [filteredGames, selectedCategory]);
+
   // 3 jogos na vitrine
   const showcaseGames = useMemo(() => {
-    if (filteredGames.length === 0) return [];
+    if (shuffledGames.length === 0) return [];
     const result = [];
     for (let i = 0; i < 3; i++) {
-      result.push(filteredGames[(showcaseIndex + i) % filteredGames.length]);
+      result.push(shuffledGames[(showcaseIndex + i) % shuffledGames.length]);
     }
     return result;
-  }, [filteredGames, showcaseIndex]);
+  }, [shuffledGames, showcaseIndex]);
 
-  // Auto-rotate showcase
+  // Auto-rotate showcase com transição mais lenta (8 segundos)
   useEffect(() => {
-    if (filteredGames.length <= 3) return;
+    if (shuffledGames.length <= 3) return;
     const interval = setInterval(() => {
-      setShowcaseIndex((prev) => (prev + 1) % filteredGames.length);
-    }, 4000);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setShowcaseIndex((prev) => (prev + 1) % shuffledGames.length);
+        setIsTransitioning(false);
+      }, 600); // Tempo do fade out antes de mudar
+    }, 8000); // Intervalo maior entre transições
     return () => clearInterval(interval);
-  }, [filteredGames.length]);
+  }, [shuffledGames.length]);
 
   // Reset on category change
   useEffect(() => {
     setShowcaseIndex(0);
+    setIsTransitioning(false);
   }, [selectedCategory]);
 
   // Full catalog search
@@ -112,7 +128,7 @@ export function CatalogSection({
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className="game animate-swap"
+                className={`game ${isTransitioning ? 'fade-out' : 'fade-in'}`}
                 onClick={() => onOpenDetails(game)}
               >
                 <div className="game-img">
@@ -323,12 +339,43 @@ export function CatalogSection({
           overflow: hidden;
           cursor: pointer;
           transform: translateZ(0);
-          transition: .25s ease;
           min-width: 0;
         }
+        
+        /* Animação suave de fade */
+        .game.fade-in {
+          animation: smoothFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .game.fade-out {
+          animation: smoothFadeOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes smoothFadeIn {
+          from {
+            opacity: 0;
+            transform: translateX(30px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
+        }
+        
+        @keyframes smoothFadeOut {
+          from {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.98);
+          }
+        }
+        
         .game:hover {
           transform: translateY(-4px);
           border-color: rgba(0,255,65,.22);
+          transition: transform 0.3s ease, border-color 0.3s ease;
         }
         .game-img {
           aspect-ratio: 16/9;

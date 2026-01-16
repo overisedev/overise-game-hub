@@ -65,7 +65,7 @@ export function MarqueeSection({ games }: MarqueeSectionProps) {
           gap: 14px;
           width: max-content;
           padding: 14px;
-          animation: marquee 72s linear infinite;
+          animation: marquee 90s linear infinite;
           will-change: transform;
         }
         .marquee:hover .marquee-track {
