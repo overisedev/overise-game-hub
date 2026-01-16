@@ -90,7 +90,7 @@ export function CatalogSection({
           <p>Navegue por categorias. A vitrine exibe uma seleção rotativa com transição suave — clique para abrir detalhes.</p>
         </div>
         <div className="catalog-actions">
-          <a href="#planos" className="btn btn-small">Ver planos</a>
+          <a href="#como-funciona" className="btn btn-primary-small">Desbloquear</a>
         </div>
       </div>
 
@@ -145,7 +145,7 @@ export function CatalogSection({
                   </div>
                   <div className="game-cta">
                     <span className="tiny">Steam</span>
-                    <button className="ghost-btn">Ver detalhes</button>
+                    <a href="#como-funciona" className="unlock-btn" onClick={(e) => e.stopPropagation()}>Desbloquear</a>
                   </div>
                 </div>
               </div>
@@ -460,6 +460,42 @@ export function CatalogSection({
         .ghost-btn:hover {
           transform: translateY(-1px);
           border-color: rgba(255,255,255,.22);
+        }
+        .unlock-btn {
+          padding: 10px 14px;
+          border-radius: 12px;
+          background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
+          color: #000;
+          font-weight: 950;
+          text-transform: uppercase;
+          font-size: 11px;
+          cursor: pointer;
+          transition: .2s ease;
+          white-space: nowrap;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+        }
+        .unlock-btn:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 8px 20px rgba(0,255,65,.25);
+        }
+        .btn-primary-small {
+          padding: 10px 16px;
+          border-radius: 12px;
+          background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
+          color: #000;
+          font-weight: 950;
+          text-transform: uppercase;
+          font-size: 12px;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          transition: .2s ease;
+        }
+        .btn-primary-small:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 30px rgba(0,255,65,.25);
         }
 
         .catalog-more-row {

@@ -16,14 +16,14 @@ export function GameModal({ game, onClose }: GameModalProps) {
         <div className="modal-body">
           <div>
             <h2 className="modal-title">{game.name}</h2>
-            <p className="modal-desc">Título disponível no ecossistema Overise. Navegue pelo catálogo para explorar mais opções ou selecione um plano para desbloquear.</p>
+            <p className="modal-desc">Título disponível no ecossistema Overise. Navegue pelo catálogo para explorar mais opções ou assista à VSL para entender como desbloquear.</p>
           </div>
           <div className="modal-side">
             <div className="row"><span>Disponibilidade</span><b style={{ color: 'var(--neon)' }}>Disponível</b></div>
             <div className="row"><span>Categoria</span><b>{game.categories[0] || 'Outros'}</b></div>
             <div className="row"><span>Origem</span><b>Steam</b></div>
             <div className="modal-btns">
-              <a href="#planos" className="btn btn-primary-full" onClick={onClose}>Selecionar plano</a>
+              <a href="#como-funciona" className="btn btn-primary-full" onClick={onClose}>Desbloquear</a>
             </div>
           </div>
         </div>
