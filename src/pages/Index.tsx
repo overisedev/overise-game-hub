@@ -17,24 +17,37 @@ const Index = () => {
   const { games, aaaGames, loading, totalGames, searchGames, getGamesByCategory } = useGames();
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Rotate featured game
+  // Rotate featured game with smooth transition
   useEffect(() => {
     if (aaaGames.length === 0) return;
     const interval = setInterval(() => {
-      setFeaturedIndex((prev) => (prev + 1) % aaaGames.length);
-    }, 5000);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setFeaturedIndex((prev) => (prev + 1) % aaaGames.length);
+        setTimeout(() => setIsTransitioning(false), 100);
+      }, 600);
+    }, 8000);
     return () => clearInterval(interval);
   }, [aaaGames.length]);
 
   const featuredGame = aaaGames[featuredIndex];
 
   const handlePrevFeatured = () => {
-    setFeaturedIndex((prev) => (prev - 1 + aaaGames.length) % aaaGames.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setFeaturedIndex((prev) => (prev - 1 + aaaGames.length) % aaaGames.length);
+      setTimeout(() => setIsTransitioning(false), 100);
+    }, 500);
   };
 
   const handleNextFeatured = () => {
-    setFeaturedIndex((prev) => (prev + 1) % aaaGames.length);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setFeaturedIndex((prev) => (prev + 1) % aaaGames.length);
+      setTimeout(() => setIsTransitioning(false), 100);
+    }, 500);
   };
 
   if (loading) {
@@ -54,6 +67,7 @@ const Index = () => {
       
       <HeroSection 
         featuredGame={featuredGame}
+        isTransitioning={isTransitioning}
         onPrev={handlePrevFeatured}
         onNext={handleNextFeatured}
         onOpenDetails={setSelectedGame}
