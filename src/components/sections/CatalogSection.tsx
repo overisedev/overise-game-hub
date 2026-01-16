@@ -82,7 +82,7 @@ export function CatalogSection({
   const hasMore = (fullCatalogPage + 1) * ITEMS_PER_PAGE < fullCatalogGames.length;
 
   return (
-    <section id="catalogo" className="section-tight container-main">
+    <section id="catalogo" className="catalog-section"  style={{ padding: 'clamp(50px, 8vw, 80px) 0' }}>
       {/* Header */}
       <div className="catalog-header">
         <div>
@@ -235,6 +235,16 @@ export function CatalogSection({
       </div>
 
       <style>{`
+        .catalog-section {
+          width: min(1180px, calc(100% - 40px));
+          margin: 0 auto;
+          overflow: visible;
+        }
+        @media (max-width: 640px) {
+          .catalog-section {
+            width: calc(100% - 32px);
+          }
+        }
         .catalog-header {
           display: flex;
           align-items: flex-start;
@@ -367,21 +377,31 @@ export function CatalogSection({
         }
 
         .showcase-row {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
           gap: 14px;
-          align-items: stretch;
+        }
+        .showcase-row .game {
+          flex: 1 1 calc(33.333% - 10px);
+          min-width: 280px;
+          max-width: 100%;
         }
         @media (max-width: 980px) {
-          .showcase-row { 
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 12px;
+          .showcase-row .game {
+            flex: 1 1 calc(50% - 7px);
+            min-width: 240px;
           }
         }
         @media (max-width: 640px) {
-          .showcase-row { 
-            grid-template-columns: 1fr; 
-            gap: 12px;
+          .showcase-row {
+            flex-direction: column;
+            gap: 16px;
+          }
+          .showcase-row .game {
+            flex: 1 1 100%;
+            min-width: 100%;
+            width: 100%;
           }
         }
         
@@ -392,8 +412,9 @@ export function CatalogSection({
           box-shadow: var(--shadowSoft);
           overflow: hidden;
           cursor: pointer;
-          transform: translateZ(0);
           min-width: 0;
+          display: flex;
+          flex-direction: column;
         }
         @media (max-width: 640px) {
           .game {
