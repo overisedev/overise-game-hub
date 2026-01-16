@@ -117,6 +117,8 @@ export function PricingSection() {
           background: rgba(255,255,255,.03);
           display: flex;
           flex-direction: column;
+          align-items: center;
+          text-align: center;
           position: relative;
           transition: .25s ease;
         }
@@ -153,6 +155,7 @@ export function PricingSection() {
           margin: 0 0 16px;
           text-transform: uppercase;
           letter-spacing: 0.3px;
+          text-align: center;
         }
         
         .plan-price {
@@ -161,6 +164,7 @@ export function PricingSection() {
           color: var(--neon);
           letter-spacing: -2px;
           margin-bottom: 8px;
+          text-align: center;
         }
         
         .plan-games {
@@ -168,6 +172,49 @@ export function PricingSection() {
           color: var(--muted);
           margin-bottom: 24px;
           padding-bottom: 20px;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+          text-align: center;
+          width: 100%;
+        }
+        
+        .plan-features {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 24px;
+          flex: 1;
+          width: 100%;
+        }
+        
+        .plan-features li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          padding: 8px 0;
+          font-size: 14px;
+          color: rgba(255,255,255,.80);
+        }
+        
+        .check {
+          color: var(--neon);
+          font-weight: 700;
+        }
+        
+        .plan-btn {
+          display: block;
+          width: 100%;
+          text-align: center;
+          padding: 14px;
+          border-radius: 14px;
+          border: 1px solid rgba(255,255,255,.10);
+          background: rgba(255,255,255,.04);
+          color: #fff;
+          font-size: 14px;
+          font-weight: 900;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: .25s ease;
+        }
           border-bottom: 1px solid rgba(255,255,255,.06);
         }
         
