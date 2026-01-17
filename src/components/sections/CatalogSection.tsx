@@ -29,38 +29,65 @@ export function CatalogSection({
     return getGamesByCategory(selectedCategory);
   }, [selectedCategory, games, getGamesByCategory]);
 
-  // Jogos aleatórios na vitrine
-  const shuffledGames = useMemo(() => {
-    const shuffled = [...filteredGames];
+  // Lista fixa de jogos para a vitrine rotativa
+  const SHOWCASE_GAME_NAMES = [
+    'The Witcher 3: Wild Hunt',
+    'Sekiro: Shadows Die Twice',
+    'Dark Souls III',
+    'Horizon Forbidden West',
+    'Detroit: Become Human',
+    "Assassin's Creed Valhalla",
+    'Grand Theft Auto V',
+    'Red Dead Redemption 2',
+    'ELDEN RING',
+    'Cyberpunk 2077',
+    'God of War Ragnarök',
+    'The Last of Us Part I',
+    "Baldur's Gate 3",
+    'Hogwarts Legacy',
+    'Forza Horizon 5',
+    'Counter-Strike 2',
+  ];
+
+  // Filtra apenas os jogos da lista de showcase
+  const showcasePool = useMemo(() => {
+    const pool = games.filter(game => 
+      SHOWCASE_GAME_NAMES.some(name => 
+        game.name.toLowerCase().includes(name.toLowerCase()) ||
+        name.toLowerCase().includes(game.name.toLowerCase())
+      )
+    );
+    // Embaralha aleatoriamente
+    const shuffled = [...pool];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
-  }, [filteredGames, selectedCategory]);
+  }, [games]);
 
   // 3 jogos na vitrine
   const showcaseGames = useMemo(() => {
-    if (shuffledGames.length === 0) return [];
+    if (showcasePool.length === 0) return [];
     const result = [];
     for (let i = 0; i < 3; i++) {
-      result.push(shuffledGames[(showcaseIndex + i) % shuffledGames.length]);
+      result.push(showcasePool[(showcaseIndex + i) % showcasePool.length]);
     }
     return result;
-  }, [shuffledGames, showcaseIndex]);
+  }, [showcasePool, showcaseIndex]);
 
   // Auto-rotate showcase com transição mais lenta (8 segundos)
   useEffect(() => {
-    if (shuffledGames.length <= 3) return;
+    if (showcasePool.length <= 3) return;
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setShowcaseIndex((prev) => (prev + 1) % shuffledGames.length);
+        setShowcaseIndex((prev) => (prev + 1) % showcasePool.length);
         setIsTransitioning(false);
       }, 600); // Tempo do fade out antes de mudar
     }, 8000); // Intervalo maior entre transições
     return () => clearInterval(interval);
-  }, [shuffledGames.length]);
+  }, [showcasePool.length]);
 
   // Reset on category change
   useEffect(() => {
