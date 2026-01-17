@@ -54,10 +54,7 @@ const Index = () => {
     return (
       <div className="loading-screen">
         <div className="loading-content">
-          <div className="loading-logo">
-            <span className="logo-main">OVERISE</span>
-            <span className="logo-sub">PREMIUM GAMES</span>
-          </div>
+          <span className="logo-main">OVERISE</span>
           <div className="loading-bar">
             <div className="loading-bar-fill" />
           </div>
