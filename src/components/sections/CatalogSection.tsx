@@ -155,7 +155,7 @@ export function CatalogSection({
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className={`game ${isTransitioning ? 'fade-out' : 'fade-in'}`}
+                className={`game ${isTransitioning ? 'fade-out' : ''}`}
                 onClick={() => onOpenDetails(game)}
               >
                 <div className="game-img">
@@ -254,7 +254,6 @@ export function CatalogSection({
                     Carregar mais
                   </button>
                 )}
-                <span className="tiny">{fullCatalogGames.length} jogos encontrados</span>
               </div>
             </div>
           )}
@@ -456,34 +455,14 @@ export function CatalogSection({
           }
         }
         
-        /* Animação suave de fade */
-        .game.fade-in {
-          animation: smoothFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        /* Animação suave de fade - apenas na transição */
+        .game {
+          opacity: 1;
+          transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.6s ease;
         }
         .game.fade-out {
-          animation: smoothFadeOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes smoothFadeIn {
-          from {
-            opacity: 0;
-            transform: translateX(30px) scale(0.98);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-          }
-        }
-        
-        @keyframes smoothFadeOut {
-          from {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-          }
-          to {
-            opacity: 0;
-            transform: translateX(-30px) scale(0.98);
-          }
+          opacity: 0;
+          transform: scale(0.98);
         }
         
         .game:hover {
