@@ -14,13 +14,31 @@ export function GamesPreviewSection({
   totalGames,
   onOpenDetails 
 }: GamesPreviewSectionProps) {
-  // Filtra apenas jogos AAA/destaque
+  // Lista fixa de jogos para exibir no grid (ordem específica)
+  const FEATURED_GAMES = [
+    'Baldur\'s Gate 3',
+    'Cyberpunk 2077', 
+    'Dark Souls III',
+    'ELDEN RING',
+    'Grand Theft Auto V',
+    'Hogwarts Legacy',
+    'The Last of Us',
+    'Resident Evil Village',
+    'Hollow Knight: Silksong',
+  ];
+
   const aaaGames = useMemo(() => {
-    return games.filter(game => 
-      AAA_GAME_NAMES.some(name => 
-        game.name.toLowerCase().includes(name.toLowerCase())
-      )
-    ).slice(0, 9); // 9 jogos para grid 3x3
+    const result: Game[] = [];
+    for (const name of FEATURED_GAMES) {
+      const game = games.find(g => 
+        g.name.toLowerCase().includes(name.toLowerCase()) ||
+        name.toLowerCase().includes(g.name.toLowerCase())
+      );
+      if (game && game.cover) {
+        result.push(game);
+      }
+    }
+    return result.slice(0, 9);
   }, [games]);
 
   if (games.length === 0) return null;
