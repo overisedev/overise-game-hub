@@ -90,6 +90,20 @@ function filterOnlyOnePerFranchise(games: Game[]): Game[] {
   return [...franchiseGames.values(), ...noFranchiseGames];
 }
 
+// Verificar se a URL de capa é válida (não é placeholder ou vazia)
+function hasValidCover(game: Game): boolean {
+  if (!game.cover) return false;
+  const cover = game.cover.toLowerCase();
+  // Filtrar URLs inválidas ou placeholders
+  if (cover.includes('placeholder') || 
+      cover.includes('default') ||
+      cover === '' ||
+      cover.includes('missing')) {
+    return false;
+  }
+  return true;
+}
+
 export function useGames() {
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
@@ -98,7 +112,9 @@ export function useGames() {
     fetch('/data/games.json')
       .then((res) => res.json())
       .then((data: Game[]) => {
-        setGames(data);
+        // Filtrar jogos sem capa válida
+        const gamesWithCovers = data.filter(hasValidCover);
+        setGames(gamesWithCovers);
         setLoading(false);
       })
       .catch((err) => {
