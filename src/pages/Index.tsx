@@ -54,7 +54,10 @@ const Index = () => {
     return (
       <div className="loading-screen">
         <div className="loading-content">
-          <span className="logo-main">OVERISE</span>
+          <div className="loading-logo">
+            <span className="logo-white">OVER</span>
+            <span className="logo-green">ISE</span>
+          </div>
           <div className="loading-bar">
             <div className="loading-bar-fill" />
           </div>
@@ -74,35 +77,34 @@ const Index = () => {
             flex-direction: column;
             align-items: center;
             gap: 32px;
+            animation: fadeIn 0.8s ease-out;
           }
           
           .loading-logo {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 6px;
-            animation: fadeIn 0.6s ease-out;
+            gap: 0;
           }
           
-          .logo-main {
-            font-size: 28px;
+          .logo-white {
+            font-size: 42px;
             font-weight: 950;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             color: #fff;
           }
           
-          .logo-sub {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 3px;
+          .logo-green {
+            font-size: 42px;
+            font-weight: 950;
+            letter-spacing: 2px;
             color: var(--neon);
           }
           
           .loading-bar {
-            width: 120px;
-            height: 2px;
+            width: 140px;
+            height: 3px;
             background: rgba(255,255,255,.1);
-            border-radius: 2px;
+            border-radius: 3px;
             overflow: hidden;
           }
           
@@ -110,12 +112,12 @@ const Index = () => {
             height: 100%;
             width: 40%;
             background: var(--neon);
-            border-radius: 2px;
+            border-radius: 3px;
             animation: barMove 1.2s ease-in-out infinite;
           }
           
           @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
           }
           

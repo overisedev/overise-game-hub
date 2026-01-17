@@ -150,7 +150,8 @@ export function CatalogSection({
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className="game"
+                className="game showcase-animate"
+                style={{ animationDelay: `${idx * 0.1}s` }}
                 onClick={() => onOpenDetails(game)}
               >
                 <div className="game-img">
@@ -452,11 +453,25 @@ export function CatalogSection({
           display: flex;
           flex-direction: column;
           transition: transform 0.3s ease, border-color 0.3s ease;
-          opacity: 1 !important;
         }
         @media (max-width: 640px) {
           .game {
             border-radius: 14px;
+          }
+        }
+        
+        .game.showcase-animate {
+          animation: showcaseEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+        
+        @keyframes showcaseEnter {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
         
@@ -776,15 +791,13 @@ export function CatalogSection({
           height: 100%;
           object-fit: cover;
           display: block;
-          transform: scale(1.03);
           filter: saturate(1.08) contrast(1.06);
-          transition: transform .35s ease;
           -webkit-user-drag: none;
           pointer-events: none;
           background: #0a0a0a;
         }
         .full-card:hover .full-card-img img {
-          transform: scale(1.07);
+          filter: saturate(1.12) contrast(1.10) brightness(1.05);
         }
         .full-card-grad {
           position: absolute;
