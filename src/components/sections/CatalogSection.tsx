@@ -475,13 +475,11 @@ export function CatalogSection({
           height: 100%;
           object-fit: cover;
           display: block;
-          transform: scale(1.03);
-          transition: transform 0.35s ease;
           filter: saturate(1.08) contrast(1.08);
           opacity: 1 !important;
         }
         .game:hover .game-img img {
-          transform: scale(1.07);
+          filter: saturate(1.12) contrast(1.10) brightness(1.05);
         }
         .game-grad {
           position: absolute;
