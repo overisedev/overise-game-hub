@@ -24,9 +24,9 @@ export function GamesPreviewSection({
     'ELDEN RING',
     'Grand Theft Auto V',
     'Hogwarts Legacy',
-    'The Last of Us',
+    'The Last of Us Part II',
     'Resident Evil Village',
-    'Hollow Knight: Silksong',
+    'Silksong',
   ];
 
   const aaaGames = useMemo(() => {
