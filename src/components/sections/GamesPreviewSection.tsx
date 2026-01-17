@@ -27,6 +27,9 @@ export function GamesPreviewSection({
     'The Last of Us Part II',
     'Resident Evil Village',
     'Silksong',
+    'God of War Ragnarök',
+    'Red Dead Redemption 2',
+    'Horizon Zero Dawn',
   ];
 
   const aaaGames = useMemo(() => {
@@ -40,7 +43,7 @@ export function GamesPreviewSection({
         result.push(game);
       }
     }
-    return result.slice(0, 9);
+    return result.slice(0, 12);
   }, [games]);
 
   if (games.length === 0) return null;
@@ -50,44 +53,47 @@ export function GamesPreviewSection({
       <div className="container-main">
         <div className="preview-container">
           {/* Grid de jogos à esquerda */}
-          <motion.div 
-            className="preview-grid"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            {aaaGames.map((game, index) => (
-              <motion.div
-                key={game.steam_appid}
-                className={`preview-card ${hoveredIndex === index ? 'hovered' : ''}`}
-                onClick={() => onOpenDetails(game)}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: index * 0.06,
-                  ease: "easeOut"
-                }}
-              >
-                <motion.div 
-                  className="card-inner"
-                  animate={{
-                    scale: hoveredIndex === index ? 1.08 : 1,
-                    y: hoveredIndex === index ? -8 : 0,
+          <div className="preview-grid-wrapper">
+            <motion.div 
+              className="preview-grid"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              {aaaGames.map((game, index) => (
+                <motion.div
+                  key={game.steam_appid}
+                  className={`preview-card ${hoveredIndex === index ? 'hovered' : ''}`}
+                  onClick={() => onOpenDetails(game)}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: index * 0.06,
+                    ease: "easeOut"
                   }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
-                  <div className="card-glow" />
-                  <img src={game.cover} alt={game.name} loading="lazy" />
-                  <div className="preview-overlay" />
+                  <motion.div 
+                    className="card-inner"
+                    animate={{
+                      scale: hoveredIndex === index ? 1.08 : 1,
+                      y: hoveredIndex === index ? -8 : 0,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    <div className="card-glow" />
+                    <img src={game.cover} alt={game.name} loading="lazy" />
+                    <div className="preview-overlay" />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+              ))}
+            </motion.div>
+            <div className="grid-fade-overlay" />
+          </div>
 
           {/* Texto à direita */}
           <motion.div 
@@ -167,6 +173,11 @@ export function GamesPreviewSection({
           }
         }
 
+        .preview-grid-wrapper {
+          position: relative;
+          width: 100%;
+        }
+
         .preview-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -177,6 +188,17 @@ export function GamesPreviewSection({
           .preview-grid {
             gap: 6px;
           }
+        }
+
+        .grid-fade-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 80px;
+          background: linear-gradient(to top, var(--bg, #030303) 0%, transparent 100%);
+          pointer-events: none;
+          z-index: 5;
         }
 
         .preview-card {
