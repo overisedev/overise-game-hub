@@ -4,7 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeSection } from '@/components/sections/MarqueeSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
-import { CatalogSection } from '@/components/sections/CatalogSection';
+import { CatalogPreviewSection } from '@/components/sections/CatalogPreviewSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
@@ -14,7 +14,7 @@ import { GameModal } from '@/components/ui/GameModal';
 import type { Game } from '@/types/game';
 
 const Index = () => {
-  const { games, aaaGames, loading, totalGames, searchGames, getGamesByCategory } = useGames();
+  const { games, aaaGames, loading, totalGames } = useGames();
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -77,11 +77,9 @@ const Index = () => {
       
       <HowItWorksSection />
       
-      <CatalogSection 
+      <CatalogPreviewSection 
         games={games}
         totalGames={totalGames}
-        getGamesByCategory={getGamesByCategory}
-        searchGames={searchGames}
         onOpenDetails={setSelectedGame}
       />
       
