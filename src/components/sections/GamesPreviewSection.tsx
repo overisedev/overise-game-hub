@@ -24,12 +24,12 @@ export function GamesPreviewSection({
     'ELDEN RING',
     'Grand Theft Auto V',
     'Hogwarts Legacy',
-    'The Last of Us Part II',
-    'Resident Evil Village',
+    'Resident Evil 4',
     'Silksong',
-    'God of War Ragnarök',
+    'God of War',
     'Red Dead Redemption 2',
     'Horizon Zero Dawn',
+    'Spider-Man',
   ];
 
   const aaaGames = useMemo(() => {
@@ -46,6 +46,9 @@ export function GamesPreviewSection({
     return result.slice(0, 12);
   }, [games]);
 
+  // Últimos 3 cards são não-interativos
+  const isInteractive = (index: number) => index < 9;
+
   if (games.length === 0) return null;
 
   return (
@@ -61,36 +64,41 @@ export function GamesPreviewSection({
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              {aaaGames.map((game, index) => (
-                <motion.div
-                  key={game.steam_appid}
-                  className={`preview-card ${hoveredIndex === index ? 'hovered' : ''}`}
-                  onClick={() => onOpenDetails(game)}
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.4, 
-                    delay: index * 0.06,
-                    ease: "easeOut"
-                  }}
-                >
-                  <motion.div 
-                    className="card-inner"
-                    animate={{
-                      scale: hoveredIndex === index ? 1.08 : 1,
-                      y: hoveredIndex === index ? -8 : 0,
+              {aaaGames.map((game, index) => {
+                const interactive = isInteractive(index);
+                return (
+                  <motion.div
+                    key={game.steam_appid}
+                    className={`preview-card ${hoveredIndex === index && interactive ? 'hovered' : ''} ${!interactive ? 'faded' : ''}`}
+                    onClick={() => interactive && onOpenDetails(game)}
+                    onMouseEnter={() => interactive && setHoveredIndex(index)}
+                    onMouseLeave={() => interactive && setHoveredIndex(null)}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.4, 
+                      delay: index * 0.06,
+                      ease: "easeOut"
                     }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    style={{ cursor: interactive ? 'pointer' : 'default' }}
                   >
-                    <div className="card-glow" />
-                    <img src={game.cover} alt={game.name} loading="lazy" />
-                    <div className="preview-overlay" />
+                    <motion.div 
+                      className="card-inner"
+                      animate={{
+                        scale: hoveredIndex === index && interactive ? 1.08 : 1,
+                        y: hoveredIndex === index && interactive ? -8 : 0,
+                      }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                      <div className="card-glow" />
+                      <div className="card-shine" />
+                      <img src={game.cover} alt={game.name} loading="lazy" />
+                      <div className="preview-overlay" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
+                );
+              })}
             </motion.div>
             <div className="grid-fade-overlay" />
           </div>
@@ -203,7 +211,11 @@ export function GamesPreviewSection({
 
         .preview-card {
           position: relative;
-          cursor: pointer;
+        }
+
+        .preview-card.faded {
+          opacity: 0.5;
+          pointer-events: none;
         }
 
         .card-inner {
@@ -237,6 +249,59 @@ export function GamesPreviewSection({
         .preview-card.hovered .card-glow {
           opacity: 1;
           animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .card-shine {
+          position: absolute;
+          top: -100%;
+          left: -100%;
+          width: 60%;
+          height: 200%;
+          background: linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(255,255,255,.08) 40%,
+            rgba(255,255,255,.15) 50%,
+            rgba(255,255,255,.08) 60%,
+            transparent 80%
+          );
+          transform: rotate(25deg);
+          pointer-events: none;
+          z-index: 3;
+          animation: shine-sweep 4s ease-in-out infinite;
+          animation-delay: calc(var(--card-index, 0) * 0.15s);
+        }
+
+        .preview-card:nth-child(1) .card-shine { --card-index: 0; }
+        .preview-card:nth-child(2) .card-shine { --card-index: 1; }
+        .preview-card:nth-child(3) .card-shine { --card-index: 2; }
+        .preview-card:nth-child(4) .card-shine { --card-index: 3; }
+        .preview-card:nth-child(5) .card-shine { --card-index: 4; }
+        .preview-card:nth-child(6) .card-shine { --card-index: 5; }
+        .preview-card:nth-child(7) .card-shine { --card-index: 6; }
+        .preview-card:nth-child(8) .card-shine { --card-index: 7; }
+        .preview-card:nth-child(9) .card-shine { --card-index: 8; }
+        .preview-card:nth-child(10) .card-shine { --card-index: 9; }
+        .preview-card:nth-child(11) .card-shine { --card-index: 10; }
+        .preview-card:nth-child(12) .card-shine { --card-index: 11; }
+
+        @keyframes shine-sweep {
+          0%, 100% {
+            top: -100%;
+            left: -100%;
+            opacity: 0;
+          }
+          10% {
+            opacity: 1;
+          }
+          50% {
+            top: 100%;
+            left: 150%;
+            opacity: 1;
+          }
+          60%, 100% {
+            opacity: 0;
+          }
         }
 
         @keyframes pulse-glow {
