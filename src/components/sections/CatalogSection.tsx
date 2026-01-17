@@ -29,7 +29,7 @@ export function CatalogSection({
     return getGamesByCategory(selectedCategory);
   }, [selectedCategory, games, getGamesByCategory]);
 
-  // Lista fixa de jogos para a vitrine rotativa
+  // Lista fixa de jogos para a vitrine rotativa (sem GTA V Legacy)
   const SHOWCASE_GAME_NAMES = [
     'The Witcher 3: Wild Hunt',
     'Sekiro: Shadows Die Twice',
@@ -37,7 +37,6 @@ export function CatalogSection({
     'Horizon Forbidden West',
     'Detroit: Become Human',
     "Assassin's Creed Valhalla",
-    'Grand Theft Auto V',
     'Red Dead Redemption 2',
     'ELDEN RING',
     'Cyberpunk 2077',
@@ -66,12 +65,13 @@ export function CatalogSection({
     return shuffled;
   }, [games]);
 
-  // 3 jogos na vitrine
+  // 3 jogos na vitrine - pula de 3 em 3 para mudar todos de uma vez
   const showcaseGames = useMemo(() => {
     if (showcasePool.length === 0) return [];
     const result = [];
+    const startIndex = (showcaseIndex * 3) % showcasePool.length;
     for (let i = 0; i < 3; i++) {
-      result.push(showcasePool[(showcaseIndex + i) % showcasePool.length]);
+      result.push(showcasePool[(startIndex + i) % showcasePool.length]);
     }
     return result;
   }, [showcasePool, showcaseIndex]);
