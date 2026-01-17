@@ -22,7 +22,6 @@ export function CatalogSection({
   const [showFullCatalog, setShowFullCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fullCatalogPage, setFullCatalogPage] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
@@ -76,16 +75,12 @@ export function CatalogSection({
     return result;
   }, [showcasePool, showcaseIndex]);
 
-  // Auto-rotate showcase com transição suave
+  // Auto-rotate showcase - simples, sem animação de fade
   useEffect(() => {
     if (showcasePool.length <= 3) return;
     const maxIndex = Math.floor(showcasePool.length / 3);
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setShowcaseIndex((prev) => (prev + 1) % maxIndex);
-        setTimeout(() => setIsTransitioning(false), 100);
-      }, 600);
+      setShowcaseIndex((prev) => (prev + 1) % maxIndex);
     }, 8000);
     return () => clearInterval(interval);
   }, [showcasePool.length]);
@@ -93,7 +88,6 @@ export function CatalogSection({
   // Reset on category change
   useEffect(() => {
     setShowcaseIndex(0);
-    setIsTransitioning(false);
   }, [selectedCategory]);
 
   // Full catalog search
@@ -156,7 +150,7 @@ export function CatalogSection({
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className={`game ${isTransitioning ? 'fade-out' : 'fade-in'}`}
+                className="game"
                 onClick={() => onOpenDetails(game)}
               >
                 <div className="game-img">
@@ -461,36 +455,6 @@ export function CatalogSection({
         @media (max-width: 640px) {
           .game {
             border-radius: 14px;
-          }
-        }
-        
-        /* Animação suave de fade para showcase */
-        .game.fade-in {
-          animation: smoothFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        .game.fade-out {
-          animation: smoothFadeOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes smoothFadeIn {
-          from {
-            opacity: 0;
-            transform: translateX(30px) scale(0.98);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-          }
-        }
-        
-        @keyframes smoothFadeOut {
-          from {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-          }
-          to {
-            opacity: 0;
-            transform: translateX(-30px) scale(0.98);
           }
         }
         
