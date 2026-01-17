@@ -22,7 +22,6 @@ export function CatalogSection({
   const [showFullCatalog, setShowFullCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fullCatalogPage, setFullCatalogPage] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
@@ -76,23 +75,19 @@ export function CatalogSection({
     return result;
   }, [showcasePool, showcaseIndex]);
 
-  // Auto-rotate showcase com transição mais lenta (8 segundos)
+  // Auto-rotate showcase - muda todos os 3 jogos de uma vez, sem animação de fade
   useEffect(() => {
     if (showcasePool.length <= 3) return;
+    const maxIndex = Math.floor(showcasePool.length / 3);
     const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setShowcaseIndex((prev) => (prev + 1) % showcasePool.length);
-        setIsTransitioning(false);
-      }, 600); // Tempo do fade out antes de mudar
-    }, 8000); // Intervalo maior entre transições
+      setShowcaseIndex((prev) => (prev + 1) % maxIndex);
+    }, 8000);
     return () => clearInterval(interval);
   }, [showcasePool.length]);
 
   // Reset on category change
   useEffect(() => {
     setShowcaseIndex(0);
-    setIsTransitioning(false);
   }, [selectedCategory]);
 
   // Full catalog search
@@ -155,7 +150,7 @@ export function CatalogSection({
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className={`game ${isTransitioning ? 'fade-out' : ''}`}
+                className="game"
                 onClick={() => onOpenDetails(game)}
               >
                 <div className="game-img">
@@ -455,15 +450,6 @@ export function CatalogSection({
           }
         }
         
-        /* Animação suave de fade - apenas na transição */
-        .game {
-          opacity: 1;
-          transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.6s ease;
-        }
-        .game.fade-out {
-          opacity: 0;
-          transform: scale(0.98);
-        }
         
         .game:hover {
           transform: translateY(-4px);
