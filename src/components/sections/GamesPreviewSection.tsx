@@ -156,8 +156,8 @@ export function GamesPreviewSection({
 
         .preview-container {
           display: grid;
-          grid-template-columns: 420px 1fr;
-          gap: 60px;
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
           align-items: center;
         }
         @media (max-width: 980px) {
@@ -170,12 +170,12 @@ export function GamesPreviewSection({
         .preview-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
+          gap: 10px;
           width: 100%;
         }
         @media (max-width: 480px) {
           .preview-grid {
-            gap: 8px;
+            gap: 6px;
           }
         }
 
