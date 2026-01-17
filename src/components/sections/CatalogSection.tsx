@@ -452,6 +452,7 @@ export function CatalogSection({
           display: flex;
           flex-direction: column;
           transition: transform 0.3s ease, border-color 0.3s ease;
+          opacity: 1 !important;
         }
         @media (max-width: 640px) {
           .game {
@@ -465,7 +466,7 @@ export function CatalogSection({
         }
         .game-img {
           aspect-ratio: 16/9;
-          background: #000;
+          background: #0a0a0a;
           position: relative;
           overflow: hidden;
         }
@@ -475,8 +476,9 @@ export function CatalogSection({
           object-fit: cover;
           display: block;
           transform: scale(1.03);
-          transition: .45s ease;
+          transition: transform 0.35s ease;
           filter: saturate(1.08) contrast(1.08);
+          opacity: 1 !important;
         }
         .game:hover .game-img img {
           transform: scale(1.07);
