@@ -117,27 +117,23 @@ export function GamesPreviewSection({
 
       <style>{`
         .games-preview-section {
-          width: min(1280px, calc(100% - 48px));
-          margin: 0 auto;
-          padding: clamp(60px, 10vw, 100px) 0;
-        }
-        @media (max-width: 640px) {
-          .games-preview-section {
-            width: calc(100% - 32px);
-            padding: 50px 0;
-          }
+          width: 100%;
+          padding: clamp(60px, 10vw, 100px) clamp(24px, 6vw, 80px);
         }
 
         .preview-container {
           display: grid;
-          grid-template-columns: auto 1fr;
-          gap: 48px;
+          grid-template-columns: 420px 1fr;
+          gap: 60px;
           align-items: center;
+          max-width: 1100px;
+          margin: 0 auto;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
           .preview-container {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 40px;
+            max-width: 600px;
           }
         }
 
@@ -148,25 +144,19 @@ export function GamesPreviewSection({
         .preview-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 8px;
-          max-width: 320px;
-        }
-        @media (max-width: 900px) {
-          .preview-grid {
-            max-width: 100%;
-            grid-template-columns: repeat(3, 1fr);
-          }
+          gap: 12px;
+          width: 100%;
         }
         @media (max-width: 480px) {
           .preview-grid {
-            gap: 6px;
+            gap: 8px;
           }
         }
 
         .preview-card {
           position: relative;
           aspect-ratio: 1 / 1;
-          border-radius: 10px;
+          border-radius: 12px;
           overflow: hidden;
           cursor: pointer;
           background: #0a0a0a;
@@ -203,7 +193,7 @@ export function GamesPreviewSection({
           flex-direction: column;
           gap: 20px;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
           .preview-content {
             text-align: center;
             align-items: center;
@@ -276,7 +266,7 @@ export function GamesPreviewSection({
           flex-direction: column;
           gap: 10px;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
           .content-categories {
             align-items: center;
           }
@@ -295,7 +285,7 @@ export function GamesPreviewSection({
           gap: 8px;
           flex-wrap: wrap;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 1000px) {
           .cat-tags {
             justify-content: center;
           }
