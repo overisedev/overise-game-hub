@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Game } from '@/types/game';
 import { Gamepad2, Shield, Zap, Users } from 'lucide-react';
@@ -14,6 +14,8 @@ export function GamesPreviewSection({
   totalGames,
   onOpenDetails 
 }: GamesPreviewSectionProps) {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   // Lista fixa de jogos para exibir no grid (ordem específica)
   const FEATURED_GAMES = [
     'Baldur\'s Gate 3',
@@ -43,43 +45,6 @@ export function GamesPreviewSection({
 
   if (games.length === 0) return null;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, x: 40 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number]
-      }
-    }
-  };
-
   return (
     <section className="games-preview-section section">
       <div className="container-main">
@@ -87,26 +52,39 @@ export function GamesPreviewSection({
           {/* Grid de jogos à esquerda */}
           <motion.div 
             className="preview-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
             {aaaGames.map((game, index) => (
               <motion.div
                 key={game.steam_appid}
-                className="preview-card"
+                className={`preview-card ${hoveredIndex === index ? 'hovered' : ''}`}
                 onClick={() => onOpenDetails(game)}
-                variants={cardVariants}
-                whileHover={{ 
-                  scale: 1.08, 
-                  zIndex: 10,
-                  transition: { duration: 0.25 }
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: index * 0.06,
+                  ease: "easeOut"
                 }}
               >
-                <div className="card-glow" />
-                <img src={game.cover} alt={game.name} loading="lazy" />
-                <div className="preview-overlay" />
+                <motion.div 
+                  className="card-inner"
+                  animate={{
+                    scale: hoveredIndex === index ? 1.08 : 1,
+                    y: hoveredIndex === index ? -8 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                >
+                  <div className="card-glow" />
+                  <img src={game.cover} alt={game.name} loading="lazy" />
+                  <div className="preview-overlay" />
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -114,10 +92,10 @@ export function GamesPreviewSection({
           {/* Texto à direita */}
           <motion.div 
             className="preview-content"
-            variants={contentVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
             <div className="content-badge">
               <Gamepad2 size={16} />
@@ -178,7 +156,7 @@ export function GamesPreviewSection({
 
         .preview-container {
           display: grid;
-          grid-template-columns: 380px 1fr;
+          grid-template-columns: 420px 1fr;
           gap: 60px;
           align-items: center;
         }
@@ -192,66 +170,78 @@ export function GamesPreviewSection({
         .preview-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 14px;
+          gap: 12px;
           width: 100%;
         }
         @media (max-width: 480px) {
           .preview-grid {
-            gap: 10px;
+            gap: 8px;
           }
         }
 
         .preview-card {
           position: relative;
-          aspect-ratio: 3 / 4;
-          border-radius: 12px;
-          overflow: hidden;
           cursor: pointer;
+        }
+
+        .card-inner {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 460 / 215;
+          border-radius: 10px;
+          overflow: hidden;
           background: #0a0a0a;
           border: 1px solid rgba(255,255,255,.08);
           transition: border-color .3s ease, box-shadow .3s ease;
         }
-        .preview-card:hover {
-          border-color: rgba(0,255,65,.5);
+
+        .preview-card.hovered .card-inner {
+          border-color: rgba(0,255,65,.6);
           box-shadow: 
-            0 8px 40px rgba(0,0,0,.6),
-            0 0 30px rgba(0,255,65,.15),
-            inset 0 0 20px rgba(0,255,65,.05);
+            0 12px 40px rgba(0,0,0,.7),
+            0 0 40px rgba(0,255,65,.2),
+            0 0 80px rgba(0,255,65,.1);
         }
 
         .card-glow {
           position: absolute;
-          inset: -50%;
-          background: radial-gradient(circle at 50% 50%, rgba(0,255,65,.12), transparent 60%);
+          inset: -100%;
+          background: radial-gradient(circle at 50% 50%, rgba(0,255,65,.2), transparent 50%);
           opacity: 0;
           transition: opacity .4s ease;
           pointer-events: none;
           z-index: 2;
         }
-        .preview-card:hover .card-glow {
+        .preview-card.hovered .card-glow {
           opacity: 1;
+          animation: pulse-glow 2s ease-in-out infinite;
         }
 
-        .preview-card img {
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.8; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .card-inner img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
           transition: transform .5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .preview-card:hover img {
-          transform: scale(1.08);
+        .preview-card.hovered .card-inner img {
+          transform: scale(1.1);
         }
 
         .preview-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%);
+          background: linear-gradient(to top, rgba(0,0,0,.4) 0%, transparent 60%);
           pointer-events: none;
           transition: opacity .3s ease;
         }
-        .preview-card:hover .preview-overlay {
-          opacity: .3;
+        .preview-card.hovered .preview-overlay {
+          opacity: .2;
         }
 
         .preview-content {
