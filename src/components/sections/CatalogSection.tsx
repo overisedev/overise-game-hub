@@ -740,16 +740,22 @@ export function CatalogSection({
           background: rgba(0,0,0,.20);
           overflow: hidden;
           cursor: pointer;
-          transition: .25s ease;
+          transition: transform .25s ease, border-color .25s ease;
           min-width: 0;
+          -webkit-tap-highlight-color: transparent;
+          -webkit-touch-callout: none;
+          user-select: none;
         }
         .full-card:hover {
           transform: translateY(-3px);
           border-color: rgba(0,255,65,.22);
         }
+        .full-card:active {
+          transform: scale(0.98);
+        }
         .full-card-img {
           aspect-ratio: 16 / 9;
-          background: #000;
+          background: #0a0a0a;
           position: relative;
           overflow: hidden;
         }
@@ -760,7 +766,9 @@ export function CatalogSection({
           display: block;
           transform: scale(1.03);
           filter: saturate(1.08) contrast(1.06);
-          transition: .35s ease;
+          transition: transform .35s ease;
+          -webkit-user-drag: none;
+          pointer-events: none;
         }
         .full-card:hover .full-card-img img {
           transform: scale(1.07);
