@@ -22,6 +22,7 @@ export function CatalogSection({
   const [showFullCatalog, setShowFullCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fullCatalogPage, setFullCatalogPage] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
@@ -75,12 +76,16 @@ export function CatalogSection({
     return result;
   }, [showcasePool, showcaseIndex]);
 
-  // Auto-rotate showcase - muda todos os 3 jogos de uma vez, sem animação de fade
+  // Auto-rotate showcase com transição suave
   useEffect(() => {
     if (showcasePool.length <= 3) return;
     const maxIndex = Math.floor(showcasePool.length / 3);
     const interval = setInterval(() => {
-      setShowcaseIndex((prev) => (prev + 1) % maxIndex);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setShowcaseIndex((prev) => (prev + 1) % maxIndex);
+        setTimeout(() => setIsTransitioning(false), 100);
+      }, 600);
     }, 8000);
     return () => clearInterval(interval);
   }, [showcasePool.length]);
@@ -88,6 +93,7 @@ export function CatalogSection({
   // Reset on category change
   useEffect(() => {
     setShowcaseIndex(0);
+    setIsTransitioning(false);
   }, [selectedCategory]);
 
   // Full catalog search
@@ -150,7 +156,7 @@ export function CatalogSection({
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className="game"
+                className={`game ${isTransitioning ? 'fade-out' : 'fade-in'}`}
                 onClick={() => onOpenDetails(game)}
               >
                 <div className="game-img">
@@ -223,7 +229,15 @@ export function CatalogSection({
                       onClick={() => onOpenDetails(game)}
                     >
                       <div className="full-card-img">
-                        <img src={game.cover} alt={game.name} loading="lazy" />
+                        <img 
+                          src={game.cover} 
+                          alt={game.name} 
+                          loading="lazy"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.opacity = '0';
+                          }}
+                        />
                         <div className="full-card-grad" />
                       </div>
                       <div className="full-card-info">
@@ -450,6 +464,35 @@ export function CatalogSection({
           }
         }
         
+        /* Animação suave de fade para showcase */
+        .game.fade-in {
+          animation: smoothFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .game.fade-out {
+          animation: smoothFadeOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes smoothFadeIn {
+          from {
+            opacity: 0;
+            transform: translateX(30px) scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
+        }
+        
+        @keyframes smoothFadeOut {
+          from {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-30px) scale(0.98);
+          }
+        }
         
         .game:hover {
           transform: translateY(-4px);
@@ -737,7 +780,7 @@ export function CatalogSection({
         .full-card {
           border-radius: 16px;
           border: 1px solid rgba(255,255,255,.10);
-          background: rgba(0,0,0,.20);
+          background: #0a0a0a;
           overflow: hidden;
           cursor: pointer;
           transition: transform .25s ease, border-color .25s ease;
@@ -745,6 +788,7 @@ export function CatalogSection({
           -webkit-tap-highlight-color: transparent;
           -webkit-touch-callout: none;
           user-select: none;
+          outline: none;
         }
         .full-card:hover {
           transform: translateY(-3px);
@@ -752,6 +796,10 @@ export function CatalogSection({
         }
         .full-card:active {
           transform: scale(0.98);
+          transition: transform 0.1s ease;
+        }
+        .full-card:focus {
+          outline: none;
         }
         .full-card-img {
           aspect-ratio: 16 / 9;
@@ -769,6 +817,7 @@ export function CatalogSection({
           transition: transform .35s ease;
           -webkit-user-drag: none;
           pointer-events: none;
+          background: #0a0a0a;
         }
         .full-card:hover .full-card-img img {
           transform: scale(1.07);
