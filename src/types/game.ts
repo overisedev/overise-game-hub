@@ -13,22 +13,15 @@ export const CATEGORIES = [
 
 // Jogos principais das franquias (sem sequências)
 export const AAA_GAME_NAMES = [
-  'Grand Theft Auto V',
-  'Red Dead Redemption 2', 
-  'Cyberpunk 2077',
-  'ELDEN RING',
-  'Hogwarts Legacy',
-  'The Witcher 3',
-  'Resident Evil Village',
-  'Death Stranding',
-  'Dark Souls III',
-  'Monster Hunter',
-  'Horizon Zero Dawn',
-  'The Last of Us Part II',
   'Baldur\'s Gate 3',
-  'Hollow Knight',
-  'FIFA 24',
-  'Spider-Man',
+  'Cyberpunk 2077',
+  'Dark Souls III',
+  'ELDEN RING',
+  'Grand Theft Auto V',
+  'Hogwarts Legacy',
+  'The Last of Us',
+  'Resident Evil Village',
+  'Hollow Knight: Silksong',
 ];
 
 // Atalhos de busca
