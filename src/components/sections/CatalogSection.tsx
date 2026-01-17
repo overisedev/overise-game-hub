@@ -22,7 +22,6 @@ export function CatalogSection({
   const [showFullCatalog, setShowFullCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fullCatalogPage, setFullCatalogPage] = useState(0);
-  const [showcaseOpacity, setShowcaseOpacity] = useState(1);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
@@ -76,18 +75,12 @@ export function CatalogSection({
     return result;
   }, [showcasePool, showcaseIndex]);
 
-  // Auto-rotate showcase com fade amanteigado
+  // Auto-rotate showcase
   useEffect(() => {
     if (showcasePool.length <= 3) return;
     const maxIndex = Math.floor(showcasePool.length / 3);
     const interval = setInterval(() => {
-      // Fade out suave
-      setShowcaseOpacity(0);
-      // Após o fade out, muda os jogos e faz fade in
-      setTimeout(() => {
-        setShowcaseIndex((prev) => (prev + 1) % maxIndex);
-        setShowcaseOpacity(1);
-      }, 800);
+      setShowcaseIndex((prev) => (prev + 1) % maxIndex);
     }, 8000);
     return () => clearInterval(interval);
   }, [showcasePool.length]);
@@ -95,7 +88,6 @@ export function CatalogSection({
   // Reset on category change
   useEffect(() => {
     setShowcaseIndex(0);
-    setShowcaseOpacity(1);
   }, [selectedCategory]);
 
   // Full catalog search
@@ -154,7 +146,7 @@ export function CatalogSection({
         {/* Main Content */}
         <div className="catalog-main">
           {/* Showcase Row */}
-          <div className="showcase-row" style={{ opacity: showcaseOpacity, transition: 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)' }}>
+          <div className="showcase-row">
             {showcaseGames.map((game, idx) => (
               <div
                 key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
@@ -459,6 +451,7 @@ export function CatalogSection({
           min-width: 0;
           display: flex;
           flex-direction: column;
+          transition: transform 0.3s ease, border-color 0.3s ease;
         }
         @media (max-width: 640px) {
           .game {
@@ -469,7 +462,6 @@ export function CatalogSection({
         .game:hover {
           transform: translateY(-4px);
           border-color: rgba(0,255,65,.22);
-          transition: transform 0.3s ease, border-color 0.3s ease;
         }
         .game-img {
           aspect-ratio: 16/9;
