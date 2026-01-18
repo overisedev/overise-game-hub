@@ -117,8 +117,8 @@ export function GamesPreviewSection({
             </div>
             
             <h2 className="content-title">
-              Mais de <span className="highlight">{totalGames}+</span> jogos<br />
-              para desbloquear
+              Mais de <span className="highlight">1000+</span> jogos<br />
+              para jogar
             </h2>
             
             <p className="content-description">
@@ -128,16 +128,25 @@ export function GamesPreviewSection({
 
             <div className="content-features">
               <div className="feature">
-                <Shield size={18} />
-                <span>Arquivos Oficiais</span>
+                <Zap size={18} />
+                <div className="feature-text">
+                  <span className="feature-title">Velocidade Máxima</span>
+                  <span className="feature-desc">Baixe direto dos servidores da Steam usando o máximo da sua internet.</span>
+                </div>
               </div>
               <div className="feature">
-                <Zap size={18} />
-                <span>Velocidade Máxima</span>
+                <Shield size={18} />
+                <div className="feature-text">
+                  <span className="feature-title">Segurança Total</span>
+                  <span className="feature-desc">Nada de vírus ou arquivos suspeitos. Jogo original e limpo.</span>
+                </div>
               </div>
               <div className="feature">
                 <Users size={18} />
-                <span>Atualizações Automáticas</span>
+                <div className="feature-text">
+                  <span className="feature-title">Jogue Online</span>
+                  <span className="feature-desc">Jogue online e desafie seus amigos nos títulos competitivos.</span>
+                </div>
               </div>
             </div>
 
@@ -382,26 +391,43 @@ export function GamesPreviewSection({
 
         .content-features {
           display: flex;
-          gap: 20px;
-          flex-wrap: wrap;
+          flex-direction: column;
+          gap: 16px;
         }
         @media (max-width: 640px) {
           .content-features {
-            justify-content: center;
             gap: 14px;
           }
         }
 
         .feature {
           display: flex;
-          align-items: center;
-          gap: 8px;
+          align-items: flex-start;
+          gap: 12px;
           color: rgba(255,255,255,.7);
           font-size: 13px;
           font-weight: 600;
         }
         .feature svg {
           color: var(--neon);
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .feature-text {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .feature-title {
+          color: #fff;
+          font-weight: 800;
+          font-size: 14px;
+        }
+        .feature-desc {
+          color: var(--muted);
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.5;
         }
 
         .content-categories {

@@ -3,7 +3,7 @@ export function HowItWorksSection() {
     <section id="como-funciona" className="section container-main">
       {/* Título centralizado */}
       <div className="vsl-header">
-        <h2>Do pagamento ao Play em minutos</h2>
+        <h2>É SÓ ESCOLHER E JOGAR</h2>
         <p>Veja como é simples liberar sua biblioteca Steam.</p>
       </div>
 
@@ -21,21 +21,21 @@ export function HowItWorksSection() {
         <div className="card pad info-card">
           <h3 className="card-title">Passo a passo</h3>
           <p className="card-text">
-            Um fluxo simples: você escolhe, baixa e joga. Tudo direto da Steam, sem complicação.
+            Um fluxo simples: você escolhe, baixa e joga. Tudo direto da Steam ou Epic Games.
           </p>
 
           <div className="how-grid">
             <div className="how">
-              <span className="k">1) Acesse o Painel</span>
-              <span className="s">Entre na nossa plataforma e escolha qual jogo você quer ativar na sua conta.</span>
+              <span className="k">1) Entre no App</span>
+              <span className="s">Use nosso sistema simples para escolher qual jogo você quer instalar no seu computador.</span>
             </div>
             <div className="how">
-              <span className="k">2) Download Oficial</span>
-              <span className="s">O download começa automaticamente pela sua Steam. Velocidade máxima da sua internet.</span>
+              <span className="k">2) Download Seguro</span>
+              <span className="s">O jogo começa a baixar automaticamente pela plataforma oficial da Steam ou Epic Games.</span>
             </div>
             <div className="how">
-              <span className="k">3) Jogue</span>
-              <span className="s">Pronto. O jogo é instalado original no seu PC. É só abrir e jogar o modo campanha.</span>
+              <span className="k">3) Diversão Garantida</span>
+              <span className="s">Pronto. O jogo é seu. Salve seu progresso, jogue a história completa ou entre em partidas online.</span>
             </div>
           </div>
 
