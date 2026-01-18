@@ -10,7 +10,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section" style={{ paddingTop: 'clamp(100px, 15vw, 120px)' }}>
+    <section className="section-top section" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
       <div className="container-main">
         <div className="hero-grid">
           {/* Left Content */}
@@ -31,7 +31,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="btn btn-primary-lg">Liberar minha Steam agora</a>
+              <a href="#como-funciona" className="btn btn-primary-lg">Liberar minha Steam agora</a>
               <a href="#catalogo" className="btn btn-outline">Ver lista de jogos</a>
             </div>
 
@@ -90,12 +90,25 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           backdrop-filter: blur(10px);
           white-space: nowrap;
         }
+        @media (max-width: 640px) {
+          .pill {
+            padding: 8px 12px;
+            font-size: 10px;
+            gap: 8px;
+          }
+        }
         .dot {
           width: 8px;
           height: 8px;
           border-radius: 50%;
           background: var(--neon);
           box-shadow: 0 0 14px rgba(0,255,65,.55);
+        }
+        @media (max-width: 640px) {
+          .dot {
+            width: 6px;
+            height: 6px;
+          }
         }
         .hero-grid {
           display: grid;
@@ -111,7 +124,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-grid { 
-            gap: 20px; 
+            gap: 16px; 
           }
         }
         .hero-title {
@@ -124,9 +137,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-title {
-            font-size: 28px;
+            font-size: 26px;
             letter-spacing: -1px;
-            margin: 14px 0 12px;
+            margin: 12px 0 10px;
           }
         }
         .hero-title .accent { color: var(--neon); }
@@ -139,8 +152,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-sub {
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+          }
+          .hero-sub br {
+            display: none;
           }
         }
         .hero-actions {
@@ -150,11 +167,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-actions {
-            gap: 10px;
+            gap: 8px;
+            flex-direction: column;
           }
           .hero-actions .btn {
-            flex: 1 1 auto;
-            min-width: 140px;
+            width: 100%;
           }
         }
 

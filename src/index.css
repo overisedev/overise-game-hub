@@ -141,7 +141,7 @@
   }
   @media (max-width: 640px) {
     .container-main {
-      width: calc(100% - 32px);
+      width: calc(100% - 24px);
     }
   }
 
@@ -150,7 +150,7 @@
   }
   @media (max-width: 640px) {
     .section {
-      padding: 60px 0;
+      padding: 48px 0;
     }
   }
 
@@ -159,7 +159,7 @@
   }
   @media (max-width: 640px) {
     .section-tight {
-      padding: 50px 0;
+      padding: 40px 0;
     }
   }
 
@@ -168,7 +168,7 @@
   }
   @media (max-width: 640px) {
     .section-top {
-      padding-top: 100px;
+      padding-top: 80px;
     }
   }
 
