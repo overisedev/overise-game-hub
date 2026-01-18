@@ -108,11 +108,11 @@ export function CatalogSection({
       {/* Header */}
       <div className="catalog-header">
         <div>
-          <h2>Catálogo</h2>
-          <p>Navegue por categorias. A vitrine exibe uma seleção rotativa com transição suave — clique para abrir detalhes.</p>
+          <h2>Verificar Disponibilidade</h2>
+          <p>Pesquise abaixo. Se o jogo está na Steam, é quase certo que nossa ferramenta consegue desbloqueá-lo para você.</p>
         </div>
         <div className="catalog-actions">
-          <a href="#como-funciona" className="btn btn-primary-small">Desbloquear</a>
+          <a href="#planos" className="btn btn-primary-small">Desbloquear</a>
         </div>
       </div>
 
@@ -199,7 +199,7 @@ export function CatalogSection({
                   <span className="full-search-icon">⌕</span>
                   <input
                     type="text"
-                    placeholder="Buscar jogo..."
+                    placeholder="Digite o nome do jogo aqui..."
                     value={searchQuery}
                     onChange={(e) => {
                       setSearchQuery(e.target.value);

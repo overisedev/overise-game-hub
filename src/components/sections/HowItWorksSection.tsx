@@ -3,8 +3,8 @@ export function HowItWorksSection() {
     <section id="como-funciona" className="section container-main">
       {/* Título centralizado */}
       <div className="vsl-header">
-        <h2>Como Funciona o Desbloqueio</h2>
-        <p>Assista ao vídeo e entenda como liberar sua biblioteca em poucos passos.</p>
+        <h2>Do pagamento ao Play em minutos</h2>
+        <p>Veja como é simples liberar sua biblioteca Steam.</p>
       </div>
 
       <div className="demo-grid">
@@ -21,26 +21,25 @@ export function HowItWorksSection() {
         <div className="card pad info-card">
           <h3 className="card-title">Passo a passo</h3>
           <p className="card-text">
-            Um fluxo simples: você entra, explora por categorias e abre detalhes em segundos.
-            Tudo com uma interface premium, rápida e organizada.
+            Um fluxo simples: você escolhe, baixa e joga. Tudo direto da Steam, sem complicação.
           </p>
 
           <div className="how-grid">
             <div className="how">
-              <span className="k">1) Acesse</span>
-              <span className="s">Entre no painel e navegue pelo catálogo.</span>
+              <span className="k">1) Acesse o Painel</span>
+              <span className="s">Entre na nossa plataforma e escolha qual jogo você quer ativar na sua conta.</span>
             </div>
             <div className="how">
-              <span className="k">2) Explore</span>
-              <span className="s">Filtre por categorias e encontre títulos rapidamente.</span>
+              <span className="k">2) Download Oficial</span>
+              <span className="s">O download começa automaticamente pela sua Steam. Velocidade máxima da sua internet.</span>
             </div>
             <div className="how">
-              <span className="k">3) Desbloqueie</span>
-              <span className="s">Abra detalhes e avance para desbloquear.</span>
+              <span className="k">3) Jogue</span>
+              <span className="s">Pronto. O jogo é instalado original no seu PC. É só abrir e jogar o modo campanha.</span>
             </div>
           </div>
 
-          <a href="#planos" className="cta-btn">Quero desbloquear agora</a>
+          <a href="#planos" className="cta-btn">Quero liberar minha Steam</a>
         </div>
       </div>
 

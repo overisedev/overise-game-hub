@@ -3,8 +3,9 @@ import { useState } from 'react';
 export function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
-    { q: 'O que eu recebo?', a: 'Você recebe acesso ao ecossistema Overise com interface premium, vitrine por categorias e recursos conforme o plano.' },
-    { q: 'Como funciona o catálogo?', a: 'O catálogo é carregado localmente. A vitrine mostra 3 títulos por vez e o catálogo completo abre com busca e paginação.' },
+    { q: 'Isso dá problema na minha conta Steam?', a: 'Não. O método é seguro e roda de forma "offline" para a proteção da sua conta. Você joga os originais sem riscos.' },
+    { q: 'Os arquivos são originais?', a: 'Sim, 100% originais. Você não baixa nada de sites de terceiros, tudo vem direto dos servidores da Steam para o seu HD.' },
+    { q: 'Preciso pagar mensalidade?', a: 'Não. Pagou uma vez, o acesso à ferramenta é seu para sempre.' },
   ];
   return (
     <section id="faq" className="section container-main">

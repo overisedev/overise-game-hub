@@ -113,7 +113,7 @@ export function GamesPreviewSection({
           >
             <div className="content-badge">
               <Gamepad2 size={16} />
-              <span>Biblioteca Premium</span>
+              <span>Arquivos Oficiais Steam</span>
             </div>
             
             <h2 className="content-title">
@@ -122,39 +122,39 @@ export function GamesPreviewSection({
             </h2>
             
             <p className="content-description">
-              Acesse uma biblioteca completa com os melhores títulos AAA e indies. 
-              RPG, Ação, Aventura, Terror, Mundo Aberto e muito mais — tudo em um único lugar.
+              Esqueça downloads lentos ou sites estranhos. Com a Overise, você transforma sua biblioteca. 
+              Acesse lançamentos e clássicos baixando direto da fonte oficial.
             </p>
 
             <div className="content-features">
               <div className="feature">
                 <Shield size={18} />
-                <span>Títulos originais</span>
+                <span>Arquivos Oficiais</span>
               </div>
               <div className="feature">
                 <Zap size={18} />
-                <span>Acesso imediato</span>
+                <span>Velocidade Máxima</span>
               </div>
               <div className="feature">
                 <Users size={18} />
-                <span>Multiplayer incluso</span>
+                <span>Atualizações Automáticas</span>
               </div>
             </div>
 
             <div className="content-categories">
               <span className="cat-label">Categorias disponíveis:</span>
               <div className="cat-tags">
-                <span className="cat-tag">RPG</span>
                 <span className="cat-tag">Ação</span>
-                <span className="cat-tag">Aventura</span>
+                <span className="cat-tag">RPG</span>
+                <span className="cat-tag">Simulação</span>
+                <span className="cat-tag">Estratégia</span>
                 <span className="cat-tag">Terror</span>
-                <span className="cat-tag">FPS</span>
                 <span className="cat-tag">+10</span>
               </div>
             </div>
 
             <a href="#como-funciona" className="cta-button">
-              <span>Ver como desbloquear</span>
+              <span>Ver como funciona</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>

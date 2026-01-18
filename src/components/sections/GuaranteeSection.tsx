@@ -27,7 +27,7 @@ export function GuaranteeSection() {
             </div>
             <div className="g-feature">
               <span className="check">✓</span>
-              Ativação imediata
+              Ativação imediata via Steam
             </div>
             <div className="g-feature">
               <span className="check">✓</span>

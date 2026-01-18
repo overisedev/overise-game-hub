@@ -36,10 +36,10 @@ export function Header({}: HeaderProps) {
           {/* CTA Buttons */}
           <div className="flex gap-2.5 items-center">
             <a href="#catalogo" className="btn-ghost hidden sm:flex">
-              Ver catálogo
+              Ver jogos
             </a>
             <a href="#planos" className="btn-primary">
-              Comprar
+              Liberar Steam
             </a>
           </div>
         </nav>
