@@ -22,7 +22,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </div>
 
             <h1 className="hero-title">
-              <em>Sua Steam,</em> <span className="accent">liberada.</span>
+              Sua Steam, <span className="accent">liberada.</span>
             </h1>
 
             <p className="hero-sub">
