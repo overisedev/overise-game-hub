@@ -1,6 +1,9 @@
-export function GuaranteeSection() {
+import { forwardRef } from 'react';
+
+export const GuaranteeSection = forwardRef<HTMLElement>(function GuaranteeSection(_, ref) {
   return (
-    <section className="section-tight container-main">
+    <section ref={ref} className="section-tight container-main">
+    
       <div className="guarantee-wrapper">
         <div className="guarantee-card">
           {/* Badge */}
@@ -162,4 +165,4 @@ export function GuaranteeSection() {
       `}</style>
     </section>
   );
-}
+});
