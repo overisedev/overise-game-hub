@@ -22,16 +22,17 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </div>
 
             <h1 className="hero-title">
-              SUA STEAM <span className="accent">TOTALMENTE LIBERADA</span>
+              <em>Sua Steam,</em> <span className="accent">liberada.</span>
             </h1>
 
             <p className="hero-sub">
-              Pare de arriscar seu computador com sites piratas. Tenha acesso a mais de 1000 jogos originais com Modo História e Multiplayer baixando direto da fonte oficial.
+              Desbloqueie acesso imediato a mais de 1000 jogos pagos.<br />
+              Baixe tudo diretamente dos servidores oficiais da Steam, com velocidade máxima, conquistas e segurança total.
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="btn btn-primary-lg">Quero acessar os 1000 jogos</a>
-              <a href="#catalogo" className="btn btn-outline">Ver catálogo disponível</a>
+              <a href="#planos" className="btn btn-primary-lg">Liberar minha Steam agora</a>
+              <a href="#catalogo" className="btn btn-outline">Ver lista de jogos</a>
             </div>
 
           </div>
