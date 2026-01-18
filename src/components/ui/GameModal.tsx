@@ -22,7 +22,7 @@ export function GameModal({ game, onClose }: GameModalProps) {
             <div className="row"><span>Origem</span><b>Servidor Oficial Steam</b></div>
             <div className="row"><span>Segurança</span><b style={{ color: 'var(--neon)' }}>100% Verificado</b></div>
             <div className="modal-btns">
-              <a href="#planos" className="btn btn-primary-full" onClick={onClose}>Baixar Versão Original</a>
+              <a href="#como-funciona" className="btn btn-primary-full" onClick={onClose}>Desbloquear Jogo</a>
             </div>
           </div>
         </div>
