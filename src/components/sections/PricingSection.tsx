@@ -1,41 +1,45 @@
 export function PricingSection() {
   const plans = [
     {
-      name: 'Pacote Iniciante',
+      name: 'Plano Básico',
       price: 'R$ 9,90',
-      games: '500+ Jogos Liberados',
+      priceLabel: 'Taxa Única',
+      games: 'Pacote com 500 Jogos',
       features: [
-        '500+ Jogos Liberados',
-        'Download via Steam',
+        'Pacote com 500 Jogos',
+        'Baixe pela Steam',
+        'Jogue o Modo História',
         'Acesso Imediato',
       ],
       btnText: 'Escolher Básico',
     },
     {
-      name: 'Pacote Avançado',
+      name: 'Plano Avançado',
       price: 'R$ 19,90',
-      games: '700+ Jogos Liberados',
+      priceLabel: 'Taxa Única',
+      games: 'Pacote com 700 Jogos',
       badge: 'Mais Vendido',
       featured: true,
       features: [
-        '700+ Jogos Liberados',
+        'Pacote com 700 Jogos',
         'Inclui Lançamentos',
-        'Suporte Prioritário',
-        'Download Max Speed',
+        'Jogue Online nos Compatíveis',
+        'Suporte no WhatsApp',
       ],
       btnText: 'Quero Este',
     },
     {
-      name: 'Liberar Tudo (+1000)',
+      name: 'Plano Vitalício',
       price: 'R$ 49,90',
-      games: 'Biblioteca Completa',
+      priceLabel: 'Taxa Única',
+      games: 'Liberar a Lista Toda',
       features: [
-        'Biblioteca Completa (+1000)',
-        'Todos os Lançamentos Futuros',
+        'Mais de 1000 Jogos',
+        'Receba Lançamentos Futuros',
+        'Multiplayer Garantido',
         'Acesso Vitalício',
-        'Ferramenta de Auto-Ativação',
       ],
-      btnText: 'Desbloquear Tudo Agora',
+      btnText: 'Desbloquear Tudo',
     },
   ];
 
@@ -59,6 +63,7 @@ export function PricingSection() {
             <h3 className="plan-name">{plan.name}</h3>
             
             <div className="plan-price">{plan.price}</div>
+            <div className="plan-price-label">{plan.priceLabel}</div>
             
             <div className="plan-games">{plan.games}</div>
 
@@ -165,8 +170,17 @@ export function PricingSection() {
           font-weight: 950;
           color: var(--neon);
           letter-spacing: -2px;
-          margin-bottom: 8px;
+          margin-bottom: 4px;
           text-align: center;
+        }
+        
+        .plan-price-label {
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 16px;
         }
         
         .plan-games {

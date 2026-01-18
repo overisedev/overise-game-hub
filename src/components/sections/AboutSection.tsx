@@ -14,22 +14,22 @@ export function AboutSection() {
         {/* Content */}
         <div className="about-content">
           {/* Title */}
-          <h2 className="about-title">COMO A OVERISE FUNCIONA?</h2>
+          <h2 className="about-title">POR QUE É MELHOR QUE PIRATARIA?</h2>
 
           {/* Description */}
           <p className="about-text">
-            Nós não vendemos jogos piratas. A Overise é uma <strong>ferramenta inteligente</strong> que "ativa" a licença no seu computador.
+            Jogos piratas trazem vírus, travam o computador e não conectam na internet. A Overise entrega o <strong>oposto disso</strong>.
           </p>
           
           <p className="about-text">
-            Isso permite que você abra sua Steam e baixe o <strong>jogo original</strong>, como se tivesse comprado. 
-            Você recebe o jogo completo, limpo e seguro, direto da loja oficial.
+            Nós fornecemos acesso a uma <strong>licença oficial compartilhada</strong>. Você abre a sua Steam e baixa o jogo original. 
+            Ele atualiza sozinho, não trava e você joga com qualidade máxima. É o jeito inteligente e barato de jogar.
           </p>
 
           <div className="about-divider" />
 
           <span className="about-tagline">
-            É a sua Steam, só que melhor.
+            Jogue sem medo e sem vírus.
           </span>
         </div>
       </div>

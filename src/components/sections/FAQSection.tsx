@@ -3,9 +3,10 @@ import { useState } from 'react';
 export function FAQSection() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
-    { q: 'Isso dá problema na minha conta Steam?', a: 'Não. O método é seguro e roda de forma "offline" para a proteção da sua conta. Você joga os originais sem riscos.' },
-    { q: 'Os arquivos são originais?', a: 'Sim, 100% originais. Você não baixa nada de sites de terceiros, tudo vem direto dos servidores da Steam para o seu HD.' },
-    { q: 'Preciso pagar mensalidade?', a: 'Não. Pagou uma vez, o acesso à ferramenta é seu para sempre.' },
+    { q: 'Isso é pirataria?', a: 'Não. Você usa os arquivos originais da Steam e não precisa instalar programas suspeitos que estragam o computador.' },
+    { q: 'Funciona online mesmo?', a: 'Sim. A maioria dos jogos de história você joga sozinho, mas jogos como Futebol, Tiro e Luta funcionam online para você jogar contra outras pessoas.' },
+    { q: 'Preciso formatar o PC?', a: 'De jeito nenhum. Nosso aplicativo é leve e se o seu computador roda o jogo, ele roda nosso sistema sem problemas.' },
+    { q: 'E se eu não souber instalar?', a: 'Temos uma equipe de suporte real no Discord e WhatsApp. Se você tiver qualquer dificuldade, a gente entra e te ajuda a instalar.' },
   ];
   return (
     <section id="faq" className="section container-main">

@@ -12,7 +12,7 @@ export function MarqueeSection({ games }: MarqueeSectionProps) {
   return (
     <section className="marquee-wrap container-main">
       <div className="marquee-title">
-        <span>DOWNLOAD DIRETO DA STEAM • SEM VÍRUS • ARQUIVOS ORIGINAIS • ACESSO VITALÍCIO</span>
+        <span>DOWNLOAD VIA STEAM • ARQUIVOS ORIGINAIS • JOGUE ONLINE COM AMIGOS • SEM MENSALIDADES</span>
         <span>Passe o mouse para pausar</span>
       </div>
 

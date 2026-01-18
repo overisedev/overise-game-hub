@@ -18,20 +18,20 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             {/* Pill */}
             <div className="pill">
               <span className="dot" />
-              Sistema Online • Download Oficial Steam
+              Sistema Online • Baixe na Steam • Sem Vírus
             </div>
 
             <h1 className="hero-title">
-              Sua Steam, <span className="accent">liberada.</span>
+              SUA STEAM <span className="accent">TOTALMENTE LIBERADA</span>
             </h1>
 
             <p className="hero-sub">
-              Desbloqueie acesso imediato a mais de 1000 jogos pagos. Baixe tudo diretamente dos servidores oficiais da Steam, com velocidade máxima, conquistas e segurança total.
+              Pare de arriscar seu computador com sites piratas. Tenha acesso a mais de 1000 jogos originais com Modo História e Multiplayer baixando direto da fonte oficial.
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="btn btn-primary-lg">Liberar minha Steam agora</a>
-              <a href="#catalogo" className="btn btn-outline">Ver lista de jogos</a>
+              <a href="#planos" className="btn btn-primary-lg">Quero acessar os 1000 jogos</a>
+              <a href="#catalogo" className="btn btn-outline">Ver catálogo disponível</a>
             </div>
 
           </div>
@@ -57,11 +57,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               <div className="hero-card-info">
                 <div className="hero-card-text">
                   <div className="badge-row">
-                    <span className="chip green">Jogue Originais</span>
-                    <span className="chip">Sem modificações</span>
+                    <span className="chip green">Jogo Original</span>
+                    <span className="chip">Multiplayer</span>
                   </div>
                   <h2 className="hero-card-name">{featuredGame.name}</h2>
-                  <p className="hero-card-desc">Baixe os arquivos oficiais e jogue o modo campanha sem riscos.</p>
+                  <p className="hero-card-desc">Baixe os arquivos oficiais e jogue online com seus amigos.</p>
                 </div>
                 <div className="hero-card-btns">
                   <button onClick={() => onOpenDetails(featuredGame)} className="btn btn-small">Ver detalhes</button>

@@ -16,14 +16,13 @@ export function GameModal({ game, onClose }: GameModalProps) {
         <div className="modal-body">
           <div>
             <h2 className="modal-title">{game.name}</h2>
-            <p className="modal-desc">Este jogo está disponível para desbloqueio imediato via Steam através da Overise.</p>
+            <p className="modal-desc">Este jogo está disponível na nossa biblioteca oficial. Ao ativar, seu computador irá baixar os arquivos originais diretamente dos servidores da Steam. Isso garante que você tenha a versão mais atualizada, livre de vírus e com desempenho máximo. É o jogo oficial pronto para rodar.</p>
           </div>
           <div className="modal-side">
-            <div className="row"><span>Disponibilidade</span><b style={{ color: 'var(--neon)' }}>Disponível</b></div>
-            <div className="row"><span>Categoria</span><b>{game.categories[0] || 'Outros'}</b></div>
-            <div className="row"><span>Origem</span><b>Steam</b></div>
+            <div className="row"><span>Origem</span><b>Servidor Oficial Steam</b></div>
+            <div className="row"><span>Segurança</span><b style={{ color: 'var(--neon)' }}>100% Verificado</b></div>
             <div className="modal-btns">
-              <a href="#planos" className="btn btn-primary-full" onClick={onClose}>Ativar na minha Steam</a>
+              <a href="#planos" className="btn btn-primary-full" onClick={onClose}>Baixar Versão Original</a>
             </div>
           </div>
         </div>
