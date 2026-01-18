@@ -150,17 +150,6 @@ export function GamesPreviewSection({
               </div>
             </div>
 
-            <div className="content-categories">
-              <span className="cat-label">Categorias disponíveis:</span>
-              <div className="cat-tags">
-                <span className="cat-tag">Ação</span>
-                <span className="cat-tag">RPG</span>
-                <span className="cat-tag">Simulação</span>
-                <span className="cat-tag">Estratégia</span>
-                <span className="cat-tag">Terror</span>
-                <span className="cat-tag">+10</span>
-              </div>
-            </div>
 
             <a href="#como-funciona" className="cta-button">
               <span>Ver como funciona</span>
@@ -424,52 +413,10 @@ export function GamesPreviewSection({
           font-size: 14px;
         }
         .feature-desc {
-          color: var(--muted);
-          font-size: 12px;
+          color: rgba(255,255,255,.65);
+          font-size: 13px;
           font-weight: 500;
-          line-height: 1.5;
-        }
-
-        .content-categories {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-        @media (max-width: 980px) {
-          .content-categories {
-            align-items: center;
-          }
-        }
-
-        .cat-label {
-          font-size: 12px;
-          color: var(--muted2);
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: .5px;
-        }
-
-        .cat-tags {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-        @media (max-width: 980px) {
-          .cat-tags {
-            justify-content: center;
-          }
-        }
-
-        .cat-tag {
-          padding: 6px 12px;
-          background: rgba(255,255,255,.06);
-          border: 1px solid rgba(255,255,255,.1);
-          border-radius: 8px;
-          font-size: 11px;
-          font-weight: 700;
-          color: rgba(255,255,255,.8);
-          text-transform: uppercase;
-          letter-spacing: .3px;
+          line-height: 1.55;
         }
 
         .cta-button {

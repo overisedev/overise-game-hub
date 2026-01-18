@@ -6,6 +6,7 @@ import { GamesPreviewSection } from '@/components/sections/GamesPreviewSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { CatalogSection } from '@/components/sections/CatalogSection';
 import { AboutSection } from '@/components/sections/AboutSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -159,6 +160,8 @@ const Index = () => {
       />
       
       <AboutSection />
+      
+      <TestimonialsSection />
       
       <PricingSection />
       
