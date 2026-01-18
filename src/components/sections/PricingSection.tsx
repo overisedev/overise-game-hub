@@ -1,39 +1,41 @@
 export function PricingSection() {
   const plans = [
     {
-      name: 'Plano Básico',
+      name: 'Pacote Iniciante',
       price: 'R$ 9,90',
-      games: '500+ jogos',
+      games: '500+ Jogos Liberados',
       features: [
-        'Acesso instantâneo',
-        'Suporte via Discord',
-        'Garantia de 7 dias',
+        '500+ Jogos Liberados',
+        'Download via Steam',
+        'Acesso Imediato',
       ],
+      btnText: 'Escolher Básico',
     },
     {
-      name: 'Plano Avançado',
+      name: 'Pacote Avançado',
       price: 'R$ 19,90',
-      games: '700+ jogos',
-      badge: 'Mais escolhido',
+      games: '700+ Jogos Liberados',
+      badge: 'Mais Vendido',
       featured: true,
       features: [
-        'Acesso instantâneo',
-        'Suporte Prioritário 24/7',
-        'Garantia de 7 dias',
-        'Grupo VIP de atualizações',
+        '700+ Jogos Liberados',
+        'Inclui Lançamentos',
+        'Suporte Prioritário',
+        'Download Max Speed',
       ],
+      btnText: 'Quero Este',
     },
     {
-      name: 'Plano Permanente',
+      name: 'Liberar Tudo (+1000)',
       price: 'R$ 49,90',
-      games: 'Mais de 1000 jogos',
+      games: 'Biblioteca Completa',
       features: [
-        'Acesso instantâneo',
-        'Suporte VIP',
-        'Garantia de 7 dias',
-        'Atualizações vitalícias',
-        'Bônus exclusivos',
+        'Biblioteca Completa (+1000)',
+        'Todos os Lançamentos Futuros',
+        'Acesso Vitalício',
+        'Ferramenta de Auto-Ativação',
       ],
+      btnText: 'Desbloquear Tudo Agora',
     },
   ];
 
@@ -70,7 +72,7 @@ export function PricingSection() {
             </ul>
 
             <a href="#como-funciona" className={`plan-btn ${plan.featured ? 'btn-featured' : ''}`}>
-              Desbloquear
+              {plan.btnText || 'Desbloquear'}
             </a>
           </div>
         ))}

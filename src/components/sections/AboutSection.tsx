@@ -13,24 +13,23 @@ export function AboutSection() {
 
         {/* Content */}
         <div className="about-content">
-          {/* Logo */}
-          <div className="about-logo">
-            <span className="logo-main">OVER</span>
-            <span className="logo-accent">ISE</span>
-          </div>
+          {/* Title */}
+          <h2 className="about-title">COMO A OVERISE FUNCIONA?</h2>
 
           {/* Description */}
           <p className="about-text">
-            Nascemos para revolucionar a forma como você acessa sua biblioteca de jogos. 
-            Uma experiência <strong>premium</strong>, <strong>rápida</strong> e <strong>sem complicação</strong> — 
-            exatamente como deveria ser. Nosso compromisso é entregar simplicidade com um visual 
-            que valoriza cada título da sua coleção.
+            Nós não vendemos jogos piratas. A Overise é uma <strong>ferramenta inteligente</strong> que "ativa" a licença no seu computador.
+          </p>
+          
+          <p className="about-text">
+            Isso permite que você abra sua Steam e baixe o <strong>jogo original</strong>, como se tivesse comprado. 
+            Você recebe o jogo completo, limpo e seguro, direto da loja oficial.
           </p>
 
           <div className="about-divider" />
 
           <span className="about-tagline">
-            Sua biblioteca. Sem limites.
+            É a sua Steam, só que melhor.
           </span>
         </div>
       </div>
@@ -76,26 +75,14 @@ export function AboutSection() {
           max-width: 700px;
         }
         
-        .about-logo {
-          margin-bottom: 28px;
-        }
-        
-        .logo-main {
-          font-size: clamp(56px, 12vw, 100px);
+        .about-title {
+          font-size: clamp(24px, 5vw, 36px);
           font-weight: 950;
-          letter-spacing: -4px;
+          letter-spacing: -1px;
           color: #fff;
           text-transform: uppercase;
           text-shadow: 0 10px 60px rgba(0,0,0,.8);
-        }
-        
-        .logo-accent {
-          font-size: clamp(56px, 12vw, 100px);
-          font-weight: 950;
-          letter-spacing: -4px;
-          color: var(--neon);
-          text-transform: uppercase;
-          text-shadow: 0 0 60px rgba(0,255,65,.4), 0 10px 60px rgba(0,0,0,.8);
+          margin: 0 0 24px;
         }
         
         .about-text {

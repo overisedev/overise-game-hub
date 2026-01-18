@@ -12,7 +12,7 @@ export function MarqueeSection({ games }: MarqueeSectionProps) {
   return (
     <section className="marquee-wrap container-main">
       <div className="marquee-title">
-        <span>Jogos em alta • vitrine premium</span>
+        <span>DOWNLOAD DIRETO DA STEAM • SEM VÍRUS • ARQUIVOS ORIGINAIS • ACESSO VITALÍCIO</span>
         <span>Passe o mouse para pausar</span>
       </div>
 

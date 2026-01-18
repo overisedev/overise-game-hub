@@ -18,21 +18,20 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             {/* Pill */}
             <div className="pill">
               <span className="dot" />
-              Sistema ativo • experiência premium
+              Sistema Online • Download Oficial Steam
             </div>
 
             <h1 className="hero-title">
-              Sua biblioteca, <span className="accent">sem complicação.</span>
+              Sua Steam, <span className="accent">liberada.</span>
             </h1>
 
             <p className="hero-sub">
-              Uma experiência rápida e elegante para pesquisar, organizar e acessar sua coleção com uma interface moderna.
-              Tudo otimizado para ser leve, direto e premium.
+              Desbloqueie acesso imediato a mais de 1000 jogos pagos. Baixe tudo diretamente dos servidores oficiais da Steam, com velocidade máxima, conquistas e segurança total.
             </p>
 
             <div className="hero-actions">
-              <a href="#como-funciona" className="btn btn-primary-lg">Quero começar</a>
-              <a href="#catalogo" className="btn btn-outline">Ver catálogo</a>
+              <a href="#planos" className="btn btn-primary-lg">Liberar minha Steam agora</a>
+              <a href="#catalogo" className="btn btn-outline">Ver lista de jogos</a>
             </div>
 
           </div>
@@ -58,15 +57,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               <div className="hero-card-info">
                 <div className="hero-card-text">
                   <div className="badge-row">
-                    <span className="chip green">Em destaque</span>
-                    <span className="chip">AAA • pagos</span>
+                    <span className="chip green">Jogue Originais</span>
+                    <span className="chip">Sem modificações</span>
                   </div>
                   <h2 className="hero-card-name">{featuredGame.name}</h2>
-                  <p className="hero-card-desc">Somente títulos AAA/pagos selecionados da sua lista.</p>
+                  <p className="hero-card-desc">Baixe os arquivos oficiais e jogue o modo campanha sem riscos.</p>
                 </div>
                 <div className="hero-card-btns">
                   <button onClick={() => onOpenDetails(featuredGame)} className="btn btn-small">Ver detalhes</button>
-                  <a href="#catalogo" className="btn btn-small btn-primary-sm">Abrir catálogo</a>
+                  <a href="#catalogo" className="btn btn-small btn-primary-sm">Ver catálogo</a>
                 </div>
               </div>
             </div>
