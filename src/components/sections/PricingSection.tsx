@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 export function PricingSection() {
   const plans = [
     {
@@ -28,7 +30,7 @@ export function PricingSection() {
         'Jogue Online nos Compatíveis',
         'Suporte no WhatsApp',
       ],
-      btnText: 'Quero Este',
+      btnText: 'Quero Esse',
       checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX',
     },
     {
@@ -43,6 +45,7 @@ export function PricingSection() {
         'Mais de 1000 Jogos',
         'Receba Lançamentos Futuros',
         'Multiplayer Garantido',
+        'Inclua o Jogo que Quiser',
         'Acesso Vitalício',
       ],
       btnText: 'Desbloquear Tudo',
@@ -50,18 +53,57 @@ export function PricingSection() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
   return (
     <section id="planos" className="section container-main">
-      <div className="pricing-header">
+      <motion.div 
+        className="pricing-header"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
         <h2>Escolha seu plano</h2>
         <p>Acesso imediato após o pagamento. Escolha o que melhor se encaixa para você.</p>
-      </div>
+      </motion.div>
 
-      <div className="pricing-grid">
-        {plans.map((plan) => (
-          <div 
+      <motion.div 
+        className="pricing-grid"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {plans.map((plan, index) => (
+          <motion.div 
             key={plan.name} 
             className={`pricing-card ${plan.featured ? 'featured' : ''} theme-${plan.colorTheme}`}
+            variants={cardVariants}
+            whileHover={{ 
+              y: -8,
+              transition: { duration: 0.2 }
+            }}
           >
             {plan.badge && (
               <span className={`pricing-badge badge-${plan.colorTheme}`}>{plan.badge}</span>
@@ -83,17 +125,22 @@ export function PricingSection() {
               ))}
             </ul>
 
-            <a 
+            <motion.a 
               href={plan.checkoutUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               className={`plan-btn btn-${plan.colorTheme}`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              {plan.btnText || 'Desbloquear'}
-            </a>
-          </div>
+              <span className="btn-content">
+                <span className="btn-icon">→</span>
+                {plan.btnText || 'Desbloquear'}
+              </span>
+            </motion.a>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <style>{`
         .pricing-header {
@@ -139,25 +186,25 @@ export function PricingSection() {
           align-items: center;
           text-align: center;
           position: relative;
-          transition: .25s ease;
+          transition: border-color .25s ease, box-shadow .25s ease;
         }
         
         /* Blue theme - Básico */
         .pricing-card.theme-blue:hover {
-          border-color: rgba(76, 125, 240, 0.32);
-          transform: translateY(-4px);
+          border-color: rgba(76, 125, 240, 0.4);
+          box-shadow: 0 0 40px rgba(76, 125, 240, 0.15);
         }
         
         /* Red theme - Avançado */
         .pricing-card.theme-red:hover {
-          border-color: rgba(240, 48, 31, 0.32);
-          transform: translateY(-4px);
+          border-color: rgba(240, 48, 31, 0.4);
+          box-shadow: 0 0 40px rgba(240, 48, 31, 0.15);
         }
         
         /* Green theme - Vitalício */
         .pricing-card.theme-green:hover {
-          border-color: rgba(0,255,65,.20);
-          transform: translateY(-4px);
+          border-color: rgba(0,255,65,.35);
+          box-shadow: 0 0 40px rgba(0,255,65,.12);
         }
         
         .pricing-card.featured {
@@ -177,21 +224,30 @@ export function PricingSection() {
           font-weight: 900;
           text-transform: uppercase;
           letter-spacing: 0.3px;
+          animation: badge-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes badge-pulse {
+          0%, 100% { transform: translateX(-50%) scale(1); }
+          50% { transform: translateX(-50%) scale(1.05); }
         }
         
         .pricing-badge.badge-blue {
-          background: rgb(76, 125, 240);
+          background: linear-gradient(135deg, rgb(76, 125, 240), rgb(100, 150, 255));
           color: #fff;
+          box-shadow: 0 4px 15px rgba(76, 125, 240, 0.4);
         }
         
         .pricing-badge.badge-red {
-          background: rgb(240, 48, 31);
+          background: linear-gradient(135deg, rgb(240, 48, 31), rgb(255, 80, 60));
           color: #fff;
+          box-shadow: 0 4px 15px rgba(240, 48, 31, 0.4);
         }
         
         .pricing-badge.badge-green {
-          background: var(--neon);
+          background: linear-gradient(135deg, var(--neon), #7fff7f);
           color: #000;
+          box-shadow: 0 4px 15px rgba(0,255,65,.4);
         }
         
         .plan-name {
@@ -215,14 +271,17 @@ export function PricingSection() {
         
         .plan-price.price-blue {
           color: rgb(76, 125, 240);
+          text-shadow: 0 0 20px rgba(76, 125, 240, 0.5);
         }
         
         .plan-price.price-red {
           color: rgb(240, 48, 31);
+          text-shadow: 0 0 20px rgba(240, 48, 31, 0.5);
         }
         
         .plan-price.price-green {
           color: var(--neon);
+          text-shadow: 0 0 20px rgba(0,255,65,.5);
         }
         
         .plan-price-label {
@@ -279,52 +338,124 @@ export function PricingSection() {
           color: var(--neon);
         }
         
-        /* Buttons */
+        /* Buttons - Vibrant styles */
         .plan-btn {
           display: block;
           width: 100%;
           text-align: center;
-          padding: 14px;
+          padding: 16px 20px;
           border-radius: 14px;
           font-size: 14px;
           font-weight: 900;
           text-transform: uppercase;
           text-decoration: none;
-          transition: .25s ease;
+          position: relative;
+          overflow: hidden;
         }
         
+        .btn-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          position: relative;
+          z-index: 1;
+        }
+        
+        .btn-icon {
+          font-size: 18px;
+          transition: transform 0.3s ease;
+        }
+        
+        .plan-btn:hover .btn-icon {
+          transform: translateX(4px);
+        }
+        
+        /* Blue Button */
         .plan-btn.btn-blue {
-          border: 1px solid rgba(76, 125, 240, 0.25);
-          background: rgba(76, 125, 240, 0.08);
-          color: rgb(76, 125, 240);
+          background: linear-gradient(135deg, rgb(76, 125, 240), rgb(50, 100, 220));
+          color: #fff;
+          border: none;
+          box-shadow: 0 4px 20px rgba(76, 125, 240, 0.35),
+                      inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .plan-btn.btn-blue::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .plan-btn.btn-blue:hover::before {
+          left: 100%;
         }
         
         .plan-btn.btn-blue:hover {
-          border-color: rgba(76, 125, 240, 0.32);
-          background: rgba(76, 125, 240, 0.22);
-          box-shadow: 0 8px 30px rgba(76, 125, 240, 0.25);
+          box-shadow: 0 8px 35px rgba(76, 125, 240, 0.5),
+                      inset 0 1px 0 rgba(255,255,255,0.2);
         }
         
+        /* Red Button */
         .plan-btn.btn-red {
-          border: 1px solid rgba(240, 48, 31, 0.25);
-          background: rgba(240, 48, 31, 0.08);
-          color: rgb(240, 48, 31);
+          background: linear-gradient(135deg, rgb(240, 48, 31), rgb(200, 30, 20));
+          color: #fff;
+          border: none;
+          box-shadow: 0 4px 20px rgba(240, 48, 31, 0.35),
+                      inset 0 1px 0 rgba(255,255,255,0.2);
+        }
+        
+        .plan-btn.btn-red::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .plan-btn.btn-red:hover::before {
+          left: 100%;
         }
         
         .plan-btn.btn-red:hover {
-          border-color: rgba(240, 48, 31, 0.32);
-          background: rgba(240, 48, 31, 0.22);
-          box-shadow: 0 8px 30px rgba(240, 48, 31, 0.25);
+          box-shadow: 0 8px 35px rgba(240, 48, 31, 0.5),
+                      inset 0 1px 0 rgba(255,255,255,0.2);
         }
         
+        /* Green Button - Vitalício */
         .plan-btn.btn-green {
-          background: var(--neon);
+          background: linear-gradient(135deg, var(--neon), #00cc52);
           color: #000;
           border: none;
+          box-shadow: 0 4px 20px rgba(0,255,65,.35),
+                      inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .plan-btn.btn-green::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        .plan-btn.btn-green:hover::before {
+          left: 100%;
         }
         
         .plan-btn.btn-green:hover {
-          box-shadow: 0 8px 30px rgba(0,255,65,.25);
+          box-shadow: 0 8px 35px rgba(0,255,65,.5),
+                      inset 0 1px 0 rgba(255,255,255,0.3);
         }
       `}</style>
     </section>
