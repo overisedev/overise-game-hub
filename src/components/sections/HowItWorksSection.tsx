@@ -1,4 +1,13 @@
+import { useState } from 'react';
+import videoThumbnail from '@/assets/video-thumbnail.jpg';
+
 export function HowItWorksSection() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayVideo = () => {
+    setIsPlaying(true);
+  };
+
   return (
     <section id="como-funciona" className="section container-main">
       {/* Título centralizado */}
@@ -10,11 +19,28 @@ export function HowItWorksSection() {
       <div className="demo-grid">
         {/* Left - Video (MAIOR e À ESQUERDA) */}
         <div className="card video-wrap">
-          <div className="video-placeholder">
-            <div className="play-btn">▶</div>
-            <p>Clique para assistir</p>
-          </div>
-          <div className="video-overlay" />
+          {isPlaying ? (
+            <iframe
+              src="https://www.youtube.com/embed/diPCeBT0368?autoplay=1&rel=0"
+              title="Como funciona o desbloqueio da Steam"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="video-iframe"
+            />
+          ) : (
+            <>
+              <img 
+                src={videoThumbnail} 
+                alt="Veja como funciona o desbloqueio" 
+                className="video-thumbnail"
+              />
+              <div className="video-placeholder" onClick={handlePlayVideo}>
+                <div className="play-btn">▶</div>
+                <p>Clique para assistir</p>
+              </div>
+              <div className="video-overlay" />
+            </>
+          )}
         </div>
 
         {/* Right - Info */}
@@ -159,6 +185,22 @@ export function HowItWorksSection() {
           height: 400px;
           background: #000;
         }
+        .video-thumbnail {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 1;
+        }
+        .video-iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+          z-index: 3;
+        }
         .video-placeholder {
           position: absolute;
           inset: 0;
@@ -166,7 +208,7 @@ export function HowItWorksSection() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          color: var(--muted);
+          color: #fff;
           z-index: 2;
           cursor: pointer;
           transition: .25s ease;
@@ -184,19 +226,21 @@ export function HowItWorksSection() {
           width: 80px;
           height: 80px;
           border-radius: 50%;
-          background: rgba(255,255,255,.08);
-          border: 2px solid rgba(255,255,255,.15);
+          background: rgba(0,0,0,.60);
+          border: 2px solid rgba(255,255,255,.25);
           display: grid;
           place-items: center;
           font-size: 28px;
           margin-bottom: 16px;
           transition: .3s ease;
+          backdrop-filter: blur(8px);
         }
         .video-placeholder p {
           font-size: 14px;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 1px;
+          text-shadow: 0 2px 8px rgba(0,0,0,.8);
         }
         .video-overlay {
           position: absolute;
@@ -205,6 +249,7 @@ export function HowItWorksSection() {
             radial-gradient(900px 360px at 30% 20%, rgba(0,255,65,.08), transparent 55%),
             linear-gradient(to top, rgba(0,0,0,.65), transparent 55%);
           pointer-events: none;
+          z-index: 1;
         }
       `}</style>
     </section>
