@@ -9,10 +9,10 @@ export function PricingSection() {
       games: 'Pacote com 500 Jogos',
       colorTheme: 'blue',
       features: [
-        'Pacote com 500 Jogos',
-        'Baixe pela Steam',
-        'Jogue o Modo História',
-        'Acesso Imediato',
+        '500 jogos inclusos',
+        'Download via Steam',
+        'Modo história liberado',
+        'Acesso na hora',
       ],
       btnText: 'Escolher Básico',
       checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ',
@@ -25,10 +25,10 @@ export function PricingSection() {
       badge: 'Mais Vendido',
       colorTheme: 'red',
       features: [
-        'Pacote com 700 Jogos',
-        'Inclui Lançamentos',
-        'Jogue Online nos Compatíveis',
-        'Suporte no WhatsApp',
+        '700 jogos inclusos',
+        'Jogos novos e lançamentos',
+        'Online nos compatíveis',
+        'Suporte via WhatsApp',
       ],
       btnText: 'Quero Esse',
       checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX',
@@ -42,11 +42,11 @@ export function PricingSection() {
       colorTheme: 'green',
       featured: true,
       features: [
-        'Mais de 1000 Jogos',
-        'Receba Lançamentos Futuros',
-        'Multiplayer Garantido',
-        'Inclua o Jogo que Quiser',
-        'Acesso Vitalício',
+        '+1000 jogos liberados',
+        'Recebe jogos novos pra sempre',
+        'Multiplayer funcionando',
+        'Pede qualquer jogo que a gente adiciona',
+        'Seu pra sempre',
       ],
       btnText: 'Desbloquear Tudo',
       checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3',
@@ -133,10 +133,7 @@ export function PricingSection() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="btn-content">
-                <span className="btn-icon">→</span>
-                {plan.btnText || 'Desbloquear'}
-              </span>
+              {plan.btnText || 'Desbloquear'}
             </motion.a>
           </motion.div>
         ))}
@@ -353,23 +350,6 @@ export function PricingSection() {
           overflow: hidden;
         }
         
-        .btn-content {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          position: relative;
-          z-index: 1;
-        }
-        
-        .btn-icon {
-          font-size: 18px;
-          transition: transform 0.3s ease;
-        }
-        
-        .plan-btn:hover .btn-icon {
-          transform: translateX(4px);
-        }
         
         /* Blue Button */
         .plan-btn.btn-blue {
