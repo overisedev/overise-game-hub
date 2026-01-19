@@ -5,6 +5,7 @@ export function PricingSection() {
       price: 'R$ 9,90',
       priceLabel: 'Taxa Única',
       games: 'Pacote com 500 Jogos',
+      colorTheme: 'blue',
       features: [
         'Pacote com 500 Jogos',
         'Baixe pela Steam',
@@ -20,7 +21,7 @@ export function PricingSection() {
       priceLabel: 'Taxa Única',
       games: 'Pacote com 700 Jogos',
       badge: 'Mais Vendido',
-      featured: true,
+      colorTheme: 'red',
       features: [
         'Pacote com 700 Jogos',
         'Inclui Lançamentos',
@@ -35,6 +36,9 @@ export function PricingSection() {
       price: 'R$ 49,90',
       priceLabel: 'Taxa Única',
       games: 'Liberar a Lista Toda',
+      badge: 'Melhor Custo-Benefício',
+      colorTheme: 'green',
+      featured: true,
       features: [
         'Mais de 1000 Jogos',
         'Receba Lançamentos Futuros',
@@ -57,15 +61,15 @@ export function PricingSection() {
         {plans.map((plan) => (
           <div 
             key={plan.name} 
-            className={`pricing-card ${plan.featured ? 'featured' : ''}`}
+            className={`pricing-card ${plan.featured ? 'featured' : ''} theme-${plan.colorTheme}`}
           >
             {plan.badge && (
-              <span className="pricing-badge">{plan.badge}</span>
+              <span className={`pricing-badge badge-${plan.colorTheme}`}>{plan.badge}</span>
             )}
 
             <h3 className="plan-name">{plan.name}</h3>
             
-            <div className="plan-price">{plan.price}</div>
+            <div className={`plan-price price-${plan.colorTheme}`}>{plan.price}</div>
             <div className="plan-price-label">{plan.priceLabel}</div>
             
             <div className="plan-games">{plan.games}</div>
@@ -73,7 +77,7 @@ export function PricingSection() {
             <ul className="plan-features">
               {plan.features.map((feature, idx) => (
                 <li key={idx}>
-                  <span className="check">✓</span>
+                  <span className={`check check-${plan.colorTheme}`}>✓</span>
                   {feature}
                 </li>
               ))}
@@ -83,7 +87,7 @@ export function PricingSection() {
               href={plan.checkoutUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className={`plan-btn ${plan.featured ? 'btn-featured' : ''}`}
+              className={`plan-btn btn-${plan.colorTheme}`}
             >
               {plan.btnText || 'Desbloquear'}
             </a>
@@ -138,7 +142,20 @@ export function PricingSection() {
           transition: .25s ease;
         }
         
-        .pricing-card:hover {
+        /* Blue theme - Básico */
+        .pricing-card.theme-blue:hover {
+          border-color: rgba(76, 125, 240, 0.32);
+          transform: translateY(-4px);
+        }
+        
+        /* Red theme - Avançado */
+        .pricing-card.theme-red:hover {
+          border-color: rgba(240, 48, 31, 0.32);
+          transform: translateY(-4px);
+        }
+        
+        /* Green theme - Vitalício */
+        .pricing-card.theme-green:hover {
           border-color: rgba(0,255,65,.20);
           transform: translateY(-4px);
         }
@@ -148,6 +165,7 @@ export function PricingSection() {
           background: rgba(0,255,65,.04);
         }
         
+        /* Badges */
         .pricing-badge {
           position: absolute;
           top: -12px;
@@ -155,12 +173,25 @@ export function PricingSection() {
           transform: translateX(-50%);
           padding: 6px 14px;
           border-radius: 999px;
-          background: var(--neon);
-          color: #000;
           font-size: 11px;
           font-weight: 900;
           text-transform: uppercase;
           letter-spacing: 0.3px;
+        }
+        
+        .pricing-badge.badge-blue {
+          background: rgb(76, 125, 240);
+          color: #fff;
+        }
+        
+        .pricing-badge.badge-red {
+          background: rgb(240, 48, 31);
+          color: #fff;
+        }
+        
+        .pricing-badge.badge-green {
+          background: var(--neon);
+          color: #000;
         }
         
         .plan-name {
@@ -173,13 +204,25 @@ export function PricingSection() {
           text-align: center;
         }
         
+        /* Prices */
         .plan-price {
           font-size: 36px;
           font-weight: 950;
-          color: var(--neon);
           letter-spacing: -2px;
           margin-bottom: 4px;
           text-align: center;
+        }
+        
+        .plan-price.price-blue {
+          color: rgb(76, 125, 240);
+        }
+        
+        .plan-price.price-red {
+          color: rgb(240, 48, 31);
+        }
+        
+        .plan-price.price-green {
+          color: var(--neon);
         }
         
         .plan-price-label {
@@ -219,20 +262,30 @@ export function PricingSection() {
           color: rgba(255,255,255,.80);
         }
         
+        /* Checkmarks */
         .check {
-          color: var(--neon);
           font-weight: 700;
         }
         
+        .check.check-blue {
+          color: rgb(76, 125, 240);
+        }
+        
+        .check.check-red {
+          color: rgb(240, 48, 31);
+        }
+        
+        .check.check-green {
+          color: var(--neon);
+        }
+        
+        /* Buttons */
         .plan-btn {
           display: block;
           width: 100%;
           text-align: center;
           padding: 14px;
           border-radius: 14px;
-          border: 1px solid rgba(255,255,255,.10);
-          background: rgba(255,255,255,.04);
-          color: #fff;
           font-size: 14px;
           font-weight: 900;
           text-transform: uppercase;
@@ -240,18 +293,37 @@ export function PricingSection() {
           transition: .25s ease;
         }
         
-        .plan-btn:hover {
-          border-color: rgba(0,255,65,.30);
-          background: rgba(0,255,65,.08);
+        .plan-btn.btn-blue {
+          border: 1px solid rgba(76, 125, 240, 0.25);
+          background: rgba(76, 125, 240, 0.08);
+          color: rgb(76, 125, 240);
         }
         
-        .plan-btn.btn-featured {
+        .plan-btn.btn-blue:hover {
+          border-color: rgba(76, 125, 240, 0.32);
+          background: rgba(76, 125, 240, 0.22);
+          box-shadow: 0 8px 30px rgba(76, 125, 240, 0.25);
+        }
+        
+        .plan-btn.btn-red {
+          border: 1px solid rgba(240, 48, 31, 0.25);
+          background: rgba(240, 48, 31, 0.08);
+          color: rgb(240, 48, 31);
+        }
+        
+        .plan-btn.btn-red:hover {
+          border-color: rgba(240, 48, 31, 0.32);
+          background: rgba(240, 48, 31, 0.22);
+          box-shadow: 0 8px 30px rgba(240, 48, 31, 0.25);
+        }
+        
+        .plan-btn.btn-green {
           background: var(--neon);
           color: #000;
           border: none;
         }
         
-        .plan-btn.btn-featured:hover {
+        .plan-btn.btn-green:hover {
           box-shadow: 0 8px 30px rgba(0,255,65,.25);
         }
       `}</style>
