@@ -4,7 +4,7 @@ export function PricingSection() {
   const plans = [
     {
       name: 'Plano Básico',
-      price: 'R$ 9,90',
+      price: 'R$ 9,97',
       priceLabel: 'Taxa Única',
       games: 'Pacote com 500 Jogos',
       colorTheme: 'blue',
@@ -19,7 +19,7 @@ export function PricingSection() {
     },
     {
       name: 'Plano Avançado',
-      price: 'R$ 19,90',
+      price: 'R$ 19,97',
       priceLabel: 'Taxa Única',
       games: 'Pacote com 700 Jogos',
       badge: 'Mais Vendido',
@@ -35,7 +35,7 @@ export function PricingSection() {
     },
     {
       name: 'Plano Vitalício',
-      price: 'R$ 49,90',
+      price: 'R$ 49,97',
       priceLabel: 'Taxa Única',
       games: 'Liberar a Lista Toda',
       badge: 'Melhor Custo-Benefício',
