@@ -7,17 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* OVERISE Color System */
       --bg: #030303;
-      --bg-card: rgba(255,255,255,.04);
       --neon: #00FF41;
-      --accent-red: rgb(240, 48, 31);
-      --border: rgba(255,255,255,.08);
-      --border-hover: rgba(255,255,255,.14);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.60);
-      --shadow: 0 32px 80px rgba(0,0,0,.9);
-      --r2: 18px;
+      --neon-glow: rgba(0, 255, 65, 0.4);
+      --text: #fff;
+      --muted: rgba(255,255,255,.65);
     }
 
     * {
@@ -27,268 +21,217 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background: #0a0a0a;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
-      gap: 40px;
+      gap: 60px;
     }
 
-    h1 {
-      color: #fff;
-      font-size: 24px;
-      font-weight: 800;
-    }
+    h1 { color: #fff; font-size: 24px; font-weight: 800; }
+    .instructions { color: var(--muted); font-size: 14px; text-align: center; max-width: 700px; line-height: 1.6; }
+    .instructions code { background: rgba(255,255,255,.1); padding: 2px 8px; border-radius: 4px; }
 
-    .instructions {
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-      max-width: 700px;
-      line-height: 1.6;
-    }
-
-    .instructions code {
-      background: rgba(255,255,255,.1);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-
-    /* Slide Container */
+    /* Slide Container - Instagram 4:5 */
     .slide {
       width: 1080px;
       height: 1350px;
       flex-shrink: 0;
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
-      margin-bottom: 40px;
+      border-radius: 12px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.8);
     }
 
-    .slide-base {
+    .slide-inner {
       width: 100%;
       height: 100%;
-      background: var(--bg);
       position: relative;
       display: flex;
       flex-direction: column;
-      padding: 80px;
+      background: var(--bg);
     }
 
-    /* Waves Background - igual ao site */
-    .waves-bg {
+    /* Background Image Layer */
+    .bg-image {
       position: absolute;
       inset: 0;
-      opacity: 0.6;
-      background: 
-        radial-gradient(ellipse 100% 60% at 15% 85%, rgba(0, 255, 65, 0.06), transparent),
-        radial-gradient(ellipse 80% 50% at 85% 15%, rgba(255, 255, 255, 0.02), transparent);
-      pointer-events: none;
+      z-index: 0;
     }
 
+    .bg-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.2) contrast(1.1);
+    }
+
+    /* Dynamic gradient overlays */
+    .overlay-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .overlay-dark {
+      background: 
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(0,0,0,0.95) 0%, transparent 60%),
+        radial-gradient(ellipse 100% 60% at 0% 50%, rgba(0,0,0,0.9) 0%, transparent 50%),
+        linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.6) 100%);
+    }
+
+    .overlay-neon {
+      background: 
+        radial-gradient(ellipse 80% 50% at 20% 90%, rgba(0,255,65,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0,255,65,0.08) 0%, transparent 40%);
+    }
+
+    /* Animated wave lines effect */
+    .wave-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.4;
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 4px,
+          rgba(0,255,65,0.03) 4px,
+          rgba(0,255,65,0.03) 5px
+        );
+    }
+
+    /* Content Layer */
     .content {
       position: relative;
       z-index: 10;
       display: flex;
       flex-direction: column;
       height: 100%;
+      padding: 80px;
     }
 
-    /* OVERISE Logo */
+    /* Logo */
     .logo {
       display: flex;
       align-items: center;
-      gap: 0;
     }
 
     .logo-white {
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 950;
       color: #fff;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
     .logo-neon {
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 950;
       color: var(--neon);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
+      text-shadow: 0 0 40px var(--neon-glow);
     }
 
-    /* Pill Badge - igual ao site */
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 20px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
-      font-weight: 800;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      font-size: 18px;
-      backdrop-filter: blur(10px);
+    /* Main Typography */
+    .headline {
+      font-size: 88px;
+      font-weight: 900;
+      line-height: 1.05;
       color: var(--text);
-      width: fit-content;
+      letter-spacing: -3px;
     }
 
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--neon);
-      box-shadow: 0 0 20px rgba(0,255,65,.6);
-    }
-
-    /* Typography - igual ao site */
-    .hero-title {
+    .headline-xl {
+      font-size: 110px;
       font-weight: 950;
-      font-size: 108px;
-      line-height: 1.02;
+      line-height: 0.95;
+      color: var(--text);
       letter-spacing: -4px;
-      color: #fff;
+      text-transform: uppercase;
     }
 
-    .hero-title .accent {
+    .highlight {
       color: var(--neon);
+      text-shadow: 0 0 60px var(--neon-glow);
     }
 
-    .hero-sub {
-      font-size: 38px;
-      line-height: 1.5;
+    .highlight-box {
+      display: inline;
+      background: var(--neon);
+      color: #000;
+      padding: 4px 20px;
+      font-weight: 950;
+    }
+
+    .subtext {
+      font-size: 36px;
+      font-weight: 600;
       color: var(--muted);
+      line-height: 1.5;
       max-width: 800px;
     }
 
-    .section-title {
-      font-size: 82px;
-      font-weight: 950;
-      color: #fff;
-      letter-spacing: -2px;
-      line-height: 1.1;
-    }
-
-    .section-title .accent {
-      color: var(--neon);
-    }
-
-    /* Glass Card - igual ao site */
-    .glass-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--r2);
-      padding: 50px;
-      backdrop-filter: blur(12px);
-    }
-
-    /* CTA Button - igual ao site */
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      padding: 26px 48px;
-      background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
-      color: #000;
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      border-radius: 16px;
-      text-transform: uppercase;
-      box-shadow: 0 20px 60px rgba(0,255,65,.25);
-      border: 1px solid rgba(0,255,65,.55);
-      cursor: pointer;
-    }
-
-    /* Chip Badge - igual ao site */
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-size: 16px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      background: rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.12);
-      color: #fff;
-      backdrop-filter: blur(10px);
-    }
-
-    .chip.green {
-      border-color: rgba(0,255,65,.35);
-      box-shadow: 0 0 0 1px rgba(0,255,65,.10) inset;
-    }
-
-    /* Bullets */
-    .bullet-list {
-      display: flex;
-      flex-direction: column;
-      gap: 36px;
-    }
-
-    .bullet-item {
-      display: flex;
-      align-items: center;
-      gap: 24px;
+    .subtext-italic {
       font-size: 38px;
-      font-weight: 700;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .subtext-bold {
+      font-weight: 800;
       color: var(--text);
     }
 
-    .bullet-dot {
-      width: 18px;
-      height: 18px;
-      background: var(--neon);
-      border-radius: 50%;
-      flex-shrink: 0;
-      box-shadow: 0 0 20px rgba(0,255,65,.5);
+    /* Swipe Indicator */
+    .swipe-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 36px;
+      background: rgba(0,255,65,0.15);
+      border: 2px solid var(--neon);
+      border-radius: 50px;
+      color: var(--neon);
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 0 30px rgba(0,255,65,0.2);
     }
 
-    /* Steps */
-    .steps-list {
+    .swipe-indicator::after {
+      content: '→';
+      font-size: 26px;
+      animation: swipe-arrow 1s ease-in-out infinite;
+    }
+
+    @keyframes swipe-arrow {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    /* Center content */
+    .center-content {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 48px;
-    }
-
-    .step-item {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .step-number {
-      width: 90px;
-      height: 90px;
-      background: rgba(0,255,65,.1);
-      border: 2px solid rgba(0,255,65,.4);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 40px;
-      font-weight: 900;
-      color: var(--neon);
-      flex-shrink: 0;
+      gap: 40px;
     }
 
-    .step-text {
-      font-size: 40px;
-      font-weight: 700;
-      color: var(--text);
+    .center-all {
+      align-items: center;
+      text-align: center;
     }
 
     /* Footer */
     .footer {
-      margin-top: auto;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -297,234 +240,178 @@
     .footer-url {
       font-size: 28px;
       font-weight: 700;
-      color: rgba(255,255,255,.35);
+      color: rgba(255,255,255,.4);
       letter-spacing: 1px;
     }
 
-    /* Game Grid - Steam style */
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .game-card {
-      aspect-ratio: 460/215;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid var(--border);
-      background: #0a0a0a;
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.1) contrast(1.1);
-    }
-
-    .game-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .game-card .game-name {
-      position: absolute;
-      bottom: 12px;
-      left: 14px;
-      right: 14px;
-      font-size: 18px;
-      font-weight: 800;
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      z-index: 2;
-      text-shadow: 0 2px 10px rgba(0,0,0,.9);
-    }
-
-    /* Hero Card - igual ao site */
-    .hero-card {
-      border-radius: var(--r2);
-      border: 1px solid rgba(255,255,255,.10);
-      background: var(--bg-card);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero-card-glow {
-      position: absolute;
-      inset: -2px;
-      background: radial-gradient(700px 240px at 20% 10%, rgba(0,255,65,.16), transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-card-media {
-      position: relative;
-      height: 460px;
-      overflow: hidden;
-    }
-
-    .hero-card-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.10) contrast(1.10);
-    }
-
-    .hero-card-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(800px 320px at 78% 45%, rgba(0,0,0,.12), rgba(0,0,0,.78)),
-        linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.16));
-    }
-
-    .hero-card-info {
-      position: absolute;
-      left: 28px;
-      right: 28px;
-      bottom: 28px;
-    }
-
-    .hero-card-name {
-      margin: 16px 0 0;
-      font-weight: 950;
-      font-size: 36px;
-      color: #fff;
-      letter-spacing: -1px;
-      text-transform: uppercase;
-    }
-
-    .hero-card-desc {
-      margin-top: 10px;
-      color: rgba(255,255,255,.75);
-      font-size: 22px;
-      line-height: 1.4;
-    }
-
-    /* Center content helper */
-    .center-content {
-      flex: 1;
+    /* Dots indicator */
+    .dots {
       display: flex;
-      flex-direction: column;
+      gap: 12px;
       justify-content: center;
     }
 
-    /* Status badge */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(0,255,65,.1);
-      border: 1px solid rgba(0,255,65,.3);
-      padding: 18px 32px;
-      border-radius: 50px;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--neon);
-    }
-
-    .status-dot {
+    .dot {
       width: 14px;
       height: 14px;
-      background: var(--neon);
       border-radius: 50%;
-      animation: pulse 2s infinite;
-      box-shadow: 0 0 15px rgba(0,255,65,.6);
+      background: rgba(255,255,255,.3);
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.9); }
+    .dot.active {
+      background: var(--neon);
+      box-shadow: 0 0 15px var(--neon-glow);
     }
 
-    /* Tags */
-    .tags {
+    /* Game Grid */
+    .game-mosaic {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .game-tile {
+      aspect-ratio: 460/215;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,.1);
+      position: relative;
+    }
+
+    .game-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.2);
+    }
+
+    .game-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 50%);
+    }
+
+    .game-tile:hover {
+      border-color: var(--neon);
+      box-shadow: 0 0 30px rgba(0,255,65,0.3);
+    }
+
+    /* Feature Pills */
+    .pills {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
     }
 
-    .tag {
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
-      padding: 16px 28px;
-      border-radius: 12px;
-      font-size: 24px;
-      font-weight: 700;
-      color: rgba(255,255,255,.7);
-    }
-
-    /* Mini text */
-    .mini-text {
-      font-size: 26px;
-      color: rgba(255,255,255,.4);
-      font-weight: 600;
-    }
-
-    /* Decorative line */
-    .neon-line {
-      width: 120px;
-      height: 5px;
-      background: var(--neon);
-      border-radius: 3px;
-      box-shadow: 0 0 20px rgba(0,255,65,.5);
-    }
-
-    /* Feature Grid */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .feature-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 36px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .feature-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(0,255,65,.1);
-      border: 1px solid rgba(0,255,65,.3);
-      border-radius: 14px;
+    .pill {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: var(--neon);
-      font-size: 28px;
-    }
-
-    .feature-title {
-      font-size: 28px;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .feature-desc {
+      gap: 10px;
+      padding: 16px 28px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50px;
+      color: var(--text);
       font-size: 22px;
-      color: var(--muted);
-      line-height: 1.4;
+      font-weight: 700;
     }
 
-    /* Big number */
-    .big-number {
-      font-size: 180px;
+    .pill-icon {
+      font-size: 26px;
+    }
+
+    /* Stats */
+    .stats-row {
+      display: flex;
+      gap: 60px;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 80px;
       font-weight: 950;
       color: var(--neon);
       line-height: 1;
-      letter-spacing: -8px;
-      text-shadow: 0 0 80px rgba(0,255,65,.4);
+      text-shadow: 0 0 40px var(--neon-glow);
+    }
+
+    .stat-label {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* Instagram UI Overlay */
+    .ig-icons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .ig-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--text);
+    }
+
+    /* Big CTA */
+    .cta-big {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 32px 64px;
+      background: var(--neon);
+      color: #000;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      box-shadow: 0 20px 60px rgba(0,255,65,0.35);
+    }
+
+    /* Decorative elements */
+    .glow-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,65,0.2) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .line-accent {
+      width: 150px;
+      height: 6px;
+      background: var(--neon);
+      border-radius: 3px;
+      box-shadow: 0 0 30px var(--neon-glow);
+    }
+
+    /* Quote style */
+    .quote-text {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .quote-highlight {
+      background: linear-gradient(90deg, transparent, rgba(0,255,65,0.3), transparent);
+      padding: 8px 24px;
     }
   </style>
 </head>
@@ -532,346 +419,301 @@
 
   <h1>🎮 Carrossel Instagram - OVERISE</h1>
   <p class="instructions">
-    Cada slide tem <code>1080×1350px</code> (formato 4:5 do Instagram).<br>
-    Para exportar: clique direito no slide → Inspecionar → selecione o <code>.slide</code> → botão direito → "Capture node screenshot"
+    Slides em <code>1080×1350px</code>. Clique direito → Inspecionar → selecione <code>.slide</code> → "Capture node screenshot"
   </p>
 
-  <!-- SLIDE 1 - Capa / Apresentação -->
+  <!-- ========== SLIDE 1 - CAPA IMPACTANTE ========== -->
   <div class="slide" id="slide-1">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
+    <div class="slide-inner">
+      <!-- Background com mosaico de jogos -->
+      <div class="bg-image">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); height: 100%;">
+          <img src="https://steamcdn-a.akamaihd.net/steam/apps/1245620/library_hero.jpg" alt="" style="object-fit: cover; height: 100%;">
+          <img src="https://steamcdn-a.akamaihd.net/steam/apps/1091500/library_hero.jpg" alt="" style="object-fit: cover; height: 100%;">
+          <img src="https://steamcdn-a.akamaihd.net/steam/apps/1174180/library_hero.jpg" alt="" style="object-fit: cover; height: 100%;">
+        </div>
+      </div>
+      <div class="overlay-gradient overlay-dark"></div>
+      <div class="overlay-gradient overlay-neon"></div>
+      <div class="wave-lines"></div>
+
+      <!-- Glow orbs -->
+      <div class="glow-orb" style="bottom: -200px; left: -200px;"></div>
+      <div class="glow-orb" style="top: -100px; right: -200px; opacity: 0.5;"></div>
+
       <div class="content">
-        <!-- Logo -->
         <div class="logo">
           <span class="logo-white">OVER</span>
           <span class="logo-neon">ISE</span>
         </div>
 
-        <div class="center-content" style="gap: 40px;">
-          <!-- Pill -->
-          <div class="pill" style="margin-top: 60px;">
-            <span class="dot"></span>
-            Sistema Online • Baixe na Steam • Sem Vírus
-          </div>
+        <div class="center-content center-all">
+          <p class="subtext" style="font-size: 32px; margin-bottom: 20px;">
+            Cansado de pagar caro por jogos?
+          </p>
 
-          <!-- Title -->
-          <h1 class="hero-title">
-            Sua Steam,<br>
-            <span class="accent">liberada.</span>
+          <h1 class="headline-xl">
+            SUA STEAM<br>
+            <span class="highlight">DESBLOQUEADA.</span>
           </h1>
 
-          <p class="hero-sub">
-            Desbloqueie acesso imediato a mais de 1000 jogos pagos. Baixe direto dos servidores oficiais.
+          <p class="subtext" style="margin-top: 30px; text-align: center;">
+            Acesso a <span style="color: var(--neon); font-weight: 800;">+1000 jogos AAA</span> por uma fração do preço.
           </p>
 
-          <button class="cta-button" style="margin-top: 20px;">VER O CATÁLOGO</button>
+          <div class="swipe-indicator" style="margin-top: 50px;">
+            Arraste para o lado
+          </div>
         </div>
 
-        <div class="footer">
+        <div class="footer" style="justify-content: center; flex-direction: column; align-items: center; gap: 20px;">
+          <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
           <span class="footer-url">overisestore.com.br</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 2 - O que é a Overise -->
+  <!-- ========== SLIDE 2 - COMO FUNCIONA ========== -->
   <div class="slide" id="slide-2">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
-      <div class="content">
-        <div class="logo">
-          <span class="logo-white">OVER</span>
-          <span class="logo-neon">ISE</span>
-        </div>
-
-        <div class="center-content" style="gap: 50px;">
-          <h2 class="section-title">O que é a <span class="accent">Overise</span>?</h2>
-
-          <div class="glass-card">
-            <div class="bullet-list">
-              <div class="bullet-item">
-                <span class="bullet-dot"></span>
-                Curadoria de jogos AAA
-              </div>
-              <div class="bullet-item">
-                <span class="bullet-dot"></span>
-                Acesso ao catálogo e coleções
-              </div>
-              <div class="bullet-item">
-                <span class="bullet-dot"></span>
-                Atualizações frequentes
-              </div>
-            </div>
-            <p class="mini-text" style="margin-top: 36px;">Tudo organizado, simples e direto.</p>
-          </div>
-        </div>
-
-        <div class="footer">
-          <span class="footer-url">overisestore.com.br</span>
-        </div>
+    <div class="slide-inner">
+      <div class="bg-image">
+        <img src="https://steamcdn-a.akamaihd.net/steam/apps/1086940/library_hero.jpg" alt="" style="filter: saturate(0.8) brightness(0.4);">
       </div>
-    </div>
-  </div>
+      <div class="overlay-gradient overlay-dark"></div>
+      <div class="overlay-gradient overlay-neon"></div>
+      <div class="wave-lines"></div>
 
-  <!-- SLIDE 3 - Como Funciona -->
-  <div class="slide" id="slide-3">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
       <div class="content">
         <div class="logo">
           <span class="logo-white">OVER</span>
           <span class="logo-neon">ISE</span>
         </div>
 
-        <div class="center-content" style="gap: 50px;">
-          <h2 class="section-title">Como <span class="accent">funciona</span></h2>
-
-          <div class="glass-card">
-            <div class="steps-list">
-              <div class="step-item">
-                <span class="step-number">1</span>
-                <span class="step-text">Você acessa o catálogo</span>
-              </div>
-              <div class="step-item">
-                <span class="step-number">2</span>
-                <span class="step-text">Escolhe os jogos</span>
-              </div>
-              <div class="step-item">
-                <span class="step-number">3</span>
-                <span class="step-text">Baixa e joga no PC</span>
-              </div>
-            </div>
-          </div>
-
-          <button class="cta-button">VER DETALHES NO SITE</button>
-        </div>
-
-        <div class="footer">
-          <span class="footer-url">overisestore.com.br</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 4 - Economia -->
-  <div class="slide" id="slide-4">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
-      <div class="content">
-        <div class="logo">
-          <span class="logo-white">OVER</span>
-          <span class="logo-neon">ISE</span>
-        </div>
-
-        <div class="center-content" style="align-items: center; text-align: center; gap: 32px;">
-          <div class="big-number">1000+</div>
-          
-          <h2 class="section-title">
-            Pare de <span class="accent">pagar caro</span>
+        <div class="center-content center-all">
+          <h2 class="headline" style="font-size: 72px;">
+            COMO <span class="highlight">FUNCIONA</span>?
           </h2>
 
-          <div class="neon-line"></div>
+          <div style="display: flex; flex-direction: column; gap: 40px; margin-top: 50px; text-align: left; max-width: 800px;">
+            <div style="display: flex; align-items: center; gap: 30px;">
+              <div style="width: 80px; height: 80px; background: var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 900; color: #000; flex-shrink: 0;">1</div>
+              <span style="font-size: 36px; font-weight: 700; color: var(--text);">Você escolhe um plano</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 30px;">
+              <div style="width: 80px; height: 80px; background: var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 900; color: #000; flex-shrink: 0;">2</div>
+              <span style="font-size: 36px; font-weight: 700; color: var(--text);">Recebe acesso ao catálogo</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 30px;">
+              <div style="width: 80px; height: 80px; background: var(--neon); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 900; color: #000; flex-shrink: 0;">3</div>
+              <span style="font-size: 36px; font-weight: 700; color: var(--text);">Baixa direto pela Steam</span>
+            </div>
+          </div>
 
-          <p class="hero-sub" style="text-align: center;">
-            Pague uma vez e tenha acesso ao acervo completo com atualizações.
+          <p class="subtext-italic" style="margin-top: 50px; text-align: center;">
+            Simples assim. <span class="subtext-bold">Sem complicação.</span>
           </p>
+
+          <div class="swipe-indicator" style="margin-top: 40px;">
+            Arraste para o lado
+          </div>
         </div>
 
-        <div class="footer" style="justify-content: center;">
+        <div class="footer" style="justify-content: center; flex-direction: column; align-items: center; gap: 20px;">
+          <div class="dots">
+            <div class="dot"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
           <span class="footer-url">overisestore.com.br</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 5 - Catálogo com Jogos Reais -->
-  <div class="slide" id="slide-5">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
+  <!-- ========== SLIDE 3 - CATÁLOGO ========== -->
+  <div class="slide" id="slide-3">
+    <div class="slide-inner">
+      <div class="overlay-gradient" style="background: linear-gradient(180deg, #050505 0%, #0a0a0a 100%);"></div>
+      <div class="overlay-gradient overlay-neon"></div>
+      <div class="wave-lines"></div>
+
       <div class="content">
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <div class="logo">
             <span class="logo-white">OVER</span>
             <span class="logo-neon">ISE</span>
           </div>
-          <div class="chip green">+1000 Jogos</div>
+          <div class="pill" style="background: rgba(0,255,65,0.1); border-color: var(--neon); color: var(--neon);">
+            <span class="pill-icon">🎮</span>
+            +1000 Jogos
+          </div>
         </div>
 
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 32px; margin-top: 50px;">
-          <h2 class="section-title">Uma amostra do <span class="accent">catálogo</span></h2>
-          <p class="mini-text">Só AAA — tudo organizado por coleções.</p>
+        <div class="center-content" style="gap: 30px; margin-top: 30px;">
+          <h2 class="headline" style="text-align: center;">
+            UMA PRÉVIA DO<br><span class="highlight">CATÁLOGO</span>
+          </h2>
 
-          <div class="game-grid">
-            <!-- Row 1 -->
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="ELDEN RING">
-              <span class="game-name">Elden Ring</span>
-            </div>
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077">
-              <span class="game-name">Cyberpunk 2077</span>
-            </div>
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2">
-              <span class="game-name">RDR2</span>
-            </div>
-            <!-- Row 2 -->
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3">
-              <span class="game-name">Baldur's Gate 3</span>
-            </div>
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg" alt="Hogwarts Legacy">
-              <span class="game-name">Hogwarts Legacy</span>
-            </div>
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg" alt="God of War">
-              <span class="game-name">God of War</span>
-            </div>
-            <!-- Row 3 -->
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA V">
-              <span class="game-name">GTA V</span>
-            </div>
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg" alt="Resident Evil 4">
-              <span class="game-name">Resident Evil 4</span>
-            </div>
-            <div class="game-card">
-              <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg" alt="Dark Souls III">
-              <span class="game-name">Dark Souls III</span>
-            </div>
+          <div class="game-mosaic">
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="ELDEN RING"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg" alt="Hogwarts Legacy"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg" alt="God of War"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA V"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg" alt="Resident Evil 4"></div>
+            <div class="game-tile"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg" alt="Dark Souls III"></div>
           </div>
 
-          <button class="cta-button" style="align-self: center; margin-top: 20px;">VER LISTA COMPLETA</button>
+          <p class="subtext" style="text-align: center; margin-top: 10px;">
+            E muito mais... <span style="color: var(--neon); font-weight: 800;">atualizações toda semana.</span>
+          </p>
+
+          <div class="swipe-indicator" style="align-self: center;">
+            Arraste para o lado
+          </div>
         </div>
 
-        <div class="footer">
+        <div class="footer" style="justify-content: center; flex-direction: column; align-items: center; gap: 20px;">
+          <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
           <span class="footer-url">overisestore.com.br</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 6 - Suporte -->
-  <div class="slide" id="slide-6">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
+  <!-- ========== SLIDE 4 - GARANTIA ========== -->
+  <div class="slide" id="slide-4">
+    <div class="slide-inner">
+      <div class="bg-image">
+        <img src="https://steamcdn-a.akamaihd.net/steam/apps/1593500/library_hero.jpg" alt="" style="filter: saturate(0.6) brightness(0.3);">
+      </div>
+      <div class="overlay-gradient overlay-dark"></div>
+      <div class="overlay-gradient overlay-neon"></div>
+      <div class="wave-lines"></div>
+
+      <div class="glow-orb" style="bottom: 100px; left: 50%; transform: translateX(-50%);"></div>
+
       <div class="content">
         <div class="logo">
           <span class="logo-white">OVER</span>
           <span class="logo-neon">ISE</span>
         </div>
 
-        <div class="center-content" style="gap: 50px;">
-          <h2 class="section-title">Suporte e <span class="accent">guia</span></h2>
+        <div class="center-content center-all">
+          <div style="font-size: 100px; margin-bottom: 20px;">🛡️</div>
 
-          <div class="glass-card" style="display: flex; flex-direction: column; gap: 32px;">
-            <p style="font-size: 36px; color: var(--text); line-height: 1.5; font-weight: 600;">
-              Você não fica perdido: a gente te orienta no acesso e uso do catálogo.
-            </p>
+          <h2 class="headline" style="font-size: 76px;">
+            GARANTIA<br><span class="highlight">TOTAL</span>
+          </h2>
 
-            <div class="status-badge">
-              <span class="status-dot"></span>
-              Atendimento Online
-            </div>
-          </div>
+          <div class="line-accent" style="margin: 30px 0;"></div>
 
-          <div class="feature-grid">
-            <div class="feature-box">
-              <div class="feature-icon">⚡</div>
-              <span class="feature-title">Velocidade Máxima</span>
-              <span class="feature-desc">Baixe direto da Steam</span>
-            </div>
-            <div class="feature-box">
-              <div class="feature-icon">🛡️</div>
-              <span class="feature-title">Segurança Total</span>
-              <span class="feature-desc">Sem vírus ou arquivos suspeitos</span>
-            </div>
+          <p class="quote-text">
+            Testou e não funcionou?<br>
+            <span class="highlight-box">Devolvemos seu dinheiro.</span>
+          </p>
+
+          <p class="subtext-italic" style="margin-top: 40px;">
+            Com a <span class="subtext-bold" style="color: var(--neon);">Overise</span> você não corre risco.<br>
+            <span class="subtext-bold">Mas isso não é tudo.</span>
+          </p>
+
+          <div class="swipe-indicator" style="margin-top: 40px;">
+            Arraste para o lado
           </div>
         </div>
 
-        <div class="footer">
+        <div class="footer" style="justify-content: center; flex-direction: column; align-items: center; gap: 20px;">
+          <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+          </div>
           <span class="footer-url">overisestore.com.br</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SLIDE 7 - Convite -->
-  <div class="slide" id="slide-7">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
+  <!-- ========== SLIDE 5 - CTA FINAL ========== -->
+  <div class="slide" id="slide-5">
+    <div class="slide-inner">
+      <!-- Mosaico de fundo -->
+      <div class="bg-image" style="opacity: 0.2;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr); height: 100%; gap: 8px; padding: 40px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2050650/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2208920/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg" style="border-radius: 12px;">
+          <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/346110/header.jpg" style="border-radius: 12px;">
+        </div>
+      </div>
+      <div class="overlay-gradient" style="background: radial-gradient(ellipse at center, rgba(3,3,3,0.8) 0%, rgba(3,3,3,0.95) 100%);"></div>
+      <div class="overlay-gradient overlay-neon"></div>
+
+      <div class="glow-orb" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+
       <div class="content">
-        <div class="center-content" style="align-items: center; text-align: center; gap: 40px;">
-          <div class="logo" style="font-size: 80px;">
+        <div class="center-content center-all">
+          <div class="logo" style="margin-bottom: 40px;">
             <span class="logo-white" style="font-size: 80px;">OVER</span>
             <span class="logo-neon" style="font-size: 80px;">ISE</span>
           </div>
 
-          <h2 class="section-title">Quer <span class="accent">conhecer</span>?</h2>
+          <h2 class="headline-xl" style="font-size: 90px;">
+            ACESSE O LINK<br>
+            <span style="color: var(--muted);">NA BIO E</span><br>
+            <span class="highlight">LIBERE SUA STEAM.</span>
+          </h2>
 
-          <p class="hero-sub" style="text-align: center;">
-            Acesse o site e veja o catálogo completo.
-          </p>
+          <div class="pills" style="justify-content: center; margin-top: 50px;">
+            <div class="pill"><span class="pill-icon">🎮</span> +1000 Jogos</div>
+            <div class="pill"><span class="pill-icon">⚡</span> Download Rápido</div>
+            <div class="pill"><span class="pill-icon">🛡️</span> Garantia</div>
+          </div>
 
-          <button class="cta-button" style="font-size: 28px; padding: 32px 64px;">ACESSAR AGORA</button>
-
-          <div class="tags" style="justify-content: center; margin-top: 20px;">
-            <span class="tag">🎮 +1000 Jogos</span>
-            <span class="tag">⚡ Download Rápido</span>
-            <span class="tag">🛡️ Seguro</span>
+          <div class="ig-icons">
+            <span class="ig-icon">♡</span>
+            <span class="ig-icon">💬</span>
+            <span class="ig-icon">🔖</span>
+            <span class="ig-icon">➤</span>
           </div>
         </div>
 
-        <div class="footer" style="justify-content: center;">
-          <span class="footer-url">overisestore.com.br</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SLIDE 8 - Fechamento -->
-  <div class="slide" id="slide-8">
-    <div class="slide-base">
-      <div class="waves-bg"></div>
-      
-      <!-- Background with game images -->
-      <div style="position: absolute; inset: 0; opacity: 0.15; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 40px;">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-        <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1593500/header.jpg" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-      </div>
-      <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, var(--bg) 0%, rgba(3,3,3,0.85) 50%, var(--bg) 100%);"></div>
-
-      <div class="content">
-        <div class="center-content" style="align-items: center; text-align: center; gap: 36px;">
-          <div class="logo">
-            <span class="logo-white" style="font-size: 100px;">OVER</span>
-            <span class="logo-neon" style="font-size: 100px;">ISE</span>
+        <div class="footer" style="justify-content: center; flex-direction: column; align-items: center; gap: 20px;">
+          <div class="dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot active"></div>
           </div>
-
-          <div class="neon-line" style="width: 180px;"></div>
-
-          <div class="tags" style="justify-content: center;">
-            <span class="tag">Catálogo AAA</span>
-            <span class="tag">Coleções</span>
-            <span class="tag">Atualizações</span>
-          </div>
-
-          <button class="cta-button" style="font-size: 26px; padding: 30px 56px; margin-top: 20px;">
-            LINK NA BIO
-          </button>
-
-          <p class="mini-text" style="margin-top: 20px;">
-            ✨ Novidades toda semana
-          </p>
-        </div>
-
-        <div class="footer" style="justify-content: center;">
           <span class="footer-url">overisestore.com.br</span>
         </div>
       </div>
