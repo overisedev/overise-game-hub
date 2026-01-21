@@ -1,9 +1,11 @@
 import { useGames } from '@/hooks/useGames';
+import { useState } from 'react';
 
 const InstagramCarousel = () => {
   const { games } = useGames();
+  const [exportMode, setExportMode] = useState(false);
 
-  // Jogos em destaque para o carrossel
+  // Jogos em destaque para o carrossel - usando vertical capsule para melhor qualidade
   const featuredGames = [
     { name: 'Elden Ring', appid: 1245620 },
     { name: 'Cyberpunk 2077', appid: 1091500 },
@@ -16,21 +18,52 @@ const InstagramCarousel = () => {
     { name: 'Dark Souls III', appid: 374320 },
   ];
 
+  // URLs de alta resolução para backgrounds verticais
+  const getVerticalImage = (appid: number) => 
+    `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${appid}/library_600x900.jpg`;
+  
+  const getVerticalCapsule = (appid: number) =>
+    `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${appid}/library_600x900_2x.jpg`;
+
+  const getHeroImage = (appid: number) =>
+    `https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${appid}/library_hero.jpg`;
+
   return (
-    <div className="carousel-page">
+    <div className={`carousel-page ${exportMode ? 'export-mode' : ''}`}>
       <div className="carousel-header">
         <h1>Carrossel Instagram — OVERISE</h1>
         <p>Clique direito no slide → Inspecionar → selecione <code>.slide</code> → "Capture node screenshot"</p>
+        <div className="export-controls">
+          <button 
+            className={`export-toggle ${exportMode ? 'active' : ''}`}
+            onClick={() => setExportMode(!exportMode)}
+          >
+            {exportMode ? '✓ Modo Export Ativo' : 'Ativar Modo Export'}
+          </button>
+          <div className="export-instructions">
+            <strong>Instruções para DPR 2x/3x:</strong>
+            <ol>
+              <li>Zoom do Chrome = 100% (Ctrl+0)</li>
+              <li>Abra Device Toolbar (Ctrl+Shift+M)</li>
+              <li>Defina viewport: 1080×1350</li>
+              <li>No menu ⋮ → More tools → Rendering → Force DPR: 2 ou 3</li>
+              <li>Inspecione o .slide → "Capture node screenshot"</li>
+            </ol>
+            <p className="export-result">
+              DPR 2 → PNG ~2160×2700 | DPR 3 → PNG ~3240×4050
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* ========== SLIDE 1 - CAPA ========== */}
       <div className="slide" id="slide-1">
         <div className="slide-inner">
-          {/* Background com mosaico de jogos */}
+          {/* Background com mosaico de jogos - usando imagens VERTICAIS de alta resolução */}
           <div className="slide-bg-mosaic">
-            <img src={`https://steamcdn-a.akamaihd.net/steam/apps/1245620/library_hero.jpg`} alt="" />
-            <img src={`https://steamcdn-a.akamaihd.net/steam/apps/1091500/library_hero.jpg`} alt="" />
-            <img src={`https://steamcdn-a.akamaihd.net/steam/apps/1174180/library_hero.jpg`} alt="" />
+            <img src={getVerticalImage(1245620)} alt="" loading="eager" />
+            <img src={getVerticalImage(1091500)} alt="" loading="eager" />
+            <img src={getVerticalImage(1174180)} alt="" loading="eager" />
           </div>
           <div className="slide-overlay" />
           <div className="slide-glow glow-left" />
@@ -85,7 +118,7 @@ const InstagramCarousel = () => {
       <div className="slide" id="slide-2">
         <div className="slide-inner">
           <div className="slide-bg-image">
-            <img src="https://steamcdn-a.akamaihd.net/steam/apps/1086940/library_hero.jpg" alt="" />
+            <img src={getVerticalImage(1086940)} alt="" loading="eager" />
           </div>
           <div className="slide-overlay overlay-stronger" />
           <div className="slide-glow glow-bottom" />
@@ -176,6 +209,7 @@ const InstagramCarousel = () => {
                     <img 
                       src={`https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${game.appid}/header.jpg`} 
                       alt={game.name}
+                      loading="eager"
                     />
                     <div className="game-card-overlay" />
                   </div>
@@ -211,8 +245,8 @@ const InstagramCarousel = () => {
       {/* ========== SLIDE 4 - GARANTIA ========== */}
       <div className="slide" id="slide-4">
         <div className="slide-inner">
-          <div className="slide-bg-image">
-            <img src="https://steamcdn-a.akamaihd.net/steam/apps/1593500/library_hero.jpg" alt="" style={{ filter: 'saturate(0.5) brightness(0.25)' }} />
+          <div className="slide-bg-image saturated">
+            <img src={getVerticalImage(1593500)} alt="" loading="eager" />
           </div>
           <div className="slide-overlay" />
           <div className="slide-glow glow-center" />
@@ -274,11 +308,12 @@ const InstagramCarousel = () => {
       <div className="slide" id="slide-5">
         <div className="slide-inner">
           <div className="slide-bg-grid">
-            {featuredGames.slice(0, 12).map((game, i) => (
+            {featuredGames.slice(0, 9).map((game, i) => (
               <img 
                 key={i}
-                src={`https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/${game.appid}/header.jpg`} 
+                src={getVerticalImage(game.appid)} 
                 alt=""
+                loading="eager"
               />
             ))}
           </div>
@@ -364,6 +399,7 @@ const InstagramCarousel = () => {
 
         .carousel-header {
           text-align: center;
+          max-width: 700px;
         }
 
         .carousel-header h1 {
@@ -385,6 +421,66 @@ const InstagramCarousel = () => {
           font-family: monospace;
         }
 
+        /* ========== EXPORT CONTROLS ========== */
+        .export-controls {
+          margin-top: 24px;
+          padding: 20px;
+          background: rgba(0,255,65,0.05);
+          border: 1px solid rgba(0,255,65,0.2);
+          border-radius: 12px;
+        }
+
+        .export-toggle {
+          padding: 12px 24px;
+          background: rgba(0,255,65,0.1);
+          border: 1px solid rgba(0,255,65,0.4);
+          border-radius: 8px;
+          color: #00FF41;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+
+        .export-toggle:hover {
+          background: rgba(0,255,65,0.2);
+        }
+
+        .export-toggle.active {
+          background: #00FF41;
+          color: #000;
+        }
+
+        .export-instructions {
+          margin-top: 16px;
+          text-align: left;
+          font-size: 13px;
+          color: rgba(255,255,255,0.7);
+        }
+
+        .export-instructions strong {
+          color: #fff;
+        }
+
+        .export-instructions ol {
+          margin: 8px 0;
+          padding-left: 20px;
+        }
+
+        .export-instructions li {
+          margin: 4px 0;
+        }
+
+        .export-result {
+          margin-top: 12px;
+          padding: 8px 12px;
+          background: rgba(0,255,65,0.1);
+          border-radius: 6px;
+          color: #00FF41;
+          font-weight: 600;
+          text-align: center;
+        }
+
         /* ========== SLIDE BASE ========== */
         .slide {
           width: 1080px;
@@ -394,6 +490,9 @@ const InstagramCarousel = () => {
           box-shadow: 
             0 50px 100px rgba(0,0,0,.8),
             0 0 0 1px rgba(255,255,255,.05);
+          /* GPU acceleration para render mais nítido */
+          transform: translateZ(0);
+          will-change: auto;
         }
 
         .slide-inner {
@@ -407,7 +506,7 @@ const InstagramCarousel = () => {
           background: linear-gradient(180deg, #040404 0%, #080808 100%);
         }
 
-        /* ========== BACKGROUNDS ========== */
+        /* ========== BACKGROUNDS - ALTA QUALIDADE ========== */
         .slide-bg-mosaic {
           position: absolute;
           inset: 0;
@@ -419,7 +518,21 @@ const InstagramCarousel = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: saturate(1.3) contrast(1.15);
+          /* Render otimizado sem banding */
+          image-rendering: auto;
+          transform: translateZ(0);
+        }
+
+        /* Overlay gradiente ao invés de filter direto na imagem */
+        .slide-bg-mosaic::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, 
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0.1) 100%
+          );
+          pointer-events: none;
         }
 
         .slide-bg-image {
@@ -431,18 +544,33 @@ const InstagramCarousel = () => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: saturate(0.7) brightness(0.35);
+          /* Render de alta qualidade */
+          image-rendering: auto;
+          transform: translateZ(0);
+        }
+
+        /* Overlay gradiente para escurecer sem banding */
+        .slide-bg-image::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,0.65);
+          pointer-events: none;
+        }
+
+        .slide-bg-image.saturated::after {
+          background: rgba(0,0,0,0.75);
         }
 
         .slide-bg-grid {
           position: absolute;
           inset: 0;
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           grid-template-rows: repeat(3, 1fr);
           gap: 12px;
           padding: 60px;
-          opacity: 0.15;
+          opacity: 0.18;
         }
 
         .slide-bg-grid img {
@@ -450,6 +578,8 @@ const InstagramCarousel = () => {
           height: 100%;
           object-fit: cover;
           border-radius: 16px;
+          image-rendering: auto;
+          transform: translateZ(0);
         }
 
         /* ========== OVERLAYS ========== */
@@ -912,6 +1042,38 @@ const InstagramCarousel = () => {
           width: 44px;
           height: 44px;
           color: rgba(255,255,255,.6);
+        }
+
+        /* ========== EXPORT MODE ========== */
+        .export-mode .slide {
+          /* Remove sombras pesadas para export limpo */
+          box-shadow: none;
+          border-radius: 0;
+        }
+
+        .export-mode .slide-bg-mosaic img,
+        .export-mode .slide-bg-image img,
+        .export-mode .slide-bg-grid img,
+        .export-mode .game-card img {
+          /* Nitidez extra para export */
+          filter: contrast(1.02) saturate(1.05);
+        }
+
+        .export-mode .slide-glow {
+          /* Reduz blur para render mais limpo */
+          filter: blur(40px);
+        }
+
+        /* Força anti-aliasing de alta qualidade */
+        .slide * {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeLegibility;
+        }
+
+        /* Previne compressão de cores */
+        .slide img {
+          color-interpolation: sRGB;
         }
       `}</style>
     </div>
