@@ -132,6 +132,15 @@ export function PricingSection() {
               className={`plan-btn btn-${plan.colorTheme}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'InitiateCheckout', {
+                    content_name: plan.name,
+                    value: parseFloat(plan.price.replace('R$ ', '').replace(',', '.')),
+                    currency: 'BRL'
+                  });
+                }
+              }}
             >
               {plan.btnText || 'Desbloquear'}
             </motion.a>
