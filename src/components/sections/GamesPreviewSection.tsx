@@ -365,11 +365,12 @@ export function GamesPreviewSection({
         }
 
         .content-description {
-          font-size: 15px;
-          color: var(--muted);
-          line-height: 1.7;
+          font-size: 16px;
+          color: rgba(255,255,255,.80);
+          line-height: 1.75;
           max-width: 480px;
           margin: 0;
+          font-weight: 500;
         }
 
         .content-features {
@@ -387,8 +388,8 @@ export function GamesPreviewSection({
           display: flex;
           align-items: flex-start;
           gap: 12px;
-          color: rgba(255,255,255,.7);
-          font-size: 13px;
+          color: rgba(255,255,255,.85);
+          font-size: 14px;
           font-weight: 600;
         }
         .feature svg {
@@ -399,18 +400,18 @@ export function GamesPreviewSection({
         .feature-text {
           display: flex;
           flex-direction: column;
-          gap: 2px;
+          gap: 3px;
         }
         .feature-title {
           color: #fff;
           font-weight: 800;
-          font-size: 14px;
+          font-size: 15px;
         }
         .feature-desc {
-          color: rgba(255,255,255,.65);
-          font-size: 13px;
+          color: rgba(255,255,255,.75);
+          font-size: 14px;
           font-weight: 500;
-          line-height: 1.55;
+          line-height: 1.6;
         }
 
         .cta-button {

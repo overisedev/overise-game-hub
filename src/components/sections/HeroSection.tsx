@@ -140,10 +140,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         .hero-title .accent { color: var(--neon); }
         .hero-sub {
           max-width: 52ch;
-          font-size: 16px;
-          line-height: 1.7;
-          color: var(--muted);
+          font-size: 17px;
+          line-height: 1.75;
+          color: rgba(255,255,255,.85);
           margin-bottom: 26px;
+          font-weight: 500;
         }
         @media (max-width: 640px) {
           .hero-sub {
@@ -382,12 +383,16 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           box-shadow: var(--shadowSoft);
         }
         .btn-primary-lg {
-          background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
+          background: linear-gradient(180deg, #00FF41, #00d438);
           color: #000;
-          border-color: rgba(0,255,65,.55);
+          border-color: rgba(0,255,65,.65);
+          box-shadow: 0 0 30px rgba(0,255,65,.4), 0 4px 20px rgba(0,0,0,.3);
+          font-size: 14px;
+          padding: 14px 24px;
         }
         .btn-primary-lg:hover {
-          box-shadow: 0 18px 60px rgba(0,255,65,.15);
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 0 50px rgba(0,255,65,.55), 0 12px 40px rgba(0,0,0,.4);
         }
         .btn-outline {
           background: rgba(255,255,255,.05);
