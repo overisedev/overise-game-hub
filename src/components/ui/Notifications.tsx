@@ -84,47 +84,48 @@ export function Notifications() {
       <style>{`
         .notifications-container {
           position: fixed;
-          bottom: 20px;
-          left: 20px;
+          bottom: 16px;
+          left: 16px;
           z-index: 1000;
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 6px;
           pointer-events: none;
         }
         @media (max-width: 640px) {
           .notifications-container {
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
+            left: 8px;
+            right: auto;
+            bottom: 8px;
           }
         }
         
         .notification {
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 10px 14px;
-          background: rgba(8, 8, 8, 0.95);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-          backdrop-filter: blur(12px);
+          gap: 8px;
+          padding: 8px 12px;
+          background: rgba(12, 12, 12, 0.92);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 8px;
+          backdrop-filter: blur(10px);
           pointer-events: auto;
-          max-width: 280px;
+          max-width: 240px;
         }
         @media (max-width: 640px) {
           .notification {
-            max-width: 100%;
-            padding: 8px 12px;
-            gap: 8px;
+            max-width: 200px;
+            padding: 6px 10px;
+            gap: 6px;
+            border-radius: 6px;
           }
         }
         
         .notif-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 8px;
-          background: rgba(0, 255, 65, 0.15);
+          width: 26px;
+          height: 26px;
+          border-radius: 6px;
+          background: rgba(0, 255, 65, 0.12);
           color: var(--neon);
           display: flex;
           align-items: center;
@@ -133,51 +134,53 @@ export function Notifications() {
         }
         @media (max-width: 640px) {
           .notif-icon {
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
           }
           .notif-icon svg {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
           }
         }
         
         .notif-content {
           display: flex;
           flex-direction: column;
-          gap: 1px;
+          gap: 0;
           min-width: 0;
         }
         
         .notif-text {
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.85);
+          font-size: 11px;
+          color: rgba(255, 255, 255, 0.8);
           font-weight: 500;
-          line-height: 1.3;
+          line-height: 1.25;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
         @media (max-width: 640px) {
           .notif-text {
-            font-size: 11px;
+            font-size: 10px;
           }
         }
         .notif-text strong {
           color: #fff;
-          font-weight: 700;
+          font-weight: 600;
         }
         
         .notif-time {
-          font-size: 10px;
+          font-size: 9px;
           color: var(--neon);
           font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.3px;
+          letter-spacing: 0.2px;
+          opacity: 0.9;
         }
         @media (max-width: 640px) {
           .notif-time {
-            font-size: 9px;
+            font-size: 8px;
           }
         }
       `}</style>
