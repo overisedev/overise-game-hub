@@ -18,16 +18,16 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             {/* Pill */}
             <div className="pill">
               <span className="dot" />
-              A partir de R$ 9,90 • Acesso Imediato
+              Acesso Imediato • Baixe pela Steam
             </div>
 
             <h1 className="hero-title">
-              <span className="accent">+1000 jogos.</span><br />
-              Escolha e jogue.
+              <span className="accent">+1000 jogos</span><br />
+              por apenas <span className="accent">R$ 9,90</span>
             </h1>
 
             <p className="hero-sub">
-              Sem enrolação. Você paga uma vez, baixa pela Steam e joga pra sempre.
+              Pague uma vez. Baixe pela Steam. Jogue pra sempre.
             </p>
 
             <div className="hero-actions">
