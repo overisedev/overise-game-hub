@@ -31,7 +31,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </p>
 
             <div className="hero-actions">
-              <a href="#como-funciona" className="btn btn-primary-lg">Liberar minha Steam agora</a>
+              <a href="#como-funciona" className="hero-cta">Liberar minha Steam agora</a>
             </div>
 
           </div>
@@ -422,9 +422,38 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           }
         }
         .btn-primary-sm {
-          background: linear-gradient(180deg, rgba(0,255,65,.95), rgba(0,200,55,.85));
+          background: var(--neon);
           color: #000;
-          border-color: rgba(0,255,65,.55);
+          border: none;
+        }
+
+        .hero-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 16px 32px;
+          border-radius: 14px;
+          background: #00FF41;
+          color: #000;
+          font-weight: 900;
+          font-size: 14px;
+          letter-spacing: .5px;
+          text-transform: uppercase;
+          text-decoration: none;
+          cursor: pointer;
+          transition: .22s ease;
+          border: none;
+        }
+        .hero-cta:hover {
+          transform: translateY(-2px);
+          opacity: 0.92;
+        }
+        @media (max-width: 640px) {
+          .hero-cta {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 13px;
+          }
         }
       `}</style>
     </section>
