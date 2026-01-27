@@ -14,7 +14,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
       <div className="container-main">
         <div className="hero-grid">
           {/* Left Content */}
-          <div className="animate-float-in">
+          <div className="hero-content">
             {/* Pill */}
             <div className="pill">
               <span className="dot" />

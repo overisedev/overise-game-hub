@@ -75,7 +75,7 @@
     font-family: 'Sora', system-ui, sans-serif;
   }
 
-  /* Fundo dinâmico simplista com glow suave */
+  /* Fundo estático simplista com glow suave */
   body::before {
     content: "";
     position: fixed;
@@ -86,7 +86,6 @@
       radial-gradient(ellipse 1200px 600px at 30% -10%, rgba(0,255,65,.08), transparent 50%),
       radial-gradient(ellipse 900px 500px at 110% 10%, rgba(0,255,65,.05), transparent 50%),
       radial-gradient(ellipse 600px 400px at 80% 80%, rgba(0,255,65,.03), transparent 60%);
-    animation: backgroundPulse 12s ease-in-out infinite;
   }
 
   /* Grid sutil de fundo */
@@ -109,16 +108,6 @@
   }
 }
 
-@keyframes backgroundPulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.03);
-  }
-}
 
 /* Keyframes */
 @keyframes floatIn {
