@@ -18,20 +18,20 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             {/* Pill */}
             <div className="pill">
               <span className="dot" />
-              Sistema Online • Baixe na Steam • Sem Vírus
+              A partir de R$ 9,90 • Acesso Imediato
             </div>
 
             <h1 className="hero-title">
-              Sua Steam, <span className="accent">liberada.</span>
+              <span className="accent">+1000 jogos.</span><br />
+              Escolha e jogue.
             </h1>
 
             <p className="hero-sub">
-              Desbloqueie acesso imediato a mais de 1000 jogos pagos.<br />
-              Baixe tudo diretamente dos servidores oficiais da Steam, com velocidade máxima, conquistas e segurança total.
+              Sem enrolação. Você paga uma vez, baixa pela Steam e joga pra sempre.
             </p>
 
             <div className="hero-actions">
-              <a href="#como-funciona" className="hero-cta">Liberar minha Steam agora</a>
+              <a href="#planos" className="hero-cta">Ver planos a partir de R$ 9,90</a>
             </div>
 
           </div>
