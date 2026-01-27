@@ -12,6 +12,7 @@ import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { Footer } from '@/components/layout/Footer';
 import { GameModal } from '@/components/ui/GameModal';
+import { Notifications } from '@/components/ui/Notifications';
 import type { Game } from '@/types/game';
 
 const Index = () => {
@@ -177,6 +178,8 @@ const Index = () => {
           onClose={() => setSelectedGame(null)} 
         />
       )}
+
+      <Notifications />
     </div>
   );
 };

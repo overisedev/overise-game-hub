@@ -295,6 +295,10 @@ export function CatalogSection({
           text-transform: uppercase;
         }
         @media (max-width: 640px) {
+          .catalog-header {
+            text-align: center;
+            align-items: center;
+          }
           .catalog-header h2 {
             font-size: 22px;
           }
@@ -309,8 +313,9 @@ export function CatalogSection({
         }
         @media (max-width: 640px) {
           .catalog-header p {
-            font-size: 13px;
-            line-height: 1.5;
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: center;
           }
         }
         .catalog-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }

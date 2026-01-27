@@ -88,9 +88,15 @@ export function AboutSection() {
         .about-text {
           font-size: 16px;
           line-height: 1.9;
-          color: rgba(255,255,255,.75);
+          color: rgba(255,255,255,.85);
           margin: 0;
           text-shadow: 0 4px 20px rgba(0,0,0,.6);
+        }
+        @media (max-width: 640px) {
+          .about-text {
+            font-size: 15px;
+            line-height: 1.75;
+          }
         }
         
         .about-text strong {

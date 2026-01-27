@@ -135,6 +135,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             font-size: 26px;
             letter-spacing: -1px;
             margin: 12px 0 10px;
+            text-align: center;
           }
         }
         .hero-title .accent { color: var(--neon); }
@@ -148,9 +149,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-sub {
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: 14px;
+            line-height: 1.65;
             margin-bottom: 18px;
+            text-align: center;
           }
           .hero-sub br {
             display: none;
@@ -165,9 +167,22 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-actions {
             gap: 8px;
             flex-direction: column;
+            align-items: center;
+            width: 100%;
           }
           .hero-actions .btn {
             width: 100%;
+            justify-content: center;
+          }
+        }
+        @media (max-width: 640px) {
+          .animate-float-in {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .pill {
+            align-self: center;
           }
         }
 
@@ -383,16 +398,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           box-shadow: var(--shadowSoft);
         }
         .btn-primary-lg {
-          background: linear-gradient(180deg, #00FF41, #00d438);
+          background: var(--neon);
           color: #000;
-          border-color: rgba(0,255,65,.65);
-          box-shadow: 0 0 30px rgba(0,255,65,.4), 0 4px 20px rgba(0,0,0,.3);
+          border: none;
           font-size: 14px;
           padding: 14px 24px;
         }
         .btn-primary-lg:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 0 50px rgba(0,255,65,.55), 0 12px 40px rgba(0,0,0,.4);
+          transform: translateY(-2px);
+          opacity: 0.9;
         }
         .btn-outline {
           background: rgba(255,255,255,.05);

@@ -334,6 +334,18 @@ export function GamesPreviewSection({
             align-items: center;
           }
         }
+        @media (max-width: 640px) {
+          .preview-content {
+            text-align: center;
+            align-items: center;
+          }
+          .content-features {
+            align-items: center;
+          }
+          .feature {
+            text-align: left;
+          }
+        }
 
         .content-badge {
           display: inline-flex;
