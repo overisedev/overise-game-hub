@@ -1,21 +1,31 @@
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 
+// Import avatar images
+import jzAvatar from '@/assets/testimonials/jz.jpg';
+import adriellyAvatar from '@/assets/testimonials/adrielly.jpg';
+import maiconAvatar from '@/assets/testimonials/maicon.jpg';
+import wlAvatar from '@/assets/testimonials/wl.jpeg';
+
 const testimonials = [
   {
-    name: 'Rafael M.',
+    name: 'Jz',
+    avatar: jzAvatar,
     text: 'Sinceramente achei que fosse mentira pelo preço baixo. Paguei para ver e me surpreendi. Em 10 minutos eu já estava baixando o jogo pela minha Steam com velocidade total. É surreal.',
   },
   {
-    name: 'Ana Clara',
+    name: 'Adrielly',
+    avatar: adriellyAvatar,
     text: 'Eu não entendo nada de computador e tinha medo de ser difícil de instalar. Mas o sistema faz tudo sozinho. É só clicar em Ativar e o jogo aparece na biblioteca pronto para jogar.',
   },
   {
-    name: 'Lucas S.',
+    name: 'Maicon',
+    avatar: maiconAvatar,
     text: 'O melhor para mim é baixar na velocidade máxima. Nada daqueles sites lentos cheios de vírus. Aqui vem direto do servidor oficial e jogo online com meus amigos sem travar.',
   },
   {
-    name: 'Bruno G.',
+    name: 'Wl',
+    avatar: wlAvatar,
     text: 'Só neste mês eu economizei uns 500 reais. Eu ia comprar dois lançamentos caros mas peguei o plano vitalício aqui e já estou jogando os dois. Recomendo demais.',
   },
 ];
@@ -53,7 +63,11 @@ export function TestimonialsSection() {
             </div>
             <p className="testimonial-text">"{t.text}"</p>
             <div className="testimonial-author">
-              <div className="testimonial-avatar">{t.name.charAt(0)}</div>
+              <img 
+                src={t.avatar} 
+                alt={`Foto de ${t.name}`}
+                className="testimonial-avatar-img"
+              />
               <span className="testimonial-name">{t.name}</span>
             </div>
           </motion.div>
@@ -137,17 +151,12 @@ export function TestimonialsSection() {
           border-top: 1px solid rgba(255,255,255,.06);
         }
         
-        .testimonial-avatar {
-          width: 36px;
-          height: 36px;
+        .testimonial-avatar-img {
+          width: 40px;
+          height: 40px;
           border-radius: 10px;
-          background: linear-gradient(135deg, rgba(0,255,65,.2), rgba(0,255,65,.05));
-          border: 1px solid rgba(0,255,65,.25);
-          display: grid;
-          place-items: center;
-          color: var(--neon);
-          font-weight: 900;
-          font-size: 14px;
+          object-fit: cover;
+          border: 2px solid rgba(0,255,65,.25);
         }
         
         .testimonial-name {
