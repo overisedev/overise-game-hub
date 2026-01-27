@@ -12,16 +12,11 @@ interface CatalogSectionProps {
 
 export function CatalogSection({ 
   games, 
-  totalGames, 
   getGamesByCategory, 
-  searchGames,
   onOpenDetails 
 }: CatalogSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showcaseIndex, setShowcaseIndex] = useState(0);
-  const [showFullCatalog, setShowFullCatalog] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [fullCatalogPage, setFullCatalogPage] = useState(0);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
@@ -90,18 +85,6 @@ export function CatalogSection({
     setShowcaseIndex(0);
   }, [selectedCategory]);
 
-  // Full catalog search
-  const fullCatalogGames = useMemo(() => {
-    return searchGames(searchQuery);
-  }, [searchQuery, searchGames]);
-
-  const ITEMS_PER_PAGE = 8;
-  const paginatedGames = useMemo(() => {
-    const start = fullCatalogPage * ITEMS_PER_PAGE;
-    return fullCatalogGames.slice(start, start + ITEMS_PER_PAGE);
-  }, [fullCatalogGames, fullCatalogPage]);
-
-  const hasMore = (fullCatalogPage + 1) * ITEMS_PER_PAGE < fullCatalogGames.length;
 
   return (
     <section id="catalogo" className="catalog-section"  style={{ padding: 'clamp(50px, 8vw, 80px) 0' }}>
@@ -110,9 +93,6 @@ export function CatalogSection({
         <div>
           <h2>Verificar Disponibilidade</h2>
           <p>Pesquise abaixo. Se o jogo está na Steam, é quase certo que nossa ferramenta consegue desbloqueá-lo para você.</p>
-        </div>
-        <div className="catalog-actions">
-          <a href="#planos" className="btn btn-primary-small">Desbloquear</a>
         </div>
       </div>
 
@@ -175,92 +155,7 @@ export function CatalogSection({
             ))}
           </div>
 
-          {/* More Button */}
-          <div className="catalog-more-row">
-            <button 
-              onClick={() => setShowFullCatalog(!showFullCatalog)} 
-              className="btn catalog-more-btn"
-            >
-              <span className="catalog-more-icon">⌕</span>
-              {showFullCatalog ? 'Fechar catálogo' : 'Ver catálogo completo'}
-            </button>
-            <span className="catalog-more-hint">Abra a biblioteca completa com busca e paginação.</span>
-          </div>
 
-          {/* Full Catalog */}
-          {showFullCatalog && (
-            <div className="full-catalog show">
-              <div className="full-top">
-                <div>
-                  <h3 className="full-title">Catálogo completo</h3>
-                  <p className="full-sub">Pesquise pelo nome (aceita abreviações como GTA, RDR2, TLOU) e clique para abrir detalhes.</p>
-                </div>
-                <div className="full-search">
-                  <span className="full-search-icon">⌕</span>
-                  <input
-                    type="text"
-                    placeholder="Digite o nome do jogo aqui..."
-                    value={searchQuery}
-                    onChange={(e) => {
-                      setSearchQuery(e.target.value);
-                      setFullCatalogPage(0);
-                    }}
-                  />
-                  <button 
-                    className="ghost-btn"
-                    onClick={() => setShowFullCatalog(false)}
-                  >
-                    Fechar
-                  </button>
-                </div>
-              </div>
-
-              <div className="full-grid">
-                {paginatedGames.length > 0 ? (
-                  paginatedGames.map((game) => (
-                    <div
-                      key={game.steam_appid}
-                      className="full-card"
-                      onClick={() => onOpenDetails(game)}
-                    >
-                      <div className="full-card-img">
-                        <img 
-                          src={game.cover} 
-                          alt={game.name} 
-                          loading="lazy"
-                          onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.opacity = '0';
-                          }}
-                        />
-                        <div className="full-card-grad" />
-                      </div>
-                      <div className="full-card-info">
-                        <span className="full-card-name">{game.name}</span>
-                        <button className="full-card-btn">Ver</button>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="empty-state">
-                    <b>Nenhum resultado</b>
-                    <span>Tente outra busca ou limpe o filtro.</span>
-                  </div>
-                )}
-              </div>
-
-              <div className="full-bottom">
-                {hasMore && (
-                  <button 
-                    className="btn btn-small"
-                    onClick={() => setFullCatalogPage((p) => p + 1)}
-                  >
-                    Carregar mais
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
