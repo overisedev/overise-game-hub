@@ -32,7 +32,6 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
             <div className="hero-actions">
               <a href="#como-funciona" className="btn btn-primary-lg">Liberar minha Steam agora</a>
-              <a href="#catalogo" className="btn btn-outline">Ver lista de jogos</a>
             </div>
 
           </div>
@@ -63,10 +62,6 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                   </div>
                   <h2 className="hero-card-name">{featuredGame.name}</h2>
                   <p className="hero-card-desc">Baixe os arquivos oficiais e jogue online com seus amigos.</p>
-                </div>
-                <div className="hero-card-btns">
-                  <button onClick={() => onOpenDetails(featuredGame)} className="btn btn-small">Ver detalhes</button>
-                  <a href="#catalogo" className="btn btn-small btn-primary-sm">Ver catálogo</a>
                 </div>
               </div>
             </div>
