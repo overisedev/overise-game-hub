@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Game } from '@/types/game';
 import { CATEGORIES } from '@/types/game';
 
@@ -75,15 +76,16 @@ export function CatalogSection({
     return result;
   }, [showcasePool, showcaseIndex]);
 
-  // Auto-rotate showcase
-  useEffect(() => {
-    if (showcasePool.length <= 3) return;
-    const maxIndex = Math.floor(showcasePool.length / 3);
-    const interval = setInterval(() => {
-      setShowcaseIndex((prev) => (prev + 1) % maxIndex);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [showcasePool.length]);
+  // Manual navigation - no auto-rotate
+  const maxShowcaseIndex = Math.max(0, Math.floor(showcasePool.length / 3) - 1);
+  
+  const handlePrevShowcase = () => {
+    setShowcaseIndex(prev => Math.max(0, prev - 1));
+  };
+  
+  const handleNextShowcase = () => {
+    setShowcaseIndex(prev => Math.min(maxShowcaseIndex, prev + 1));
+  };
 
   // Reset on category change
   useEffect(() => {
@@ -142,34 +144,52 @@ export function CatalogSection({
 
         {/* Main Content */}
         <div className="catalog-main">
-          {/* Showcase Row */}
-          <div className="showcase-row">
-            {showcaseGames.map((game, idx) => (
-              <div
-                key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
-                className="game showcase-animate"
-                style={{ animationDelay: `${idx * 0.1}s` }}
-                onClick={() => onOpenDetails(game)}
-              >
-                <div className="game-img">
-                  <img src={game.cover} alt={game.name} loading="lazy" />
-                  <div className="game-grad" />
-                </div>
-                <div className="game-info">
-                  <span className="game-name">{game.name}</span>
-                  <div className="tag-row">
-                    {game.categories.slice(0, 1).map((c) => (
-                      <span key={c} className="tag">{c}</span>
-                    ))}
-                    <span className="tag ok">Disponível</span>
+          {/* Showcase Carousel */}
+          <div className="showcase-carousel">
+            <button 
+              className="showcase-arrow showcase-arrow-left"
+              onClick={handlePrevShowcase}
+              disabled={showcaseIndex === 0}
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <div className="showcase-row">
+              {showcaseGames.map((game, idx) => (
+                <div
+                  key={`${game.steam_appid}-${showcaseIndex}-${idx}`}
+                  className="game showcase-animate"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                  onClick={() => onOpenDetails(game)}
+                >
+                  <div className="game-img">
+                    <img src={game.cover} alt={game.name} loading="lazy" />
+                    <div className="game-grad" />
                   </div>
-                  <div className="game-cta">
-                    <span className="tiny">Steam</span>
-                    <a href="#como-funciona" className="unlock-btn" onClick={(e) => e.stopPropagation()}>Desbloquear</a>
+                  <div className="game-info">
+                    <span className="game-name">{game.name}</span>
+                    <div className="tag-row">
+                      {game.categories.slice(0, 1).map((c) => (
+                        <span key={c} className="tag">{c}</span>
+                      ))}
+                      <span className="tag ok">Disponível</span>
+                    </div>
+                    <div className="game-cta">
+                      <span className="tiny">Steam</span>
+                      <a href="#como-funciona" className="unlock-btn" onClick={(e) => e.stopPropagation()}>Desbloquear</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            <button 
+              className="showcase-arrow showcase-arrow-right"
+              onClick={handleNextShowcase}
+              disabled={showcaseIndex >= maxShowcaseIndex}
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
 
           {/* More Button */}
@@ -416,7 +436,43 @@ export function CatalogSection({
           border-color: rgba(0,255,65,.55);
         }
 
+        .showcase-carousel {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        
+        .showcase-arrow {
+          flex-shrink: 0;
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          border: 1px solid rgba(255,255,255,.15);
+          background: rgba(255,255,255,.05);
+          color: #fff;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all .2s ease;
+        }
+        .showcase-arrow:hover:not(:disabled) {
+          background: rgba(0,255,65,.15);
+          border-color: rgba(0,255,65,.4);
+          color: var(--neon);
+        }
+        .showcase-arrow:disabled {
+          opacity: 0.3;
+          cursor: not-allowed;
+        }
+        @media (max-width: 640px) {
+          .showcase-arrow {
+            display: none;
+          }
+        }
+
         .showcase-row {
+          flex: 1;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -424,13 +480,13 @@ export function CatalogSection({
         }
         .showcase-row .game {
           flex: 1 1 calc(33.333% - 10px);
-          min-width: 280px;
+          min-width: 200px;
           max-width: 100%;
         }
         @media (max-width: 980px) {
           .showcase-row .game {
             flex: 1 1 calc(50% - 7px);
-            min-width: 240px;
+            min-width: 180px;
           }
         }
         @media (max-width: 640px) {

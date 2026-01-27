@@ -371,12 +371,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           align-items: center;
           justify-content: center;
           gap: 10px;
-          padding: 12px 18px;
+          padding: 14px 24px;
           border-radius: 14px;
-          border: 1px solid rgba(255,255,255,.10);
-          background: rgba(255,255,255,.05);
-          color: #fff;
-          font-weight: 950;
+          border: none;
+          background: var(--neon);
+          color: #000;
+          font-weight: 900;
           letter-spacing: .5px;
           text-transform: uppercase;
           cursor: pointer;
@@ -384,25 +384,24 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           transition: .22s ease;
           overflow: hidden;
           white-space: nowrap;
-          font-size: 13px;
+          font-size: 14px;
         }
         @media (max-width: 640px) {
           .btn {
-            padding: 10px 14px;
-            font-size: 12px;
+            padding: 14px 20px;
+            font-size: 13px;
           }
         }
         .btn:hover {
           transform: translateY(-2px);
-          border-color: rgba(255,255,255,.18);
-          box-shadow: var(--shadowSoft);
+          opacity: 0.9;
         }
         .btn-primary-lg {
           background: var(--neon);
           color: #000;
           border: none;
           font-size: 14px;
-          padding: 14px 24px;
+          padding: 16px 28px;
         }
         .btn-primary-lg:hover {
           transform: translateY(-2px);
