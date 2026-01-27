@@ -76,8 +76,8 @@ export function Header({}: HeaderProps) {
           gap: 10px;
           padding: 12px 18px;
           border-radius: 12px;
-          border: 1px solid rgba(0,255,65,.65);
-          background: linear-gradient(180deg, #00FF41, #00d438);
+          border: none;
+          background: var(--neon);
           color: #000;
           font-weight: 800;
           letter-spacing: .5px;
@@ -86,12 +86,10 @@ export function Header({}: HeaderProps) {
           cursor: pointer;
           transition: .22s ease;
           white-space: nowrap;
-          box-shadow: 0 0 25px rgba(0,255,65,.35), 0 4px 15px rgba(0,0,0,.3);
-          text-shadow: none;
         }
         .btn-primary:hover {
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 0 40px rgba(0,255,65,.5), 0 8px 30px rgba(0,0,0,.4);
+          transform: translateY(-2px);
+          opacity: 0.9;
         }
       `}</style>
     </header>
