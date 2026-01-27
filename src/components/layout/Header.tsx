@@ -16,14 +16,8 @@ export function Header({}: HeaderProps) {
 
           {/* Nav Links */}
           <div className="hidden md:flex items-center gap-3.5 font-bold" style={{ color: 'var(--muted2)' }}>
-            <a href="#como-funciona" className="px-3 py-2.5 rounded-xl transition-all duration-200 hover:text-white hover:bg-white/5 hover:-translate-y-0.5">
-              Como funciona
-            </a>
             <a href="#catalogo" className="px-3 py-2.5 rounded-xl transition-all duration-200 hover:text-white hover:bg-white/5 hover:-translate-y-0.5">
-              Catálogo
-            </a>
-            <a href="#sobre" className="px-3 py-2.5 rounded-xl transition-all duration-200 hover:text-white hover:bg-white/5 hover:-translate-y-0.5">
-              Sobre nós
+              Jogos
             </a>
             <a href="#planos" className="px-3 py-2.5 rounded-xl transition-all duration-200 hover:text-white hover:bg-white/5 hover:-translate-y-0.5">
               Planos
@@ -35,8 +29,8 @@ export function Header({}: HeaderProps) {
 
           {/* CTA Button */}
           <div className="flex gap-2.5 items-center">
-            <a href="#como-funciona" className="btn-primary">
-              Liberar minha Steam agora
+            <a href="#planos" className="btn-primary">
+              Quero meus jogos
             </a>
           </div>
         </nav>
