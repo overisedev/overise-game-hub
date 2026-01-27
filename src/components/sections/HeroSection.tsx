@@ -31,7 +31,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="hero-cta">Ver planos a partir de R$ 9,90</a>
+              <a href="#planos" className="hero-cta">Desbloquear minha Steam</a>
             </div>
 
           </div>

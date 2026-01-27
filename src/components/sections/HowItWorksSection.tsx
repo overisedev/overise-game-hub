@@ -25,7 +25,7 @@ export function HowItWorksSection() {
         </div>
 
         <div className="hiw-cta-wrap">
-          <a href="#planos" className="hiw-cta">Quero começar agora</a>
+          <a href="#planos" className="hiw-cta">Desbloquear Steam</a>
         </div>
       </div>
 
