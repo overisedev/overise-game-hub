@@ -132,9 +132,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-title {
-            font-size: 26px;
-            letter-spacing: -1px;
-            margin: 12px 0 10px;
+            font-size: 32px;
+            letter-spacing: -1.5px;
+            margin: 14px 0 12px;
             text-align: center;
           }
         }
@@ -149,9 +149,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-sub {
-            font-size: 14px;
-            line-height: 1.65;
-            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 16px;
             text-align: center;
           }
           .hero-sub br {
@@ -431,12 +431,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 16px 32px;
-          border-radius: 14px;
+          padding: 14px 28px;
+          border-radius: 12px;
           background: #00FF41;
           color: #000;
           font-weight: 900;
-          font-size: 14px;
+          font-size: 13px;
           letter-spacing: .5px;
           text-transform: uppercase;
           text-decoration: none;
@@ -451,8 +451,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         @media (max-width: 640px) {
           .hero-cta {
             width: 100%;
-            padding: 16px 24px;
-            font-size: 13px;
+            padding: 12px 20px;
+            font-size: 12px;
+            border-radius: 10px;
           }
         }
       `}</style>
