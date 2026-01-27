@@ -30,7 +30,7 @@ export function Header({}: HeaderProps) {
           {/* CTA Button */}
           <div className="flex gap-2.5 items-center">
             <a href="#planos" className="btn-primary">
-              Quero meus jogos
+              Desbloquear jogos
             </a>
           </div>
         </nav>
