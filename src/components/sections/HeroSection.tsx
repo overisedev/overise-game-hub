@@ -245,11 +245,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-content::before {
             content: '';
             position: absolute;
-            top: -80px;
+            top: -40px;
             left: -50vw;
             right: -50vw;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent 0%, var(--bg) 70%, var(--bg) 100%);
+            height: 60px;
+            background: linear-gradient(to bottom, transparent 0%, var(--bg) 80%, var(--bg) 100%);
             pointer-events: none;
             z-index: -1;
           }
