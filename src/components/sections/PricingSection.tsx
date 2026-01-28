@@ -4,6 +4,7 @@ export function PricingSection() {
   const plans = [
     {
       name: 'Plano Básico',
+      originalPrice: 'R$ 29,97',
       price: 'R$ 9,97',
       priceLabel: 'Taxa Única',
       games: 'Pacote com 500 Jogos',
@@ -19,6 +20,7 @@ export function PricingSection() {
     },
     {
       name: 'Plano Avançado',
+      originalPrice: 'R$ 49,97',
       price: 'R$ 19,97',
       priceLabel: 'Taxa Única',
       games: 'Pacote com 700 Jogos',
@@ -35,6 +37,7 @@ export function PricingSection() {
     },
     {
       name: 'Plano Vitalício',
+      originalPrice: 'R$ 120,97',
       price: 'R$ 49,97',
       priceLabel: 'Taxa Única',
       games: 'Liberar a Lista Toda',
@@ -111,7 +114,10 @@ export function PricingSection() {
 
             <h3 className="plan-name">{plan.name}</h3>
             
-            <div className={`plan-price price-${plan.colorTheme}`}>{plan.price}</div>
+            <div className="plan-price-wrapper">
+              <span className="plan-original-price">de {plan.originalPrice}</span>
+              <div className={`plan-price price-${plan.colorTheme}`}>{plan.price}</div>
+            </div>
             <div className="plan-price-label">{plan.priceLabel}</div>
             
             <div className="plan-games">{plan.games}</div>
@@ -267,6 +273,21 @@ export function PricingSection() {
         }
         
         /* Prices */
+        .plan-price-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+        }
+        
+        .plan-original-price {
+          font-size: 14px;
+          font-weight: 600;
+          color: var(--muted2);
+          text-decoration: line-through;
+          opacity: 0.7;
+        }
+        
         .plan-price {
           font-size: 36px;
           font-weight: 950;
