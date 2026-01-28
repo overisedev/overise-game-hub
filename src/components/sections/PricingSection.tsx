@@ -149,6 +149,9 @@ export function PricingSection() {
               }}
             >
               {plan.btnText || 'Desbloquear'}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
             </motion.a>
           </motion.div>
         ))}
@@ -367,7 +370,10 @@ export function PricingSection() {
         
         /* Buttons - Vibrant styles */
         .plan-btn {
-          display: block;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
           width: 100%;
           text-align: center;
           padding: 16px 20px;
@@ -378,6 +384,10 @@ export function PricingSection() {
           text-decoration: none;
           position: relative;
           overflow: hidden;
+        }
+        
+        .plan-btn svg {
+          flex-shrink: 0;
         }
         
         

@@ -70,7 +70,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="hero-cta">Desbloquear minha Steam</a>
+              <a href="#planos" className="hero-cta">
+                Desbloquear minha Steam
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
             </div>
 
           </div>
@@ -563,29 +568,34 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 14px 28px;
-          border-radius: 12px;
-          background: #00FF41;
+          gap: 10px;
+          padding: 16px 28px;
+          border-radius: 14px;
+          background: var(--neon);
           color: #000;
           font-weight: 900;
-          font-size: 13px;
+          font-size: 14px;
           letter-spacing: .5px;
           text-transform: uppercase;
           text-decoration: none;
           cursor: pointer;
-          transition: .22s ease;
+          transition: .25s ease;
           border: none;
         }
         .hero-cta:hover {
           transform: translateY(-2px);
-          opacity: 0.92;
+          box-shadow: 0 12px 35px rgba(0,255,65,.35);
+        }
+        .hero-cta svg {
+          width: 16px;
+          height: 16px;
         }
         @media (max-width: 640px) {
           .hero-cta {
             width: 100%;
-            padding: 12px 20px;
-            font-size: 12px;
-            border-radius: 10px;
+            padding: 14px 24px;
+            font-size: 13px;
+            border-radius: 12px;
           }
         }
       `}</style>
