@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Gamepad2 } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 interface Notification {
   id: number;
   name: string;
-  game: string;
+  plan: string;
   time: string;
 }
 
@@ -15,10 +15,10 @@ const NAMES = [
   'Gabriel A.', 'Fernanda O.', 'Matheus D.', 'Larissa N.', 'Bruno G.'
 ];
 
-const GAMES = [
-  'ELDEN RING', 'Cyberpunk 2077', 'Hogwarts Legacy', 'GTA V',
-  'Red Dead Redemption 2', 'God of War', 'The Witcher 3',
-  'Baldur\'s Gate 3', 'Resident Evil 4', 'Spider-Man'
+const PLANS = [
+  'Plano Básico',
+  'Plano Avançado', 
+  'Plano Vitalício'
 ];
 
 const TIMES = ['agora', 'há 1 min', 'há 2 min', 'há 3 min'];
@@ -45,7 +45,7 @@ export function Notifications() {
     const newNotif: Notification = {
       id: Date.now(),
       name: NAMES[Math.floor(Math.random() * NAMES.length)],
-      game: GAMES[Math.floor(Math.random() * GAMES.length)],
+      plan: PLANS[Math.floor(Math.random() * PLANS.length)],
       time: TIMES[Math.floor(Math.random() * TIMES.length)],
     };
 
@@ -53,7 +53,7 @@ export function Notifications() {
 
     setTimeout(() => {
       setNotifications(prev => prev.filter(n => n.id !== newNotif.id));
-    }, 4000);
+    }, 4500);
   };
 
   return (
@@ -69,11 +69,11 @@ export function Notifications() {
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           >
             <div className="notif-icon">
-              <Gamepad2 size={18} />
+              <Zap size={20} />
             </div>
             <div className="notif-content">
               <span className="notif-text">
-                <strong>{notif.name}</strong> desbloqueou <strong>{notif.game}</strong>
+                <strong>{notif.name}</strong> adquiriu o <strong>{notif.plan}</strong>
               </span>
               <span className="notif-time">{notif.time}</span>
             </div>
@@ -84,103 +84,102 @@ export function Notifications() {
       <style>{`
         .notifications-container {
           position: fixed;
-          bottom: 16px;
-          left: 16px;
+          bottom: 20px;
+          left: 20px;
           z-index: 1000;
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 8px;
           pointer-events: none;
         }
         @media (max-width: 640px) {
           .notifications-container {
-            left: 8px;
-            right: auto;
-            bottom: 8px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
           }
         }
         
         .notification {
           display: flex;
           align-items: center;
-          gap: 8px;
-          padding: 8px 12px;
-          background: rgba(12, 12, 12, 0.92);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 8px;
-          backdrop-filter: blur(10px);
+          gap: 12px;
+          padding: 14px 18px;
+          background: rgba(8, 8, 8, 0.95);
+          border: 1px solid rgba(0, 255, 65, 0.2);
+          border-radius: 14px;
+          backdrop-filter: blur(12px);
           pointer-events: auto;
-          max-width: 240px;
+          max-width: 320px;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
         @media (max-width: 640px) {
           .notification {
-            max-width: 200px;
-            padding: 6px 10px;
-            gap: 6px;
-            border-radius: 6px;
+            max-width: 100%;
+            padding: 12px 14px;
+            gap: 10px;
+            border-radius: 12px;
           }
         }
         
         .notif-icon {
-          width: 26px;
-          height: 26px;
-          border-radius: 6px;
-          background: rgba(0, 255, 65, 0.12);
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.08));
           color: var(--neon);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+          box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
         }
         @media (max-width: 640px) {
           .notif-icon {
-            width: 22px;
-            height: 22px;
-            border-radius: 5px;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
           }
           .notif-icon svg {
-            width: 12px;
-            height: 12px;
+            width: 18px;
+            height: 18px;
           }
         }
         
         .notif-content {
           display: flex;
           flex-direction: column;
-          gap: 0;
+          gap: 2px;
           min-width: 0;
         }
         
         .notif-text {
-          font-size: 11px;
-          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          color: rgba(255, 255, 255, 0.9);
           font-weight: 500;
-          line-height: 1.25;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          line-height: 1.3;
         }
         @media (max-width: 640px) {
           .notif-text {
-            font-size: 10px;
+            font-size: 13px;
           }
         }
         .notif-text strong {
           color: #fff;
-          font-weight: 600;
+          font-weight: 700;
         }
         
         .notif-time {
-          font-size: 9px;
+          font-size: 11px;
           color: var(--neon);
           font-weight: 600;
           text-transform: uppercase;
-          letter-spacing: 0.2px;
+          letter-spacing: 0.3px;
           opacity: 0.9;
         }
         @media (max-width: 640px) {
           .notif-time {
-            font-size: 8px;
+            font-size: 10px;
           }
         }
       `}</style>
