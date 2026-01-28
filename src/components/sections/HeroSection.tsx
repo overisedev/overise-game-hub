@@ -153,8 +153,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             width: 100%;
+            position: relative;
           }
         }
         
@@ -171,6 +172,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           }
           .pill-mobile {
             display: inline-flex;
+            position: relative;
+            z-index: 10;
           }
         }
 
@@ -186,9 +189,26 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             width: 100%;
             max-width: 340px;
             border-radius: var(--r2);
+            margin-bottom: -50px;
+            position: relative;
+          }
+          .hero-card-mobile::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none;
+            z-index: 10;
+            border-radius: 0 0 var(--r2) var(--r2);
           }
           .hero-card-mobile .hero-card-media {
             height: 200px;
+          }
+          .hero-card-mobile .hero-card-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,.7) 0%, transparent 60%);
           }
           .hero-card-desktop {
             display: none;
@@ -211,13 +231,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-grid { 
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 0;
           }
           .hero-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
+            position: relative;
+            z-index: 5;
           }
         }
         .hero-title {
