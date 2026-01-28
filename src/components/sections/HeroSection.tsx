@@ -10,44 +10,52 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section hero-section-mobile" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
+    <section className="section-top section hero-section" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
       <div className="container-main">
         <div className="hero-grid">
-          {/* Mobile Card - Above Title */}
-          {featuredGame && (
-            <div className={`hero-card hero-card-mobile ${isTransitioning ? 'transitioning' : ''}`}>
-              <div className="hero-card-glow" />
-              <div className="hero-card-media">
-                <img
-                  src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                  alt={featuredGame.name}
-                  onError={(e) => { e.currentTarget.src = featuredGame.cover; }}
-                />
-                <div className="hero-card-overlay" />
-                <div className="hero-card-blur-overlay" />
-              </div>
+          {/* Mobile Layout: Pill + Card + Content */}
+          <div className="hero-mobile-wrapper">
+            {/* Pill - Above Card on Mobile */}
+            <div className="pill pill-mobile">
+              <span className="dot" />
+              Acesso Imediato • Baixe pela Steam
+            </div>
+            
+            {/* Card */}
+            {featuredGame && (
+              <div className={`hero-card hero-card-mobile ${isTransitioning ? 'transitioning' : ''}`}>
+                <div className="hero-card-glow" />
+                <div className="hero-card-media">
+                  <img
+                    src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
+                    alt={featuredGame.name}
+                    onError={(e) => { e.currentTarget.src = featuredGame.cover; }}
+                  />
+                  <div className="hero-card-overlay" />
+                </div>
 
-              {/* Nav Buttons */}
-              <button onClick={onPrev} className="feat-nav feat-prev">‹</button>
-              <button onClick={onNext} className="feat-nav feat-next">›</button>
+                {/* Nav Buttons */}
+                <button onClick={onPrev} className="feat-nav feat-prev">‹</button>
+                <button onClick={onNext} className="feat-nav feat-next">›</button>
 
-              {/* Info */}
-              <div className="hero-card-info">
-                <div className="hero-card-text">
-                  <div className="badge-row">
-                    <span className="chip green">Jogo Original</span>
-                    <span className="chip">Multiplayer</span>
+                {/* Info */}
+                <div className="hero-card-info">
+                  <div className="hero-card-text">
+                    <div className="badge-row">
+                      <span className="chip green">Jogo Original</span>
+                      <span className="chip">Multiplayer</span>
+                    </div>
+                    <h2 className="hero-card-name">{featuredGame.name}</h2>
                   </div>
-                  <h2 className="hero-card-name">{featuredGame.name}</h2>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Left Content */}
           <div className="hero-content">
-            {/* Pill */}
-            <div className="pill">
+            {/* Pill - Desktop Only */}
+            <div className="pill pill-desktop">
               <span className="dot" />
               Acesso Imediato • Baixe pela Steam
             </div>
@@ -136,6 +144,36 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             height: 6px;
           }
         }
+        /* Mobile Wrapper */
+        .hero-mobile-wrapper {
+          display: none;
+        }
+        @media (max-width: 640px) {
+          .hero-mobile-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+          }
+        }
+        
+        /* Pill visibility */
+        .pill-desktop {
+          display: inline-flex;
+        }
+        .pill-mobile {
+          display: none;
+        }
+        @media (max-width: 640px) {
+          .pill-desktop {
+            display: none;
+          }
+          .pill-mobile {
+            display: inline-flex;
+          }
+        }
+
         .hero-card-mobile {
           display: none;
         }
@@ -145,37 +183,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         @media (max-width: 640px) {
           .hero-card-mobile {
             display: block;
-            order: -1;
-            border-radius: 0;
-            border-left: none;
-            border-right: none;
-            border-top: none;
-            margin: 0 -16px;
+            width: 100%;
+            max-width: 340px;
+            border-radius: var(--r2);
           }
           .hero-card-mobile .hero-card-media {
-            height: 260px;
+            height: 200px;
           }
           .hero-card-desktop {
             display: none;
-          }
-          .hero-section-mobile {
-            padding-top: 70px !important;
-          }
-        }
-        
-        .hero-card-blur-overlay {
-          display: none;
-        }
-        @media (max-width: 640px) {
-          .hero-card-blur-overlay {
-            display: block;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
-            z-index: 2;
           }
         }
 
@@ -193,21 +209,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-grid { 
-            gap: 0;
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
           }
           .hero-content {
-            position: relative;
-            z-index: 5;
-            margin-top: -30px;
-            padding-top: 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-          }
-          .hero-content .pill {
-            margin-bottom: 8px;
           }
         }
         .hero-title {
