@@ -146,13 +146,20 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-card-mobile {
             display: block;
             order: -1;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            margin: 0 -16px;
+          }
+          .hero-card-mobile .hero-card-media {
+            height: 260px;
           }
           .hero-card-desktop {
             display: none;
           }
           .hero-section-mobile {
             padding-top: 70px !important;
-            min-height: 100svh;
           }
         }
         
@@ -166,12 +173,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             bottom: 0;
             left: 0;
             right: 0;
-            height: 80px;
-            background: linear-gradient(to bottom, transparent, var(--bg));
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            mask-image: linear-gradient(to bottom, transparent, black);
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+            height: 100px;
+            background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
             z-index: 2;
           }
         }
@@ -196,8 +199,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-content {
             position: relative;
             z-index: 5;
-            margin-top: -40px;
-            padding-top: 20px;
+            margin-top: -30px;
+            padding-top: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+          }
+          .hero-content .pill {
+            margin-bottom: 8px;
           }
         }
         .hero-title {
