@@ -240,10 +240,18 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             text-align: center;
             position: relative;
             z-index: 5;
-            background: var(--bg);
-            padding: 20px 16px 0;
-            margin: 0 -16px;
-            width: calc(100% + 32px);
+            padding-top: 16px;
+          }
+          .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            left: -50vw;
+            right: -50vw;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent 0%, var(--bg) 70%, var(--bg) 100%);
+            pointer-events: none;
+            z-index: -1;
           }
         }
         .hero-title {
