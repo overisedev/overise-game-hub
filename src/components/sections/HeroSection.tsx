@@ -10,9 +10,40 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
+    <section className="section-top section hero-section-mobile" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
       <div className="container-main">
         <div className="hero-grid">
+          {/* Mobile Card - Above Title */}
+          {featuredGame && (
+            <div className={`hero-card hero-card-mobile ${isTransitioning ? 'transitioning' : ''}`}>
+              <div className="hero-card-glow" />
+              <div className="hero-card-media">
+                <img
+                  src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
+                  alt={featuredGame.name}
+                  onError={(e) => { e.currentTarget.src = featuredGame.cover; }}
+                />
+                <div className="hero-card-overlay" />
+                <div className="hero-card-blur-overlay" />
+              </div>
+
+              {/* Nav Buttons */}
+              <button onClick={onPrev} className="feat-nav feat-prev">‹</button>
+              <button onClick={onNext} className="feat-nav feat-next">›</button>
+
+              {/* Info */}
+              <div className="hero-card-info">
+                <div className="hero-card-text">
+                  <div className="badge-row">
+                    <span className="chip green">Jogo Original</span>
+                    <span className="chip">Multiplayer</span>
+                  </div>
+                  <h2 className="hero-card-name">{featuredGame.name}</h2>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Left Content */}
           <div className="hero-content">
             {/* Pill */}
@@ -36,9 +67,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
           </div>
 
-          {/* Right - Featured Card */}
+          {/* Right - Featured Card (Desktop) */}
           {featuredGame && (
-            <div className={`hero-card ${isTransitioning ? 'transitioning' : ''}`}>
+            <div className={`hero-card hero-card-desktop ${isTransitioning ? 'transitioning' : ''}`}>
               <div className="hero-card-glow" />
               <div className="hero-card-media">
                 <img
@@ -105,6 +136,46 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             height: 6px;
           }
         }
+        .hero-card-mobile {
+          display: none;
+        }
+        .hero-card-desktop {
+          display: block;
+        }
+        @media (max-width: 640px) {
+          .hero-card-mobile {
+            display: block;
+            order: -1;
+          }
+          .hero-card-desktop {
+            display: none;
+          }
+          .hero-section-mobile {
+            padding-top: 70px !important;
+            min-height: 100svh;
+          }
+        }
+        
+        .hero-card-blur-overlay {
+          display: none;
+        }
+        @media (max-width: 640px) {
+          .hero-card-blur-overlay {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            mask-image: linear-gradient(to bottom, transparent, black);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+            z-index: 2;
+          }
+        }
+
         .hero-grid {
           display: grid;
           grid-template-columns: 1.15fr .85fr;
@@ -119,7 +190,14 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-grid { 
-            gap: 16px; 
+            gap: 0;
+            position: relative;
+          }
+          .hero-content {
+            position: relative;
+            z-index: 5;
+            margin-top: -40px;
+            padding-top: 20px;
           }
         }
         .hero-title {
