@@ -2,21 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Clock } from 'lucide-react';
 
-export function UrgencyBar() {
-  const [isVisible, setIsVisible] = useState(false);
+interface UrgencyBarProps {
+  isVisible: boolean;
+}
+
+export function UrgencyBar({ isVisible }: UrgencyBarProps) {
   const [timeLeft, setTimeLeft] = useState({ minutes: 14, seconds: 59 });
-
-  // Show bar after scrolling past hero section
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const threshold = window.innerHeight * 0.8;
-      setIsVisible(scrollY > threshold);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Countdown timer
   useEffect(() => {

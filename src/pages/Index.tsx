@@ -22,6 +22,19 @@ const Index = () => {
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [urgencyBarVisible, setUrgencyBarVisible] = useState(false);
+
+  // Track urgency bar visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const threshold = window.innerHeight * 0.8;
+      setUrgencyBarVisible(scrollY > threshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Rotate featured game with smooth transition
   useEffect(() => {
@@ -57,8 +70,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <UrgencyBar />
-      <Header />
+      <UrgencyBar isVisible={urgencyBarVisible} />
+      <Header urgencyBarVisible={urgencyBarVisible} />
       
       <HeroSection 
         featuredGame={featuredGame}
