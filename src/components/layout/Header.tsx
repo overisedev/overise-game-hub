@@ -1,12 +1,18 @@
-interface HeaderProps {}
+interface HeaderProps {
+  urgencyBarVisible?: boolean;
+}
 
-export function Header({}: HeaderProps) {
+export function Header({ urgencyBarVisible = false }: HeaderProps) {
   return (
-    <header className="fixed inset-x-0 top-0 z-[1000]" style={{
-      background: 'rgba(5,5,5,.72)',
-      borderBottom: '1px solid rgba(255,255,255,.06)',
-      backdropFilter: 'blur(14px)',
-    }}>
+    <header 
+      className="fixed inset-x-0 z-[1000] transition-all duration-300" 
+      style={{
+        top: urgencyBarVisible ? '48px' : '0',
+        background: 'rgba(5,5,5,.72)',
+        borderBottom: '1px solid rgba(255,255,255,.06)',
+        backdropFilter: 'blur(14px)',
+      }}
+    >
       <div className="container-main">
         <nav className="flex items-center justify-between py-3.5 gap-4">
           {/* Logo */}
