@@ -1,58 +1,48 @@
-import { motion } from 'framer-motion';
-import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
+import { motion } from "framer-motion";
+import { ScarcityBadge } from "@/components/ui/ScarcityBadge";
 export function PricingSection() {
   const plans = [
     {
-      name: 'Plano Básico',
-      originalPrice: 'R$ 29,97',
-      price: 'R$ 9,97',
-      priceLabel: 'Taxa Única',
-      games: 'Pacote com 500 Jogos',
-      colorTheme: 'blue',
-      features: [
-        '500 jogos inclusos',
-        'Download via Steam',
-        'Modo história liberado',
-        'Acesso na hora',
-      ],
-      btnText: 'Escolher Básico',
-      checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ',
+      name: "Plano Básico",
+      originalPrice: "R$ 29,97",
+      price: "R$ 9,97",
+      priceLabel: "Taxa Única",
+      games: "Pacote com 500 Jogos",
+      colorTheme: "blue",
+      features: ["500 jogos inclusos", "Download via Steam", "Modo história liberado", "Acesso na hora"],
+      btnText: "Escolher Básico",
+      checkoutUrl: "https://www.ggcheckout.com/checkout/v5/6Ed9FJE8HXebnxREUKCQ",
     },
     {
-      name: 'Plano Avançado',
-      originalPrice: 'R$ 49,97',
-      price: 'R$ 19,97',
-      priceLabel: 'Taxa Única',
-      games: 'Pacote com 700 Jogos',
-      badge: 'Mais Vendido',
-      colorTheme: 'red',
-      features: [
-        '700 jogos inclusos',
-        'Jogos novos e lançamentos',
-        'Online nos compatíveis',
-        'Suporte via WhatsApp',
-      ],
-      btnText: 'Quero Esse',
-      checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX',
+      name: "Plano Avançado",
+      originalPrice: "R$ 49,97",
+      price: "R$ 19,97",
+      priceLabel: "Taxa Única",
+      games: "Pacote com 700 Jogos",
+      badge: "Mais Vendido",
+      colorTheme: "red",
+      features: ["700 jogos inclusos", "Jogos novos e lançamentos", "Online nos compatíveis", "Suporte via WhatsApp"],
+      btnText: "Quero Esse",
+      checkoutUrl: "https://www.ggcheckout.com/checkout/v5/BvIb4ex53LM73mU3DJsX",
     },
     {
-      name: 'Plano Vitalício',
-      originalPrice: 'R$ 120,97',
-      price: 'R$ 49,97',
-      priceLabel: 'Taxa Única',
-      games: 'Liberar a Lista Toda',
-      badge: 'Melhor Custo-Benefício',
-      colorTheme: 'green',
+      name: "Plano Vitalício",
+      originalPrice: "R$ 120,97",
+      price: "R$ 49,97",
+      priceLabel: "Taxa Única",
+      games: "Liberar a Lista Toda",
+      badge: "Melhor Custo-Benefício",
+      colorTheme: "green",
       featured: true,
       features: [
-        '+1000 jogos liberados',
-        'Recebe jogos novos pra sempre',
-        'Multiplayer funcionando',
-        'Pede qualquer jogo que a gente adiciona',
-        'Seu pra sempre',
+        "+1000 jogos liberados",
+        "Recebe jogos novos pra sempre",
+        "Multiplayer funcionando",
+        "Pede qualquer jogo que a gente adiciona",
+        "Seu pra sempre",
       ],
-      btnText: 'Desbloquear Tudo',
-      checkoutUrl: 'https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3',
+      btnText: "Desbloquear Tudo",
+      checkoutUrl: "https://www.ggcheckout.com/checkout/v5/pdDOCAlm20ZQxjUiglc3",
     },
   ];
 
@@ -80,7 +70,7 @@ export function PricingSection() {
 
   return (
     <section id="planos" className="section container-main">
-      <motion.div 
+      <motion.div
         className="pricing-header"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +82,7 @@ export function PricingSection() {
         <p>Acesso imediato após o pagamento. Escolha o que melhor se encaixa para você.</p>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="pricing-grid"
         variants={containerVariants}
         initial="hidden"
@@ -100,27 +90,25 @@ export function PricingSection() {
         viewport={{ once: true, margin: "-100px" }}
       >
         {plans.map((plan, index) => (
-          <motion.div 
-            key={plan.name} 
-            className={`pricing-card ${plan.featured ? 'featured' : ''} theme-${plan.colorTheme}`}
+          <motion.div
+            key={plan.name}
+            className={`pricing-card ${plan.featured ? "featured" : ""} theme-${plan.colorTheme}`}
             variants={cardVariants}
-            whileHover={{ 
+            whileHover={{
               y: -8,
-              transition: { duration: 0.2 }
+              transition: { duration: 0.2 },
             }}
           >
-            {plan.badge && (
-              <span className={`pricing-badge badge-${plan.colorTheme}`}>{plan.badge}</span>
-            )}
+            {plan.badge && <span className={`pricing-badge badge-${plan.colorTheme}`}>{plan.badge}</span>}
 
             <h3 className="plan-name">{plan.name}</h3>
-            
+
             <div className="plan-price-wrapper">
               <span className="plan-original-price">de {plan.originalPrice}</span>
               <div className={`plan-price price-${plan.colorTheme}`}>{plan.price}</div>
             </div>
             <div className="plan-price-label">{plan.priceLabel}</div>
-            
+
             <div className="plan-games">{plan.games}</div>
 
             <ul className="plan-features">
@@ -132,26 +120,26 @@ export function PricingSection() {
               ))}
             </ul>
 
-            <motion.a 
-              href={plan.checkoutUrl} 
-              target="_blank" 
+            <motion.a
+              href={plan.checkoutUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className={`plan-btn btn-${plan.colorTheme}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).fbq) {
-                  (window as any).fbq('track', 'InitiateCheckout', {
+                if (typeof window !== "undefined" && (window as any).fbq) {
+                  (window as any).fbq("track", "InitiateCheckout", {
                     content_name: plan.name,
-                    value: parseFloat(plan.price.replace('R$ ', '').replace(',', '.')),
-                    currency: 'BRL'
+                    value: parseFloat(plan.price.replace("R$ ", "").replace(",", ".")),
+                    currency: "BRL",
                   });
                 }
               }}
             >
-              {plan.btnText || 'Desbloquear'}
+              {plan.btnText || "Desbloquear"}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </motion.a>
           </motion.div>
