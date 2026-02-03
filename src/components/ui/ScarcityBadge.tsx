@@ -10,14 +10,13 @@ export function ScarcityBadge() {
     const interval = setInterval(() => {
       setUnits(prev => {
         if (prev > 3) {
-          // Random chance to decrease
           if (Math.random() > 0.7) {
             return prev - 1;
           }
         }
         return prev;
       });
-    }, 45000); // Check every 45 seconds
+    }, 45000);
 
     return () => clearInterval(interval);
   }, []);
@@ -30,7 +29,7 @@ export function ScarcityBadge() {
       transition={{ delay: 0.5, duration: 0.4 }}
     >
       <div className="scarcity-icon">
-        <Zap size={16} />
+        <Zap size={14} />
       </div>
       <span className="scarcity-text">
         APENAS <strong>{units} UNIDADES</strong> RESTANDO HOJE!
@@ -41,56 +40,55 @@ export function ScarcityBadge() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 12px 20px;
-          background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 100%);
-          border: 1px solid rgba(138, 43, 226, 0.4);
-          border-radius: 50px;
-          box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
+          padding: 10px 18px;
+          background: rgba(0, 255, 65, 0.06);
+          border: 1px solid rgba(0, 255, 65, 0.2);
+          border-radius: 10px;
         }
         
         .scarcity-icon {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #ffd700, #ffaa00);
+          width: 26px;
+          height: 26px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, var(--neon), #00cc52);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #1a0a2e;
+          color: #000;
           flex-shrink: 0;
         }
         
         .scarcity-text {
-          font-size: 13px;
-          font-weight: 600;
-          color: #fff;
+          font-size: 12px;
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.8);
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
         
         .scarcity-text strong {
-          color: #ffd700;
+          color: var(--neon);
           font-weight: 900;
         }
         
         @media (max-width: 640px) {
           .scarcity-badge {
-            padding: 10px 16px;
+            padding: 8px 14px;
             gap: 8px;
           }
           
           .scarcity-icon {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
           }
           
           .scarcity-icon svg {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
           }
           
           .scarcity-text {
-            font-size: 11px;
+            font-size: 10px;
           }
         }
       `}</style>
