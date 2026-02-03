@@ -27,7 +27,6 @@ export function UrgencyBar() {
         } else if (prev.minutes > 0) {
           return { minutes: prev.minutes - 1, seconds: 59 };
         } else {
-          // Reset timer when it reaches 0
           return { minutes: 14, seconds: 59 };
         }
       });
@@ -51,20 +50,19 @@ export function UrgencyBar() {
           <div className="urgency-content">
             <div className="urgency-left">
               <div className="urgency-icon">
-                <Clock size={18} />
+                <Clock size={16} />
               </div>
-              <span className="urgency-label">OFERTA EXCLUSIVA</span>
-              <span className="urgency-text">PREÇO PROMOCIONAL TERMINA EM:</span>
+              <span className="urgency-label">OFERTA LIMITADA</span>
+              <span className="urgency-text">Preço promocional termina em:</span>
             </div>
             
             <div className="urgency-right">
               <div className="urgency-timer">
-                <Clock size={14} />
                 <span>{formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}</span>
               </div>
               
               <a href="#planos" className="urgency-cta">
-                Aproveitar Agora
+                Aproveitar
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
@@ -79,10 +77,10 @@ export function UrgencyBar() {
               left: 0;
               right: 0;
               z-index: 1001;
-              background: linear-gradient(90deg, #1a0a2e 0%, #2d1b4e 30%, #4a2c7a 50%, #2d1b4e 70%, #1a0a2e 100%);
-              border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+              background: rgba(8, 8, 8, 0.95);
+              border-bottom: 1px solid rgba(0, 255, 65, 0.15);
               padding: 10px 20px;
-              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+              backdrop-filter: blur(12px);
             }
             
             .urgency-content {
@@ -101,59 +99,50 @@ export function UrgencyBar() {
             }
             
             .urgency-icon {
-              width: 32px;
-              height: 32px;
-              border-radius: 50%;
-              background: rgba(138, 43, 226, 0.3);
-              border: 1px solid rgba(138, 43, 226, 0.5);
+              width: 28px;
+              height: 28px;
+              border-radius: 8px;
+              background: rgba(0, 255, 65, 0.1);
+              border: 1px solid rgba(0, 255, 65, 0.25);
               display: flex;
               align-items: center;
               justify-content: center;
-              color: #c4a7e7;
+              color: var(--neon);
             }
             
             .urgency-label {
               font-size: 11px;
               font-weight: 800;
-              color: #fff;
-              background: rgba(255, 255, 255, 0.1);
-              padding: 4px 10px;
-              border-radius: 4px;
+              color: var(--neon);
               letter-spacing: 0.5px;
             }
             
             .urgency-text {
               font-size: 13px;
-              font-weight: 700;
-              color: #ff6b9d;
-              text-transform: uppercase;
-              letter-spacing: 0.5px;
+              font-weight: 600;
+              color: rgba(255, 255, 255, 0.7);
             }
             
             .urgency-right {
               display: flex;
               align-items: center;
-              gap: 16px;
+              gap: 12px;
             }
             
             .urgency-timer {
               display: flex;
               align-items: center;
               gap: 6px;
-              background: rgba(0, 0, 0, 0.4);
+              background: rgba(0, 255, 65, 0.08);
               padding: 8px 14px;
               border-radius: 8px;
-              border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .urgency-timer svg {
-              color: var(--neon);
+              border: 1px solid rgba(0, 255, 65, 0.2);
             }
             
             .urgency-timer span {
-              font-size: 16px;
+              font-size: 15px;
               font-weight: 900;
-              color: #fff;
+              color: var(--neon);
               font-family: monospace;
               letter-spacing: 1px;
             }
@@ -161,10 +150,10 @@ export function UrgencyBar() {
             .urgency-cta {
               display: inline-flex;
               align-items: center;
-              gap: 8px;
-              padding: 10px 20px;
+              gap: 6px;
+              padding: 8px 16px;
               border-radius: 8px;
-              background: #fff;
+              background: var(--neon);
               color: #000;
               font-weight: 800;
               font-size: 12px;
@@ -175,53 +164,39 @@ export function UrgencyBar() {
             }
             
             .urgency-cta:hover {
-              background: var(--neon);
-              transform: scale(1.02);
+              box-shadow: 0 8px 25px rgba(0, 255, 65, 0.3);
+              transform: translateY(-1px);
             }
             
-            .urgency-cta svg {
-              color: currentColor;
-            }
-            
-            @media (max-width: 900px) {
-              .urgency-label,
-              .urgency-text {
+            @media (max-width: 768px) {
+              .urgency-label {
                 display: none;
               }
               
-              .urgency-left {
-                gap: 8px;
+              .urgency-text {
+                font-size: 11px;
               }
               
               .urgency-icon {
-                width: 28px;
-                height: 28px;
-              }
-              
-              .urgency-left::after {
-                content: 'OFERTA TERMINA EM:';
-                font-size: 11px;
-                font-weight: 700;
-                color: #ff6b9d;
+                width: 24px;
+                height: 24px;
               }
             }
             
-            @media (max-width: 640px) {
+            @media (max-width: 540px) {
               .urgency-bar {
                 padding: 8px 12px;
               }
               
-              .urgency-content {
-                gap: 10px;
-              }
-              
-              .urgency-icon {
+              .urgency-text {
                 display: none;
               }
               
               .urgency-left::after {
-                content: 'TERMINA EM:';
-                font-size: 10px;
+                content: 'Termina em:';
+                font-size: 11px;
+                font-weight: 600;
+                color: rgba(255, 255, 255, 0.7);
               }
               
               .urgency-timer {
@@ -229,11 +204,11 @@ export function UrgencyBar() {
               }
               
               .urgency-timer span {
-                font-size: 14px;
+                font-size: 13px;
               }
               
               .urgency-cta {
-                padding: 8px 14px;
+                padding: 6px 12px;
                 font-size: 11px;
               }
             }
