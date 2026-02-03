@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-
+import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
 export function PricingSection() {
   const plans = [
     {
@@ -87,6 +87,7 @@ export function PricingSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
+        <ScarcityBadge />
         <h2>Escolha seu plano</h2>
         <p>Acesso imediato após o pagamento. Escolha o que melhor se encaixa para você.</p>
       </motion.div>
@@ -161,6 +162,10 @@ export function PricingSection() {
         .pricing-header {
           text-align: center;
           margin-bottom: 40px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
         }
         
         .pricing-header h2 {

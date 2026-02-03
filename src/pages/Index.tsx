@@ -13,6 +13,8 @@ import { FAQSection } from '@/components/sections/FAQSection';
 import { Footer } from '@/components/layout/Footer';
 import { GameModal } from '@/components/ui/GameModal';
 import { Notifications } from '@/components/ui/Notifications';
+import { UrgencyBar } from '@/components/ui/UrgencyBar';
+import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
 import type { Game } from '@/types/game';
 
 const Index = () => {
@@ -55,6 +57,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <UrgencyBar />
       <Header />
       
       <HeroSection 
