@@ -84,7 +84,7 @@ export function Notifications() {
       <style>{`
         .notifications-container {
           position: fixed;
-          bottom: 20px;
+          bottom: 100px;
           left: 20px;
           z-index: 800;
           display: flex;
@@ -96,7 +96,7 @@ export function Notifications() {
           .notifications-container {
             left: 12px;
             right: 90px;
-            bottom: 90px;
+            bottom: 100px;
           }
         }
         
@@ -105,7 +105,7 @@ export function Notifications() {
           align-items: center;
           gap: 12px;
           padding: 14px 18px;
-          background: rgba(8, 8, 8, 0.95);
+          background: rgba(8, 8, 8, 0.98);
           border: 1px solid rgba(0, 255, 65, 0.2);
           border-radius: 14px;
           backdrop-filter: blur(12px);
