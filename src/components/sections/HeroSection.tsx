@@ -19,13 +19,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
     <section className="section-top section hero-section" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
       <div className="container-main">
         <div className="hero-grid">
-          {/* Mobile Layout: Scarcity + Card + Content */}
+          {/* Mobile Layout: Card + Content */}
           <div className="hero-mobile-wrapper">
-            {/* Scarcity Bar - Mobile */}
-            <div className="scarcity-pill">
-              <span className="scarcity-dot" />
-              Últimas vagas do lote promocional
-            </div>
             
             {/* Card */}
             {featuredGame && (
@@ -60,10 +55,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
           {/* Left Content */}
           <div className="hero-content">
-            {/* Scarcity Pill - Desktop */}
-            <div className="scarcity-pill scarcity-desktop">
-              <span className="scarcity-dot" />
-              Últimas vagas do lote promocional
+            {/* Pill - Desktop Only */}
+            <div className="pill pill-desktop">
+              <span className="dot" />
+              Acesso Imediato • Baixe pela Steam
             </div>
 
             <h1 className="hero-title">
@@ -140,53 +135,45 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
       </div>
 
       <style>{`
-        /* Scarcity Pill - Matches page style */
-        .scarcity-pill {
+        /* Pill style */
+        .pill {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 10px 16px;
+          padding: 10px 14px;
           border-radius: 999px;
           background: rgba(255,255,255,.05);
           border: 1px solid var(--border);
           font-weight: 800;
-          letter-spacing: .5px;
+          letter-spacing: .6px;
           text-transform: uppercase;
           font-size: 12px;
           backdrop-filter: blur(10px);
           white-space: nowrap;
           margin-bottom: 12px;
         }
-        .scarcity-dot {
+        .dot {
           width: 8px;
           height: 8px;
           border-radius: 50%;
           background: var(--neon);
           box-shadow: 0 0 14px rgba(0,255,65,.55);
-          animation: scarcity-pulse 2s ease-in-out infinite;
         }
-        @keyframes scarcity-pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-        .scarcity-desktop {
+        .pill-desktop {
           display: inline-flex;
         }
-        .hero-mobile-wrapper .scarcity-pill {
-          display: none;
-        }
         @media (max-width: 640px) {
-          .scarcity-desktop {
-            display: none;
-          }
-          .hero-mobile-wrapper .scarcity-pill {
-            display: inline-flex;
-            font-size: 10px;
+          .pill {
             padding: 8px 12px;
+            font-size: 10px;
+            gap: 8px;
           }
-          .scarcity-dot {
+          .dot {
             width: 6px;
             height: 6px;
+          }
+          .pill-desktop {
+            display: none;
           }
         }
 
