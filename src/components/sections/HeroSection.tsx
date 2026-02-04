@@ -1,5 +1,4 @@
 import type { Game } from '@/types/game';
-import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
 
 interface HeroSectionProps {
   featuredGame: Game | undefined;
@@ -14,12 +13,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
     <section className="section-top section hero-section" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
       <div className="container-main">
         <div className="hero-grid">
-          {/* Mobile Layout: Pill + Card + Content */}
+          {/* Mobile Layout: Scarcity + Card + Content */}
           <div className="hero-mobile-wrapper">
-            {/* Pill - Above Card on Mobile */}
-            <div className="pill pill-mobile">
-              <span className="dot" />
-              Acesso Imediato • Baixe pela Steam
+            {/* Scarcity Bar - Mobile */}
+            <div className="scarcity-bar scarcity-bar-mobile">
+              <span className="scarcity-pulse" />
+              <span>⚠️ Lote de <strong>R$ 9,97</strong> acabando</span>
             </div>
             
             {/* Card */}
@@ -55,6 +54,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
           {/* Left Content */}
           <div className="hero-content">
+            {/* Scarcity Bar - Top */}
+            <div className="scarcity-bar">
+              <span className="scarcity-pulse" />
+              <span>⚠️ Lote Promocional de <strong>R$ 9,97</strong> encerrando em breve</span>
+            </div>
+
             {/* Pill - Desktop Only */}
             <div className="pill pill-desktop">
               <span className="dot" />
@@ -62,24 +67,42 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </div>
 
             <h1 className="hero-title">
-              <span className="accent">+1000 jogos</span><br />
-              por apenas <span className="accent">R$ 9,90</span>
+              <span className="accent">+1000 jogos AAA</span>
+              <span className="title-dlc">+ 150 DLCs Premium</span>
             </h1>
 
+            {/* Price Anchoring */}
+            <div className="hero-price-anchor">
+              <span className="original-price">de R$ 15.000</span>
+              <span className="current-price">R$ 9,97</span>
+            </div>
+
             <p className="hero-sub">
-              Pague uma vez. Baixe pela Steam. Jogue pra sempre.
+              A maior biblioteca do Brasil direto na sua Steam.<br />
+              <strong>Entrega Instantânea e Automatizada.</strong>
             </p>
 
             <div className="hero-actions">
               <a href="#planos" className="hero-cta">
-                Desbloquear minha Steam
+                Garantir Meu Acesso
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </a>
+              
+              {/* Social Proof Badge */}
+              <div className="social-proof-badge">
+                <div className="stars">★★★★★</div>
+                <span>+5K clientes</span>
+              </div>
             </div>
 
-            <ScarcityBadge />
+            {/* Trust seal */}
+            <div className="trust-seal">
+              <span>🔒 Compra 100% Segura</span>
+              <span className="separator">•</span>
+              <span>Suporte via WhatsApp</span>
+            </div>
           </div>
 
           {/* Right - Featured Card (Desktop) */}
@@ -166,21 +189,31 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           }
         }
         
+        /* Scarcity Bar visibility */
+        .scarcity-bar {
+          display: inline-flex;
+        }
+        .scarcity-bar-mobile {
+          display: none;
+        }
+        @media (max-width: 640px) {
+          .hero-content .scarcity-bar {
+            display: none;
+          }
+          .scarcity-bar-mobile {
+            display: inline-flex;
+            position: relative;
+            z-index: 10;
+          }
+        }
+
         /* Pill visibility */
         .pill-desktop {
           display: inline-flex;
         }
-        .pill-mobile {
-          display: none;
-        }
         @media (max-width: 640px) {
           .pill-desktop {
             display: none;
-          }
-          .pill-mobile {
-            display: inline-flex;
-            position: relative;
-            z-index: 10;
           }
         }
 
@@ -261,34 +294,134 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             z-index: -1;
           }
         }
-        .hero-title {
-          margin: 18px 0 14px;
-          font-weight: 950;
-          font-size: clamp(28px, 5.2vw, 60px);
-          line-height: 1.02;
-          letter-spacing: -2px;
-          color: #fff;
+
+        /* Scarcity Bar */
+        .scarcity-bar {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 20px;
+          background: rgba(255, 193, 7, 0.08);
+          border: 1px solid rgba(255, 193, 7, 0.3);
+          border-radius: 10px;
+          font-size: 13px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.9);
+          margin-bottom: 8px;
+        }
+        .scarcity-bar strong {
+          color: var(--neon);
+          font-weight: 900;
+        }
+        .scarcity-pulse {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #ffc107;
+          box-shadow: 0 0 12px rgba(255, 193, 7, 0.6);
+          animation: pulse-warning 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse-warning {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.2); }
         }
         @media (max-width: 640px) {
-          .hero-title {
-            font-size: 32px;
-            letter-spacing: -1.5px;
-            margin: 14px 0 12px;
+          .scarcity-bar {
+            padding: 10px 14px;
+            font-size: 11px;
+            gap: 8px;
             text-align: center;
           }
         }
-        .hero-title .accent { color: var(--neon); }
+
+        .hero-title {
+          margin: 18px 0 8px;
+          font-weight: 950;
+          font-size: clamp(32px, 5.2vw, 58px);
+          line-height: 1.05;
+          letter-spacing: -2px;
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .hero-title .accent { 
+          color: var(--neon); 
+        }
+        .title-dlc {
+          font-size: clamp(18px, 3vw, 28px);
+          color: rgba(255,255,255,.7);
+          font-weight: 700;
+          letter-spacing: -0.5px;
+        }
+        @media (max-width: 640px) {
+          .hero-title {
+            font-size: 28px;
+            letter-spacing: -1.5px;
+            margin: 14px 0 8px;
+            text-align: center;
+            align-items: center;
+          }
+          .title-dlc {
+            font-size: 16px;
+          }
+        }
+
+        /* Price Anchoring */
+        .hero-price-anchor {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 16px;
+        }
+        .original-price {
+          font-size: 18px;
+          font-weight: 600;
+          color: rgba(255,255,255,.5);
+          text-decoration: line-through;
+        }
+        .current-price {
+          font-size: 42px;
+          font-weight: 950;
+          color: var(--neon);
+          text-shadow: 0 0 30px rgba(0,255,65,.4);
+          letter-spacing: -2px;
+          padding: 8px 20px;
+          background: rgba(0,255,65,.08);
+          border: 2px solid rgba(0,255,65,.3);
+          border-radius: 12px;
+        }
+        @media (max-width: 640px) {
+          .hero-price-anchor {
+            justify-content: center;
+            gap: 12px;
+          }
+          .original-price {
+            font-size: 15px;
+          }
+          .current-price {
+            font-size: 32px;
+            padding: 6px 16px;
+          }
+        }
+
         .hero-sub {
           max-width: 52ch;
-          font-size: 17px;
-          line-height: 1.75;
-          color: rgba(255,255,255,.85);
-          margin-bottom: 26px;
+          font-size: 16px;
+          line-height: 1.65;
+          color: rgba(255,255,255,.8);
+          margin-bottom: 20px;
           font-weight: 500;
+        }
+        .hero-sub strong {
+          color: #fff;
+          text-decoration: underline;
+          text-decoration-color: var(--neon);
+          text-underline-offset: 3px;
         }
         @media (max-width: 640px) {
           .hero-sub {
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
             margin-bottom: 16px;
             text-align: center;
@@ -297,14 +430,16 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             display: none;
           }
         }
+        
         .hero-actions {
           display: flex;
-          gap: 12px;
+          align-items: center;
+          gap: 16px;
           flex-wrap: wrap;
         }
         @media (max-width: 640px) {
           .hero-actions {
-            gap: 8px;
+            gap: 12px;
             flex-direction: column;
             align-items: center;
             width: 100%;
@@ -314,6 +449,61 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             justify-content: center;
           }
         }
+
+        /* Social Proof Badge */
+        .social-proof-badge {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 18px;
+          background: rgba(255,255,255,.04);
+          border: 1px solid rgba(255,255,255,.12);
+          border-radius: 12px;
+        }
+        .social-proof-badge .stars {
+          color: #ffc107;
+          font-size: 14px;
+          letter-spacing: 1px;
+        }
+        .social-proof-badge span {
+          font-size: 13px;
+          font-weight: 700;
+          color: rgba(255,255,255,.85);
+        }
+        @media (max-width: 640px) {
+          .social-proof-badge {
+            padding: 10px 14px;
+            gap: 8px;
+          }
+          .social-proof-badge .stars {
+            font-size: 12px;
+          }
+          .social-proof-badge span {
+            font-size: 12px;
+          }
+        }
+
+        /* Trust Seal */
+        .trust-seal {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 16px;
+          font-size: 12px;
+          color: rgba(255,255,255,.6);
+          font-weight: 500;
+        }
+        .trust-seal .separator {
+          opacity: 0.4;
+        }
+        @media (max-width: 640px) {
+          .trust-seal {
+            justify-content: center;
+            font-size: 11px;
+            gap: 8px;
+          }
+        }
+
         @media (max-width: 640px) {
           .animate-float-in {
             display: flex;
