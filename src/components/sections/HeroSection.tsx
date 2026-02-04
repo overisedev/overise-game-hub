@@ -1,5 +1,11 @@
 import type { Game } from '@/types/game';
 
+// Import testimonial avatars for social proof
+import jzAvatar from '@/assets/testimonials/jz.jpg';
+import adriellyAvatar from '@/assets/testimonials/adrielly.jpg';
+import maiconAvatar from '@/assets/testimonials/maicon.jpg';
+import wlAvatar from '@/assets/testimonials/wl.jpeg';
+
 interface HeroSectionProps {
   featuredGame: Game | undefined;
   isTransitioning?: boolean;
@@ -16,9 +22,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           {/* Mobile Layout: Scarcity + Card + Content */}
           <div className="hero-mobile-wrapper">
             {/* Scarcity Bar - Mobile */}
-            <div className="scarcity-bar scarcity-bar-mobile">
-              <span className="scarcity-pulse" />
-              <span>⚠️ Lote de <strong>R$ 9,97</strong> acabando</span>
+            <div className="scarcity-pill">
+              <span className="scarcity-dot" />
+              Últimas vagas do lote promocional
             </div>
             
             {/* Card */}
@@ -54,16 +60,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
           {/* Left Content */}
           <div className="hero-content">
-            {/* Scarcity Bar - Top */}
-            <div className="scarcity-bar">
-              <span className="scarcity-pulse" />
-              <span>⚠️ Lote Promocional de <strong>R$ 9,97</strong> encerrando em breve</span>
-            </div>
-
-            {/* Pill - Desktop Only */}
-            <div className="pill pill-desktop">
-              <span className="dot" />
-              Acesso Imediato • Baixe pela Steam
+            {/* Scarcity Pill - Desktop */}
+            <div className="scarcity-pill scarcity-desktop">
+              <span className="scarcity-dot" />
+              Últimas vagas do lote promocional
             </div>
 
             <h1 className="hero-title">
@@ -71,15 +71,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               <span className="title-dlc">+ 150 DLCs Premium</span>
             </h1>
 
-            {/* Price Anchoring */}
-            <div className="hero-price-anchor">
-              <span className="original-price">de R$ 15.000</span>
-              <span className="current-price">R$ 9,97</span>
+            {/* Price Display - Clean */}
+            <div className="hero-price">
+              <span className="price-from">de <s>R$ 15.000</s></span>
+              <span className="price-now">por R$ 9,97</span>
             </div>
 
             <p className="hero-sub">
               A maior biblioteca do Brasil direto na sua Steam.<br />
-              <strong>Entrega Instantânea e Automatizada.</strong>
+              Entrega Instantânea e Automatizada.
             </p>
 
             <div className="hero-actions">
@@ -90,18 +90,19 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 </svg>
               </a>
               
-              {/* Social Proof Badge */}
-              <div className="social-proof-badge">
-                <div className="stars">★★★★★</div>
-                <span>+5K clientes</span>
+              {/* Social Proof with Real Avatars */}
+              <div className="social-proof">
+                <div className="avatars-stack">
+                  <img src={jzAvatar} alt="" className="avatar-mini" />
+                  <img src={adriellyAvatar} alt="" className="avatar-mini" />
+                  <img src={maiconAvatar} alt="" className="avatar-mini" />
+                  <img src={wlAvatar} alt="" className="avatar-mini" />
+                </div>
+                <div className="social-text">
+                  <span className="stars">★★★★★</span>
+                  <span className="count">+5K clientes</span>
+                </div>
               </div>
-            </div>
-
-            {/* Trust seal */}
-            <div className="trust-seal">
-              <span>🔒 Compra 100% Segura</span>
-              <span className="separator">•</span>
-              <span>Suporte via WhatsApp</span>
             </div>
           </div>
 
@@ -139,41 +140,56 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
       </div>
 
       <style>{`
-        .pill {
+        /* Scarcity Pill - Matches page style */
+        .scarcity-pill {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 10px 14px;
+          padding: 10px 16px;
           border-radius: 999px;
           background: rgba(255,255,255,.05);
           border: 1px solid var(--border);
           font-weight: 800;
-          letter-spacing: .6px;
+          letter-spacing: .5px;
           text-transform: uppercase;
           font-size: 12px;
           backdrop-filter: blur(10px);
           white-space: nowrap;
+          margin-bottom: 12px;
         }
-        @media (max-width: 640px) {
-          .pill {
-            padding: 8px 12px;
-            font-size: 10px;
-            gap: 8px;
-          }
-        }
-        .dot {
+        .scarcity-dot {
           width: 8px;
           height: 8px;
           border-radius: 50%;
           background: var(--neon);
           box-shadow: 0 0 14px rgba(0,255,65,.55);
+          animation: scarcity-pulse 2s ease-in-out infinite;
+        }
+        @keyframes scarcity-pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        .scarcity-desktop {
+          display: inline-flex;
+        }
+        .hero-mobile-wrapper .scarcity-pill {
+          display: none;
         }
         @media (max-width: 640px) {
-          .dot {
+          .scarcity-desktop {
+            display: none;
+          }
+          .hero-mobile-wrapper .scarcity-pill {
+            display: inline-flex;
+            font-size: 10px;
+            padding: 8px 12px;
+          }
+          .scarcity-dot {
             width: 6px;
             height: 6px;
           }
         }
+
         /* Mobile Wrapper */
         .hero-mobile-wrapper {
           display: none;
@@ -186,34 +202,6 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             gap: 12px;
             width: 100%;
             position: relative;
-          }
-        }
-        
-        /* Scarcity Bar visibility */
-        .scarcity-bar {
-          display: inline-flex;
-        }
-        .scarcity-bar-mobile {
-          display: none;
-        }
-        @media (max-width: 640px) {
-          .hero-content .scarcity-bar {
-            display: none;
-          }
-          .scarcity-bar-mobile {
-            display: inline-flex;
-            position: relative;
-            z-index: 10;
-          }
-        }
-
-        /* Pill visibility */
-        .pill-desktop {
-          display: inline-flex;
-        }
-        @media (max-width: 640px) {
-          .pill-desktop {
-            display: none;
           }
         }
 
@@ -295,62 +283,23 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           }
         }
 
-        /* Scarcity Bar */
-        .scarcity-bar {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 12px 20px;
-          background: rgba(255, 193, 7, 0.08);
-          border: 1px solid rgba(255, 193, 7, 0.3);
-          border-radius: 10px;
-          font-size: 13px;
-          font-weight: 600;
-          color: rgba(255, 255, 255, 0.9);
-          margin-bottom: 8px;
-        }
-        .scarcity-bar strong {
-          color: var(--neon);
-          font-weight: 900;
-        }
-        .scarcity-pulse {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: #ffc107;
-          box-shadow: 0 0 12px rgba(255, 193, 7, 0.6);
-          animation: pulse-warning 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse-warning {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.2); }
-        }
-        @media (max-width: 640px) {
-          .scarcity-bar {
-            padding: 10px 14px;
-            font-size: 11px;
-            gap: 8px;
-            text-align: center;
-          }
-        }
-
         .hero-title {
-          margin: 18px 0 8px;
+          margin: 12px 0 12px;
           font-weight: 950;
-          font-size: clamp(32px, 5.2vw, 58px);
+          font-size: clamp(32px, 5.2vw, 56px);
           line-height: 1.05;
           letter-spacing: -2px;
           color: #fff;
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 2px;
         }
         .hero-title .accent { 
           color: var(--neon); 
         }
         .title-dlc {
-          font-size: clamp(18px, 3vw, 28px);
-          color: rgba(255,255,255,.7);
+          font-size: clamp(16px, 2.5vw, 24px);
+          color: rgba(255,255,255,.6);
           font-weight: 700;
           letter-spacing: -0.5px;
         }
@@ -358,72 +307,62 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-title {
             font-size: 28px;
             letter-spacing: -1.5px;
-            margin: 14px 0 8px;
+            margin: 10px 0 10px;
             text-align: center;
             align-items: center;
           }
           .title-dlc {
-            font-size: 16px;
+            font-size: 14px;
           }
         }
 
-        /* Price Anchoring */
-        .hero-price-anchor {
+        /* Price Display - Clean & Minimal */
+        .hero-price {
           display: flex;
-          align-items: center;
-          gap: 16px;
-          margin-bottom: 16px;
+          align-items: baseline;
+          gap: 12px;
+          margin-bottom: 14px;
         }
-        .original-price {
-          font-size: 18px;
-          font-weight: 600;
+        .price-from {
+          font-size: 15px;
+          font-weight: 500;
           color: rgba(255,255,255,.5);
+        }
+        .price-from s {
           text-decoration: line-through;
         }
-        .current-price {
-          font-size: 42px;
+        .price-now {
+          font-size: 28px;
           font-weight: 950;
           color: var(--neon);
-          text-shadow: 0 0 30px rgba(0,255,65,.4);
-          letter-spacing: -2px;
-          padding: 8px 20px;
-          background: rgba(0,255,65,.08);
-          border: 2px solid rgba(0,255,65,.3);
-          border-radius: 12px;
+          letter-spacing: -1px;
         }
         @media (max-width: 640px) {
-          .hero-price-anchor {
+          .hero-price {
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
           }
-          .original-price {
-            font-size: 15px;
+          .price-from {
+            font-size: 13px;
           }
-          .current-price {
-            font-size: 32px;
-            padding: 6px 16px;
+          .price-now {
+            font-size: 24px;
           }
         }
 
         .hero-sub {
-          max-width: 52ch;
+          max-width: 48ch;
           font-size: 16px;
           line-height: 1.65;
-          color: rgba(255,255,255,.8);
-          margin-bottom: 20px;
+          color: rgba(255,255,255,.75);
+          margin-bottom: 22px;
           font-weight: 500;
-        }
-        .hero-sub strong {
-          color: #fff;
-          text-decoration: underline;
-          text-decoration-color: var(--neon);
-          text-underline-offset: 3px;
         }
         @media (max-width: 640px) {
           .hero-sub {
             font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 16px;
+            line-height: 1.55;
+            margin-bottom: 18px;
             text-align: center;
           }
           .hero-sub br {
@@ -434,84 +373,67 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         .hero-actions {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 20px;
           flex-wrap: wrap;
         }
         @media (max-width: 640px) {
           .hero-actions {
-            gap: 12px;
+            gap: 14px;
             flex-direction: column;
             align-items: center;
             width: 100%;
           }
-          .hero-actions .btn {
-            width: 100%;
-            justify-content: center;
-          }
         }
 
-        /* Social Proof Badge */
-        .social-proof-badge {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 12px 18px;
-          background: rgba(255,255,255,.04);
-          border: 1px solid rgba(255,255,255,.12);
-          border-radius: 12px;
-        }
-        .social-proof-badge .stars {
-          color: #ffc107;
-          font-size: 14px;
-          letter-spacing: 1px;
-        }
-        .social-proof-badge span {
-          font-size: 13px;
-          font-weight: 700;
-          color: rgba(255,255,255,.85);
-        }
-        @media (max-width: 640px) {
-          .social-proof-badge {
-            padding: 10px 14px;
-            gap: 8px;
-          }
-          .social-proof-badge .stars {
-            font-size: 12px;
-          }
-          .social-proof-badge span {
-            font-size: 12px;
-          }
-        }
-
-        /* Trust Seal */
-        .trust-seal {
+        /* Social Proof with Avatars */
+        .social-proof {
           display: flex;
           align-items: center;
           gap: 12px;
-          margin-top: 16px;
+        }
+        .avatars-stack {
+          display: flex;
+        }
+        .avatar-mini {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: 2px solid var(--bg);
+          object-fit: cover;
+          margin-left: -10px;
+        }
+        .avatar-mini:first-child {
+          margin-left: 0;
+        }
+        .social-text {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+        }
+        .social-text .stars {
+          color: var(--neon);
           font-size: 12px;
-          color: rgba(255,255,255,.6);
-          font-weight: 500;
+          letter-spacing: 1px;
         }
-        .trust-seal .separator {
-          opacity: 0.4;
+        .social-text .count {
+          font-size: 12px;
+          font-weight: 700;
+          color: rgba(255,255,255,.7);
         }
         @media (max-width: 640px) {
-          .trust-seal {
-            justify-content: center;
+          .social-proof {
+            gap: 10px;
+          }
+          .avatar-mini {
+            width: 28px;
+            height: 28px;
+            margin-left: -8px;
+          }
+          .social-text .stars {
             font-size: 11px;
-            gap: 8px;
           }
-        }
-
-        @media (max-width: 640px) {
-          .animate-float-in {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-          .pill {
-            align-self: center;
+          .social-text .count {
+            font-size: 11px;
           }
         }
 
