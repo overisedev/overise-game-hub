@@ -23,11 +23,11 @@ const FAQ_OPTIONS: ChatOption[] = [
   },
   {
     label: "Como funciona o desbloqueio?",
-    response: "Após a compra, você recebe acesso imediato ao nosso app exclusivo. Basta instalar no seu celular e todos os jogos estarão disponíveis para jogar offline, sem precisar de console!"
+    response: "Após a compra, você recebe acesso imediato à sua conta Steam desbloqueada. Basta fazer login no seu PC e todos os jogos estarão disponíveis para baixar e jogar!"
   },
   {
-    label: "Funciona em qualquer celular?",
-    response: "Sim! Funciona em celulares Android e iPhone. O app é leve e otimizado para rodar perfeitamente em qualquer dispositivo."
+    label: "Funciona em qualquer PC?",
+    response: "Sim! Funciona em qualquer computador Windows. Basta ter a Steam instalada e fazer login com a conta desbloqueada."
   },
   {
     label: "É seguro? Tem garantia?",
