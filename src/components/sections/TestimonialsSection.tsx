@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
 // Import avatar images
 import jzAvatar from '@/assets/testimonials/jz.jpg';
@@ -29,7 +29,72 @@ const testimonials = [
     avatar: wlAvatar,
     text: 'Só neste mês eu economizei uns 500 reais. Eu ia comprar dois lançamentos caros mas peguei o plano vitalício aqui e já estou jogando os dois. Recomendo demais.',
   },
+  {
+    name: 'Lynguinho',
+    avatar: null,
+    text: 'Simplesmente uma obra prima, comprei e deu tudo certinho, e o suporte atende muito rápido além de ser bom, super recomendo.',
+  },
+  {
+    name: 'Cliente',
+    avatar: null,
+    text: 'Obrigado irmão slc. Tem tudo mesmo. Brabo demais!',
+  },
 ];
+
+const videoTestimonials = [
+  { id: 1, src: '/videos/testimonial-1.mp4' },
+  { id: 2, src: '/videos/testimonial-2.mov' },
+  { id: 3, src: '/videos/testimonial-3.mp4' },
+];
+
+function VideoCard({ src }: { src: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  return (
+    <div className="video-testimonial-card" onClick={togglePlay}>
+      <video
+        ref={videoRef}
+        src={src}
+        muted={isMuted}
+        loop
+        playsInline
+        className="video-testimonial-video"
+        onEnded={() => setIsPlaying(false)}
+      />
+      <div className={`video-overlay ${isPlaying ? 'playing' : ''}`}>
+        {!isPlaying && (
+          <div className="play-button">
+            <Play size={32} fill="white" />
+          </div>
+        )}
+      </div>
+      <button className="mute-button" onClick={toggleMute}>
+        {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+      </button>
+    </div>
+  );
+}
 
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -101,11 +166,17 @@ export function TestimonialsSection() {
                   </div>
                   <p className="testimonial-text">"{t.text}"</p>
                   <div className="testimonial-author">
-                    <img 
-                      src={t.avatar} 
-                      alt={`Foto de ${t.name}`}
-                      className="testimonial-avatar-img"
-                    />
+                    {t.avatar ? (
+                      <img 
+                        src={t.avatar} 
+                        alt={`Foto de ${t.name}`}
+                        className="testimonial-avatar-img"
+                      />
+                    ) : (
+                      <div className="testimonial-avatar-placeholder">
+                        {t.name.charAt(0).toUpperCase()}
+                      </div>
+                    )}
                     <span className="testimonial-name">{t.name}</span>
                   </div>
                 </div>
@@ -133,6 +204,22 @@ export function TestimonialsSection() {
           />
         ))}
       </div>
+
+      {/* Video Testimonials Section */}
+      <motion.div 
+        className="video-testimonials-section"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <h3 className="video-testimonials-title">DEPOIMENTOS EM VÍDEO</h3>
+        <div className="video-testimonials-grid">
+          {videoTestimonials.map((video) => (
+            <VideoCard key={video.id} src={video.src} />
+          ))}
+        </div>
+      </motion.div>
 
       <style>{`
         .testimonials-header {
@@ -286,6 +373,128 @@ export function TestimonialsSection() {
           background: var(--neon);
           width: 24px;
           border-radius: 4px;
+        }
+
+        .testimonial-avatar-placeholder {
+          width: 40px;
+          height: 40px;
+          border-radius: 10px;
+          background: linear-gradient(135deg, rgba(0,255,65,.3), rgba(0,255,65,.1));
+          border: 2px solid rgba(0,255,65,.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 16px;
+          color: var(--neon);
+        }
+
+        .video-testimonials-section {
+          margin-top: 48px;
+          text-align: center;
+        }
+
+        .video-testimonials-title {
+          font-size: clamp(18px, 3vw, 24px);
+          font-weight: 900;
+          color: #fff;
+          margin-bottom: 24px;
+          letter-spacing: -0.5px;
+        }
+
+        .video-testimonials-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
+        }
+
+        @media (max-width: 1024px) {
+          .video-testimonials-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .video-testimonials-grid {
+            grid-template-columns: 1fr;
+            max-width: 300px;
+            margin: 0 auto;
+          }
+        }
+
+        .video-testimonial-card {
+          position: relative;
+          border-radius: var(--r2);
+          overflow: hidden;
+          background: #000;
+          aspect-ratio: 9/16;
+          cursor: pointer;
+          border: 1px solid rgba(255,255,255,.10);
+        }
+
+        .video-testimonial-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .video-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0,0,0,.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all .3s ease;
+        }
+
+        .video-overlay.playing {
+          background: transparent;
+          opacity: 0;
+        }
+
+        .video-testimonial-card:hover .video-overlay.playing {
+          opacity: 1;
+          background: rgba(0,0,0,.2);
+        }
+
+        .play-button {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          background: rgba(0,255,65,.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-left: 4px;
+          transition: transform .2s ease;
+        }
+
+        .video-testimonial-card:hover .play-button {
+          transform: scale(1.1);
+        }
+
+        .mute-button {
+          position: absolute;
+          bottom: 12px;
+          right: 12px;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: rgba(0,0,0,.6);
+          border: 1px solid rgba(255,255,255,.2);
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all .2s ease;
+          z-index: 10;
+        }
+
+        .mute-button:hover {
+          background: rgba(0,255,65,.3);
+          border-color: rgba(0,255,65,.5);
         }
       `}</style>
     </section>
