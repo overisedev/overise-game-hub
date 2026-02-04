@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock } from 'lucide-react';
+import { Timer } from 'lucide-react';
 
 interface UrgencyBarProps {
   isVisible: boolean;
@@ -38,12 +38,15 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
           exit={{ y: -100, opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
         >
+          {/* Gradient glow effect */}
+          <div className="urgency-glow" />
+          
           <div className="urgency-content">
             <div className="urgency-left">
-              <div className="urgency-icon">
-                <Clock size={16} />
+              <div className="urgency-badge">
+                <Timer size={14} />
+                <span>OFERTA LIMITADA</span>
               </div>
-              <span className="urgency-label">OFERTA LIMITADA</span>
               <span className="urgency-text">Preço promocional termina em:</span>
             </div>
             
@@ -68,10 +71,26 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
               left: 0;
               right: 0;
               z-index: 1001;
-              background: rgba(8, 8, 8, 0.95);
-              border-bottom: 1px solid rgba(0, 255, 65, 0.15);
+              background: linear-gradient(90deg, 
+                rgba(0, 30, 10, 0.98) 0%,
+                rgba(5, 5, 5, 0.98) 50%,
+                rgba(0, 30, 10, 0.98) 100%
+              );
+              border-bottom: 1px solid rgba(0, 255, 65, 0.25);
               padding: 10px 20px;
               backdrop-filter: blur(12px);
+              overflow: hidden;
+            }
+            
+            .urgency-glow {
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 600px;
+              height: 100%;
+              background: radial-gradient(ellipse at center, rgba(0, 255, 65, 0.08) 0%, transparent 70%);
+              pointer-events: none;
             }
             
             .urgency-content {
@@ -81,37 +100,35 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
               align-items: center;
               justify-content: space-between;
               gap: 20px;
+              position: relative;
+              z-index: 1;
             }
             
             .urgency-left {
               display: flex;
               align-items: center;
-              gap: 12px;
+              gap: 14px;
             }
             
-            .urgency-icon {
-              width: 28px;
-              height: 28px;
-              border-radius: 8px;
-              background: rgba(0, 255, 65, 0.1);
-              border: 1px solid rgba(0, 255, 65, 0.25);
+            .urgency-badge {
               display: flex;
               align-items: center;
-              justify-content: center;
+              gap: 8px;
+              padding: 6px 12px;
+              border-radius: 8px;
+              background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.05));
+              border: 1px solid rgba(0, 255, 65, 0.35);
               color: var(--neon);
-            }
-            
-            .urgency-label {
               font-size: 11px;
-              font-weight: 800;
-              color: var(--neon);
+              font-weight: 900;
               letter-spacing: 0.5px;
+              box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
             }
             
             .urgency-text {
               font-size: 13px;
               font-weight: 600;
-              color: rgba(255, 255, 255, 0.7);
+              color: rgba(255, 255, 255, 0.75);
             }
             
             .urgency-right {
@@ -124,53 +141,53 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
               display: flex;
               align-items: center;
               gap: 6px;
-              background: rgba(0, 255, 65, 0.08);
-              padding: 8px 14px;
+              background: rgba(0, 0, 0, 0.5);
+              padding: 8px 16px;
               border-radius: 8px;
-              border: 1px solid rgba(0, 255, 65, 0.2);
+              border: 1px solid rgba(255, 255, 255, 0.1);
             }
             
             .urgency-timer span {
-              font-size: 15px;
+              font-size: 16px;
               font-weight: 900;
-              color: var(--neon);
+              color: #fff;
               font-family: monospace;
-              letter-spacing: 1px;
+              letter-spacing: 2px;
             }
             
             .urgency-cta {
               display: inline-flex;
               align-items: center;
-              gap: 6px;
-              padding: 8px 16px;
-              border-radius: 8px;
+              gap: 8px;
+              padding: 10px 20px;
+              border-radius: 10px;
               background: var(--neon);
               color: #000;
-              font-weight: 800;
+              font-weight: 900;
               font-size: 12px;
               text-transform: uppercase;
               text-decoration: none;
-              letter-spacing: 0.3px;
+              letter-spacing: 0.5px;
               transition: all 0.2s ease;
+              box-shadow: 0 0 25px rgba(0, 255, 65, 0.3);
             }
             
             .urgency-cta:hover {
-              box-shadow: 0 8px 25px rgba(0, 255, 65, 0.3);
+              box-shadow: 0 0 35px rgba(0, 255, 65, 0.5);
               transform: translateY(-1px);
             }
             
             @media (max-width: 768px) {
-              .urgency-label {
+              .urgency-text {
                 display: none;
               }
               
-              .urgency-text {
-                font-size: 11px;
+              .urgency-badge span {
+                display: none;
               }
               
-              .urgency-icon {
-                width: 24px;
-                height: 24px;
+              .urgency-badge {
+                padding: 6px 8px;
               }
             }
             
@@ -179,27 +196,16 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
                 padding: 8px 12px;
               }
               
-              .urgency-text {
-                display: none;
-              }
-              
-              .urgency-left::after {
-                content: 'Termina em:';
-                font-size: 11px;
-                font-weight: 600;
-                color: rgba(255, 255, 255, 0.7);
-              }
-              
               .urgency-timer {
-                padding: 6px 10px;
+                padding: 6px 12px;
               }
               
               .urgency-timer span {
-                font-size: 13px;
+                font-size: 14px;
               }
               
               .urgency-cta {
-                padding: 6px 12px;
+                padding: 8px 14px;
                 font-size: 11px;
               }
             }
