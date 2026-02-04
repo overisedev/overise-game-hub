@@ -16,7 +16,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section hero-section" style={{ paddingTop: 'clamp(110px, 16vw, 160px)' }}>
+    <section className="section-top section hero-section" style={{ paddingTop: 'clamp(90px, 12vw, 140px)' }}>
       <div className="container-main">
         <div className="hero-grid">
           {/* Mobile Layout: Card + Content */}
@@ -255,8 +255,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             text-align: center;
             position: relative;
             z-index: 5;
-            padding-top: 20px;
-            padding-bottom: 24px;
+            padding-top: 10px;
+            padding-bottom: 16px;
           }
         }
 
@@ -282,17 +282,17 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-title {
-            font-size: 36px;
+            font-size: 32px;
             letter-spacing: -1.5px;
-            margin: 16px 0 14px;
+            margin: 8px 0 8px;
             text-align: center;
             align-items: center;
-            gap: 4px;
+            gap: 2px;
           }
           .title-dlc {
-            font-size: 17px;
-            color: rgba(255,255,255,.8);
-            margin-top: 4px;
+            font-size: 15px;
+            color: rgba(255,255,255,.75);
+            margin-top: 2px;
           }
         }
 
@@ -320,16 +320,16 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         @media (max-width: 640px) {
           .hero-price {
             justify-content: center;
-            gap: 14px;
-            margin-bottom: 20px;
-            margin-top: 6px;
+            gap: 10px;
+            margin-bottom: 12px;
+            margin-top: 4px;
           }
           .price-from {
-            font-size: 16px;
-            color: rgba(255,255,255,.7);
+            font-size: 14px;
+            color: rgba(255,255,255,.65);
           }
           .price-now {
-            font-size: 32px;
+            font-size: 28px;
           }
         }
 
@@ -343,12 +343,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-sub {
-            font-size: 16px;
-            line-height: 1.65;
-            margin-bottom: 24px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
             text-align: center;
-            color: rgba(255,255,255,.9);
-            padding: 0 8px;
+            color: rgba(255,255,255,.85);
+            padding: 0 4px;
           }
           .hero-sub br {
             display: none;
