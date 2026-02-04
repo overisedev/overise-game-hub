@@ -178,6 +178,59 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
             }
             
             @media (max-width: 768px) {
+              .urgency-bar {
+                padding: 8px 16px;
+              }
+              
+              .urgency-content {
+                gap: 12px;
+              }
+              
+              .urgency-left {
+                gap: 10px;
+              }
+              
+              .urgency-text {
+                display: block;
+                font-size: 11px;
+              }
+              
+              .urgency-badge span {
+                display: inline;
+                font-size: 9px;
+              }
+              
+              .urgency-badge {
+                padding: 5px 10px;
+                gap: 6px;
+              }
+              
+              .urgency-badge svg {
+                width: 12px;
+                height: 12px;
+              }
+              
+              .urgency-timer {
+                padding: 6px 10px;
+              }
+              
+              .urgency-timer span {
+                font-size: 13px;
+                letter-spacing: 1px;
+              }
+              
+              .urgency-cta {
+                padding: 8px 12px;
+                font-size: 10px;
+                border-radius: 8px;
+              }
+            }
+            
+            @media (max-width: 400px) {
+              .urgency-bar {
+                padding: 6px 10px;
+              }
+              
               .urgency-text {
                 display: none;
               }
@@ -187,26 +240,20 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
               }
               
               .urgency-badge {
-                padding: 6px 8px;
-              }
-            }
-            
-            @media (max-width: 540px) {
-              .urgency-bar {
-                padding: 8px 12px;
+                padding: 4px 6px;
               }
               
               .urgency-timer {
-                padding: 6px 12px;
+                padding: 5px 8px;
               }
               
               .urgency-timer span {
-                font-size: 14px;
+                font-size: 12px;
               }
               
               .urgency-cta {
-                padding: 8px 14px;
-                font-size: 11px;
+                padding: 6px 10px;
+                font-size: 9px;
               }
             }
           `}</style>

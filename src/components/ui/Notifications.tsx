@@ -86,7 +86,7 @@ export function Notifications() {
           position: fixed;
           bottom: 20px;
           left: 20px;
-          z-index: 1000;
+          z-index: 900;
           display: flex;
           flex-direction: column;
           gap: 8px;
@@ -95,7 +95,7 @@ export function Notifications() {
         @media (max-width: 640px) {
           .notifications-container {
             left: 12px;
-            right: 12px;
+            right: 80px;
             bottom: 12px;
           }
         }
