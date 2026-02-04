@@ -49,7 +49,7 @@ const videoTestimonials = [
 
 function VideoCard({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -77,13 +77,15 @@ function VideoCard({ src }: { src: string }) {
       <video
         ref={videoRef}
         src={src}
-        muted={isMuted}
+        muted
         loop
+        autoPlay
         playsInline
-        preload="metadata"
+        preload="auto"
         className="video-testimonial-video"
         onLoadedData={() => setHasLoaded(true)}
-        onEnded={() => setIsPlaying(false)}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
       {!hasLoaded && (
         <div className="video-loading-placeholder">
