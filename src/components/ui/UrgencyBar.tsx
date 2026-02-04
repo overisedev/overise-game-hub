@@ -77,7 +77,7 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
                 rgba(0, 30, 10, 0.98) 100%
               );
               border-bottom: 1px solid rgba(0, 255, 65, 0.25);
-              padding: 10px 20px;
+              padding: 12px 20px;
               backdrop-filter: blur(12px);
               overflow: hidden;
             }
@@ -179,85 +179,56 @@ export function UrgencyBar({ isVisible }: UrgencyBarProps) {
             
             @media (max-width: 768px) {
               .urgency-bar {
-                padding: 8px 14px;
+                padding: 10px 16px;
               }
               
               .urgency-content {
-                gap: 10px;
+                gap: 12px;
+                justify-content: center;
               }
               
               .urgency-left {
-                gap: 8px;
+                gap: 10px;
               }
               
               .urgency-text {
-                display: block;
-                font-size: 10px;
+                display: none;
               }
               
               .urgency-badge {
-                padding: 4px 8px;
-                gap: 5px;
+                padding: 6px 10px;
+                gap: 6px;
               }
               
               .urgency-badge span {
                 display: inline;
-                font-size: 8px;
+                font-size: 9px;
               }
               
               .urgency-badge svg {
-                width: 10px;
-                height: 10px;
+                width: 12px;
+                height: 12px;
               }
               
               .urgency-timer {
-                padding: 5px 8px;
+                padding: 6px 12px;
               }
               
               .urgency-timer span {
-                font-size: 12px;
-                letter-spacing: 1px;
+                font-size: 14px;
+                letter-spacing: 1.5px;
               }
               
               .urgency-cta {
-                padding: 6px 10px;
-                font-size: 9px;
-                border-radius: 6px;
-              }
-            }
-            
-            @media (max-width: 480px) {
-              .urgency-bar {
-                padding: 6px 10px;
-              }
-              
-              .urgency-content {
+                padding: 8px 14px;
+                font-size: 10px;
+                border-radius: 8px;
                 gap: 6px;
               }
               
-              .urgency-left {
-                gap: 6px;
-              }
-              
-              .urgency-text {
-                font-size: 9px;
-              }
-              
-              .urgency-badge {
-                padding: 3px 6px;
-              }
-              
-              .urgency-badge span {
-                font-size: 7px;
-              }
-              
-              .urgency-timer span {
-                font-size: 11px;
-              }
-              
-              .urgency-cta {
-                padding: 5px 8px;
-                font-size: 8px;
+              .urgency-cta svg {
+                width: 12px;
+                height: 12px;
               }
             }
           `}</style>
