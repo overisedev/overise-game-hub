@@ -1,4 +1,5 @@
 import type { Game } from '@/types/game';
+import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
 
 interface HeroSectionProps {
   featuredGame: Game | undefined;
@@ -78,6 +79,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               </a>
             </div>
 
+            <ScarcityBadge />
           </div>
 
           {/* Right - Featured Card (Desktop) */}
