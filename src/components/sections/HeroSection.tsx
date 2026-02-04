@@ -16,7 +16,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section hero-section" style={{ paddingTop: 'clamp(80px, 12vw, 120px)' }}>
+    <section className="section-top section hero-section" style={{ paddingTop: 'clamp(100px, 14vw, 140px)' }}>
       <div className="container-main">
         <div className="hero-grid">
           {/* Mobile Layout: Card + Content */}
@@ -186,7 +186,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             width: 100%;
             position: relative;
           }
@@ -202,9 +202,9 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           .hero-card-mobile {
             display: block;
             width: 100%;
-            max-width: 340px;
+            max-width: 100%;
             border-radius: var(--r2);
-            margin-bottom: -20px;
+            margin-bottom: 0;
             position: relative;
           }
           .hero-card-mobile::after {
@@ -213,17 +213,17 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             bottom: -1px;
             left: -1px;
             right: -1px;
-            height: 60px;
+            height: 80px;
             background: linear-gradient(to bottom, transparent, var(--bg));
             pointer-events: none;
             z-index: 10;
             border-radius: 0 0 var(--r2) var(--r2);
           }
           .hero-card-mobile .hero-card-media {
-            height: 200px;
+            height: 220px;
           }
           .hero-card-mobile .hero-card-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 50%);
+            background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 60%);
           }
           .hero-card-desktop {
             display: none;
@@ -255,18 +255,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             text-align: center;
             position: relative;
             z-index: 5;
-            padding-top: 16px;
-          }
-          .hero-content::before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            left: -50vw;
-            right: -50vw;
-            height: 60px;
-            background: linear-gradient(to bottom, transparent 0%, var(--bg) 80%, var(--bg) 100%);
-            pointer-events: none;
-            z-index: -1;
+            padding-top: 12px;
           }
         }
 
