@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Bot } from 'lucide-react';
+import { MessageCircle, X, Send, ChevronRight } from 'lucide-react';
+import overiseLogo from '@/assets/overise-logo.png';
 
 interface Message {
   id: number;
@@ -72,19 +73,17 @@ export function ChatWidget() {
       return;
     }
 
-    // Add user message
     const userMessage: Message = {
       id: Date.now(),
       type: 'user',
       content: option.label
     };
 
-    // Add bot response
     const botResponse: Message = {
       id: Date.now() + 1,
       type: 'bot',
       content: option.response,
-    options: [
+      options: [
         { label: "Quero desbloquear agora!", isCTA: true, ctaLink: "#planos", response: "" },
         { label: "Tenho outra dúvida", response: "Claro! Escolha uma das opções abaixo:" }
       ]
@@ -116,7 +115,7 @@ export function ChatWidget() {
       id: Date.now() + 1,
       type: 'bot',
       content: "Obrigado pela sua mensagem! Para uma resposta mais rápida, escolha uma das opções abaixo ou acesse nosso suporte no WhatsApp.",
-    options: [
+      options: [
         { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5511999999999", response: "" },
         ...FAQ_OPTIONS.slice(0, 3)
       ]
@@ -149,51 +148,70 @@ export function ChatWidget() {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="absolute bottom-20 right-0 w-[350px] h-[500px] flex flex-col overflow-hidden"
             style={{
-              background: 'rgba(10, 10, 10, 0.98)',
-              border: '1px solid rgba(0, 255, 65, 0.2)',
-              borderRadius: '16px',
-              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 255, 65, 0.1)'
+              background: 'rgba(8, 8, 8, 0.98)',
+              border: '1px solid rgba(0, 255, 65, 0.25)',
+              borderRadius: '20px',
+              boxShadow: '0 15px 50px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 255, 65, 0.08)'
             }}
           >
             {/* Header */}
             <div 
-              className="flex items-center justify-between px-4 py-3"
+              className="flex items-center justify-between px-4 py-3.5"
               style={{
-                background: 'rgba(17, 17, 17, 0.98)',
-                borderBottom: '1px solid rgba(0, 255, 65, 0.15)'
+                background: 'linear-gradient(180deg, rgba(20, 20, 20, 1) 0%, rgba(12, 12, 12, 1) 100%)',
+                borderBottom: '1px solid rgba(0, 255, 65, 0.2)'
               }}
             >
               <div className="flex items-center gap-3">
                 <div 
-                  className="w-9 h-9 rounded-lg flex items-center justify-center"
+                  className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center"
                   style={{ 
-                    background: 'rgba(0, 255, 65, 0.15)',
-                    border: '1px solid rgba(0, 255, 65, 0.3)'
+                    background: '#000',
+                    border: '1px solid rgba(0, 255, 65, 0.3)',
+                    boxShadow: '0 0 15px rgba(0, 255, 65, 0.15)'
                   }}
                 >
-                  <Bot size={18} style={{ color: '#00FF41' }} />
+                  <img 
+                    src={overiseLogo} 
+                    alt="Overise" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm m-0">Assistente IA</h3>
-                  <div className="flex items-center gap-1.5">
+                  <h3 className="text-white font-bold text-[15px] m-0 tracking-tight">Assistente Overise</h3>
+                  <div className="flex items-center gap-1.5 mt-0.5">
                     <span 
                       className="w-2 h-2 rounded-full"
-                      style={{ background: '#00FF41' }}
+                      style={{ 
+                        background: '#00FF41',
+                        boxShadow: '0 0 8px rgba(0, 255, 65, 0.6)'
+                      }}
                     />
-                    <p className="text-xs m-0 font-medium uppercase tracking-wide" style={{ color: '#00FF41' }}>
-                      Online Agora
+                    <p className="text-[11px] m-0 font-semibold uppercase tracking-wider" style={{ color: '#00FF41' }}>
+                      Online
                     </p>
                   </div>
                 </div>
               </div>
               <button 
                 onClick={toggleChat}
-                className="bg-transparent border-none cursor-pointer p-1 transition-colors"
-                style={{ color: '#666' }}
-                onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-                onMouseOut={(e) => e.currentTarget.style.color = '#666'}
+                className="w-8 h-8 rounded-lg flex items-center justify-center bg-transparent cursor-pointer transition-all duration-200"
+                style={{ 
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  color: '#666' 
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.color = '#666';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.background = 'transparent';
+                }}
               >
-                <X size={20} />
+                <X size={16} />
               </button>
             </div>
 
@@ -201,9 +219,9 @@ export function ChatWidget() {
             <div 
               className="flex-1 p-4 overflow-y-auto flex flex-col gap-3"
               style={{ 
-                background: '#000',
+                background: 'linear-gradient(180deg, #050505 0%, #000 100%)',
                 scrollbarWidth: 'thin',
-                scrollbarColor: '#333 #000'
+                scrollbarColor: '#222 #000'
               }}
             >
               {messages.map((message) => (
@@ -215,11 +233,16 @@ export function ChatWidget() {
                       message.type === 'user' ? 'self-end ml-auto' : ''
                     }`}
                     style={{
-                      background: message.type === 'user' ? '#00FF41' : 'rgba(26, 26, 26, 0.9)',
-                      color: message.type === 'user' ? '#000' : '#eee',
-                      borderRadius: message.type === 'user' ? '14px 14px 2px 14px' : '14px 14px 14px 2px',
+                      background: message.type === 'user' 
+                        ? 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)' 
+                        : 'linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(20, 20, 20, 0.95) 100%)',
+                      color: message.type === 'user' ? '#000' : '#f0f0f0',
+                      borderRadius: message.type === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
                       borderLeft: message.type === 'bot' ? '3px solid #00FF41' : 'none',
-                      fontWeight: message.type === 'user' ? 600 : 400
+                      fontWeight: message.type === 'user' ? 600 : 400,
+                      boxShadow: message.type === 'user' 
+                        ? '0 4px 15px rgba(0, 255, 65, 0.3)' 
+                        : '0 4px 15px rgba(0, 0, 0, 0.4)'
                     }}
                   >
                     {message.content}
@@ -232,34 +255,44 @@ export function ChatWidget() {
                         <button
                           key={idx}
                           onClick={() => option.label.includes('outra dúvida') ? handleMoreQuestions() : handleOptionClick(option)}
-                          className="w-full text-left px-3 py-2.5 text-[13px] cursor-pointer transition-all duration-200"
+                          className="chat-option-btn w-full flex items-center justify-between px-4 py-3 text-[13px] cursor-pointer transition-all duration-200"
                           style={{
-                            background: option.isCTA ? '#00FF41' : 'transparent',
-                            border: option.isCTA ? 'none' : '1px solid rgba(255, 255, 255, 0.15)',
-                            color: option.isCTA ? '#000' : '#fff',
-                            borderRadius: '8px',
-                            fontWeight: option.isCTA ? 800 : 400,
+                            background: option.isCTA 
+                              ? 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)' 
+                              : 'linear-gradient(135deg, rgba(25, 25, 25, 0.9) 0%, rgba(18, 18, 18, 0.9) 100%)',
+                            border: option.isCTA ? 'none' : '1px solid rgba(0, 255, 65, 0.2)',
+                            color: option.isCTA ? '#000' : '#e5e5e5',
+                            borderRadius: '12px',
+                            fontWeight: option.isCTA ? 800 : 500,
                             textTransform: option.isCTA ? 'uppercase' : 'none',
-                            textAlign: option.isCTA ? 'center' : 'left'
+                            letterSpacing: option.isCTA ? '0.5px' : 'normal',
+                            boxShadow: option.isCTA 
+                              ? '0 4px 15px rgba(0, 255, 65, 0.25)' 
+                              : '0 2px 10px rgba(0, 0, 0, 0.3)'
                           }}
                           onMouseOver={(e) => {
                             if (!option.isCTA) {
-                              e.currentTarget.style.borderColor = '#00FF41';
+                              e.currentTarget.style.borderColor = 'rgba(0, 255, 65, 0.5)';
+                              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(0, 255, 65, 0.1) 0%, rgba(0, 255, 65, 0.05) 100%)';
                               e.currentTarget.style.color = '#00FF41';
                             } else {
-                              e.currentTarget.style.background = '#00cc33';
+                              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 255, 65, 0.4)';
+                              e.currentTarget.style.transform = 'translateY(-1px)';
                             }
                           }}
                           onMouseOut={(e) => {
                             if (!option.isCTA) {
-                              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                              e.currentTarget.style.color = '#fff';
+                              e.currentTarget.style.borderColor = 'rgba(0, 255, 65, 0.2)';
+                              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(25, 25, 25, 0.9) 0%, rgba(18, 18, 18, 0.9) 100%)';
+                              e.currentTarget.style.color = '#e5e5e5';
                             } else {
-                              e.currentTarget.style.background = '#00FF41';
+                              e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 255, 65, 0.25)';
+                              e.currentTarget.style.transform = 'translateY(0)';
                             }
                           }}
                         >
-                          {option.label}
+                          <span>{option.label}</span>
+                          {!option.isCTA && <ChevronRight size={16} style={{ opacity: 0.5 }} />}
                         </button>
                       ))}
                     </div>
@@ -271,10 +304,10 @@ export function ChatWidget() {
 
             {/* Input Area */}
             <div 
-              className="flex items-center gap-2.5 p-4"
+              className="flex items-center gap-3 p-4"
               style={{
-                background: 'rgba(17, 17, 17, 0.95)',
-                borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+                background: 'linear-gradient(180deg, rgba(12, 12, 12, 1) 0%, rgba(8, 8, 8, 1) 100%)',
+                borderTop: '1px solid rgba(0, 255, 65, 0.15)'
               }}
             >
               <input
@@ -283,23 +316,38 @@ export function ChatWidget() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Digite sua dúvida..."
-                className="flex-1 px-4 py-3 text-sm outline-none"
+                className="flex-1 px-4 py-3 text-sm outline-none transition-all duration-200"
                 style={{
-                  background: '#000',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '25px',
+                  background: 'rgba(0, 0, 0, 0.6)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '12px',
                   color: '#fff'
                 }}
-                onFocus={(e) => e.currentTarget.style.borderColor = '#00FF41'}
-                onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(0, 255, 65, 0.5)';
+                  e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 255, 65, 0.1)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               />
               <button
                 onClick={handleSendMessage}
-                className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-transform hover:scale-110"
+                className="w-11 h-11 rounded-xl flex items-center justify-center cursor-pointer transition-all duration-200"
                 style={{
-                  background: '#00FF41',
+                  background: 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)',
                   border: 'none',
-                  color: '#000'
+                  color: '#000',
+                  boxShadow: '0 4px 15px rgba(0, 255, 65, 0.3)'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 255, 65, 0.4)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 255, 65, 0.3)';
                 }}
               >
                 <Send size={18} />
@@ -312,39 +360,37 @@ export function ChatWidget() {
       {/* Toggle Button */}
       <motion.button
         onClick={toggleChat}
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        className="w-[60px] h-[60px] rounded-full flex items-center justify-center cursor-pointer border-none relative"
+        className="w-[60px] h-[60px] rounded-2xl flex items-center justify-center cursor-pointer border-none relative"
         style={{
-          background: '#00FF41',
-          boxShadow: '0 4px 20px rgba(0, 255, 65, 0.4)',
+          background: 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)',
+          boxShadow: '0 6px 25px rgba(0, 255, 65, 0.4)',
           color: '#000'
         }}
       >
         {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
         
-        {/* Notification Badge */}
+        {/* Notification Badge - Simple dot */}
         {showBadge && !isOpen && (
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center text-[11px] font-bold"
+            className="absolute -top-1 -right-1 w-4 h-4 rounded-full"
             style={{
-              background: '#FF0000',
-              color: '#fff',
-              border: '2px solid #0a0a0a',
+              background: '#FF3B3B',
+              border: '3px solid #0a0a0a',
+              boxShadow: '0 0 10px rgba(255, 59, 59, 0.5)',
               animation: 'pulse 2s infinite'
             }}
-          >
-            1
-          </motion.span>
+          />
         )}
       </motion.button>
 
       <style>{`
         @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.15); opacity: 0.9; }
         }
         
         @media (max-width: 480px) {
