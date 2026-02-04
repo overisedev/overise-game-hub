@@ -137,7 +137,7 @@ export function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-[9999]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+    <div className="fixed bottom-5 right-5 z-[1000]" style={{ fontFamily: "'DM Sans', sans-serif" }}>
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
