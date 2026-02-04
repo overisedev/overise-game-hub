@@ -96,7 +96,7 @@ export function Notifications() {
           .notifications-container {
             left: 12px;
             right: 90px;
-            bottom: 100px;
+            bottom: 20px;
           }
         }
         
