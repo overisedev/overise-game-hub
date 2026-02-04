@@ -15,6 +15,7 @@ import { GameModal } from '@/components/ui/GameModal';
 import { Notifications } from '@/components/ui/Notifications';
 import { UrgencyBar } from '@/components/ui/UrgencyBar';
 import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
+import { ChatWidget } from '@/components/ui/ChatWidget';
 import type { Game } from '@/types/game';
 
 const Index = () => {
@@ -117,6 +118,7 @@ const Index = () => {
       )}
 
       <Notifications />
+      <ChatWidget />
     </div>
   );
 };
