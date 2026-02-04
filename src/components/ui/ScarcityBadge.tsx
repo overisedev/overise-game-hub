@@ -1,22 +1,19 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { Users } from 'lucide-react';
 
 export function ScarcityBadge() {
-  const [units, setUnits] = useState(12);
+  const [users, setUsers] = useState(47);
 
-  // Occasionally decrease units for urgency effect
+  // Occasionally change active users for live effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setUnits(prev => {
-        if (prev > 3) {
-          if (Math.random() > 0.7) {
-            return prev - 1;
-          }
-        }
-        return prev;
+      setUsers(prev => {
+        const change = Math.random() > 0.5 ? 1 : -1;
+        const newValue = prev + change;
+        return Math.max(32, Math.min(58, newValue));
       });
-    }, 45000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
@@ -28,11 +25,9 @@ export function ScarcityBadge() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5, duration: 0.4 }}
     >
-      <div className="scarcity-icon">
-        <Zap size={14} />
-      </div>
+      <div className="scarcity-dot" />
       <span className="scarcity-text">
-        APENAS <strong>{units} UNIDADES</strong> RESTANDO HOJE!
+        <strong>{users} pessoas</strong> estão acessando agora
       </span>
 
       <style>{`
@@ -40,55 +35,50 @@ export function ScarcityBadge() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 10px 18px;
-          background: rgba(0, 255, 65, 0.06);
-          border: 1px solid rgba(0, 255, 65, 0.2);
-          border-radius: 10px;
+          padding: 10px 16px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 999px;
         }
         
-        .scarcity-icon {
-          width: 26px;
-          height: 26px;
-          border-radius: 8px;
-          background: linear-gradient(135deg, var(--neon), #00cc52);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #000;
-          flex-shrink: 0;
+        .scarcity-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--neon);
+          box-shadow: 0 0 12px rgba(0, 255, 65, 0.6);
+          animation: pulse-dot 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-dot {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.1); }
         }
         
         .scarcity-text {
-          font-size: 12px;
-          font-weight: 700;
-          color: rgba(255, 255, 255, 0.8);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
+          font-size: 13px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.7);
         }
         
         .scarcity-text strong {
-          color: var(--neon);
-          font-weight: 900;
+          color: #fff;
+          font-weight: 700;
         }
         
         @media (max-width: 640px) {
           .scarcity-badge {
-            padding: 8px 14px;
+            padding: 8px 12px;
             gap: 8px;
           }
           
-          .scarcity-icon {
-            width: 22px;
-            height: 22px;
-          }
-          
-          .scarcity-icon svg {
-            width: 12px;
-            height: 12px;
+          .scarcity-dot {
+            width: 6px;
+            height: 6px;
           }
           
           .scarcity-text {
-            font-size: 10px;
+            font-size: 11px;
           }
         }
       `}</style>

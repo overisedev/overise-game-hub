@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 
 interface Notification {
   id: number;
@@ -69,7 +69,7 @@ export function Notifications() {
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
           >
             <div className="notif-icon">
-              <Zap size={20} />
+              <ShoppingBag size={18} />
             </div>
             <div className="notif-content">
               <span className="notif-text">
