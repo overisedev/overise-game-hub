@@ -42,15 +42,16 @@ const testimonials = [
 ];
 
 const videoTestimonials = [
-  { id: 1, src: '/videos/testimonial-1.mp4' },
-  { id: 2, src: '/videos/testimonial-2.mov' },
-  { id: 3, src: '/videos/testimonial-3.mp4' },
+  { id: 1, src: '/videos/testimonial-1.mp4', poster: '' },
+  { id: 2, src: '/videos/testimonial-2.mov', poster: '' },
+  { id: 3, src: '/videos/testimonial-3.mp4', poster: '' },
 ];
 
 function VideoCard({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -79,9 +80,16 @@ function VideoCard({ src }: { src: string }) {
         muted={isMuted}
         loop
         playsInline
+        preload="metadata"
         className="video-testimonial-video"
+        onLoadedData={() => setHasLoaded(true)}
         onEnded={() => setIsPlaying(false)}
       />
+      {!hasLoaded && (
+        <div className="video-loading-placeholder">
+          <Play size={32} fill="white" style={{ opacity: 0.5 }} />
+        </div>
+      )}
       <div className={`video-overlay ${isPlaying ? 'playing' : ''}`}>
         {!isPlaying && (
           <div className="play-button">
@@ -98,6 +106,8 @@ function VideoCard({ src }: { src: string }) {
 
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [videoIndex, setVideoIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   
   // Desktop shows 3, tablet 2, mobile 1
   const getVisibleCount = () => {
@@ -111,7 +121,21 @@ export function TestimonialsSection() {
   
   const [visibleCount, setVisibleCount] = useState(getVisibleCount());
   
+  // Check if mobile on mount and resize
+  useState(() => {
+    if (typeof window !== 'undefined') {
+      setIsMobile(window.innerWidth < 640);
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 640);
+        setVisibleCount(getVisibleCount());
+      };
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  });
+  
   const maxIndex = Math.max(0, testimonials.length - visibleCount);
+  const maxVideoIndex = videoTestimonials.length - 1;
   
   const handlePrev = () => {
     setCurrentIndex(prev => Math.max(0, prev - 1));
@@ -119,6 +143,14 @@ export function TestimonialsSection() {
   
   const handleNext = () => {
     setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+  };
+  
+  const handleVideoPrev = () => {
+    setVideoIndex(prev => Math.max(0, prev - 1));
+  };
+  
+  const handleVideoNext = () => {
+    setVideoIndex(prev => Math.min(maxVideoIndex, prev + 1));
   };
   
   const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + visibleCount);
@@ -214,10 +246,58 @@ export function TestimonialsSection() {
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <h3 className="video-testimonials-title">DEPOIMENTOS EM VÍDEO</h3>
-        <div className="video-testimonials-grid">
+        
+        {/* Desktop/Tablet: Grid */}
+        <div className="video-testimonials-grid video-grid-desktop">
           {videoTestimonials.map((video) => (
             <VideoCard key={video.id} src={video.src} />
           ))}
+        </div>
+        
+        {/* Mobile: Carousel */}
+        <div className="video-carousel-mobile">
+          <div className="video-carousel-container">
+            <button 
+              className="carousel-arrow video-carousel-arrow-left"
+              onClick={handleVideoPrev}
+              disabled={videoIndex === 0}
+            >
+              <ChevronLeft size={20} />
+            </button>
+            
+            <div className="video-carousel-track">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={videoIndex}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <VideoCard src={videoTestimonials[videoIndex].src} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            
+            <button 
+              className="carousel-arrow video-carousel-arrow-right"
+              onClick={handleVideoNext}
+              disabled={videoIndex >= maxVideoIndex}
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+          
+          {/* Video dots indicator */}
+          <div className="carousel-dots video-carousel-dots">
+            {videoTestimonials.map((_, idx) => (
+              <button
+                key={idx}
+                className={`carousel-dot ${idx === videoIndex ? 'active' : ''}`}
+                onClick={() => setVideoIndex(idx)}
+              />
+            ))}
+          </div>
         </div>
       </motion.div>
 
@@ -407,6 +487,14 @@ export function TestimonialsSection() {
           grid-template-columns: repeat(3, 1fr);
           gap: 16px;
         }
+        
+        .video-grid-desktop {
+          display: grid;
+        }
+        
+        .video-carousel-mobile {
+          display: none;
+        }
 
         @media (max-width: 1024px) {
           .video-testimonials-grid {
@@ -415,10 +503,35 @@ export function TestimonialsSection() {
         }
 
         @media (max-width: 640px) {
-          .video-testimonials-grid {
-            grid-template-columns: 1fr;
-            max-width: 300px;
-            margin: 0 auto;
+          .video-grid-desktop {
+            display: none;
+          }
+          
+          .video-carousel-mobile {
+            display: block;
+          }
+          
+          .video-carousel-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+          }
+          
+          .video-carousel-track {
+            width: 200px;
+            flex-shrink: 0;
+          }
+          
+          .video-carousel-arrow-left,
+          .video-carousel-arrow-right {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+          }
+          
+          .video-carousel-dots {
+            margin-top: 16px;
           }
         }
 
@@ -426,7 +539,7 @@ export function TestimonialsSection() {
           position: relative;
           border-radius: var(--r2);
           overflow: hidden;
-          background: #000;
+          background: #111;
           aspect-ratio: 9/16;
           cursor: pointer;
           border: 1px solid rgba(255,255,255,.10);
@@ -436,6 +549,16 @@ export function TestimonialsSection() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          background: #111;
+        }
+        
+        .video-loading-placeholder {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, #1a1a1a, #0a0a0a);
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .video-overlay {
