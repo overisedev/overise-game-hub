@@ -281,14 +281,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-title {
-            font-size: 28px;
+            font-size: 34px;
             letter-spacing: -1.5px;
-            margin: 10px 0 10px;
+            margin: 14px 0 12px;
             text-align: center;
             align-items: center;
           }
           .title-dlc {
-            font-size: 14px;
+            font-size: 16px;
+            color: rgba(255,255,255,.75);
           }
         }
 
@@ -316,13 +317,15 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         @media (max-width: 640px) {
           .hero-price {
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 16px;
           }
           .price-from {
-            font-size: 13px;
+            font-size: 15px;
+            color: rgba(255,255,255,.6);
           }
           .price-now {
-            font-size: 24px;
+            font-size: 30px;
           }
         }
 
@@ -336,10 +339,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .hero-sub {
-            font-size: 14px;
-            line-height: 1.55;
-            margin-bottom: 18px;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
             text-align: center;
+            color: rgba(255,255,255,.85);
           }
           .hero-sub br {
             display: none;
