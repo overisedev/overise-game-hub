@@ -1,4 +1,46 @@
 import { motion } from "framer-motion";
+import { useCallback } from "react";
+
+// Função para capturar UTMs do URL ou do UTMify
+function getUTMParams(): string {
+  const params = new URLSearchParams(window.location.search);
+  const utmParams = new URLSearchParams();
+  
+  // Lista de parâmetros UTM padrão + extras do UTMify
+  const utmKeys = [
+    'utm_source', 'utm_medium', 'utm_campaign', 
+    'utm_term', 'utm_content', 'utm_id',
+    'fbclid', 'gclid', 'ttclid', 'sck', 'src'
+  ];
+  
+  utmKeys.forEach(key => {
+    const value = params.get(key);
+    if (value) {
+      utmParams.append(key, value);
+    }
+  });
+  
+  // Tenta pegar do localStorage (onde UTMify salva)
+  try {
+    const storedUtms = localStorage.getItem('__utmify_session_data');
+    if (storedUtms) {
+      const parsed = JSON.parse(storedUtms);
+      if (parsed.utm_source && !utmParams.has('utm_source')) {
+        utmParams.append('utm_source', parsed.utm_source);
+      }
+      if (parsed.utm_medium && !utmParams.has('utm_medium')) {
+        utmParams.append('utm_medium', parsed.utm_medium);
+      }
+      if (parsed.utm_campaign && !utmParams.has('utm_campaign')) {
+        utmParams.append('utm_campaign', parsed.utm_campaign);
+      }
+    }
+  } catch (e) {
+    // Silently fail
+  }
+  
+  return utmParams.toString();
+}
 
 export function PricingSection() {
   const plans = [
@@ -126,7 +168,10 @@ export function PricingSection() {
               className={`plan-btn btn-${plan.colorTheme}`}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                
+                // Dispara evento Meta Pixel
                 if (typeof window !== "undefined" && (window as any).fbq) {
                   (window as any).fbq("track", "InitiateCheckout", {
                     content_name: plan.name,
@@ -134,6 +179,15 @@ export function PricingSection() {
                     currency: "BRL",
                   });
                 }
+                
+                // Adiciona UTMs à URL de checkout
+                const utmString = getUTMParams();
+                const separator = plan.checkoutUrl.includes('?') ? '&' : '?';
+                const finalUrl = utmString 
+                  ? `${plan.checkoutUrl}${separator}${utmString}`
+                  : plan.checkoutUrl;
+                
+                window.open(finalUrl, '_blank', 'noopener,noreferrer');
               }}
             >
               {plan.btnText || "Desbloquear"}
