@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, Bot } from 'lucide-react';
 
 interface Message {
   id: number;
@@ -18,23 +18,23 @@ interface ChatOption {
 
 const FAQ_OPTIONS: ChatOption[] = [
   {
-    label: "💰 Qual o preço do acesso?",
+    label: "Qual o preço do acesso?",
     response: "O acesso vitalício custa apenas R$39,99 por um pagamento único! Você terá acesso a mais de 6.500 jogos para sempre, sem mensalidades."
   },
   {
-    label: "🎮 Como funciona o desbloqueio?",
+    label: "Como funciona o desbloqueio?",
     response: "Após a compra, você recebe acesso imediato ao nosso app exclusivo. Basta instalar no seu celular e todos os jogos estarão disponíveis para jogar offline, sem precisar de console!"
   },
   {
-    label: "📱 Funciona em qualquer celular?",
+    label: "Funciona em qualquer celular?",
     response: "Sim! Funciona em celulares Android e iPhone. O app é leve e otimizado para rodar perfeitamente em qualquer dispositivo."
   },
   {
-    label: "🔒 É seguro? Tem garantia?",
+    label: "É seguro? Tem garantia?",
     response: "100% seguro! Oferecemos garantia de 7 dias. Se não gostar, devolvemos seu dinheiro sem perguntas. Mais de 50 mil clientes satisfeitos!"
   },
   {
-    label: "⚡ Recebo na hora?",
+    label: "Recebo na hora?",
     response: "Sim! O acesso é liberado automaticamente após a confirmação do pagamento. Em poucos minutos você já estará jogando!"
   }
 ];
@@ -45,12 +45,12 @@ export function ChatWidget() {
     {
       id: 1,
       type: 'bot',
-      content: "Olá! 👋 Sou a IA da Overise. Posso tirar suas dúvidas sobre o desbloqueio.",
+      content: "Olá! Sou o assistente da Overise. Tem alguma dúvida sobre o pacote de jogos? Estou aqui para ajudar!",
     },
     {
       id: 2,
       type: 'bot',
-      content: "Digite sua dúvida abaixo ou escolha uma opção:",
+      content: "Escolha uma opção ou digite sua dúvida:",
       options: FAQ_OPTIONS
     }
   ]);
@@ -84,9 +84,9 @@ export function ChatWidget() {
       id: Date.now() + 1,
       type: 'bot',
       content: option.response,
-      options: [
-        { label: "🚀 Quero desbloquear agora!", isCTA: true, ctaLink: "#planos", response: "" },
-        { label: "↩️ Tenho outra dúvida", response: "Claro! Escolha uma das opções abaixo:" }
+    options: [
+        { label: "Quero desbloquear agora!", isCTA: true, ctaLink: "#planos", response: "" },
+        { label: "Tenho outra dúvida", response: "Claro! Escolha uma das opções abaixo:" }
       ]
     };
 
@@ -116,8 +116,8 @@ export function ChatWidget() {
       id: Date.now() + 1,
       type: 'bot',
       content: "Obrigado pela sua mensagem! Para uma resposta mais rápida, escolha uma das opções abaixo ou acesse nosso suporte no WhatsApp.",
-      options: [
-        { label: "📲 Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5511999999999", response: "" },
+    options: [
+        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5511999999999", response: "" },
         ...FAQ_OPTIONS.slice(0, 3)
       ]
     };
@@ -157,34 +157,33 @@ export function ChatWidget() {
           >
             {/* Header */}
             <div 
-              className="flex items-center justify-between p-4"
+              className="flex items-center justify-between px-4 py-3"
               style={{
-                background: 'rgba(17, 17, 17, 0.95)',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+                background: 'rgba(17, 17, 17, 0.98)',
+                borderBottom: '1px solid rgba(0, 255, 65, 0.15)'
               }}
             >
               <div className="flex items-center gap-3">
-                <div className="relative">
-                  <div 
-                    className="w-10 h-10 rounded-full flex items-center justify-center font-black text-sm"
-                    style={{ 
-                      background: 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)',
-                      color: '#000'
-                    }}
-                  >
-                    OV
-                  </div>
-                  <div 
-                    className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full"
-                    style={{ 
-                      background: '#00FF41',
-                      border: '2px solid #111'
-                    }}
-                  />
+                <div 
+                  className="w-9 h-9 rounded-lg flex items-center justify-center"
+                  style={{ 
+                    background: 'rgba(0, 255, 65, 0.15)',
+                    border: '1px solid rgba(0, 255, 65, 0.3)'
+                  }}
+                >
+                  <Bot size={18} style={{ color: '#00FF41' }} />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm m-0">Assistente Overise</h3>
-                  <p className="text-xs m-0 font-medium" style={{ color: '#00FF41' }}>Online Agora</p>
+                  <h3 className="text-white font-semibold text-sm m-0">Assistente IA</h3>
+                  <div className="flex items-center gap-1.5">
+                    <span 
+                      className="w-2 h-2 rounded-full"
+                      style={{ background: '#00FF41' }}
+                    />
+                    <p className="text-xs m-0 font-medium uppercase tracking-wide" style={{ color: '#00FF41' }}>
+                      Online Agora
+                    </p>
+                  </div>
                 </div>
               </div>
               <button 
