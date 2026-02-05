@@ -5,40 +5,48 @@ import { useCallback } from "react";
 function getUTMParams(): string {
   const params = new URLSearchParams(window.location.search);
   const utmParams = new URLSearchParams();
-  
+
   // Lista de parâmetros UTM padrão + extras do UTMify
   const utmKeys = [
-    'utm_source', 'utm_medium', 'utm_campaign', 
-    'utm_term', 'utm_content', 'utm_id',
-    'fbclid', 'gclid', 'ttclid', 'sck', 'src'
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_term",
+    "utm_content",
+    "utm_id",
+    "fbclid",
+    "gclid",
+    "ttclid",
+    "sck",
+    "src",
   ];
-  
-  utmKeys.forEach(key => {
+
+  utmKeys.forEach((key) => {
     const value = params.get(key);
     if (value) {
       utmParams.append(key, value);
     }
   });
-  
+
   // Tenta pegar do localStorage (onde UTMify salva)
   try {
-    const storedUtms = localStorage.getItem('__utmify_session_data');
+    const storedUtms = localStorage.getItem("__utmify_session_data");
     if (storedUtms) {
       const parsed = JSON.parse(storedUtms);
-      if (parsed.utm_source && !utmParams.has('utm_source')) {
-        utmParams.append('utm_source', parsed.utm_source);
+      if (parsed.utm_source && !utmParams.has("utm_source")) {
+        utmParams.append("utm_source", parsed.utm_source);
       }
-      if (parsed.utm_medium && !utmParams.has('utm_medium')) {
-        utmParams.append('utm_medium', parsed.utm_medium);
+      if (parsed.utm_medium && !utmParams.has("utm_medium")) {
+        utmParams.append("utm_medium", parsed.utm_medium);
       }
-      if (parsed.utm_campaign && !utmParams.has('utm_campaign')) {
-        utmParams.append('utm_campaign', parsed.utm_campaign);
+      if (parsed.utm_campaign && !utmParams.has("utm_campaign")) {
+        utmParams.append("utm_campaign", parsed.utm_campaign);
       }
     }
   } catch (e) {
     // Silently fail
   }
-  
+
   return utmParams.toString();
 }
 
@@ -53,7 +61,7 @@ export function PricingSection() {
       colorTheme: "blue",
       features: ["500 jogos inclusos", "Download via Steam", "Modo história liberado", "Acesso na hora"],
       btnText: "Escolher Básico",
-      checkoutUrl: "https://www.ggcheckout.com/checkout/v5/6Ed9FJE8HXebnxREUKCQ",
+      checkoutUrl: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
     },
     {
       name: "Plano Avançado",
@@ -65,7 +73,7 @@ export function PricingSection() {
       colorTheme: "red",
       features: ["700 jogos inclusos", "Jogos novos e lançamentos", "Online nos compatíveis", "Suporte via WhatsApp"],
       btnText: "Quero Esse",
-      checkoutUrl: "https://www.ggcheckout.com/checkout/v5/BvIb4ex53LM73mU3DJsX",
+      checkoutUrl: "https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX",
     },
     {
       name: "Plano Vitalício",
@@ -84,7 +92,7 @@ export function PricingSection() {
         "Seu pra sempre",
       ],
       btnText: "Desbloquear Tudo",
-      checkoutUrl: "https://www.ggcheckout.com/checkout/v5/pdDOCAlm20ZQxjUiglc3",
+      checkoutUrl: "https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3",
     },
   ];
 
@@ -170,7 +178,7 @@ export function PricingSection() {
               whileTap={{ scale: 0.98 }}
               onClick={(e) => {
                 e.preventDefault();
-                
+
                 // Dispara evento Meta Pixel
                 if (typeof window !== "undefined" && (window as any).fbq) {
                   (window as any).fbq("track", "InitiateCheckout", {
@@ -179,15 +187,13 @@ export function PricingSection() {
                     currency: "BRL",
                   });
                 }
-                
+
                 // Adiciona UTMs à URL de checkout
                 const utmString = getUTMParams();
-                const separator = plan.checkoutUrl.includes('?') ? '&' : '?';
-                const finalUrl = utmString 
-                  ? `${plan.checkoutUrl}${separator}${utmString}`
-                  : plan.checkoutUrl;
-                
-                window.open(finalUrl, '_blank', 'noopener,noreferrer');
+                const separator = plan.checkoutUrl.includes("?") ? "&" : "?";
+                const finalUrl = utmString ? `${plan.checkoutUrl}${separator}${utmString}` : plan.checkoutUrl;
+
+                window.open(finalUrl, "_blank", "noopener,noreferrer");
               }}
             >
               {plan.btnText || "Desbloquear"}
