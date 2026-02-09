@@ -35,6 +35,7 @@ interface Plan {
   priceLabel: string;
   badge?: string;
   featured?: boolean;
+  color: string; // HSL accent color
   features: PlanFeature[];
   btnText: string;
   checkoutUrl: string;
@@ -48,6 +49,7 @@ const plans: Plan[] = [
     price: "9",
     priceCents: ",97",
     priceLabel: "Taxa Única",
+    color: "220, 80%, 62%", // blue
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "500 Jogos Inclusos", included: true, bold: true },
@@ -67,6 +69,7 @@ const plans: Plan[] = [
     priceCents: ",97",
     priceLabel: "Taxa Única",
     badge: "Mais Vendido",
+    color: "0, 85%, 55%", // red
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "700 Jogos (+Lançamentos)", included: true, bold: true },
@@ -87,6 +90,7 @@ const plans: Plan[] = [
     priceLabel: "Pagamento Único",
     badge: "Melhor Opção 🔥",
     featured: true,
+    color: "138, 100%, 50%", // neon green
     features: [
       { text: "Biblioteca Completa (+1000)", included: true, bold: true },
       { text: "Seus pra Sempre (Vitalício)", included: true },
@@ -143,24 +147,33 @@ export function PricingSection() {
 }
 
 function PricingCard({ plan }: { plan: Plan }) {
+  const c = plan.color;
+  const isFeatured = !!plan.featured;
+
   return (
     <motion.div
       variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
       whileHover={{ y: -6, transition: { duration: 0.2 } }}
       className={`relative flex flex-col rounded-2xl border px-7 py-8 ${
-        plan.featured
-          ? "border-[hsla(138,100%,50%,0.35)] bg-[hsla(138,100%,50%,0.04)] shadow-[0_0_50px_hsla(138,100%,50%,0.08)]"
-          : "border-[hsla(0,0%,100%,0.15)] bg-[hsla(0,0%,100%,0.04)]"
+        isFeatured ? "scale-[1.03] z-10" : ""
       }`}
+      style={{
+        borderColor: `hsla(${c}, ${isFeatured ? 0.4 : 0.25})`,
+        background: `radial-gradient(ellipse at 50% 0%, hsla(${c}, ${isFeatured ? 0.08 : 0.05}), hsla(0,0%,3%,1) 70%)`,
+        boxShadow: `0 0 ${isFeatured ? 60 : 35}px hsla(${c}, ${isFeatured ? 0.12 : 0.06})`,
+      }}
     >
       {/* Badge */}
       {plan.badge && (
         <span
-          className={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wide whitespace-nowrap ${
-            plan.featured
-              ? "bg-[#00FF41] text-black shadow-[0_4px_20px_hsla(138,100%,50%,0.4)]"
-              : "bg-[hsla(0,0%,100%,0.12)] text-white border border-[hsla(0,0%,100%,0.2)]"
-          }`}
+          className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wide whitespace-nowrap"
+          style={{
+            background: isFeatured
+              ? `hsl(${c})`
+              : `linear-gradient(135deg, hsla(${c}, 0.9), hsla(${c}, 0.7))`,
+            color: isFeatured ? "#000" : "#fff",
+            boxShadow: `0 4px 20px hsla(${c}, 0.4)`,
+          }}
         >
           {plan.badge}
         </span>
@@ -168,38 +181,47 @@ function PricingCard({ plan }: { plan: Plan }) {
 
       {/* Header */}
       <div className="text-center mt-2 mb-6">
-        <h3 className={`text-xl font-black uppercase tracking-wide ${plan.featured ? "text-white text-2xl italic" : "text-white"}`}>
+        <h3 className={`font-black uppercase tracking-wide text-white ${isFeatured ? "text-2xl italic" : "text-xl"}`}>
           {plan.name}
         </h3>
-        <p className={`text-xs font-bold uppercase tracking-[2px] mt-1 ${plan.featured ? "text-[#00FF41]" : "text-[hsla(0,0%,100%,0.55)]"}`}>
+        <p
+          className="text-xs font-bold uppercase tracking-[2px] mt-1"
+          style={{ color: `hsl(${c})` }}
+        >
           {plan.subtitle}
         </p>
       </div>
 
       {/* Price */}
       <div className="text-center mb-6">
-        <p className="text-[13px] text-[hsla(0,0%,100%,0.35)] line-through font-semibold">De {plan.originalPrice}</p>
+        <p className="text-[13px] text-[hsla(0,0%,100%,0.4)] line-through font-semibold">De {plan.originalPrice}</p>
         <div className="flex items-start justify-center leading-none mt-1">
-          <span className={`text-lg font-bold mt-3 mr-1 ${plan.featured ? "text-[#00FF41]" : "text-white"}`}>R$</span>
-          <span className={`text-[80px] font-[800] tracking-[-4px] ${plan.featured ? "text-white drop-shadow-[0_0_20px_hsla(138,100%,50%,0.3)]" : "text-white"}`}>
+          <span className="text-lg font-bold mt-3 mr-1" style={{ color: `hsl(${c})` }}>R$</span>
+          <span
+            className="text-[80px] font-[800] tracking-[-4px] text-white"
+            style={{ filter: `drop-shadow(0 0 20px hsla(${c}, 0.3))` }}
+          >
             {plan.price}
           </span>
           <span className="text-[28px] font-bold text-white mt-4">{plan.priceCents}</span>
         </div>
-        <p className={`text-[11px] font-extrabold uppercase tracking-[1px] mt-1 ${plan.featured ? "text-[#00FF41]" : "text-[hsla(0,0%,100%,0.4)]"}`}>
+        <p
+          className="text-[11px] font-extrabold uppercase tracking-[1px] mt-1"
+          style={{ color: `hsl(${c})` }}
+        >
           {plan.priceLabel}
         </p>
       </div>
 
       {/* Divider */}
-      <div className="w-full h-px bg-[hsla(0,0%,100%,0.06)] mb-6" />
+      <div className="w-full h-px mb-6" style={{ background: `hsla(${c}, 0.12)` }} />
 
       {/* Features */}
       <ul className="flex flex-col gap-3.5 mb-8 flex-1">
         {plan.features.map((f, i) => (
           <li key={i} className="flex items-start gap-3 text-[13.5px]">
             {f.included ? (
-              <span className="text-[#00FF41] font-bold text-sm mt-px flex-shrink-0">✓</span>
+              <span className="font-bold text-sm mt-px flex-shrink-0" style={{ color: `hsl(${c})` }}>✓</span>
             ) : (
               <span className="text-[hsla(0,0%,100%,0.2)] font-bold text-sm mt-px flex-shrink-0">✕</span>
             )}
@@ -215,14 +237,20 @@ function PricingCard({ plan }: { plan: Plan }) {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={(e) => { e.preventDefault(); handleCheckout(plan); }}
-        className={`w-full py-4 rounded-xl text-[13px] font-black uppercase tracking-wide flex items-center justify-center gap-2.5 cursor-pointer transition-shadow duration-300 ${
-          plan.featured
-            ? "bg-[#00FF41] text-black shadow-[0_4px_25px_hsla(138,100%,50%,0.35)] hover:shadow-[0_8px_40px_hsla(138,100%,50%,0.5)]"
-            : "bg-transparent text-white border border-[hsla(0,0%,100%,0.15)] hover:border-[hsla(0,0%,100%,0.3)] hover:bg-[hsla(0,0%,100%,0.04)]"
-        }`}
+        className="w-full py-4 rounded-xl text-[13px] font-black uppercase tracking-wide flex items-center justify-center gap-2.5 cursor-pointer transition-all duration-300"
+        style={isFeatured ? {
+          background: `hsl(${c})`,
+          color: "#000",
+          boxShadow: `0 4px 25px hsla(${c}, 0.35)`,
+        } : {
+          background: "transparent",
+          color: `hsl(${c})`,
+          border: `1.5px solid hsla(${c}, 0.35)`,
+          boxShadow: `0 0 15px hsla(${c}, 0.08)`,
+        }}
       >
         {plan.btnText}
-        {plan.featured && (
+        {isFeatured && (
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
