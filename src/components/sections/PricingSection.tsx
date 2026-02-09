@@ -51,6 +51,7 @@ const plans: Plan[] = [
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "500 Jogos Inclusos", included: true, bold: true },
+      { text: "Seus pra Sempre (Vitalício)", included: true },
       { text: "Modo Campanha", included: true },
       { text: "Suporte Prioritário", included: false },
       { text: "Pedidos de Jogos", included: false },
@@ -69,6 +70,7 @@ const plans: Plan[] = [
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "700 Jogos (+Lançamentos)", included: true, bold: true },
+      { text: "Seus pra Sempre (Vitalício)", included: true },
       { text: "Modo Online (Selecionados)", included: true },
       { text: "Suporte WhatsApp", included: true },
       { text: "Pedidos VIP", included: false },
@@ -87,7 +89,7 @@ const plans: Plan[] = [
     featured: true,
     features: [
       { text: "Biblioteca Completa (+1000)", included: true, bold: true },
-      { text: "Acesso Vitalício Real", included: true },
+      { text: "Seus pra Sempre (Vitalício)", included: true },
       { text: "Multiplayer Liberado", included: true, bold: true },
       { text: "Suporte Prioritário VIP", included: true },
       { text: "Pedidos de Jogos (A gente adiciona)", included: true },
@@ -148,7 +150,7 @@ function PricingCard({ plan }: { plan: Plan }) {
       className={`relative flex flex-col rounded-2xl border px-7 py-8 ${
         plan.featured
           ? "border-[hsla(138,100%,50%,0.35)] bg-[hsla(138,100%,50%,0.04)] shadow-[0_0_50px_hsla(138,100%,50%,0.08)]"
-          : "border-[hsla(0,0%,100%,0.08)] bg-[hsla(0,0%,100%,0.02)]"
+          : "border-[hsla(0,0%,100%,0.15)] bg-[hsla(0,0%,100%,0.04)]"
       }`}
     >
       {/* Badge */}
@@ -157,7 +159,7 @@ function PricingCard({ plan }: { plan: Plan }) {
           className={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wide whitespace-nowrap ${
             plan.featured
               ? "bg-[#00FF41] text-black shadow-[0_4px_20px_hsla(138,100%,50%,0.4)]"
-              : "bg-[hsla(0,0%,100%,0.1)] text-white border border-[hsla(0,0%,100%,0.15)]"
+              : "bg-[hsla(0,0%,100%,0.12)] text-white border border-[hsla(0,0%,100%,0.2)]"
           }`}
         >
           {plan.badge}
@@ -169,7 +171,7 @@ function PricingCard({ plan }: { plan: Plan }) {
         <h3 className={`text-xl font-black uppercase tracking-wide ${plan.featured ? "text-white text-2xl italic" : "text-white"}`}>
           {plan.name}
         </h3>
-        <p className={`text-xs font-bold uppercase tracking-[2px] mt-1 ${plan.featured ? "text-[#00FF41]" : "text-[hsla(0,0%,100%,0.35)]"}`}>
+        <p className={`text-xs font-bold uppercase tracking-[2px] mt-1 ${plan.featured ? "text-[#00FF41]" : "text-[hsla(0,0%,100%,0.55)]"}`}>
           {plan.subtitle}
         </p>
       </div>
