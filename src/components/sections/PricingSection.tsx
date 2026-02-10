@@ -63,12 +63,12 @@ const plans: Plan[] = [
     priceLabel: "Taxa Única",
     color: "138, 75%, 42%", // subtle neon green
     features: [
-      { text: "Acesso ao Launcher", included: true },
-      { text: "500 Jogos Inclusos", included: true, bold: true },
+      { text: "+1000 Jogos Inclusos", included: true, bold: true },
       { text: "Seus pra Sempre (Vitalício)", included: true },
+      { text: "Acesso ao Launcher", included: true },
       { text: "Modo Campanha", included: true },
       { text: "Suporte Prioritário", included: false },
-      { text: "Pedidos de Jogos", included: false },
+      { text: "Multiplayer Online", included: false },
     ],
     btnText: "Começar Básico",
     checkoutUrl: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
@@ -84,12 +84,12 @@ const plans: Plan[] = [
     featured: true,
     color: "138, 100%, 50%", // neon green
     features: [
-      { text: "Acesso ao Launcher", included: true },
-      { text: "700 Jogos (+Lançamentos)", included: true, bold: true },
+      { text: "+1000 Jogos (+Lançamentos)", included: true, bold: true },
       { text: "Seus pra Sempre (Vitalício)", included: true },
-      { text: "Modo Online (Selecionados)", included: true },
+      { text: "Modo Online (Selecionados)", included: true, bold: true },
       { text: "Suporte WhatsApp", included: true },
-      { text: "Pedidos VIP", included: false },
+      { text: "Pedidos de Jogos", included: true },
+      { text: "+150 DLCs Premium", included: false },
     ],
     btnText: "Quero o mais vendido",
     checkoutUrl: "https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX",
@@ -105,11 +105,11 @@ const plans: Plan[] = [
     featured: false,
     color: "138, 80%, 45%", // medium green
     features: [
-      { text: "Biblioteca Completa (+1000)", included: true, bold: true },
+      { text: "+1000 Jogos + Lançamentos", included: true, bold: true },
       { text: "Seus pra Sempre (Vitalício)", included: true },
       { text: "Multiplayer Liberado", included: true, bold: true },
-      { text: "Suporte Prioritário VIP", included: true },
-      { text: "Pedidos de Jogos (A gente adiciona)", included: true },
+      { text: "+150 DLCs Premium", included: true, bold: true },
+      { text: "Suporte VIP + Pedidos de Jogos", included: true },
     ],
     btnText: "Desbloquear Tudo",
     checkoutUrl: "https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3",
