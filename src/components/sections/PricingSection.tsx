@@ -61,7 +61,7 @@ const plans: Plan[] = [
     price: "9",
     priceCents: ",97",
     priceLabel: "Taxa Única",
-    color: "138, 60%, 40%", // muted green
+    color: "138, 75%, 42%", // subtle neon green
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "500 Jogos Inclusos", included: true, bold: true },
@@ -81,7 +81,7 @@ const plans: Plan[] = [
     priceCents: ",97",
     priceLabel: "Taxa Única",
     badge: "Mais Vendido",
-    color: "138, 50%, 48%", // medium green
+    color: "138, 85%, 45%", // vivid green
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "700 Jogos (+Lançamentos)", included: true, bold: true },
