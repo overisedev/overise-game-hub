@@ -71,7 +71,7 @@ const plans: Plan[] = [
       { text: "Pedidos de Jogos", included: false },
     ],
     btnText: "Começar Básico",
-    checkoutUrl: "https://www.ggcheckout.com/checkout/v5/6Ed9FJE8HXebnxREUKCQ",
+    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
   },
   {
     name: "Avançado",
@@ -91,7 +91,7 @@ const plans: Plan[] = [
       { text: "Pedidos VIP", included: false },
     ],
     btnText: "Quero o mais vendido",
-    checkoutUrl: "https://www.ggcheckout.com/checkout/v5/BvIb4ex53LM73mU3DJsX",
+    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX",
   },
   {
     name: "Vitalício",
@@ -111,7 +111,7 @@ const plans: Plan[] = [
       { text: "Pedidos de Jogos (A gente adiciona)", included: true },
     ],
     btnText: "Desbloquear Tudo",
-    checkoutUrl: "https://www.ggcheckout.com/checkout/v5/pdDOCAlm20ZQxjUiglc3",
+    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3",
   },
 ];
 
