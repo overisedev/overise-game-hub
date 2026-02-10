@@ -80,8 +80,9 @@ const plans: Plan[] = [
     price: "19",
     priceCents: ",97",
     priceLabel: "Taxa Única",
-    badge: "Mais Vendido",
-    color: "138, 85%, 45%", // vivid green
+    badge: "Mais Vendido 🔥",
+    featured: true,
+    color: "138, 100%, 50%", // neon green
     features: [
       { text: "Acesso ao Launcher", included: true },
       { text: "700 Jogos (+Lançamentos)", included: true, bold: true },
@@ -100,9 +101,9 @@ const plans: Plan[] = [
     price: "49",
     priceCents: ",97",
     priceLabel: "Pagamento Único",
-    badge: "Melhor Opção 🔥",
-    featured: true,
-    color: "138, 100%, 50%", // neon green
+    badge: "Melhor Custo-Benefício",
+    featured: false,
+    color: "138, 80%, 45%", // medium green
     features: [
       { text: "Biblioteca Completa (+1000)", included: true, bold: true },
       { text: "Seus pra Sempre (Vitalício)", included: true },
