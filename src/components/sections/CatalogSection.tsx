@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import type { Game } from '@/types/game';
 import { CATEGORIES } from '@/types/game';
 
@@ -94,8 +94,11 @@ export function CatalogSection({
 
   // Full catalog search
   const fullCatalogGames = useMemo(() => {
-    return searchGames(searchQuery);
-  }, [searchQuery, searchGames]);
+    const base = selectedCategory ? getGamesByCategory(selectedCategory) : games;
+    if (!searchQuery.trim()) return base;
+    const q = searchQuery.toLowerCase().trim();
+    return base.filter(g => g.name.toLowerCase().includes(q));
+  }, [searchQuery, selectedCategory, games, getGamesByCategory]);
 
   const ITEMS_PER_PAGE = 8;
   const paginatedGames = useMemo(() => {
@@ -198,7 +201,7 @@ export function CatalogSection({
               onClick={() => setShowFullCatalog(!showFullCatalog)} 
               className="btn catalog-more-btn"
             >
-              <span className="catalog-more-icon">⌕</span>
+              <span className="catalog-more-icon"><Search size={16} /></span>
               {showFullCatalog ? 'Fechar catálogo' : 'Ver catálogo completo'}
             </button>
             <span className="catalog-more-hint">Abra a biblioteca completa com busca e paginação.</span>
@@ -213,7 +216,7 @@ export function CatalogSection({
                   <p className="full-sub">Pesquise pelo nome e clique para ver detalhes.</p>
                 </div>
                 <div className="full-search">
-                  <span className="full-search-icon">⌕</span>
+                  <span className="full-search-icon"><Search size={16} /></span>
                   <input
                     type="text"
                     placeholder="Digite o nome do jogo..."
