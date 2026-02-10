@@ -239,7 +239,7 @@ export function CatalogSection({
                 {paginatedGames.length > 0 ? (
                   paginatedGames.map((game) => (
                     <div
-                      key={game.steam_appid}
+                      key={`${game.steam_appid}-${game.name}`}
                       className="full-card"
                       onClick={() => onOpenDetails(game)}
                     >
