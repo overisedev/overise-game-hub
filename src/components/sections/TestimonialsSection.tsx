@@ -158,7 +158,7 @@ export function TestimonialsSection() {
   const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + visibleCount);
 
   return (
-    <section id="testemunhos" className="section container-main">
+    <section id="testemunhos" className="section container-main" style={{ background: 'rgba(255,255,255,.025)', borderRadius: 'var(--r2)', border: '1px solid rgba(255,255,255,.05)', padding: '60px 30px' }}>
       <motion.div 
         className="testimonials-header"
         initial={{ opacity: 0, y: 20 }}
