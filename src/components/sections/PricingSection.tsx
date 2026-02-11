@@ -112,12 +112,50 @@ export function PricingSection() {
 
             <div className="pc-divider" />
 
-            <ul className="pc-features">
-              <li><span className="pc-check"><Gamepad2 size={14} /></span>+1000 Jogos Famosos</li>
-              <li><span className="pc-check"><Zap size={14} /></span>Acesso Vitalício</li>
-              <li><span className="pc-check"><Download size={14} /></span>Download pela Steam</li>
-              <li><span className="pc-check"><Shield size={14} /></span>Garantia de 7 dias</li>
-            </ul>
+            <div className="pc-benefits">
+              <div className="pc-benefit">
+                <div className="pc-benefit-icon"><Gamepad2 size={18} /></div>
+                <div className="pc-benefit-text">
+                  <span className="pc-benefit-title">+1000 Jogos Famosos</span>
+                  <span className="pc-benefit-desc">GTA V, Elden Ring, Cyberpunk e muito mais</span>
+                </div>
+              </div>
+              <div className="pc-benefit">
+                <div className="pc-benefit-icon"><Zap size={18} /></div>
+                <div className="pc-benefit-text">
+                  <span className="pc-benefit-title">Acesso Vitalício</span>
+                  <span className="pc-benefit-desc">Pague uma vez, jogue para sempre</span>
+                </div>
+              </div>
+              <div className="pc-benefit">
+                <div className="pc-benefit-icon"><Download size={18} /></div>
+                <div className="pc-benefit-text">
+                  <span className="pc-benefit-title">Download pela Steam</span>
+                  <span className="pc-benefit-desc">Servidores oficiais, velocidade máxima</span>
+                </div>
+              </div>
+              <div className="pc-benefit">
+                <div className="pc-benefit-icon"><RefreshCw size={18} /></div>
+                <div className="pc-benefit-text">
+                  <span className="pc-benefit-title">Atualizações Automáticas</span>
+                  <span className="pc-benefit-desc">Sempre na versão mais recente</span>
+                </div>
+              </div>
+              <div className="pc-benefit">
+                <div className="pc-benefit-icon"><Headphones size={18} /></div>
+                <div className="pc-benefit-text">
+                  <span className="pc-benefit-title">Suporte via WhatsApp</span>
+                  <span className="pc-benefit-desc">Equipe real pronta para te ajudar</span>
+                </div>
+              </div>
+              <div className="pc-benefit">
+                <div className="pc-benefit-icon"><Shield size={18} /></div>
+                <div className="pc-benefit-text">
+                  <span className="pc-benefit-title">Garantia de 7 dias</span>
+                  <span className="pc-benefit-desc">Não curtiu? Devolvemos seu dinheiro</span>
+                </div>
+              </div>
+            </div>
 
             <button className="pc-cta" onClick={handleCheckout}>
               Garantir Meu Acesso
@@ -346,34 +384,50 @@ export function PricingSection() {
           margin-bottom: 24px;
         }
 
-        .pc-features {
-          list-style: none;
-          padding: 0;
-          margin: 0 0 28px;
+        .pc-benefits {
+          width: 100%;
           display: flex;
           flex-direction: column;
-          gap: 14px;
-          width: 100%;
+          gap: 0;
+          margin-bottom: 28px;
         }
-        .pc-features li {
+        .pc-benefit {
           display: flex;
           align-items: center;
-          gap: 12px;
-          font-size: 14px;
-          color: rgba(255,255,255,.85);
-          font-weight: 600;
+          gap: 16px;
+          padding: 14px 0;
+          border-bottom: 1px solid rgba(255,255,255,.06);
         }
-        .pc-check {
-          width: 28px;
-          height: 28px;
-          border-radius: 8px;
-          background: rgba(0,255,65,.1);
-          border: 1px solid rgba(0,255,65,.2);
+        .pc-benefit:last-child {
+          border-bottom: none;
+        }
+        .pc-benefit-icon {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: rgba(0,255,65,.08);
+          border: 1px solid rgba(0,255,65,.18);
           color: var(--neon);
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
+        }
+        .pc-benefit-text {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+        }
+        .pc-benefit-title {
+          font-size: 14px;
+          font-weight: 700;
+          color: #fff;
+          letter-spacing: -.2px;
+        }
+        .pc-benefit-desc {
+          font-size: 12px;
+          color: rgba(255,255,255,.4);
+          font-weight: 500;
         }
 
         .pc-cta {
