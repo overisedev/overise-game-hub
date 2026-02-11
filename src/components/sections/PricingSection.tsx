@@ -140,7 +140,7 @@ export function PricingSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-[28px] font-[950] text-white tracking-tight mb-2">Escolha seu plano</h2>
+        <h2 className="text-[28px] font-[950] text-white tracking-tight mb-2">Escolha seu plano — Para PC</h2>
         <p className="text-[hsla(0,0%,100%,0.5)] text-[15px]">
           Acesso imediato após o pagamento. Escolha o que melhor se encaixa para você.
         </p>

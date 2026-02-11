@@ -62,8 +62,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </div>
 
             <h1 className="hero-title">
-              <span className="accent">+1000 jogos AAA</span>
-              <span className="title-dlc">+ 150 DLCs Premium</span>
+              <span className="accent">+1000 jogos famosos</span>
+              <span className="title-dlc">+ 150 DLCs Premium • Para PC</span>
             </h1>
 
             {/* Price Display - Clean */}
@@ -74,7 +74,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
             <p className="hero-sub">
               A maior biblioteca do Brasil direto na sua Steam.<br />
-              Entrega Instantânea e Automatizada.
+              Entrega Instantânea e Automatizada — Exclusivo para PC.
             </p>
 
             <div className="hero-actions">
