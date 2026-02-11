@@ -52,7 +52,7 @@ export function GamesPreviewSection({
   if (games.length === 0) return null;
 
   return (
-    <section className="games-preview-section section" style={{ background: 'rgba(255,255,255,.025)', borderTop: '1px solid rgba(255,255,255,.06)', borderBottom: '1px solid rgba(255,255,255,.06)' }}>
+    <section className="games-preview-section section section-light">
       <div className="container-main">
         <div className="preview-container">
           {/* Grid de jogos à esquerda */}
