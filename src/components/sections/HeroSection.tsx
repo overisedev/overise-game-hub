@@ -1,10 +1,10 @@
-import type { Game } from '@/types/game';
+import type { Game } from "@/types/game";
 
 // Import testimonial avatars for social proof
-import jzAvatar from '@/assets/testimonials/jz.jpg';
-import adriellyAvatar from '@/assets/testimonials/adrielly.jpg';
-import maiconAvatar from '@/assets/testimonials/maicon.jpg';
-import wlAvatar from '@/assets/testimonials/wl.jpeg';
+import jzAvatar from "@/assets/testimonials/jz.jpg";
+import adriellyAvatar from "@/assets/testimonials/adrielly.jpg";
+import maiconAvatar from "@/assets/testimonials/maicon.jpg";
+import wlAvatar from "@/assets/testimonials/wl.jpeg";
 
 interface HeroSectionProps {
   featuredGame: Game | undefined;
@@ -16,28 +16,33 @@ interface HeroSectionProps {
 
 export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
   return (
-    <section className="section-top section hero-section" style={{ paddingTop: 'clamp(90px, 12vw, 140px)' }}>
+    <section className="section-top section hero-section" style={{ paddingTop: "clamp(90px, 12vw, 140px)" }}>
       <div className="container-main">
         <div className="hero-grid">
           {/* Mobile Layout: Card + Content */}
           <div className="hero-mobile-wrapper">
-            
             {/* Card */}
             {featuredGame && (
-              <div className={`hero-card hero-card-mobile ${isTransitioning ? 'transitioning' : ''}`}>
+              <div className={`hero-card hero-card-mobile ${isTransitioning ? "transitioning" : ""}`}>
                 <div className="hero-card-glow" />
                 <div className="hero-card-media">
                   <img
                     src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
                     alt={featuredGame.name}
-                    onError={(e) => { e.currentTarget.src = featuredGame.cover; }}
+                    onError={(e) => {
+                      e.currentTarget.src = featuredGame.cover;
+                    }}
                   />
                   <div className="hero-card-overlay" />
                 </div>
 
                 {/* Nav Buttons */}
-                <button onClick={onPrev} className="feat-nav feat-prev">‹</button>
-                <button onClick={onNext} className="feat-nav feat-next">›</button>
+                <button onClick={onPrev} className="feat-nav feat-prev">
+                  ‹
+                </button>
+                <button onClick={onNext} className="feat-nav feat-next">
+                  ›
+                </button>
 
                 {/* Info */}
                 <div className="hero-card-info">
@@ -68,23 +73,26 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
             {/* Price Display - Clean */}
             <div className="hero-price">
-              <span className="price-from">de <s>R$ 15.000</s></span>
+              <span className="price-from">
+                de <s>R$ 15.000</s>
+              </span>
               <span className="price-now">por R$ 9,97</span>
             </div>
 
             <p className="hero-sub">
-              A maior biblioteca do Brasil direto na sua Steam.<br />
-              Entrega Instantânea e Automatizada — Exclusivo para PC.
+              A maior biblioteca do Brasil direto na sua Steam.
+              <br />
+              Entrega Instantânea e Automatizada. Exclusivo para PC.
             </p>
 
             <div className="hero-actions">
               <a href="#planos" className="hero-cta">
                 Garantir Meu Acesso
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                  <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
-              
+
               {/* Social Proof with Real Avatars */}
               <div className="social-proof">
                 <div className="avatars-stack">
@@ -103,20 +111,26 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
           {/* Right - Featured Card (Desktop) */}
           {featuredGame && (
-            <div className={`hero-card hero-card-desktop ${isTransitioning ? 'transitioning' : ''}`}>
+            <div className={`hero-card hero-card-desktop ${isTransitioning ? "transitioning" : ""}`}>
               <div className="hero-card-glow" />
               <div className="hero-card-media">
                 <img
                   src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
                   alt={featuredGame.name}
-                  onError={(e) => { e.currentTarget.src = featuredGame.cover; }}
+                  onError={(e) => {
+                    e.currentTarget.src = featuredGame.cover;
+                  }}
                 />
                 <div className="hero-card-overlay" />
               </div>
 
               {/* Nav Buttons */}
-              <button onClick={onPrev} className="feat-nav feat-prev">‹</button>
-              <button onClick={onNext} className="feat-nav feat-next">›</button>
+              <button onClick={onPrev} className="feat-nav feat-prev">
+                ‹
+              </button>
+              <button onClick={onNext} className="feat-nav feat-next">
+                ›
+              </button>
 
               {/* Info */}
               <div className="hero-card-info">
