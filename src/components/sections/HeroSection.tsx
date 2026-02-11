@@ -44,7 +44,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                   <div className="hero-card-text">
                     <div className="badge-row">
                       <span className="chip green">Jogo Original</span>
-                      <span className="chip">Multiplayer</span>
+                      <span className="chip">Steam</span>
                     </div>
                     <h2 className="hero-card-name">{featuredGame.name}</h2>
                   </div>
@@ -123,10 +123,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 <div className="hero-card-text">
                   <div className="badge-row">
                     <span className="chip green">Jogo Original</span>
-                    <span className="chip">Multiplayer</span>
+                    <span className="chip">Steam</span>
                   </div>
                   <h2 className="hero-card-name">{featuredGame.name}</h2>
-                  <p className="hero-card-desc">Baixe os arquivos oficiais e jogue online com seus amigos.</p>
+                  <p className="hero-card-desc">Baixe os arquivos oficiais direto pela Steam.</p>
                 </div>
               </div>
             </div>

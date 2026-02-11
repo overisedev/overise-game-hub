@@ -144,8 +144,8 @@ export function GamesPreviewSection({
               <div className="feature">
                 <Users size={18} />
                 <div className="feature-text">
-                  <span className="feature-title">Jogue Online</span>
-                  <span className="feature-desc">Jogue online e desafie seus amigos nos títulos competitivos.</span>
+                  <span className="feature-title">Acesso Vitalício</span>
+                  <span className="feature-desc">Pagou uma vez, é seu pra sempre. Sem mensalidade.</span>
                 </div>
               </div>
             </div>
