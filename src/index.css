@@ -146,9 +146,9 @@
 @layer utilities {
   .section-light {
     position: relative;
-    background: rgba(255,255,255,.035);
-    border-top: 1px solid rgba(255,255,255,.07);
-    border-bottom: 1px solid rgba(255,255,255,.07);
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
   }
   .section-light::before {
     content: "";
@@ -156,10 +156,10 @@
     inset: 0;
     pointer-events: none;
     background-image:
-      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
     background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 10%, transparent 70%);
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 70%);
     z-index: 0;
   }
   .section-light > * {
