@@ -42,7 +42,8 @@ export function HowItWorksSection() {
   };
 
   return (
-    <section id="como-funciona" className="section container-main">
+    <section id="como-funciona" className="section section-light">
+      <div className="container-main">
       <div className="app-section-grid">
         {/* Left Content */}
         <div className="app-section-content">
@@ -166,8 +167,9 @@ export function HowItWorksSection() {
 
             {/* Reflection */}
             <div className="mockup-reflection" />
-          </div>
         </div>
+      </div>
+      </div>
       </div>
 
       <style>{`
