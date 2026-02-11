@@ -100,7 +100,14 @@ export function PricingSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="pc-inner">
-            <span className="pc-from">de <s>R$ 15.000</s> em jogos</span>
+            {/* Badge */}
+            <div className="pc-badge">MAIS VENDIDO 🔥</div>
+
+            {/* Plan Name */}
+            <h3 className="pc-plan-name">OVERISE</h3>
+            <span className="pc-plan-sub">ACESSO COMPLETO</span>
+
+            <span className="pc-from">De <s>R$ 15.000</s> em jogos</span>
 
             <div className="pc-price-row">
               <span className="pc-currency">R$</span>
@@ -120,6 +127,10 @@ export function PricingSection() {
               <div className="pc-benefit">
                 <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
                 <span className="pc-benefit-title">Seus pra Sempre (Vitalício)</span>
+              </div>
+              <div className="pc-benefit">
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title pc-bold">Modo Online (Selecionados)</span>
               </div>
               <div className="pc-benefit">
                 <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
@@ -144,7 +155,7 @@ export function PricingSection() {
             </div>
 
             <button className="pc-cta" onClick={handleCheckout}>
-              Garantir Meu Acesso
+              Quero Meu Acesso
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -293,17 +304,18 @@ export function PricingSection() {
           margin: 0 auto;
           position: relative;
           border-radius: 28px;
-          border: 1px solid rgba(0,255,65,.25);
-          background: linear-gradient(180deg, rgba(10,10,10,.95) 0%, rgba(3,3,3,1) 100%);
+          border: 1.5px solid rgba(0,255,65,.3);
+          background: linear-gradient(180deg, rgba(10,10,10,.97) 0%, rgba(3,3,3,1) 100%);
           overflow: hidden;
           box-shadow: 
             0 40px 80px rgba(0,0,0,.5),
-            0 0 60px rgba(0,255,65,.06);
+            0 0 80px rgba(0,255,65,.08),
+            inset 0 1px 0 rgba(0,255,65,.1);
         }
         .pc-inner {
           position: relative;
           z-index: 1;
-          padding: 40px 32px 32px;
+          padding: 48px 36px 36px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -318,6 +330,42 @@ export function PricingSection() {
           height: 300px;
           background: radial-gradient(ellipse, rgba(0,255,65,.1), transparent 70%);
           pointer-events: none;
+        }
+
+        /* Badge */
+        .pc-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 8px 20px;
+          background: var(--neon);
+          color: #000;
+          font-size: 11px;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          border-radius: 999px;
+          margin-bottom: 28px;
+          box-shadow: 0 4px 20px rgba(0,255,65,.3);
+        }
+
+        /* Plan Name */
+        .pc-plan-name {
+          font-family: 'Sora', sans-serif;
+          font-size: 32px;
+          font-weight: 950;
+          color: #fff;
+          letter-spacing: -1px;
+          margin: 0 0 4px;
+          text-transform: uppercase;
+        }
+        .pc-plan-sub {
+          font-size: 13px;
+          font-weight: 800;
+          color: var(--neon);
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          margin-bottom: 20px;
         }
 
         .pc-from {
@@ -366,7 +414,7 @@ export function PricingSection() {
         .pc-divider {
           width: 100%;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
           margin-bottom: 24px;
         }
 
@@ -395,6 +443,7 @@ export function PricingSection() {
           font-weight: 500;
           color: rgba(255,255,255,.85);
           letter-spacing: -.2px;
+          text-align: left;
         }
         .pc-benefit-title.pc-bold {
           font-weight: 800;
@@ -580,10 +629,25 @@ export function PricingSection() {
 
         @media (max-width: 640px) {
           .pricing-section {
-            padding: 64px 0 56px;
+            padding: 56px 0 48px;
+          }
+          .pricing-headline {
+            margin-bottom: 28px;
           }
           .pc-inner {
-            padding: 32px 20px 24px;
+            padding: 40px 20px 24px;
+          }
+          .pc-badge {
+            margin-bottom: 20px;
+            font-size: 10px;
+            padding: 6px 16px;
+          }
+          .pc-plan-name {
+            font-size: 26px;
+          }
+          .pc-plan-sub {
+            font-size: 11px;
+            margin-bottom: 14px;
           }
           .pc-value {
             font-size: 80px;
@@ -591,8 +655,42 @@ export function PricingSection() {
           .pc-cents {
             font-size: 28px;
           }
+          .pc-benefit {
+            padding: 11px 0;
+          }
+          .pc-benefit-title {
+            font-size: 14px;
+          }
+          .pc-benefit-title.pc-bold {
+            font-size: 14px;
+          }
+          .bonuses-header {
+            margin-top: 56px;
+          }
           .bonuses-title {
             margin-bottom: 24px;
+          }
+          .bonus-row {
+            padding: 16px 12px;
+            gap: 14px;
+          }
+          .bonus-row-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+          }
+          .bonus-row-content h4 {
+            font-size: 14px;
+          }
+          .bonus-row-content p {
+            font-size: 12px;
+          }
+          .bonus-row-check {
+            width: 28px;
+            height: 28px;
+          }
+          .pricing-final-cta {
+            margin-top: 28px;
           }
         }
       `}</style>
