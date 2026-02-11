@@ -114,27 +114,31 @@ export function PricingSection() {
 
             <div className="pc-benefits">
               <div className="pc-benefit">
-                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
-                <span className="pc-benefit-title">+1000 Jogos Famosos</span>
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title pc-bold">+1000 Jogos (+Lançamentos)</span>
               </div>
               <div className="pc-benefit">
-                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
-                <span className="pc-benefit-title">Acesso Vitalício</span>
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Seus pra Sempre (Vitalício)</span>
               </div>
               <div className="pc-benefit">
-                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
                 <span className="pc-benefit-title">Download pela Steam</span>
               </div>
               <div className="pc-benefit">
-                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
                 <span className="pc-benefit-title">Atualizações Automáticas</span>
               </div>
               <div className="pc-benefit">
-                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
-                <span className="pc-benefit-title">Suporte via WhatsApp</span>
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Suporte WhatsApp</span>
               </div>
               <div className="pc-benefit">
-                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Pedidos de Jogos</span>
+              </div>
+              <div className="pc-benefit">
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3"><path d="M5 12l5 5L20 7" /></svg>
                 <span className="pc-benefit-title">Garantia de 7 dias</span>
               </div>
             </div>
@@ -388,9 +392,14 @@ export function PricingSection() {
         }
         .pc-benefit-title {
           font-size: 15px;
-          font-weight: 700;
-          color: #fff;
+          font-weight: 500;
+          color: rgba(255,255,255,.85);
           letter-spacing: -.2px;
+        }
+        .pc-benefit-title.pc-bold {
+          font-weight: 800;
+          color: #fff;
+          font-size: 16px;
         }
 
         .pc-cta {
