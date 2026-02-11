@@ -148,51 +148,49 @@ export function PricingSection() {
           <div className="pc-glow" />
         </motion.div>
 
-        {/* Guarantee Label */}
+        {/* Bonuses Section */}
         <motion.div
-          className="pricing-top"
+          className="bonuses-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          style={{ marginTop: '60px' }}
         >
           <span className="pricing-label">
             <Shield size={14} />
-            Bônus Inclusos
+            Inclusos no Acesso
           </span>
+          <h3 className="bonuses-title">
+            Tudo isso por apenas<br />
+            <span className="pricing-hl-accent">R$ 9,97</span>
+          </h3>
         </motion.div>
 
-        <motion.h3
-          className="bonuses-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          O que você recebe<br />
-          <span className="pricing-hl-accent">além dos jogos</span>
-        </motion.h3>
-
-        {/* Bonuses Grid */}
         <motion.div
-          className="bonuses-grid"
+          className="bonuses-list"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.08 } } }}
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
         >
           {BONUSES.map((bonus, i) => (
             <motion.div
               key={i}
-              className="bonus-card"
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
+              className="bonus-row"
+              variants={{ hidden: { opacity: 0, x: -30 }, visible: { opacity: 1, x: 0, transition: { duration: 0.5 } } }}
             >
-              <div className="bonus-icon">
-                <bonus.icon size={20} />
+              <div className="bonus-row-icon">
+                <bonus.icon size={22} />
               </div>
-              <h4>{bonus.title}</h4>
-              <p>{bonus.desc}</p>
+              <div className="bonus-row-content">
+                <h4>{bonus.title}</h4>
+                <p>{bonus.desc}</p>
+              </div>
+              <div className="bonus-row-check">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                  <path d="M5 12l5 5L20 7" />
+                </svg>
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -445,6 +443,11 @@ export function PricingSection() {
         }
 
         /* Bonuses */
+        .bonuses-header {
+          text-align: center;
+          margin-top: 80px;
+          margin-bottom: 12px;
+        }
         .bonuses-title {
           text-align: center;
           font-size: clamp(24px, 4vw, 34px);
@@ -452,64 +455,91 @@ export function PricingSection() {
           color: #fff;
           letter-spacing: -1px;
           line-height: 1.15;
-          margin: 0 0 36px;
+          margin: 16px 0 40px;
         }
 
-        .bonuses-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 16px;
-          max-width: 900px;
+        .bonuses-list {
+          max-width: 560px;
           margin: 0 auto;
-        }
-        @media (max-width: 880px) {
-          .bonuses-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 540px) {
-          .bonuses-grid {
-            grid-template-columns: 1fr;
-            gap: 12px;
-          }
+          display: flex;
+          flex-direction: column;
+          gap: 0;
         }
 
-        .bonus-card {
-          padding: 24px;
-          border-radius: 18px;
-          border: 1px solid rgba(255,255,255,.08);
-          background: rgba(255,255,255,.03);
-          text-align: center;
-          transition: border-color .2s ease, transform .2s ease;
+        .bonus-row {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 22px 24px;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+          position: relative;
+          transition: background .2s ease;
         }
-        .bonus-card:hover {
-          border-color: rgba(0,255,65,.2);
-          transform: translateY(-3px);
+        .bonus-row:first-child {
+          border-top: 1px solid rgba(255,255,255,.06);
         }
-        .bonus-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
+        .bonus-row:hover {
+          background: rgba(0,255,65,.03);
+        }
+        .bonus-row::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 2px;
+          height: 0;
+          background: var(--neon);
+          transition: height .25s ease;
+          border-radius: 2px;
+        }
+        .bonus-row:hover::before {
+          height: 60%;
+        }
+
+        .bonus-row-icon {
+          width: 48px;
+          height: 48px;
+          border-radius: 14px;
+          background: rgba(0,255,65,.08);
+          border: 1px solid rgba(0,255,65,.15);
+          color: var(--neon);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .bonus-row-content {
+          flex: 1;
+          min-width: 0;
+        }
+        .bonus-row-content h4 {
+          font-size: 15px;
+          font-weight: 800;
+          color: #fff;
+          margin: 0 0 3px;
+          letter-spacing: -.2px;
+        }
+        .bonus-row-content p {
+          font-size: 13px;
+          color: rgba(255,255,255,.45);
+          line-height: 1.45;
+          margin: 0;
+          font-weight: 500;
+        }
+
+        .bonus-row-check {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
           background: rgba(0,255,65,.1);
           border: 1px solid rgba(0,255,65,.2);
           color: var(--neon);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin: 0 auto 14px;
-        }
-        .bonus-card h4 {
-          font-size: 15px;
-          font-weight: 800;
-          color: #fff;
-          margin: 0 0 6px;
-        }
-        .bonus-card p {
-          font-size: 13px;
-          color: rgba(255,255,255,.55);
-          line-height: 1.55;
-          margin: 0;
-          font-weight: 500;
+          flex-shrink: 0;
         }
 
         /* Final CTA */
