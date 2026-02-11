@@ -55,64 +55,26 @@ interface Plan {
 
 const plans: Plan[] = [
   {
-    name: "Iniciante",
-    subtitle: "Para Conhecer",
+    name: "Acesso Completo",
+    subtitle: "Tudo Liberado",
     originalPrice: "R$ 29,90",
     price: "9",
     priceCents: ",97",
-    priceLabel: "Taxa Única",
-    color: "138, 75%, 42%", // subtle neon green
-    features: [
-      { text: "+1000 Jogos Inclusos", included: true, bold: true },
-      { text: "Seus pra Sempre (Vitalício)", included: true },
-      { text: "Acesso ao Launcher", included: true },
-      { text: "Modo Campanha", included: true },
-      { text: "Suporte Prioritário", included: false },
-      { text: "Multiplayer Online", included: false },
-    ],
-    btnText: "Começar Básico",
-    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
-  },
-  {
-    name: "Avançado",
-    subtitle: "Mais Recursos",
-    originalPrice: "R$ 49,90",
-    price: "19",
-    priceCents: ",97",
-    priceLabel: "Taxa Única",
-    badge: "Mais Vendido 🔥",
+    priceLabel: "Taxa Única • Pagou, é Seu",
+    badge: "Oferta Especial 🔥",
     featured: true,
-    color: "138, 100%, 50%", // neon green
+    color: "138, 100%, 50%",
     features: [
-      { text: "+1000 Jogos (+Lançamentos)", included: true, bold: true },
-      { text: "Seus pra Sempre (Vitalício)", included: true },
-      { text: "Modo Online (Selecionados)", included: true, bold: true },
-      { text: "Suporte WhatsApp", included: true },
-      { text: "Pedidos de Jogos", included: true },
-      { text: "+150 DLCs Premium", included: false },
+      { text: "+1000 Jogos Famosos Inclusos", included: true, bold: true },
+      { text: "Seus pra Sempre (Vitalício)", included: true, bold: true },
+      { text: "Acesso ao Launcher Exclusivo", included: true },
+      { text: "Download pela Steam Oficial", included: true },
+      { text: "Atualizações Automáticas", included: true },
+      { text: "Suporte via WhatsApp", included: true },
+      { text: "Pedidos de Novos Jogos", included: true },
     ],
-    btnText: "Quero o mais vendido",
-    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX",
-  },
-  {
-    name: "Vitalício",
-    subtitle: "Acesso Total",
-    originalPrice: "R$ 120,90",
-    price: "49",
-    priceCents: ",97",
-    priceLabel: "Pagamento Único",
-    badge: "Melhor Custo-Benefício",
-    featured: false,
-    color: "138, 80%, 45%", // medium green
-    features: [
-      { text: "+1000 Jogos + Lançamentos", included: true, bold: true },
-      { text: "Seus pra Sempre (Vitalício)", included: true },
-      { text: "Multiplayer Liberado", included: true, bold: true },
-      { text: "+150 DLCs Premium", included: true, bold: true },
-      { text: "Suporte VIP + Pedidos de Jogos", included: true },
-    ],
-    btnText: "Desbloquear Tudo",
-    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3",
+    btnText: "Garantir Meu Acesso",
+    checkoutUrl: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
   },
 ];
 
@@ -140,14 +102,14 @@ export function PricingSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-[28px] font-[950] text-white tracking-tight mb-2">Escolha seu plano — Para PC</h2>
+        <h2 className="text-[28px] font-[950] text-white tracking-tight mb-2">Acesso Completo — Para PC</h2>
         <p className="text-[hsla(0,0%,100%,0.5)] text-[15px]">
-          Acesso imediato após o pagamento. Escolha o que melhor se encaixa para você.
+          Pagou uma vez, é seu pra sempre. Acesso imediato após o pagamento.
         </p>
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[1100px] mx-auto items-start"
+        className="flex justify-center max-w-[480px] mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
