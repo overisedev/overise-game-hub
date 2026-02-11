@@ -114,46 +114,28 @@ export function PricingSection() {
 
             <div className="pc-benefits">
               <div className="pc-benefit">
-                <div className="pc-benefit-icon"><Gamepad2 size={18} /></div>
-                <div className="pc-benefit-text">
-                  <span className="pc-benefit-title">+1000 Jogos Famosos</span>
-                  <span className="pc-benefit-desc">GTA V, Elden Ring, Cyberpunk e muito mais</span>
-                </div>
+                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">+1000 Jogos Famosos</span>
               </div>
               <div className="pc-benefit">
-                <div className="pc-benefit-icon"><Zap size={18} /></div>
-                <div className="pc-benefit-text">
-                  <span className="pc-benefit-title">Acesso Vitalício</span>
-                  <span className="pc-benefit-desc">Pague uma vez, jogue para sempre</span>
-                </div>
+                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Acesso Vitalício</span>
               </div>
               <div className="pc-benefit">
-                <div className="pc-benefit-icon"><Download size={18} /></div>
-                <div className="pc-benefit-text">
-                  <span className="pc-benefit-title">Download pela Steam</span>
-                  <span className="pc-benefit-desc">Servidores oficiais, velocidade máxima</span>
-                </div>
+                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Download pela Steam</span>
               </div>
               <div className="pc-benefit">
-                <div className="pc-benefit-icon"><RefreshCw size={18} /></div>
-                <div className="pc-benefit-text">
-                  <span className="pc-benefit-title">Atualizações Automáticas</span>
-                  <span className="pc-benefit-desc">Sempre na versão mais recente</span>
-                </div>
+                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Atualizações Automáticas</span>
               </div>
               <div className="pc-benefit">
-                <div className="pc-benefit-icon"><Headphones size={18} /></div>
-                <div className="pc-benefit-text">
-                  <span className="pc-benefit-title">Suporte via WhatsApp</span>
-                  <span className="pc-benefit-desc">Equipe real pronta para te ajudar</span>
-                </div>
+                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Suporte via WhatsApp</span>
               </div>
               <div className="pc-benefit">
-                <div className="pc-benefit-icon"><Shield size={18} /></div>
-                <div className="pc-benefit-text">
-                  <span className="pc-benefit-title">Garantia de 7 dias</span>
-                  <span className="pc-benefit-desc">Não curtiu? Devolvemos seu dinheiro</span>
-                </div>
+                <svg className="pc-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="2.5"><path d="M5 12l5 5L20 7" /></svg>
+                <span className="pc-benefit-title">Garantia de 7 dias</span>
               </div>
             </div>
 
@@ -394,40 +376,21 @@ export function PricingSection() {
         .pc-benefit {
           display: flex;
           align-items: center;
-          gap: 16px;
-          padding: 16px 0;
+          gap: 14px;
+          padding: 13px 0;
           border-bottom: 1px solid rgba(255,255,255,.08);
         }
         .pc-benefit:last-child {
           border-bottom: none;
         }
-        .pc-benefit-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: rgba(0,255,65,.08);
-          border: 1px solid rgba(0,255,65,.18);
-          color: var(--neon);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .pc-check-svg {
           flex-shrink: 0;
-        }
-        .pc-benefit-text {
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
         }
         .pc-benefit-title {
           font-size: 15px;
-          font-weight: 800;
+          font-weight: 700;
           color: #fff;
-          letter-spacing: -.3px;
-        }
-        .pc-benefit-desc {
-          font-size: 12px;
-          color: rgba(255,255,255,.7);
-          font-weight: 500;
+          letter-spacing: -.2px;
         }
 
         .pc-cta {
