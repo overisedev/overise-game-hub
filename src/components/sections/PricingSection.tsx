@@ -100,9 +100,6 @@ export function PricingSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <div className="pc-inner">
-            {/* Badge */}
-            <div className="pc-badge">MAIS VENDIDO 🔥</div>
-
             {/* Plan Name */}
             <h3 className="pc-plan-name">OVERISE</h3>
             <span className="pc-plan-sub">ACESSO COMPLETO</span>
