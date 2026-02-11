@@ -283,11 +283,11 @@ export function PricingSection() {
           margin-bottom: 40px;
         }
         .pricing-headline h2 {
-          font-size: clamp(26px, 4.5vw, 40px);
+          font-size: clamp(28px, 5vw, 44px);
           font-weight: 950;
           color: #fff;
           letter-spacing: -1.5px;
-          line-height: 1.15;
+          line-height: 1.1;
           margin: 0;
         }
         .pricing-hl-accent {
@@ -295,10 +295,10 @@ export function PricingSection() {
           font-style: italic;
         }
         .pricing-hl-sub {
-          color: rgba(255,255,255,.55);
-          font-size: 15px;
-          margin-top: 10px;
-          font-weight: 500;
+          color: rgba(255,255,255,.75);
+          font-size: 16px;
+          margin-top: 12px;
+          font-weight: 600;
         }
 
         /* Price Card */
@@ -335,12 +335,12 @@ export function PricingSection() {
         }
 
         .pc-from {
-          font-size: 13px;
-          color: rgba(255,255,255,.4);
+          font-size: 14px;
+          color: rgba(255,255,255,.7);
           font-weight: 600;
           margin-bottom: 4px;
         }
-        .pc-from s { text-decoration: line-through; }
+        .pc-from s { text-decoration: line-through; color: rgba(255,255,255,.5); }
 
         .pc-price-row {
           display: flex;
@@ -355,11 +355,11 @@ export function PricingSection() {
           margin-right: 4px;
         }
         .pc-value {
-          font-size: 100px;
+          font-size: 110px;
           font-weight: 900;
           color: #fff;
           letter-spacing: -5px;
-          filter: drop-shadow(0 0 30px rgba(0,255,65,.25));
+          filter: drop-shadow(0 0 40px rgba(0,255,65,.2));
         }
         .pc-cents {
           font-size: 34px;
@@ -395,8 +395,8 @@ export function PricingSection() {
           display: flex;
           align-items: center;
           gap: 16px;
-          padding: 14px 0;
-          border-bottom: 1px solid rgba(255,255,255,.06);
+          padding: 16px 0;
+          border-bottom: 1px solid rgba(255,255,255,.08);
         }
         .pc-benefit:last-child {
           border-bottom: none;
@@ -419,14 +419,14 @@ export function PricingSection() {
           gap: 2px;
         }
         .pc-benefit-title {
-          font-size: 14px;
-          font-weight: 700;
+          font-size: 15px;
+          font-weight: 800;
           color: #fff;
-          letter-spacing: -.2px;
+          letter-spacing: -.3px;
         }
         .pc-benefit-desc {
           font-size: 12px;
-          color: rgba(255,255,255,.4);
+          color: rgba(255,255,255,.7);
           font-weight: 500;
         }
 
@@ -483,16 +483,16 @@ export function PricingSection() {
           letter-spacing: 1px;
         }
         .pc-social-text span:last-child {
-          font-size: 11px;
+          font-size: 12px;
           font-weight: 700;
-          color: rgba(255,255,255,.5);
+          color: rgba(255,255,255,.75);
         }
 
         .pc-secure {
-          font-size: 11px;
-          color: rgba(255,255,255,.35);
+          font-size: 12px;
+          color: rgba(255,255,255,.6);
           margin-top: 16px;
-          font-weight: 500;
+          font-weight: 600;
           line-height: 1.5;
         }
 
@@ -569,15 +569,15 @@ export function PricingSection() {
           min-width: 0;
         }
         .bonus-row-content h4 {
-          font-size: 15px;
+          font-size: 16px;
           font-weight: 800;
           color: #fff;
           margin: 0 0 3px;
-          letter-spacing: -.2px;
+          letter-spacing: -.3px;
         }
         .bonus-row-content p {
           font-size: 13px;
-          color: rgba(255,255,255,.45);
+          color: rgba(255,255,255,.7);
           line-height: 1.45;
           margin: 0;
           font-weight: 500;
