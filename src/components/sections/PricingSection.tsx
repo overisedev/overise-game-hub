@@ -45,7 +45,7 @@ function handleCheckout() {
   if (typeof window !== "undefined" && (window as any).fbq) {
     (window as any).fbq("track", "InitiateCheckout", {
       content_name: "Acesso Completo",
-      value: 9.97,
+      value: 14.97,
       currency: "BRL",
     });
   }
@@ -108,7 +108,7 @@ export function PricingSection() {
 
             <div className="pc-price-row">
               <span className="pc-currency">R$</span>
-              <span className="pc-value">9</span>
+              <span className="pc-value">14</span>
               <span className="pc-cents">,97</span>
             </div>
 
@@ -194,7 +194,7 @@ export function PricingSection() {
           </span>
           <h3 className="bonuses-title">
             Tudo isso por apenas<br />
-            <span className="pricing-hl-accent">R$ 9,97</span>
+            <span className="pricing-hl-accent">R$ 14,97</span>
           </h3>
         </motion.div>
 
@@ -236,7 +236,7 @@ export function PricingSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <button className="pc-cta pc-cta-final" onClick={handleCheckout}>
-            Garantir Meu Acesso por R$ 9,97
+            Garantir Meu Acesso por R$ 14,97
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
