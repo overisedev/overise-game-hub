@@ -132,7 +132,7 @@ export default function CheckoutBanner() {
         <div className="cb-old-price">DE R$ 19,97 POR</div>
         <div className="cb-price">
           <span className="cb-currency">R$</span>
-          <span className="cb-price-main">9</span>
+          <span className="cb-price-main">14</span>
           <span className="cb-price-cents">,97</span>
         </div>
         <div className="cb-price-tag">TAXA ÚNICA</div>
