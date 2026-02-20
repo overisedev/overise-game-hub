@@ -73,7 +73,7 @@ function VideoCard({ src }: { src: string }) {
   };
 
   return (
-    <div className="video-testimonial-card" onClick={togglePlay}>
+    <div className="video-testimonial-card" onClick={togglePlay} role="button" aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && togglePlay()}>
       <video
         ref={videoRef}
         src={src}
@@ -81,7 +81,7 @@ function VideoCard({ src }: { src: string }) {
         loop
         autoPlay
         playsInline
-        preload="auto"
+        preload="metadata"
         className="video-testimonial-video"
         onLoadedData={() => setHasLoaded(true)}
         onPlay={() => setIsPlaying(true)}
@@ -99,7 +99,7 @@ function VideoCard({ src }: { src: string }) {
           </div>
         )}
       </div>
-      <button className="mute-button" onClick={toggleMute}>
+      <button className="mute-button" onClick={toggleMute} aria-label={isMuted ? "Ativar som" : "Silenciar"} style={{ minWidth: 44, minHeight: 44 }}>
         {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
       </button>
     </div>
@@ -167,10 +167,11 @@ export function TestimonialsSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="testimonials-title">QUEM BAIXOU, APROVOU</h2>
+      <h2 className="testimonials-title">QUEM BAIXOU, APROVOU</h2>
         <p className="testimonials-subtitle">
           Veja o que a nossa comunidade diz sobre a economia e a segurança que a Overise proporciona.
         </p>
+
       </motion.div>
 
       <div className="testimonials-carousel">
@@ -178,6 +179,8 @@ export function TestimonialsSection() {
           className="carousel-arrow carousel-arrow-left"
           onClick={handlePrev}
           disabled={currentIndex === 0}
+          aria-label="Depoimento anterior"
+          style={{ minWidth: 44, minHeight: 44 }}
         >
           <ChevronLeft size={24} />
         </button>
@@ -194,9 +197,9 @@ export function TestimonialsSection() {
             >
               {visibleTestimonials.map((t, i) => (
                 <div key={currentIndex + i} className="testimonial-card">
-                  <div className="testimonial-stars">
+                  <div className="testimonial-stars" aria-label="5 estrelas">
                     {[...Array(5)].map((_, idx) => (
-                      <Star key={idx} size={16} fill="var(--neon)" stroke="var(--neon)" />
+                      <Star key={idx} size={16} fill="var(--neon)" stroke="var(--neon)" aria-hidden="true" />
                     ))}
                   </div>
                   <p className="testimonial-text">"{t.text}"</p>
@@ -206,9 +209,13 @@ export function TestimonialsSection() {
                         src={t.avatar} 
                         alt={`Foto de ${t.name}`}
                         className="testimonial-avatar-img"
+                        loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
                       />
                     ) : (
-                      <div className="testimonial-avatar-placeholder">
+                      <div className="testimonial-avatar-placeholder" aria-hidden="true">
                         {t.name.charAt(0).toUpperCase()}
                       </div>
                     )}
@@ -224,6 +231,8 @@ export function TestimonialsSection() {
           className="carousel-arrow carousel-arrow-right"
           onClick={handleNext}
           disabled={currentIndex >= maxIndex}
+          aria-label="Próximo depoimento"
+          style={{ minWidth: 44, minHeight: 44 }}
         >
           <ChevronRight size={24} />
         </button>

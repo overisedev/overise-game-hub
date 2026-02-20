@@ -24,6 +24,9 @@ export function MarqueeSection({ games }: MarqueeSectionProps) {
                 src={game.cover}
                 alt={game.name}
                 loading="lazy"
+                decoding="async"
+                width={280}
+                height={158}
               />
               <div className="mini-overlay" />
               <span className="mini-label">{game.name}</span>

@@ -15,8 +15,8 @@ export const FAQSection = forwardRef<HTMLElement>(function FAQSection(_, ref) {
       <div className="faq-box">
         {faqs.map((f, i) => (
           <div key={i} className={`qa ${open === i ? 'open' : ''}`}>
-            <button className="q" onClick={() => setOpen(open === i ? null : i)}>{f.q}<span className="chev">+</span></button>
-            <div className="a">{f.a}</div>
+            <button className="q" onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i} style={{ minHeight: 44 }}>{f.q}<span className="chev" aria-hidden="true">+</span></button>
+            <div className="a" role="region">{f.a}</div>
           </div>
         ))}
       </div>
