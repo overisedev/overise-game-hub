@@ -243,7 +243,7 @@ export function GamesPreviewSection({
           animation: pulse-glow 2s ease-in-out infinite;
         }
 
-        /* card-shine: usa transform (GPU composited) em vez de top/left */
+        /* card-shine: apenas no hover, GPU composited via transform */
         .card-shine {
           position: absolute;
           inset: 0;
@@ -262,38 +262,25 @@ export function GamesPreviewSection({
           pointer-events: none;
           z-index: 3;
           transform: translateX(-200%) rotate(25deg);
-          animation: shine-sweep 4s ease-in-out infinite;
-          animation-delay: calc(var(--card-index, 0) * 0.15s);
+          opacity: 0;
           will-change: transform, opacity;
+          transition: none;
         }
 
-        .preview-card:nth-child(1) .card-shine { --card-index: 0; }
-        .preview-card:nth-child(2) .card-shine { --card-index: 1; }
-        .preview-card:nth-child(3) .card-shine { --card-index: 2; }
-        .preview-card:nth-child(4) .card-shine { --card-index: 3; }
-        .preview-card:nth-child(5) .card-shine { --card-index: 4; }
-        .preview-card:nth-child(6) .card-shine { --card-index: 5; }
-        .preview-card:nth-child(7) .card-shine { --card-index: 6; }
-        .preview-card:nth-child(8) .card-shine { --card-index: 7; }
-        .preview-card:nth-child(9) .card-shine { --card-index: 8; }
-        .preview-card:nth-child(10) .card-shine { --card-index: 9; }
-        .preview-card:nth-child(11) .card-shine { --card-index: 10; }
-        .preview-card:nth-child(12) .card-shine { --card-index: 11; }
+        /* Shine só roda no hover — sem animação contínua que bloqueia main thread */
+        .preview-card.hovered .card-shine {
+          animation: shine-sweep-once 0.6s ease-out forwards;
+        }
 
-        /* GPU composited: usa transform translateX em vez de left/top */
-        @keyframes shine-sweep {
+        @keyframes shine-sweep-once {
           0% {
             transform: translateX(-200%) rotate(25deg);
             opacity: 0;
           }
-          10% {
+          20% {
             opacity: 1;
           }
-          50% {
-            transform: translateX(400%) rotate(25deg);
-            opacity: 1;
-          }
-          60%, 100% {
+          100% {
             transform: translateX(400%) rotate(25deg);
             opacity: 0;
           }

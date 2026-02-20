@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
 // Import avatar images
-import jzAvatar from '@/assets/testimonials/jz.jpg';
+import jzAvatar from '@/assets/testimonials/jz-thumb.jpg';
 import adriellyAvatar from '@/assets/testimonials/adrielly.jpg';
 import maiconAvatar from '@/assets/testimonials/maicon.jpg';
-import wlAvatar from '@/assets/testimonials/wl.jpeg';
+import wlAvatar from '@/assets/testimonials/wl-thumb.jpg';
 
 const testimonials = [
   {
