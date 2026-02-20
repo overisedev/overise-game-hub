@@ -93,7 +93,7 @@ export function GamesPreviewSection({
                     >
                       <div className="card-glow" />
                       <div className="card-shine" />
-                      <img src={game.cover} alt={game.name} loading="lazy" />
+                      <img src={game.cover} alt={game.name} loading="lazy" decoding="async" width={460} height={215} />
                       <div className="preview-overlay" />
                     </motion.div>
                   </motion.div>
@@ -118,7 +118,7 @@ export function GamesPreviewSection({
             
             <h2 className="content-title">
               Mais de <span className="highlight">1000+</span> jogos<br />
-              para jogar
+              <span>para jogar</span>
             </h2>
             
             <p className="content-description">

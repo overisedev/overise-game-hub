@@ -160,11 +160,11 @@ export function PricingSection() {
 
             {/* Social Proof */}
             <div className="pc-social">
-              <div className="pc-avatars">
-                <img src={jzAvatar} alt="" />
-                <img src={adriellyAvatar} alt="" />
-                <img src={maiconAvatar} alt="" />
-                <img src={wlAvatar} alt="" />
+              <div className="pc-avatars" aria-hidden="true">
+                <img src={jzAvatar} alt="" width={28} height={28} loading="lazy" decoding="async" />
+                <img src={adriellyAvatar} alt="" width={28} height={28} loading="lazy" decoding="async" />
+                <img src={maiconAvatar} alt="" width={28} height={28} loading="lazy" decoding="async" />
+                <img src={wlAvatar} alt="" width={28} height={28} loading="lazy" decoding="async" />
               </div>
               <div className="pc-social-text">
                 <span className="pc-stars">★★★★★</span>

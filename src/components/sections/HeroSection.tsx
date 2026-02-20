@@ -28,7 +28,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 <div className="hero-card-media">
                   <img
                     src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                    alt={featuredGame.name}
+                    alt={`Imagem do jogo ${featuredGame.name}`}
+                    width={616}
+                    height={353}
+                    fetchPriority="high"
+                    decoding="async"
                     onError={(e) => {
                       e.currentTarget.src = featuredGame.cover;
                     }}
@@ -37,10 +41,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 </div>
 
                 {/* Nav Buttons */}
-                <button onClick={onPrev} className="feat-nav feat-prev">
+                <button onClick={onPrev} className="feat-nav feat-prev" aria-label="Jogo anterior">
                   ‹
                 </button>
-                <button onClick={onNext} className="feat-nav feat-next">
+                <button onClick={onNext} className="feat-nav feat-next" aria-label="Próximo jogo">
                   ›
                 </button>
 
@@ -51,7 +55,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                       <span className="chip green">Jogo Original</span>
                       <span className="chip">Steam</span>
                     </div>
-                    <h2 className="hero-card-name">{featuredGame.name}</h2>
+                    <p className="hero-card-name">{featuredGame.name}</p>
                   </div>
                 </div>
               </div>
@@ -95,14 +99,14 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
               {/* Social Proof with Real Avatars */}
               <div className="social-proof">
-                <div className="avatars-stack">
-                  <img src={jzAvatar} alt="" className="avatar-mini" />
-                  <img src={adriellyAvatar} alt="" className="avatar-mini" />
-                  <img src={maiconAvatar} alt="" className="avatar-mini" />
-                  <img src={wlAvatar} alt="" className="avatar-mini" />
+                <div className="avatars-stack" aria-hidden="true">
+                  <img src={jzAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
+                  <img src={adriellyAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
+                  <img src={maiconAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
+                  <img src={wlAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
                 </div>
                 <div className="social-text">
-                  <span className="stars">★★★★★</span>
+                  <span className="stars" aria-label="5 estrelas">★★★★★</span>
                   <span className="count">+5K clientes</span>
                 </div>
               </div>
@@ -116,7 +120,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               <div className="hero-card-media">
                 <img
                   src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                  alt={featuredGame.name}
+                  alt={`Imagem do jogo ${featuredGame.name}`}
+                  width={616}
+                  height={353}
+                  fetchPriority="high"
+                  decoding="async"
                   onError={(e) => {
                     e.currentTarget.src = featuredGame.cover;
                   }}
@@ -125,10 +133,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               </div>
 
               {/* Nav Buttons */}
-              <button onClick={onPrev} className="feat-nav feat-prev">
+              <button onClick={onPrev} className="feat-nav feat-prev" aria-label="Jogo anterior" style={{ minWidth: 44, minHeight: 44 }}>
                 ‹
               </button>
-              <button onClick={onNext} className="feat-nav feat-next">
+              <button onClick={onNext} className="feat-nav feat-next" aria-label="Próximo jogo" style={{ minWidth: 44, minHeight: 44 }}>
                 ›
               </button>
 
@@ -139,7 +147,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                     <span className="chip green">Jogo Original</span>
                     <span className="chip">Steam</span>
                   </div>
-                  <h2 className="hero-card-name">{featuredGame.name}</h2>
+                  <p className="hero-card-name">{featuredGame.name}</p>
                   <p className="hero-card-desc">Baixe os arquivos oficiais direto pela Steam.</p>
                 </div>
               </div>
@@ -584,8 +592,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         .feat-nav {
           position: absolute;
           top: 14px;
-          width: 38px;
-          height: 38px;
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          min-height: 44px;
           border-radius: 12px;
           border: 1px solid rgba(255,255,255,.14);
           background: rgba(0,0,0,.35);
@@ -599,8 +609,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .feat-nav {
-            width: 34px;
-            height: 34px;
+            width: 44px;
+            height: 44px;
             font-size: 16px;
           }
         }

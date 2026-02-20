@@ -6,7 +6,12 @@ export function AboutSection() {
         <div className="about-bg">
           <img 
             src="https://images.igdb.com/igdb/image/upload/t_1080p/co1rgi.jpg" 
-            alt="Hollow Knight background"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            width={1920}
+            height={1080}
           />
           <div className="about-bg-overlay" />
         </div>

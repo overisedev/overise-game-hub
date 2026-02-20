@@ -118,6 +118,7 @@ export function CatalogSection({
         </div>
       </div>
 
+
       {/* Catalog Shell */}
       <div className="catalog-shell">
         {/* Sidebar */}
@@ -153,6 +154,8 @@ export function CatalogSection({
               className="showcase-arrow showcase-arrow-left"
               onClick={handlePrevShowcase}
               disabled={showcaseIndex === 0}
+              aria-label="Jogos anteriores"
+              style={{ minWidth: 44, minHeight: 44 }}
             >
               <ChevronLeft size={20} />
             </button>
@@ -165,8 +168,8 @@ export function CatalogSection({
                   style={{ animationDelay: `${idx * 0.1}s` }}
                   onClick={() => onOpenDetails(game)}
                 >
-                  <div className="game-img">
-                    <img src={game.cover} alt={game.name} loading="lazy" />
+                  <div className="game-img" style={{ aspectRatio: '600/900', position: 'relative' }}>
+                    <img src={game.cover} alt={game.name} loading="lazy" decoding="async" width={300} height={450} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="game-grad" />
                   </div>
                   <div className="game-info">
@@ -190,6 +193,8 @@ export function CatalogSection({
               className="showcase-arrow showcase-arrow-right"
               onClick={handleNextShowcase}
               disabled={showcaseIndex >= maxShowcaseIndex}
+              aria-label="Próximos jogos"
+              style={{ minWidth: 44, minHeight: 44 }}
             >
               <ChevronRight size={20} />
             </button>
@@ -243,11 +248,14 @@ export function CatalogSection({
                       className="full-card"
                       onClick={() => onOpenDetails(game)}
                     >
-                      <div className="full-card-img">
+                      <div className="full-card-img" style={{ aspectRatio: '600/900' }}>
                         <img 
                           src={game.cover} 
                           alt={game.name} 
                           loading="lazy"
+                          decoding="async"
+                          width={150}
+                          height={225}
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.style.opacity = '0';

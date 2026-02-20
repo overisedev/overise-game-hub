@@ -195,7 +195,8 @@ export function ChatWidget() {
               </div>
               <button 
                 onClick={toggleChat}
-                className="w-8 h-8 rounded-lg flex items-center justify-center bg-transparent cursor-pointer transition-all duration-200"
+                className="w-8 h-8 min-w-[44px] min-h-[44px] rounded-lg flex items-center justify-center bg-transparent cursor-pointer transition-all duration-200"
+                aria-label="Fechar chat"
                 style={{ 
                   border: '1px solid rgba(255, 255, 255, 0.1)',
                   color: '#666' 
@@ -363,6 +364,7 @@ export function ChatWidget() {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         className="w-[60px] h-[60px] rounded-2xl flex items-center justify-center cursor-pointer border-none relative"
+        aria-label={isOpen ? "Fechar assistente" : "Abrir assistente de suporte"}
         style={{
           background: 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)',
           boxShadow: '0 6px 25px rgba(0, 255, 65, 0.4)',
