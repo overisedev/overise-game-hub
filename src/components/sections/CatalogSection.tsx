@@ -551,19 +551,25 @@ export function CatalogSection({
         }
         .game-img {
           aspect-ratio: 16/9;
-          max-height: 160px;
+          max-height: 140px;
           background: #0a0a0a;
           border-radius: 12px 12px 0 0;
           overflow: hidden;
+          width: 100%;
+        }
+        @media (max-width: 640px) {
+          .game-img {
+            max-height: 120px;
+          }
         }
         .game-img img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center top;
           display: block;
           transition: transform .35s ease;
           opacity: 1 !important;
-        }
         }
         .game:hover .game-img img {
           filter: saturate(1.12) contrast(1.10) brightness(1.05);
