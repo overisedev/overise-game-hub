@@ -1,10 +1,10 @@
 import type { Game } from "@/types/game";
 
 // Import testimonial avatars for social proof
-import jzAvatar from "@/assets/testimonials/jz.jpg";
+import jzAvatar from "@/assets/testimonials/jz-thumb.jpg";
 import adriellyAvatar from "@/assets/testimonials/adrielly.jpg";
 import maiconAvatar from "@/assets/testimonials/maicon.jpg";
-import wlAvatar from "@/assets/testimonials/wl.jpeg";
+import wlAvatar from "@/assets/testimonials/wl-thumb.jpg";
 
 interface HeroSectionProps {
   featuredGame: Game | undefined;
