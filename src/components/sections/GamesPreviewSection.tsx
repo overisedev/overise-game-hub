@@ -243,12 +243,14 @@ export function GamesPreviewSection({
           animation: pulse-glow 2s ease-in-out infinite;
         }
 
+        /* card-shine: usa transform (GPU composited) em vez de top/left */
         .card-shine {
           position: absolute;
-          top: -100%;
-          left: -100%;
+          inset: 0;
           width: 60%;
           height: 200%;
+          top: -50%;
+          left: 0;
           background: linear-gradient(
             115deg,
             transparent 20%,
@@ -257,11 +259,12 @@ export function GamesPreviewSection({
             rgba(255,255,255,.08) 60%,
             transparent 80%
           );
-          transform: rotate(25deg);
           pointer-events: none;
           z-index: 3;
+          transform: translateX(-200%) rotate(25deg);
           animation: shine-sweep 4s ease-in-out infinite;
           animation-delay: calc(var(--card-index, 0) * 0.15s);
+          will-change: transform, opacity;
         }
 
         .preview-card:nth-child(1) .card-shine { --card-index: 0; }
@@ -277,21 +280,21 @@ export function GamesPreviewSection({
         .preview-card:nth-child(11) .card-shine { --card-index: 10; }
         .preview-card:nth-child(12) .card-shine { --card-index: 11; }
 
+        /* GPU composited: usa transform translateX em vez de left/top */
         @keyframes shine-sweep {
-          0%, 100% {
-            top: -100%;
-            left: -100%;
+          0% {
+            transform: translateX(-200%) rotate(25deg);
             opacity: 0;
           }
           10% {
             opacity: 1;
           }
           50% {
-            top: 100%;
-            left: 150%;
+            transform: translateX(400%) rotate(25deg);
             opacity: 1;
           }
           60%, 100% {
+            transform: translateX(400%) rotate(25deg);
             opacity: 0;
           }
         }
@@ -299,6 +302,9 @@ export function GamesPreviewSection({
         @keyframes pulse-glow {
           0%, 100% { opacity: 0.8; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.1); }
+        }
+        .card-glow {
+          will-change: opacity, transform;
         }
 
         .card-inner img {
