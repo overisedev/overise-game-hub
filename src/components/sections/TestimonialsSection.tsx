@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
@@ -49,9 +49,35 @@ const videoTestimonials = [
 
 function VideoCard({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Lazy load: só carrega src e autoplay quando o card estiver visível na tela
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-play somente quando visível
+  useEffect(() => {
+    if (isVisible && videoRef.current) {
+      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  }, [isVisible]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -73,21 +99,22 @@ function VideoCard({ src }: { src: string }) {
   };
 
   return (
-    <div className="video-testimonial-card" onClick={togglePlay} role="button" aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && togglePlay()}>
-      <video
-        ref={videoRef}
-        src={src}
-        muted
-        loop
-        autoPlay
-        playsInline
-        preload="metadata"
-        className="video-testimonial-video"
-        onLoadedData={() => setHasLoaded(true)}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-      />
-      {!hasLoaded && (
+    <div ref={containerRef} className="video-testimonial-card" onClick={togglePlay} role="button" aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && togglePlay()}>
+      {isVisible && (
+        <video
+          ref={videoRef}
+          src={src}
+          muted
+          loop
+          playsInline
+          preload="none"
+          className="video-testimonial-video"
+          onLoadedData={() => setHasLoaded(true)}
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+        />
+      )}
+      {(!hasLoaded || !isVisible) && (
         <div className="video-loading-placeholder">
           <Play size={32} fill="white" style={{ opacity: 0.5 }} />
         </div>

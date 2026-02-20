@@ -257,11 +257,14 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           grid-template-columns: 1.15fr .85fr;
           gap: 34px;
           align-items: center;
+          /* Reserva altura mínima para evitar CLS enquanto conteúdo carrega */
+          min-height: 420px;
         }
         @media (max-width: 980px) {
           .hero-grid { 
             grid-template-columns: 1fr; 
-            gap: 24px; 
+            gap: 24px;
+            min-height: auto;
           }
         }
         @media (max-width: 640px) {
@@ -269,6 +272,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             display: flex;
             flex-direction: column;
             gap: 0;
+            min-height: auto;
           }
           .hero-content {
             display: flex;
@@ -280,6 +284,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             padding-top: 10px;
             padding-bottom: 16px;
           }
+        }
+
+        /* Dimensões fixas da media do card hero para evitar reflow */
+        .hero-card-media {
+          contain: strict;
         }
 
         .hero-title {
