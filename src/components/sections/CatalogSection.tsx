@@ -168,8 +168,8 @@ export function CatalogSection({
                   style={{ animationDelay: `${idx * 0.1}s` }}
                   onClick={() => onOpenDetails(game)}
                 >
-                  <div className="game-img" style={{ aspectRatio: '600/900', position: 'relative' }}>
-                    <img src={game.cover} alt={game.name} loading="lazy" decoding="async" width={300} height={450} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <div className="game-img" style={{ position: 'relative' }}>
+                    <img src={game.cover} alt={game.name} loading="lazy" decoding="async" width={460} height={215} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     <div className="game-grad" />
                   </div>
                   <div className="game-info">
@@ -551,8 +551,9 @@ export function CatalogSection({
         }
         .game-img {
           aspect-ratio: 16/9;
+          max-height: 160px;
           background: #0a0a0a;
-          position: relative;
+          border-radius: 12px 12px 0 0;
           overflow: hidden;
         }
         .game-img img {
@@ -560,8 +561,9 @@ export function CatalogSection({
           height: 100%;
           object-fit: cover;
           display: block;
-          filter: saturate(1.08) contrast(1.08);
+          transition: transform .35s ease;
           opacity: 1 !important;
+        }
         }
         .game:hover .game-img img {
           filter: saturate(1.12) contrast(1.10) brightness(1.05);
