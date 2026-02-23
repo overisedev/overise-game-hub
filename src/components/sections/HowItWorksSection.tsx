@@ -145,7 +145,7 @@ export function HowItWorksSection() {
                 <div className="mockup-main">
                   {/* Featured game */}
                   <div className="featured-game">
-                    <img src={mockupGames[0].cover} alt={mockupGames[0].name} loading="lazy" decoding="async" width={480} height={140} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={mockupGames[0].cover} alt={mockupGames[0].name} />
                     <div className="featured-overlay">
                       <span className="featured-tag">Destaque</span>
                       <h4>{mockupGames[0].name}</h4>
@@ -156,8 +156,8 @@ export function HowItWorksSection() {
                   {/* Game grid */}
                   <div className="mockup-game-grid">
                     {mockupGames.slice(1, 5).map((game) => (
-                      <div key={game.id} className="mockup-game-item" style={{ aspectRatio: '2/3' }}>
-                        <img src={game.cover} alt={game.name} loading="lazy" decoding="async" width={120} height={180} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <div key={game.id} className="mockup-game-item">
+                        <img src={game.cover} alt={game.name} />
                       </div>
                     ))}
                   </div>

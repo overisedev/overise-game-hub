@@ -72,7 +72,6 @@ const Index = () => {
     <div className="min-h-screen">
       <UrgencyBar isVisible={urgencyBarVisible} />
       <Header urgencyBarVisible={urgencyBarVisible} />
-      <main id="main-content">
       
       <HeroSection 
         featuredGame={featuredGame}
@@ -109,7 +108,6 @@ const Index = () => {
       <FAQSection />
       
       <Footer />
-      </main>
 
       {selectedGame && (
         <GameModal 

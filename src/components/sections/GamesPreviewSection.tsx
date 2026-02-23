@@ -93,7 +93,7 @@ export function GamesPreviewSection({
                     >
                       <div className="card-glow" />
                       <div className="card-shine" />
-                      <img src={game.cover} alt={game.name} loading="lazy" decoding="async" width={460} height={215} />
+                      <img src={game.cover} alt={game.name} loading="lazy" />
                       <div className="preview-overlay" />
                     </motion.div>
                   </motion.div>
@@ -118,7 +118,7 @@ export function GamesPreviewSection({
             
             <h2 className="content-title">
               Mais de <span className="highlight">1000+</span> jogos<br />
-              <span>para jogar</span>
+              para jogar
             </h2>
             
             <p className="content-description">
@@ -243,14 +243,12 @@ export function GamesPreviewSection({
           animation: pulse-glow 2s ease-in-out infinite;
         }
 
-        /* card-shine: apenas no hover, GPU composited via transform */
         .card-shine {
           position: absolute;
-          inset: 0;
+          top: -100%;
+          left: -100%;
           width: 60%;
           height: 200%;
-          top: -50%;
-          left: 0;
           background: linear-gradient(
             115deg,
             transparent 20%,
@@ -259,29 +257,41 @@ export function GamesPreviewSection({
             rgba(255,255,255,.08) 60%,
             transparent 80%
           );
+          transform: rotate(25deg);
           pointer-events: none;
           z-index: 3;
-          transform: translateX(-200%) rotate(25deg);
-          opacity: 0;
-          will-change: transform, opacity;
-          transition: none;
+          animation: shine-sweep 4s ease-in-out infinite;
+          animation-delay: calc(var(--card-index, 0) * 0.15s);
         }
 
-        /* Shine só roda no hover — sem animação contínua que bloqueia main thread */
-        .preview-card.hovered .card-shine {
-          animation: shine-sweep-once 0.6s ease-out forwards;
-        }
+        .preview-card:nth-child(1) .card-shine { --card-index: 0; }
+        .preview-card:nth-child(2) .card-shine { --card-index: 1; }
+        .preview-card:nth-child(3) .card-shine { --card-index: 2; }
+        .preview-card:nth-child(4) .card-shine { --card-index: 3; }
+        .preview-card:nth-child(5) .card-shine { --card-index: 4; }
+        .preview-card:nth-child(6) .card-shine { --card-index: 5; }
+        .preview-card:nth-child(7) .card-shine { --card-index: 6; }
+        .preview-card:nth-child(8) .card-shine { --card-index: 7; }
+        .preview-card:nth-child(9) .card-shine { --card-index: 8; }
+        .preview-card:nth-child(10) .card-shine { --card-index: 9; }
+        .preview-card:nth-child(11) .card-shine { --card-index: 10; }
+        .preview-card:nth-child(12) .card-shine { --card-index: 11; }
 
-        @keyframes shine-sweep-once {
-          0% {
-            transform: translateX(-200%) rotate(25deg);
+        @keyframes shine-sweep {
+          0%, 100% {
+            top: -100%;
+            left: -100%;
             opacity: 0;
           }
-          20% {
+          10% {
             opacity: 1;
           }
-          100% {
-            transform: translateX(400%) rotate(25deg);
+          50% {
+            top: 100%;
+            left: 150%;
+            opacity: 1;
+          }
+          60%, 100% {
             opacity: 0;
           }
         }
@@ -289,9 +299,6 @@ export function GamesPreviewSection({
         @keyframes pulse-glow {
           0%, 100% { opacity: 0.8; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.1); }
-        }
-        .card-glow {
-          will-change: opacity, transform;
         }
 
         .card-inner img {

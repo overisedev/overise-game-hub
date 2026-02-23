@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
 // Import avatar images
-import jzAvatar from '@/assets/testimonials/jz-thumb.jpg';
+import jzAvatar from '@/assets/testimonials/jz.jpg';
 import adriellyAvatar from '@/assets/testimonials/adrielly.jpg';
 import maiconAvatar from '@/assets/testimonials/maicon.jpg';
-import wlAvatar from '@/assets/testimonials/wl-thumb.jpg';
+import wlAvatar from '@/assets/testimonials/wl.jpeg';
 
 const testimonials = [
   {
@@ -49,35 +49,9 @@ const videoTestimonials = [
 
 function VideoCard({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Lazy load: só carrega src e autoplay quando o card estiver visível na tela
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' }
-    );
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, []);
-
-  // Auto-play somente quando visível
-  useEffect(() => {
-    if (isVisible && videoRef.current) {
-      videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-    }
-  }, [isVisible]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -99,22 +73,21 @@ function VideoCard({ src }: { src: string }) {
   };
 
   return (
-    <div ref={containerRef} className="video-testimonial-card" onClick={togglePlay} role="button" aria-label={isPlaying ? "Pausar vídeo" : "Reproduzir vídeo"} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && togglePlay()}>
-      {isVisible && (
-        <video
-          ref={videoRef}
-          src={src}
-          muted
-          loop
-          playsInline
-          preload="none"
-          className="video-testimonial-video"
-          onLoadedData={() => setHasLoaded(true)}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
-        />
-      )}
-      {(!hasLoaded || !isVisible) && (
+    <div className="video-testimonial-card" onClick={togglePlay}>
+      <video
+        ref={videoRef}
+        src={src}
+        muted
+        loop
+        autoPlay
+        playsInline
+        preload="auto"
+        className="video-testimonial-video"
+        onLoadedData={() => setHasLoaded(true)}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+      />
+      {!hasLoaded && (
         <div className="video-loading-placeholder">
           <Play size={32} fill="white" style={{ opacity: 0.5 }} />
         </div>
@@ -126,7 +99,7 @@ function VideoCard({ src }: { src: string }) {
           </div>
         )}
       </div>
-      <button className="mute-button" onClick={toggleMute} aria-label={isMuted ? "Ativar som" : "Silenciar"} style={{ minWidth: 44, minHeight: 44 }}>
+      <button className="mute-button" onClick={toggleMute}>
         {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
       </button>
     </div>
@@ -194,11 +167,10 @@ export function TestimonialsSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-      <h2 className="testimonials-title">QUEM BAIXOU, APROVOU</h2>
+        <h2 className="testimonials-title">QUEM BAIXOU, APROVOU</h2>
         <p className="testimonials-subtitle">
           Veja o que a nossa comunidade diz sobre a economia e a segurança que a Overise proporciona.
         </p>
-
       </motion.div>
 
       <div className="testimonials-carousel">
@@ -206,8 +178,6 @@ export function TestimonialsSection() {
           className="carousel-arrow carousel-arrow-left"
           onClick={handlePrev}
           disabled={currentIndex === 0}
-          aria-label="Depoimento anterior"
-          style={{ minWidth: 44, minHeight: 44 }}
         >
           <ChevronLeft size={24} />
         </button>
@@ -224,9 +194,9 @@ export function TestimonialsSection() {
             >
               {visibleTestimonials.map((t, i) => (
                 <div key={currentIndex + i} className="testimonial-card">
-                  <div className="testimonial-stars" aria-label="5 estrelas">
+                  <div className="testimonial-stars">
                     {[...Array(5)].map((_, idx) => (
-                      <Star key={idx} size={16} fill="var(--neon)" stroke="var(--neon)" aria-hidden="true" />
+                      <Star key={idx} size={16} fill="var(--neon)" stroke="var(--neon)" />
                     ))}
                   </div>
                   <p className="testimonial-text">"{t.text}"</p>
@@ -236,13 +206,9 @@ export function TestimonialsSection() {
                         src={t.avatar} 
                         alt={`Foto de ${t.name}`}
                         className="testimonial-avatar-img"
-                        loading="lazy"
-                        decoding="async"
-                        width={40}
-                        height={40}
                       />
                     ) : (
-                      <div className="testimonial-avatar-placeholder" aria-hidden="true">
+                      <div className="testimonial-avatar-placeholder">
                         {t.name.charAt(0).toUpperCase()}
                       </div>
                     )}
@@ -258,8 +224,6 @@ export function TestimonialsSection() {
           className="carousel-arrow carousel-arrow-right"
           onClick={handleNext}
           disabled={currentIndex >= maxIndex}
-          aria-label="Próximo depoimento"
-          style={{ minWidth: 44, minHeight: 44 }}
         >
           <ChevronRight size={24} />
         </button>

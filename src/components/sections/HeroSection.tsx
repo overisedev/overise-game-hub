@@ -1,10 +1,10 @@
 import type { Game } from "@/types/game";
 
 // Import testimonial avatars for social proof
-import jzAvatar from "@/assets/testimonials/jz-thumb.jpg";
+import jzAvatar from "@/assets/testimonials/jz.jpg";
 import adriellyAvatar from "@/assets/testimonials/adrielly.jpg";
 import maiconAvatar from "@/assets/testimonials/maicon.jpg";
-import wlAvatar from "@/assets/testimonials/wl-thumb.jpg";
+import wlAvatar from "@/assets/testimonials/wl.jpeg";
 
 interface HeroSectionProps {
   featuredGame: Game | undefined;
@@ -28,11 +28,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 <div className="hero-card-media">
                   <img
                     src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                    alt={`Imagem do jogo ${featuredGame.name}`}
-                    width={616}
-                    height={353}
-                    fetchPriority="high"
-                    decoding="async"
+                    alt={featuredGame.name}
                     onError={(e) => {
                       e.currentTarget.src = featuredGame.cover;
                     }}
@@ -41,10 +37,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 </div>
 
                 {/* Nav Buttons */}
-                <button onClick={onPrev} className="feat-nav feat-prev" aria-label="Jogo anterior">
+                <button onClick={onPrev} className="feat-nav feat-prev">
                   ‹
                 </button>
-                <button onClick={onNext} className="feat-nav feat-next" aria-label="Próximo jogo">
+                <button onClick={onNext} className="feat-nav feat-next">
                   ›
                 </button>
 
@@ -55,7 +51,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                       <span className="chip green">Jogo Original</span>
                       <span className="chip">Steam</span>
                     </div>
-                    <p className="hero-card-name">{featuredGame.name}</p>
+                    <h2 className="hero-card-name">{featuredGame.name}</h2>
                   </div>
                 </div>
               </div>
@@ -99,14 +95,14 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
               {/* Social Proof with Real Avatars */}
               <div className="social-proof">
-                <div className="avatars-stack" aria-hidden="true">
-                  <img src={jzAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
-                  <img src={adriellyAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
-                  <img src={maiconAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
-                  <img src={wlAvatar} alt="" className="avatar-mini" width={32} height={32} loading="lazy" decoding="async" />
+                <div className="avatars-stack">
+                  <img src={jzAvatar} alt="" className="avatar-mini" />
+                  <img src={adriellyAvatar} alt="" className="avatar-mini" />
+                  <img src={maiconAvatar} alt="" className="avatar-mini" />
+                  <img src={wlAvatar} alt="" className="avatar-mini" />
                 </div>
                 <div className="social-text">
-                  <span className="stars" aria-label="5 estrelas">★★★★★</span>
+                  <span className="stars">★★★★★</span>
                   <span className="count">+5K clientes</span>
                 </div>
               </div>
@@ -120,11 +116,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               <div className="hero-card-media">
                 <img
                   src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                  alt={`Imagem do jogo ${featuredGame.name}`}
-                  width={616}
-                  height={353}
-                  fetchPriority="high"
-                  decoding="async"
+                  alt={featuredGame.name}
                   onError={(e) => {
                     e.currentTarget.src = featuredGame.cover;
                   }}
@@ -133,10 +125,10 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               </div>
 
               {/* Nav Buttons */}
-              <button onClick={onPrev} className="feat-nav feat-prev" aria-label="Jogo anterior" style={{ minWidth: 44, minHeight: 44 }}>
+              <button onClick={onPrev} className="feat-nav feat-prev">
                 ‹
               </button>
-              <button onClick={onNext} className="feat-nav feat-next" aria-label="Próximo jogo" style={{ minWidth: 44, minHeight: 44 }}>
+              <button onClick={onNext} className="feat-nav feat-next">
                 ›
               </button>
 
@@ -147,7 +139,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                     <span className="chip green">Jogo Original</span>
                     <span className="chip">Steam</span>
                   </div>
-                  <p className="hero-card-name">{featuredGame.name}</p>
+                  <h2 className="hero-card-name">{featuredGame.name}</h2>
                   <p className="hero-card-desc">Baixe os arquivos oficiais direto pela Steam.</p>
                 </div>
               </div>
@@ -257,14 +249,11 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
           grid-template-columns: 1.15fr .85fr;
           gap: 34px;
           align-items: center;
-          /* Reserva altura mínima para evitar CLS enquanto conteúdo carrega */
-          min-height: 420px;
         }
         @media (max-width: 980px) {
           .hero-grid { 
             grid-template-columns: 1fr; 
-            gap: 24px;
-            min-height: auto;
+            gap: 24px; 
           }
         }
         @media (max-width: 640px) {
@@ -272,7 +261,6 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             display: flex;
             flex-direction: column;
             gap: 0;
-            min-height: auto;
           }
           .hero-content {
             display: flex;
@@ -284,11 +272,6 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             padding-top: 10px;
             padding-bottom: 16px;
           }
-        }
-
-        /* Dimensões fixas da media do card hero para evitar reflow */
-        .hero-card-media {
-          contain: strict;
         }
 
         .hero-title {
@@ -601,10 +584,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         .feat-nav {
           position: absolute;
           top: 14px;
-          width: 44px;
-          height: 44px;
-          min-width: 44px;
-          min-height: 44px;
+          width: 38px;
+          height: 38px;
           border-radius: 12px;
           border: 1px solid rgba(255,255,255,.14);
           background: rgba(0,0,0,.35);
@@ -618,8 +599,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
         }
         @media (max-width: 640px) {
           .feat-nav {
-            width: 44px;
-            height: 44px;
+            width: 34px;
+            height: 34px;
             font-size: 16px;
           }
         }
