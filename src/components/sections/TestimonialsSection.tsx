@@ -167,7 +167,7 @@ export function TestimonialsSection() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="testimonials-title">QUEM BAIXOU, APROVOU</h2>
+        <h2 className="testimonials-title">QUEM JÁ DESBLOQUEOU, APROVOU.</h2>
         <p className="testimonials-subtitle">
           Veja o que a nossa comunidade diz sobre a economia e a segurança que a Overise proporciona.
         </p>

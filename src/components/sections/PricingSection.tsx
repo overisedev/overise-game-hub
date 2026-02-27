@@ -82,7 +82,7 @@ export function PricingSection() {
         >
           <span className="pricing-label">
             <Zap size={14} />
-            Investimento
+            Acesso Imediato
           </span>
         </motion.div>
 
@@ -95,10 +95,10 @@ export function PricingSection() {
           transition={{ duration: 0.5, delay: 0.05 }}
         >
           <h2>
-            Quanto custa ter acesso a<br />
-            <span className="pricing-hl-accent">+1000 jogos famosos?</span>
+            A Chave Mestra<br />
+            <span className="pricing-hl-accent">para o seu PC</span>
           </h2>
-          <p className="pricing-hl-sub">Menos do que um lanche. Pagou uma vez, é seu pra sempre.</p>
+          <p className="pricing-hl-sub">Pagou uma vez, é seu pra sempre. Sem mensalidades.</p>
         </motion.div>
 
         {/* Price Card */}
@@ -115,7 +115,7 @@ export function PricingSection() {
             <span className="pc-plan-sub">ACESSO COMPLETO</span>
 
             <span className="pc-from">
-              De <s>R$ 15.000</s> em jogos
+              Taxa Única de Ativação
             </span>
 
             <div className="pc-price-row">
@@ -124,7 +124,7 @@ export function PricingSection() {
               <span className="pc-cents">,97</span>
             </div>
 
-            <span className="pc-label">Taxa Única</span>
+            <span className="pc-label">Pagamento Único</span>
 
             <div className="pc-divider" />
 
@@ -141,7 +141,7 @@ export function PricingSection() {
                 >
                   <path d="M5 12l5 5L20 7" />
                 </svg>
-                <span className="pc-benefit-title pc-bold">+1000 Jogos (+Lançamentos)</span>
+                <span className="pc-benefit-title pc-bold">Acesso ao Software Overise</span>
               </div>
               <div className="pc-benefit">
                 <svg
@@ -155,7 +155,7 @@ export function PricingSection() {
                 >
                   <path d="M5 12l5 5L20 7" />
                 </svg>
-                <span className="pc-benefit-title">Seus pra Sempre (Vitalício)</span>
+                <span className="pc-benefit-title">Download na Velocidade Máxima</span>
               </div>
               <div className="pc-benefit">
                 <svg
@@ -169,7 +169,7 @@ export function PricingSection() {
                 >
                   <path d="M5 12l5 5L20 7" />
                 </svg>
-                <span className="pc-benefit-title pc-bold">Modo Online (Selecionados)</span>
+                <span className="pc-benefit-title pc-bold">Instalação Descomplicada (1 Clique)</span>
               </div>
               <div className="pc-benefit">
                 <svg
@@ -183,7 +183,21 @@ export function PricingSection() {
                 >
                   <path d="M5 12l5 5L20 7" />
                 </svg>
-                <span className="pc-benefit-title">Download pela Steam</span>
+                <span className="pc-benefit-title">Suporte VIP no WhatsApp</span>
+              </div>
+              <div className="pc-benefit">
+                <svg
+                  className="pc-check-svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="var(--neon)"
+                  strokeWidth="3"
+                >
+                  <path d="M5 12l5 5L20 7" />
+                </svg>
+                <span className="pc-benefit-title">Escudo Anti-Ban Integrado</span>
               </div>
               <div className="pc-benefit">
                 <svg
@@ -211,32 +225,10 @@ export function PricingSection() {
                 >
                   <path d="M5 12l5 5L20 7" />
                 </svg>
-                <span className="pc-benefit-title">Suporte WhatsApp</span>
+                <span className="pc-benefit-title">Sem mensalidades. Seu pra sempre.</span>
               </div>
               <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Pedidos de Jogos</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
+                <svg className="pc-check-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--neon)" strokeWidth="3">
                   <path d="M5 12l5 5L20 7" />
                 </svg>
                 <span className="pc-benefit-title">Garantia de 7 dias</span>
@@ -244,7 +236,7 @@ export function PricingSection() {
             </div>
 
             <button className="pc-cta" onClick={handleCheckout}>
-              Quero Meu Acesso
+              Quero Desbloquear Minha Steam
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
@@ -330,7 +322,7 @@ export function PricingSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <button className="pc-cta pc-cta-final" onClick={handleCheckout}>
-            Garantir Meu Acesso por R$ 9,97
+            Desbloquear Minha Steam por R$ 9,97
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

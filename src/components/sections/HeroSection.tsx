@@ -1,4 +1,4 @@
-import type { Game } from "@/types/game";
+import { useState } from 'react';
 
 // Import testimonial avatars for social proof
 import jzAvatar from "@/assets/testimonials/jz.jpg";
@@ -6,710 +6,484 @@ import adriellyAvatar from "@/assets/testimonials/adrielly.jpg";
 import maiconAvatar from "@/assets/testimonials/maicon.jpg";
 import wlAvatar from "@/assets/testimonials/wl.jpeg";
 
-interface HeroSectionProps {
-  featuredGame: Game | undefined;
-  isTransitioning?: boolean;
-  onPrev: () => void;
-  onNext: () => void;
-  onOpenDetails: (game: Game) => void;
+const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v5/6Ed9FJE8HXebnxREUKCQ";
+
+function getUTMParams(): string {
+  const params = new URLSearchParams(window.location.search);
+  const utmParams = new URLSearchParams();
+  const utmKeys = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","utm_id","fbclid","gclid","ttclid","sck","src"];
+  utmKeys.forEach((key) => {
+    const value = params.get(key);
+    if (value) utmParams.append(key, value);
+  });
+  try {
+    const storedUtms = localStorage.getItem("__utmify_session_data");
+    if (storedUtms) {
+      const parsed = JSON.parse(storedUtms);
+      if (parsed.utm_source && !utmParams.has("utm_source")) utmParams.append("utm_source", parsed.utm_source);
+      if (parsed.utm_medium && !utmParams.has("utm_medium")) utmParams.append("utm_medium", parsed.utm_medium);
+      if (parsed.utm_campaign && !utmParams.has("utm_campaign")) utmParams.append("utm_campaign", parsed.utm_campaign);
+    }
+  } catch (e) {}
+  return utmParams.toString();
 }
 
-export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
+function handleCheckout() {
+  if (typeof window !== "undefined" && (window as any).fbq) {
+    (window as any).fbq("track", "InitiateCheckout", {
+      content_name: "Acesso Completo",
+      value: 9.97,
+      currency: "BRL",
+    });
+  }
+  const utmString = getUTMParams();
+  const separator = CHECKOUT_URL.includes("?") ? "&" : "?";
+  const finalUrl = utmString ? `${CHECKOUT_URL}${separator}${utmString}` : CHECKOUT_URL;
+  window.open(finalUrl, "_blank", "noopener,noreferrer");
+}
+
+type SimStep = 0 | 1 | 2 | 3;
+
+export function HeroSection() {
+  const [step, setStep] = useState<SimStep>(0);
+  const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState('');
+
+  const progress = step === 0 ? 0 : step === 1 ? 33 : step === 2 ? 66 : 100;
+  const isComplete = step === 3;
+
+  const statusConnection = step >= 1;
+  const statusSecurity = step >= 2;
+  const statusBypass = step >= 3;
+
+  const handleStep = (targetStep: 1 | 2 | 3) => {
+    if (loading) return;
+    const loaders = {
+      1: 'Sincronizando servidor...',
+      2: 'Ativando escudo de proteção...',
+      3: 'Aplicando bypass na loja...',
+    };
+    setLoading(true);
+    setLoadingText(loaders[targetStep]);
+    setTimeout(() => {
+      setStep(targetStep);
+      setLoading(false);
+      setLoadingText('');
+    }, 1200);
+  };
+
   return (
-    <section className="section-top section hero-section" style={{ paddingTop: "clamp(90px, 12vw, 140px)" }}>
+    <section className="hero-root">
       <div className="container-main">
-        <div className="hero-grid">
-          {/* Mobile Layout: Card + Content */}
-          <div className="hero-mobile-wrapper">
-            {/* Card */}
-            {featuredGame && (
-              <div className={`hero-card hero-card-mobile ${isTransitioning ? "transitioning" : ""}`}>
-                <div className="hero-card-glow" />
-                <div className="hero-card-media">
-                  <img
-                    src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                    alt={featuredGame.name}
-                    onError={(e) => {
-                      e.currentTarget.src = featuredGame.cover;
-                    }}
-                  />
-                  <div className="hero-card-overlay" />
-                </div>
+        <div className="hero-split">
+          {/* LEFT - Copy */}
+          <div className="hero-left">
+            <span className="hero-badge">
+              <span className="hero-badge-dot" />
+              Sistema Overise V7.2 • Status: Indetectável
+            </span>
 
-                {/* Nav Buttons */}
-                <button onClick={onPrev} className="feat-nav feat-prev">
-                  ‹
-                </button>
-                <button onClick={onNext} className="feat-nav feat-next">
-                  ›
-                </button>
-
-                {/* Info */}
-                <div className="hero-card-info">
-                  <div className="hero-card-text">
-                    <div className="badge-row">
-                      <span className="chip green">Jogo Original</span>
-                      <span className="chip">Steam</span>
-                    </div>
-                    <h2 className="hero-card-name">{featuredGame.name}</h2>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Left Content */}
-          <div className="hero-content">
-            {/* Pill - Desktop Only */}
-            <div className="pill pill-desktop">
-              <span className="dot" />
-              Acesso Imediato • Baixe pela Steam
-            </div>
-
-            <h1 className="hero-title">
-              <span className="accent">+1000 jogos famosos</span>
-              <span className="title-dlc">+ 150 DLCs Premium • Para PC</span>
+            <h1 className="hero-h1">
+              O Fim da Era de Pagar R$ 300 por um Único Jogo.
             </h1>
 
-            {/* Price Display - Clean */}
-            <div className="hero-price">
-              <span className="price-from">
-                de <s>R$ 15.000</s>
-              </span>
-              <span className="price-now">por R$ 9,97</span>
-            </div>
-
             <p className="hero-sub">
-              A maior biblioteca do Brasil direto na sua Steam.
-              <br />
-              Entrega Instantânea e Automatizada. Exclusivo para PC.
+              Desbloqueie o acesso VIP à sua Steam. O software que as grandes lojas não querem que você descubra.
             </p>
 
-            <div className="hero-actions">
-              <a href="#planos" className="hero-cta">
-                Garantir Meu Acesso
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
+            <div className="hero-checks">
+              <div className="hero-check"><span className="hc-icon">✓</span> Jogue lançamentos no dia 1</div>
+              <div className="hero-check"><span className="hc-icon">✓</span> Download direto do servidor oficial</div>
+              <div className="hero-check"><span className="hc-icon">✓</span> Escudo Anti-Ban integrado</div>
+            </div>
 
-              {/* Social Proof with Real Avatars */}
-              <div className="social-proof">
-                <div className="avatars-stack">
-                  <img src={jzAvatar} alt="" className="avatar-mini" />
-                  <img src={adriellyAvatar} alt="" className="avatar-mini" />
-                  <img src={maiconAvatar} alt="" className="avatar-mini" />
-                  <img src={wlAvatar} alt="" className="avatar-mini" />
-                </div>
-                <div className="social-text">
-                  <span className="stars">★★★★★</span>
-                  <span className="count">+5K clientes</span>
-                </div>
+            <p className="hero-arrow-text">
+              Faça o teste de compatibilidade ao lado e libere sua licença ➔
+            </p>
+
+            {/* Social Proof */}
+            <div className="hero-social">
+              <div className="hero-avatars">
+                <img src={jzAvatar} alt="" />
+                <img src={adriellyAvatar} alt="" />
+                <img src={maiconAvatar} alt="" />
+                <img src={wlAvatar} alt="" />
+              </div>
+              <div className="hero-social-text">
+                <span className="hero-stars">★★★★★</span>
+                <span className="hero-count">+5K licenças ativadas</span>
               </div>
             </div>
           </div>
 
-          {/* Right - Featured Card (Desktop) */}
-          {featuredGame && (
-            <div className={`hero-card hero-card-desktop ${isTransitioning ? "transitioning" : ""}`}>
-              <div className="hero-card-glow" />
-              <div className="hero-card-media">
-                <img
-                  src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
-                  alt={featuredGame.name}
-                  onError={(e) => {
-                    e.currentTarget.src = featuredGame.cover;
-                  }}
-                />
-                <div className="hero-card-overlay" />
-              </div>
-
-              {/* Nav Buttons */}
-              <button onClick={onPrev} className="feat-nav feat-prev">
-                ‹
-              </button>
-              <button onClick={onNext} className="feat-nav feat-next">
-                ›
-              </button>
-
-              {/* Info */}
-              <div className="hero-card-info">
-                <div className="hero-card-text">
-                  <div className="badge-row">
-                    <span className="chip green">Jogo Original</span>
-                    <span className="chip">Steam</span>
-                  </div>
-                  <h2 className="hero-card-name">{featuredGame.name}</h2>
-                  <p className="hero-card-desc">Baixe os arquivos oficiais direto pela Steam.</p>
+          {/* RIGHT - Simulator */}
+          <div className="hero-right">
+            <div className={`sim-card ${isComplete ? 'sim-complete' : ''}`}>
+              {/* Progress Bar */}
+              <div className="sim-progress-wrap">
+                <div className="sim-progress-label">
+                  <span>Progresso do Sistema</span>
+                  <span className="sim-progress-pct">{progress}%</span>
+                </div>
+                <div className="sim-progress-bar">
+                  <div className="sim-progress-fill" style={{ width: `${progress}%` }} />
                 </div>
               </div>
+
+              {/* Status Indicators */}
+              <div className="sim-statuses">
+                <div className="sim-status-row">
+                  <span className="sim-status-label">Conexão</span>
+                  <span className={`sim-status-value ${statusConnection ? 'active' : 'inactive'}`}>
+                    {statusConnection ? '12ms (Oficial)' : 'Desconectado'}
+                  </span>
+                </div>
+                <div className="sim-status-row">
+                  <span className="sim-status-label">Segurança</span>
+                  <span className={`sim-status-value ${statusSecurity ? 'active' : 'inactive'}`}>
+                    {statusSecurity ? 'Escudo Ativo 🛡️' : 'Vulnerável'}
+                  </span>
+                </div>
+                <div className="sim-status-row">
+                  <span className="sim-status-label">Travas da Loja</span>
+                  <span className={`sim-status-value ${statusBypass ? 'active' : 'inactive'}`}>
+                    {statusBypass ? 'Bypass Concluído' : 'Ativas'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Loading indicator */}
+              {loading && (
+                <div className="sim-loader">
+                  <div className="sim-loader-bar"><div className="sim-loader-fill" /></div>
+                  <span className="sim-loader-text">{loadingText}</span>
+                </div>
+              )}
+
+              {/* Buttons */}
+              {!isComplete && !loading && (
+                <div className="sim-buttons">
+                  <button
+                    className={`sim-btn ${step >= 1 ? 'done' : step === 0 ? 'current' : ''}`}
+                    disabled={step >= 1}
+                    onClick={() => handleStep(1)}
+                  >
+                    {step >= 1 ? '✓ ' : ''}1. SINCRONIZAR SERVIDOR
+                  </button>
+                  <button
+                    className={`sim-btn ${step >= 2 ? 'done' : step === 1 ? 'current' : ''}`}
+                    disabled={step < 1 || step >= 2}
+                    onClick={() => handleStep(2)}
+                  >
+                    {step >= 2 ? '✓ ' : ''}2. ATIVAR PROTEÇÃO
+                  </button>
+                  <button
+                    className={`sim-btn ${step >= 3 ? 'done' : step === 2 ? 'current' : ''}`}
+                    disabled={step < 2 || step >= 3}
+                    onClick={() => handleStep(3)}
+                  >
+                    {step >= 3 ? '✓ ' : ''}3. DESBLOQUEAR STEAM
+                  </button>
+                </div>
+              )}
+
+              {/* Success State */}
+              {isComplete && !loading && (
+                <div className="sim-success">
+                  <p className="sim-success-text">✅ SISTEMA CONFIGURADO. Falta apenas a taxa de ativação.</p>
+                  <button className="sim-cta" onClick={handleCheckout}>
+                    GERAR MINHA CHAVE VITALÍCIA (R$ 9,97)
+                  </button>
+                  <span className="sim-footer">🔒 Acesso Vitalício • Liberação Imediata no E-mail</span>
+                </div>
+              )}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
       <style>{`
-        /* Pill style */
-        .pill {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 10px 14px;
-          border-radius: 999px;
-          background: rgba(255,255,255,.05);
-          border: 1px solid var(--border);
-          font-weight: 800;
-          letter-spacing: .6px;
-          text-transform: uppercase;
-          font-size: 12px;
-          backdrop-filter: blur(10px);
-          white-space: nowrap;
-          margin-bottom: 12px;
+        .hero-root {
+          padding: clamp(100px, 14vw, 160px) 0 clamp(60px, 8vw, 100px);
+          position: relative;
+          overflow: hidden;
         }
-        .dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background: var(--neon);
-          box-shadow: 0 0 14px rgba(0,255,65,.55);
-        }
-        .pill-desktop {
-          display: inline-flex;
-        }
-        @media (max-width: 640px) {
-          .pill {
-            padding: 8px 12px;
-            font-size: 10px;
-            gap: 8px;
-          }
-          .dot {
-            width: 6px;
-            height: 6px;
-          }
-          .pill-desktop {
-            display: none;
-          }
+        .hero-root::before {
+          content: '';
+          position: absolute;
+          top: -200px;
+          right: -200px;
+          width: 600px;
+          height: 600px;
+          background: radial-gradient(circle, rgba(0,255,65,.06), transparent 70%);
+          pointer-events: none;
         }
 
-        /* Mobile Wrapper */
-        .hero-mobile-wrapper {
-          display: none;
-        }
-        @media (max-width: 640px) {
-          .hero-mobile-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            width: 100%;
-            position: relative;
-          }
-        }
-
-        .hero-card-mobile {
-          display: none;
-        }
-        .hero-card-desktop {
-          display: block;
-        }
-        @media (max-width: 640px) {
-          .hero-card-mobile {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            border-radius: var(--r2);
-            margin-bottom: 0;
-            position: relative;
-          }
-          .hero-card-mobile::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: -1px;
-            right: -1px;
-            height: 80px;
-            background: linear-gradient(to bottom, transparent, var(--bg));
-            pointer-events: none;
-            z-index: 10;
-            border-radius: 0 0 var(--r2) var(--r2);
-          }
-          .hero-card-mobile .hero-card-media {
-            height: 220px;
-          }
-          .hero-card-mobile .hero-card-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 60%);
-          }
-          .hero-card-desktop {
-            display: none;
-          }
-        }
-
-        .hero-grid {
+        .hero-split {
           display: grid;
-          grid-template-columns: 1.15fr .85fr;
-          gap: 34px;
+          grid-template-columns: 1fr 1fr;
+          gap: 48px;
           align-items: center;
         }
         @media (max-width: 980px) {
-          .hero-grid { 
-            grid-template-columns: 1fr; 
-            gap: 24px; 
-          }
-        }
-        @media (max-width: 640px) {
-          .hero-grid { 
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-          }
-          .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 5;
-            padding-top: 10px;
-            padding-bottom: 16px;
-          }
+          .hero-split { grid-template-columns: 1fr; gap: 36px; }
         }
 
-        .hero-title {
-          margin: 12px 0 12px;
-          font-weight: 950;
-          font-size: clamp(32px, 5.2vw, 56px);
-          line-height: 1.05;
-          letter-spacing: -2px;
-          color: #fff;
+        /* LEFT */
+        .hero-left {
           display: flex;
           flex-direction: column;
-          gap: 2px;
+          align-items: flex-start;
         }
-        .hero-title .accent { 
-          color: var(--neon); 
-        }
-        .title-dlc {
-          font-size: clamp(16px, 2.5vw, 24px);
-          color: rgba(255,255,255,.6);
-          font-weight: 700;
-          letter-spacing: -0.5px;
-        }
-        @media (max-width: 640px) {
-          .hero-title {
-            font-size: 32px;
-            letter-spacing: -1.5px;
-            margin: 8px 0 8px;
-            text-align: center;
-            align-items: center;
-            gap: 2px;
-          }
-          .title-dlc {
-            font-size: 15px;
-            color: rgba(255,255,255,.75);
-            margin-top: 2px;
-          }
+        @media (max-width: 980px) {
+          .hero-left { align-items: center; text-align: center; }
+          .hero-checks { align-items: center; }
         }
 
-        /* Price Display - Clean & Minimal */
-        .hero-price {
-          display: flex;
-          align-items: baseline;
-          gap: 12px;
-          margin-bottom: 14px;
-        }
-        .price-from {
-          font-size: 15px;
-          font-weight: 500;
-          color: rgba(255,255,255,.5);
-        }
-        .price-from s {
-          text-decoration: line-through;
-        }
-        .price-now {
-          font-size: 28px;
-          font-weight: 950;
+        .hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 16px;
+          border-radius: 999px;
+          background: rgba(0,255,65,.06);
+          border: 1px solid rgba(0,255,65,.2);
+          font-size: 12px;
+          font-weight: 800;
           color: var(--neon);
-          letter-spacing: -1px;
+          letter-spacing: .5px;
+          margin-bottom: 20px;
         }
-        @media (max-width: 640px) {
-          .hero-price {
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            margin-top: 4px;
-          }
-          .price-from {
-            font-size: 14px;
-            color: rgba(255,255,255,.65);
-          }
-          .price-now {
-            font-size: 28px;
-          }
+        .hero-badge-dot {
+          width: 8px; height: 8px; border-radius: 50%;
+          background: var(--neon);
+          box-shadow: 0 0 12px rgba(0,255,65,.6);
+          animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+          0%, 100% { box-shadow: 0 0 4px rgba(0,255,65,.4); }
+          50% { box-shadow: 0 0 16px rgba(0,255,65,.8); }
+        }
+
+        .hero-h1 {
+          font-size: clamp(30px, 4.5vw, 50px);
+          font-weight: 950;
+          color: #fff;
+          line-height: 1.08;
+          letter-spacing: -2px;
+          margin: 0 0 18px;
         }
 
         .hero-sub {
-          max-width: 48ch;
-          font-size: 16px;
-          line-height: 1.65;
+          font-size: 17px;
           color: rgba(255,255,255,.75);
-          margin-bottom: 22px;
+          line-height: 1.65;
+          margin: 0 0 24px;
+          max-width: 480px;
           font-weight: 500;
         }
         @media (max-width: 640px) {
-          .hero-sub {
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 16px;
-            text-align: center;
-            color: rgba(255,255,255,.85);
-            padding: 0 4px;
-          }
-          .hero-sub br {
-            display: none;
-          }
-        }
-        
-        .hero-actions {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          flex-wrap: wrap;
-        }
-        @media (max-width: 640px) {
-          .hero-actions {
-            gap: 14px;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-          }
+          .hero-sub { font-size: 15px; }
         }
 
-        /* Social Proof with Avatars */
-        .social-proof {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-        .avatars-stack {
-          display: flex;
-        }
-        .avatar-mini {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          border: 2px solid var(--bg);
-          object-fit: cover;
-          margin-left: -10px;
-        }
-        .avatar-mini:first-child {
-          margin-left: 0;
-        }
-        .social-text {
+        .hero-checks {
           display: flex;
           flex-direction: column;
-          gap: 1px;
-        }
-        .social-text .stars {
-          color: var(--neon);
-          font-size: 12px;
-          letter-spacing: 1px;
-        }
-        .social-text .count {
-          font-size: 12px;
-          font-weight: 700;
-          color: rgba(255,255,255,.7);
-        }
-        @media (max-width: 640px) {
-          .social-proof {
-            gap: 10px;
-          }
-          .avatar-mini {
-            width: 28px;
-            height: 28px;
-            margin-left: -8px;
-          }
-          .social-text .stars {
-            font-size: 11px;
-          }
-          .social-text .count {
-            font-size: 11px;
-          }
-        }
-
-        .hero-card {
-          border-radius: var(--r2);
-          border: 1px solid rgba(255,255,255,.10);
-          background: rgba(255,255,255,.04);
-          box-shadow: var(--shadow);
-          overflow: hidden;
-          position: relative;
-          isolation: isolate;
-          min-height: 280px;
-          transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @media (max-width: 640px) {
-          .hero-card {
-            min-height: 220px;
-          }
-        }
-        .hero-card.transitioning {
-          opacity: 0;
-          transform: scale(0.98);
-        }
-        .hero-card-glow {
-          position: absolute;
-          inset: -2px;
-          background: radial-gradient(700px 240px at 20% 10%, rgba(0,255,65,.16), transparent 60%);
-          pointer-events: none;
-          z-index: 0;
-        }
-        .hero-card-media {
-          position: relative;
-          height: 280px;
-          background: #000;
-          overflow: hidden;
-        }
-        @media (max-width: 640px) {
-          .hero-card-media {
-            height: 220px;
-          }
-        }
-        .hero-card-media img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: saturate(1.10) contrast(1.10);
-          transform: scale(1.03);
-        }
-        .hero-card-overlay {
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(800px 320px at 78% 45%, rgba(0,0,0,.12), rgba(0,0,0,.78)),
-            linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.16));
-        }
-        .hero-card-info {
-          position: absolute;
-          left: 14px;
-          right: 14px;
-          bottom: 14px;
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
           gap: 12px;
-          flex-wrap: wrap;
+          margin-bottom: 24px;
         }
-        @media (max-width: 640px) {
-          .hero-card-info {
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-          }
+        .hero-check {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 15px;
+          font-weight: 700;
+          color: rgba(255,255,255,.9);
         }
-        .hero-card-text { max-width: 62%; min-width: 0; }
+        .hc-icon {
+          width: 22px; height: 22px; border-radius: 6px;
+          background: rgba(0,255,65,.15);
+          border: 1px solid rgba(0,255,65,.3);
+          color: var(--neon);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 12px; font-weight: 900;
+        }
+
+        .hero-arrow-text {
+          font-size: 14px;
+          font-weight: 800;
+          color: var(--neon);
+          margin: 0 0 24px;
+          letter-spacing: .3px;
+        }
         @media (max-width: 980px) {
-          .hero-card-text { max-width: 100%; }
-        }
-        .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-        @media (max-width: 640px) {
-          .badge-row { gap: 6px; margin-bottom: 8px; }
-        }
-        .chip {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 8px 10px;
-          border-radius: 999px;
-          font-size: 11px;
-          font-weight: 950;
-          text-transform: uppercase;
-          letter-spacing: .5px;
-          background: rgba(0,0,0,.35);
-          border: 1px solid rgba(255,255,255,.12);
-          color: #fff;
-          text-shadow: 0 10px 30px rgba(0,0,0,.9);
-          backdrop-filter: blur(10px);
-          white-space: nowrap;
-        }
-        @media (max-width: 640px) {
-          .chip {
-            padding: 6px 8px;
-            font-size: 10px;
-          }
-        }
-        .chip.green {
-          border-color: rgba(0,255,65,.35);
-          box-shadow: 0 0 0 1px rgba(0,255,65,.10) inset;
-        }
-        .hero-card-name {
-          margin: 0;
-          font-weight: 950;
-          font-size: 22px;
-          color: #fff;
-          letter-spacing: -1px;
-          text-transform: uppercase;
-          text-shadow: 0 10px 40px rgba(0,0,0,.95);
-          line-height: 1.05;
-        }
-        @media (max-width: 640px) {
-          .hero-card-name {
-            font-size: 18px;
-          }
-        }
-        .hero-card-desc {
-          margin-top: 8px;
-          color: rgba(255,255,255,.82);
-          font-size: 13px;
-          line-height: 1.35;
-          text-shadow: 0 10px 30px rgba(0,0,0,.9);
-          max-width: 55ch;
-        }
-        @media (max-width: 640px) {
-          .hero-card-desc {
-            font-size: 12px;
-            margin-top: 6px;
-          }
-        }
-        .hero-card-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
-        @media (max-width: 640px) {
-          .hero-card-btns { 
-            justify-content: flex-start;
-            width: 100%;
-          }
-        }
-        
-        .feat-nav {
-          position: absolute;
-          top: 14px;
-          width: 38px;
-          height: 38px;
-          border-radius: 12px;
-          border: 1px solid rgba(255,255,255,.14);
-          background: rgba(0,0,0,.35);
-          color: #fff;
-          cursor: pointer;
-          display: grid;
-          place-items: center;
-          transition: .2s ease;
-          z-index: 5;
-          font-size: 18px;
-        }
-        @media (max-width: 640px) {
-          .feat-nav {
-            width: 34px;
-            height: 34px;
-            font-size: 16px;
-          }
-        }
-        .feat-nav:hover {
-          transform: translateY(-1px);
-          border-color: rgba(255,255,255,.22);
-        }
-        .feat-prev { right: 58px; }
-        .feat-next { right: 14px; }
-        @media (max-width: 640px) {
-          .feat-prev { right: 52px; }
-          .feat-next { right: 12px; }
+          .hero-arrow-text { display: none; }
         }
 
-        .btn {
-          position: relative;
-          display: inline-flex;
+        .hero-social {
+          display: flex;
           align-items: center;
-          justify-content: center;
-          gap: 10px;
-          padding: 14px 24px;
-          border-radius: 14px;
-          border: none;
-          background: var(--neon);
-          color: #000;
-          font-weight: 900;
-          letter-spacing: .5px;
-          text-transform: uppercase;
-          cursor: pointer;
-          text-decoration: none;
-          transition: .22s ease;
-          overflow: hidden;
-          white-space: nowrap;
-          font-size: 14px;
+          gap: 12px;
         }
-        @media (max-width: 640px) {
-          .btn {
-            padding: 14px 20px;
-            font-size: 13px;
-          }
+        .hero-avatars { display: flex; }
+        .hero-avatars img {
+          width: 32px; height: 32px; border-radius: 50%;
+          border: 2px solid var(--bg, #030303);
+          object-fit: cover; margin-left: -10px;
         }
-        .btn:hover {
-          transform: translateY(-2px);
-          opacity: 0.9;
+        .hero-avatars img:first-child { margin-left: 0; }
+        .hero-social-text { display: flex; flex-direction: column; gap: 1px; }
+        .hero-stars { color: var(--neon); font-size: 12px; letter-spacing: 1px; }
+        .hero-count { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.7); }
+
+        /* RIGHT - Simulator */
+        .hero-right { display: flex; justify-content: center; }
+
+        .sim-card {
+          width: 100%;
+          max-width: 440px;
+          background: #121212;
+          border: 1px solid #222;
+          border-radius: 20px;
+          padding: 28px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          transition: box-shadow .5s ease, border-color .5s ease;
         }
-        .btn-primary-lg {
-          background: var(--neon);
-          color: #000;
-          border: none;
-          font-size: 14px;
-          padding: 16px 28px;
-        }
-        .btn-primary-lg:hover {
-          transform: translateY(-2px);
-          opacity: 0.9;
-        }
-        .btn-outline {
-          background: rgba(255,255,255,.05);
-        }
-        .btn-small {
-          padding: 10px 14px;
-          border-radius: 12px;
-          font-size: 12px;
-        }
-        @media (max-width: 640px) {
-          .btn-small {
-            padding: 8px 12px;
-            font-size: 11px;
-          }
-        }
-        .btn-primary-sm {
-          background: var(--neon);
-          color: #000;
-          border: none;
+        .sim-card.sim-complete {
+          border-color: rgba(0,255,65,.5);
+          box-shadow: 0 0 30px rgba(0,255,65,.2), 0 0 60px rgba(0,255,65,.08);
         }
 
-        .hero-cta {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          padding: 16px 28px;
-          border-radius: 14px;
-          background: var(--neon);
-          color: #000;
-          font-weight: 900;
-          font-size: 14px;
-          letter-spacing: .5px;
-          text-transform: uppercase;
-          text-decoration: none;
+        /* Progress */
+        .sim-progress-wrap { display: flex; flex-direction: column; gap: 8px; }
+        .sim-progress-label {
+          display: flex; justify-content: space-between;
+          font-size: 12px; font-weight: 700; color: rgba(255,255,255,.6);
+          text-transform: uppercase; letter-spacing: .5px;
+        }
+        .sim-progress-pct { color: var(--neon); font-weight: 900; }
+        .sim-progress-bar {
+          height: 6px; background: rgba(255,255,255,.08);
+          border-radius: 3px; overflow: hidden;
+        }
+        .sim-progress-fill {
+          height: 100%; background: var(--neon);
+          border-radius: 3px;
+          transition: width .6s cubic-bezier(.4,0,.2,1);
+          box-shadow: 0 0 12px rgba(0,255,65,.4);
+        }
+
+        /* Status Rows */
+        .sim-statuses { display: flex; flex-direction: column; gap: 0; }
+        .sim-status-row {
+          display: flex; justify-content: space-between; align-items: center;
+          padding: 12px 0;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+        .sim-status-row:last-child { border-bottom: none; }
+        .sim-status-label {
+          font-size: 13px; font-weight: 700; color: rgba(255,255,255,.5);
+        }
+        .sim-status-value {
+          font-size: 13px; font-weight: 800;
+          transition: color .3s ease;
+        }
+        .sim-status-value.inactive { color: #ff4444; }
+        .sim-status-value.active { color: var(--neon); }
+
+        /* Loader */
+        .sim-loader {
+          display: flex; flex-direction: column; align-items: center; gap: 10px;
+          padding: 8px 0;
+        }
+        .sim-loader-bar {
+          width: 100%; height: 4px; background: rgba(255,255,255,.08);
+          border-radius: 2px; overflow: hidden;
+        }
+        .sim-loader-fill {
+          height: 100%; width: 30%; background: var(--neon);
+          border-radius: 2px;
+          animation: sim-loading 1s ease-in-out infinite;
+        }
+        @keyframes sim-loading {
+          0% { transform: translateX(-100%); width: 30%; }
+          50% { width: 60%; }
+          100% { transform: translateX(400%); width: 30%; }
+        }
+        .sim-loader-text {
+          font-size: 12px; color: var(--neon); font-weight: 700;
+          font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        /* Buttons */
+        .sim-buttons { display: flex; flex-direction: column; gap: 10px; }
+        .sim-btn {
+          width: 100%; padding: 14px 18px;
+          background: rgba(255,255,255,.04);
+          border: 1px solid rgba(255,255,255,.1);
+          border-radius: 12px;
+          color: rgba(255,255,255,.4);
+          font-size: 13px; font-weight: 800;
+          text-transform: uppercase; letter-spacing: .3px;
+          cursor: not-allowed;
+          transition: all .25s ease;
+          font-family: 'Sora', system-ui, sans-serif;
+        }
+        .sim-btn.current {
+          background: var(--neon); color: #000;
+          border-color: var(--neon);
           cursor: pointer;
-          transition: .25s ease;
-          border: none;
+          animation: sim-pulse 2s ease-in-out infinite;
         }
-        .hero-cta:hover {
+        .sim-btn.current:hover {
           transform: translateY(-2px);
-          box-shadow: 0 12px 35px rgba(0,255,65,.35);
+          box-shadow: 0 8px 25px rgba(0,255,65,.4);
         }
-        .hero-cta svg {
-          width: 16px;
-          height: 16px;
+        .sim-btn.done {
+          background: rgba(0,255,65,.08);
+          border-color: rgba(0,255,65,.25);
+          color: var(--neon);
+          cursor: default;
         }
+        @keyframes sim-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,65,.4); }
+          50% { box-shadow: 0 0 0 8px rgba(0,255,65,0); }
+        }
+
+        /* Success */
+        .sim-success {
+          display: flex; flex-direction: column; align-items: center;
+          gap: 14px; text-align: center;
+        }
+        .sim-success-text {
+          font-size: 15px; font-weight: 800; color: #fff;
+          margin: 0; line-height: 1.5;
+        }
+        .sim-cta {
+          width: 100%; padding: 16px 20px;
+          background: var(--neon); color: #000;
+          border: none; border-radius: 14px;
+          font-size: 14px; font-weight: 900;
+          text-transform: uppercase; letter-spacing: .3px;
+          cursor: pointer;
+          transition: all .25s ease;
+          animation: sim-pulse 2s ease-in-out infinite;
+          font-family: 'Sora', system-ui, sans-serif;
+        }
+        .sim-cta:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 35px rgba(0,255,65,.4);
+        }
+        .sim-footer {
+          font-size: 11px; color: rgba(255,255,255,.45); font-weight: 500;
+        }
+
         @media (max-width: 640px) {
-          .hero-cta {
-            width: 100%;
-            padding: 14px 24px;
-            font-size: 13px;
-            border-radius: 12px;
-          }
+          .hero-h1 { font-size: 28px; letter-spacing: -1.5px; }
+          .sim-card { padding: 22px 18px; }
+          .sim-btn { padding: 12px 14px; font-size: 12px; }
         }
       `}</style>
     </section>
