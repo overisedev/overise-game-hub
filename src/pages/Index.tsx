@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import { useGames } from '@/hooks/useGames';
 import { Header } from '@/components/layout/Header';
 import { HeroSection } from '@/components/sections/HeroSection';
+import { PainSection } from '@/components/sections/PainSection';
+import { CounterSection } from '@/components/sections/CounterSection';
+import { BeforeAfterSection } from '@/components/sections/BeforeAfterSection';
+import { SimulatorSection } from '@/components/sections/SimulatorSection';
 import { GamesPreviewSection } from '@/components/sections/GamesPreviewSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { CatalogSection } from '@/components/sections/CatalogSection';
@@ -81,6 +85,14 @@ const Index = () => {
         onOpenDetails={setSelectedGame}
       />
       
+      <PainSection />
+
+      <CounterSection games={games} />
+
+      <BeforeAfterSection />
+
+      <SimulatorSection games={games} />
+
       <GamesPreviewSection 
         games={games} 
         totalGames={totalGames}
