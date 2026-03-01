@@ -10,7 +10,11 @@ const mockupGames = [
   { id: 5, name: 'Forza 5', cover: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/library_600x900.jpg' },
 ];
 
-export function HowItWorksSection() {
+interface HowItWorksSectionProps {
+  onDownload: () => void;
+}
+
+export function HowItWorksSection({ onDownload }: HowItWorksSectionProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -85,12 +89,12 @@ export function HowItWorksSection() {
             </span>
           </div>
 
-          <a href="#planos" className="app-cta">
-            Desbloquear Steam
+          <button onClick={onDownload} className="app-cta">
+            Fazer Download
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
             </svg>
-          </a>
+          </button>
         </div>
 
         {/* Right - 3D Tilting Mockup */}

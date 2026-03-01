@@ -15,11 +15,13 @@ import { GameModal } from '@/components/ui/GameModal';
 import { UrgencyBar } from '@/components/ui/UrgencyBar';
 import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
 import { ChatWidget } from '@/components/ui/ChatWidget';
+import { DownloadModal } from '@/components/ui/DownloadModal';
 import type { Game } from '@/types/game';
 
 const Index = () => {
   const { games, aaaGames, loading, totalGames, searchGames, getGamesByCategory } = useGames();
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [downloadModalOpen, setDownloadModalOpen] = useState(false);
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [urgencyBarVisible, setUrgencyBarVisible] = useState(false);
@@ -71,7 +73,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <UrgencyBar isVisible={urgencyBarVisible} />
-      <Header urgencyBarVisible={urgencyBarVisible} />
+      <Header urgencyBarVisible={urgencyBarVisible} onDownload={() => setDownloadModalOpen(true)} />
       
       <HeroSection 
         featuredGame={featuredGame}
@@ -79,6 +81,7 @@ const Index = () => {
         onPrev={handlePrevFeatured}
         onNext={handleNextFeatured}
         onOpenDetails={setSelectedGame}
+        onDownload={() => setDownloadModalOpen(true)}
       />
       
       <GamesPreviewSection 
@@ -87,7 +90,7 @@ const Index = () => {
         onOpenDetails={setSelectedGame}
       />
       
-      <HowItWorksSection />
+      <HowItWorksSection onDownload={() => setDownloadModalOpen(true)} />
       
       <CatalogSection 
         games={games}
@@ -101,7 +104,7 @@ const Index = () => {
       
       <TestimonialsSection />
       
-      <PricingSection />
+      <PricingSection onDownload={() => setDownloadModalOpen(true)} />
       
       <GuaranteeSection />
       
@@ -116,6 +119,10 @@ const Index = () => {
         />
       )}
 
+      <DownloadModal 
+        isOpen={downloadModalOpen} 
+        onClose={() => setDownloadModalOpen(false)} 
+      />
       
       <ChatWidget />
     </div>

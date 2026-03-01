@@ -1,8 +1,9 @@
 interface HeaderProps {
   urgencyBarVisible?: boolean;
+  onDownload?: () => void;
 }
 
-export function Header({ urgencyBarVisible = false }: HeaderProps) {
+export function Header({ urgencyBarVisible = false, onDownload }: HeaderProps) {
   return (
     <header 
       className="fixed inset-x-0 z-[1000] transition-all duration-300" 
@@ -38,9 +39,9 @@ export function Header({ urgencyBarVisible = false }: HeaderProps) {
 
           {/* CTA Button */}
           <div className="flex gap-2.5 items-center">
-            <a href="#planos" className="btn-primary">
-              Desbloquear jogos
-            </a>
+            <button onClick={onDownload} className="btn-primary">
+              Fazer Download
+            </button>
           </div>
         </nav>
       </div>
