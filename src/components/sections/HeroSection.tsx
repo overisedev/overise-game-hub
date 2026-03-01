@@ -12,9 +12,10 @@ interface HeroSectionProps {
   onPrev: () => void;
   onNext: () => void;
   onOpenDetails: (game: Game) => void;
+  onDownload: () => void;
 }
 
-export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails }: HeroSectionProps) {
+export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onOpenDetails, onDownload }: HeroSectionProps) {
   return (
     <section className="section-top section hero-section" style={{ paddingTop: "clamp(90px, 12vw, 140px)" }}>
       <div className="container-main">
@@ -63,12 +64,12 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             {/* Pill - Desktop Only */}
             <div className="pill pill-desktop">
               <span className="dot" />
-              Acesso Imediato • Baixe pela Steam
+              Software Oficial • Windows 10/11
             </div>
 
             <h1 className="hero-title">
-              <span className="accent">+1000 jogos famosos</span>
-              <span className="title-dlc">+ 150 DLCs Premium • Para PC</span>
+              <span className="accent">Desbloqueie sua Steam</span>
+              <span className="title-dlc">+1000 Jogos • Download Direto • Para PC</span>
             </h1>
 
             {/* Price Display - Clean */}
@@ -80,18 +81,18 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </div>
 
             <p className="hero-sub">
-              A maior biblioteca do Brasil direto na sua Steam.
+              Software que desbloqueia e baixa jogos originais direto dos servidores da Steam.
               <br />
-              Entrega Instantânea e Automatizada. Exclusivo para PC.
+              Instalação automatizada. Exclusivo para Windows.
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="hero-cta">
-                Garantir Meu Acesso
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+              <button onClick={onDownload} className="hero-cta">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
                 </svg>
-              </a>
+                Baixar para Windows
+              </button>
 
               {/* Social Proof with Real Avatars */}
               <div className="social-proof">
