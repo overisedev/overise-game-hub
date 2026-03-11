@@ -285,7 +285,7 @@ export function HeroSection() {
         .sim-catalog-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         .sim-game-card { border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,.03); filter: grayscale(100%) brightness(.55); opacity: .45; position: relative; transition: all .5s cubic-bezier(.16,1,.3,1); }
         .sim-game-card.unlocked { filter: grayscale(0%) brightness(1); opacity: 1; border-color: rgba(57,255,20,.1); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
-        .sim-game-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .sim-game-card img { width: 100%; aspect-ratio: 460/215; object-fit: cover; display: block; }
         .sim-game-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 4px 6px; font-size: 8px; font-weight: 600; color: #fff; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); font-family: var(--fb); opacity: 0; transition: opacity .4s; }
         .sim-game-card.unlocked .sim-game-name { opacity: 1; }
 
