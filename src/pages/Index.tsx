@@ -33,20 +33,17 @@ const Index = () => {
   return (
     <div>
       {/* Urgency Bar */}
-      <div style={{
-        background: 'var(--accent)',
-        padding: '9px 16px',
-        textAlign: 'center',
-        fontFamily: 'var(--fh)',
-        fontSize: '12px',
-        fontWeight: 700,
-        letterSpacing: '.08em',
-        color: '#0b0e11',
-        textTransform: 'uppercase',
-      }}>
+      <div className="urgency-topbar">
         Acesso imediato — <strong>+1000 jogos por R$9,97 · taxa única</strong>{' '}
         <span style={{ opacity: .55, fontWeight: 600 }}>· licença vitalícia · 7 dias de garantia</span>
       </div>
+      <style>{`
+        .urgency-topbar { background: var(--accent); padding: 9px 16px; text-align: center; font-family: var(--fh); font-size: 12px; font-weight: 700; letter-spacing: .08em; color: #0b0e11; text-transform: uppercase; }
+        @media (max-width: 768px) {
+          .urgency-topbar { font-size: 9px; padding: 6px 10px; letter-spacing: .04em; }
+          .urgency-topbar span { display: none; }
+        }
+      `}</style>
 
       <Header />
       <HeroSection />
