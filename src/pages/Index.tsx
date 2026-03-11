@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
+import { ScrollDistortion } from '@/components/ui/ScrollDistortion';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeSection } from '@/components/sections/MarqueeSection';
