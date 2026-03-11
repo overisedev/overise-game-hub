@@ -71,7 +71,7 @@ export function HeroSection() {
           <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
         </div>
 
-        <div className={`sim-card-wrap reveal rd2 ${unlocked ? 'sim-unlocked' : ''}`}>
+        <div className={`sim-card-wrap ${unlocked ? 'sim-unlocked' : ''}`}>
           <div className="sim-card-header">
             <div className="sim-card-logo">OVERISE</div>
             <div className={`sim-card-status ${unlocked ? 'active' : ''}`}>
