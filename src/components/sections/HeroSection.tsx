@@ -108,14 +108,21 @@ export function HeroSection() {
         <div className="hero-badge reveal">Taxa única R$9,97 · licença vitalícia</div>
         <h1 className="hero-h1 reveal rd1">
           Desbloqueie sua Steam.<br />
-          <em>+1000 jogos por R$9,97.</em><br />
-          <span style={{ fontSize: '.35em', fontWeight: 600, color: 'var(--muted)', letterSpacing: '.02em', textTransform: 'none' }}>
-            Taxa única. Licença vitalícia. Sem mensalidade.
-          </span>
+          <em>+1000 jogos por R$9,97.</em>
         </h1>
         <p className="hero-sub reveal rd1">
           Ative o desbloqueador, escolha o jogo e baixe direto pela Steam. <strong>100% seguro, anti-ban e invisível.</strong> Pague uma vez, use pra sempre.
         </p>
+
+        <div className="hero-btns reveal rd1">
+          <a href="#pricing" className="btn btn-accent btn-xl">Desbloquear minha Steam</a>
+          <a href="#how" className="btn btn-ghost btn-xl">Ver como funciona</a>
+        </div>
+        <div className="hero-trust reveal rd1">
+          <div className="trust-pill"><span className="chk">✔</span> 7 dias de garantia</div>
+          <div className="trust-pill"><span className="chk">✔</span> Jogando em 5 min</div>
+          <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
+        </div>
 
         <div className="sim-wrap reveal rd2">
           <div className="sim-bar">
@@ -207,16 +214,6 @@ export function HeroSection() {
               {cursorClicked && <span className="sim-cursor-ring" />}
             </div>
           </div>
-        </div>
-
-        <div className="hero-btns reveal rd2">
-          <a href="#pricing" className="btn btn-accent btn-xl">Desbloquear minha Steam</a>
-          <a href="#how" className="btn btn-ghost btn-xl">Ver como funciona</a>
-        </div>
-        <div className="hero-trust reveal rd3">
-          <div className="trust-pill"><span className="chk">✔</span> 7 dias de garantia</div>
-          <div className="trust-pill"><span className="chk">✔</span> Jogando em 5 min</div>
-          <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
         </div>
       </div>
 
