@@ -10,7 +10,7 @@ const FEATURED_GAMES = [
 
 FEATURED_GAMES.forEach(g => { const i = new Image(); i.src = g.img; });
 
-type Phase = 'locked' | 'cursor-moving' | 'cursor-clicking' | 'unlocking' | 'unlocked';
+type Phase = 'locked' | 'cursor-moving' | 'cursor-clicking' | 'unlocking' | 'unlocked' | 'switching';
 
 export function HeroSection() {
   const [gameIdx, setGameIdx] = useState(0);
@@ -29,23 +29,32 @@ export function HeroSection() {
     (async () => {
       try {
         while (alive.current) {
-          setGameIdx(idx);
+          // Show locked game
           setPhase('locked');
+          setGameIdx(idx);
           await wait(2500);
 
+          // Cursor slides to button
           setPhase('cursor-moving');
           await wait(1500);
 
+          // Cursor clicks
           setPhase('cursor-clicking');
           await wait(500);
 
+          // Progress bar fills
           setPhase('unlocking');
           await wait(2200);
 
+          // Show unlocked
           setPhase('unlocked');
           await wait(4000);
 
+          // Switch: disable transitions, swap game already locked
           idx = (idx + 1) % FEATURED_GAMES.length;
+          setPhase('switching');
+          setGameIdx(idx);
+          await wait(80); // one frame for no-transition grayscale to apply
         }
       } catch { /* unmounted */ }
     })();
@@ -56,6 +65,7 @@ export function HeroSection() {
   const game = FEATURED_GAMES[gameIdx];
   const isUnlocked = phase === 'unlocked';
   const isUnlocking = phase === 'unlocking';
+  const isSwitching = phase === 'switching';
 
   return (
     <section id="hero" className="hero-section">
@@ -82,7 +92,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-right">
-          <div className={`sim-wrap ${isUnlocked ? 'sim-unlocked' : ''}`}>
+          <div className={`sim-wrap ${isUnlocked ? 'sim-unlocked' : ''} ${isSwitching ? 'sim-notransition' : ''}`}>
             <div className="sim-header">
               <div className="sim-logo">OVERISE</div>
               <div className={`sim-status ${isUnlocked ? 'on' : ''}`}>
@@ -102,15 +112,14 @@ export function HeroSection() {
                   </div>
                 ) : (
                   <div className={`sim-btn ${isUnlocked ? 'sim-btn-go' : ''} ${phase === 'cursor-clicking' ? 'sim-btn-pressed' : ''}`}>
-                    {isUnlocked ? '▶ Instalar Agora' : '🔓 Desbloquear Jogo'}
+                    {isUnlocked ? '▶ Instalar Agora' : 'Desbloquear Jogo'}
                   </div>
                 )}
               </div>
 
-              {/* Cursor: pure CSS animation, starts top-right, ends on button (bottom-left) */}
               {(phase === 'cursor-moving' || phase === 'cursor-clicking') && (
                 <div className={`sim-cursor ${phase === 'cursor-clicking' ? 'sim-cursor-click' : 'sim-cursor-move'}`}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                     <path d="M5 3l14 8-6 2-4 6-4-16z" fill="#fff" stroke="#111" strokeWidth="1.2" />
                   </svg>
                 </div>
@@ -142,6 +151,7 @@ export function HeroSection() {
 
         .sim-wrap { max-width:520px; width:100%; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#0c0e12; box-shadow:0 0 60px rgba(57,255,20,.03),0 24px 56px rgba(0,0,0,.5); transition:border-color .6s, box-shadow .6s; }
         .sim-wrap.sim-unlocked { border-color:rgba(57,255,20,.22); box-shadow:0 0 80px rgba(57,255,20,.12),0 24px 56px rgba(0,0,0,.5); }
+        .sim-wrap.sim-notransition, .sim-wrap.sim-notransition .sim-img { transition:none !important; }
 
         .sim-header { display:flex; align-items:center; justify-content:space-between; padding:12px 18px; background:#111318; border-bottom:1px solid rgba(255,255,255,.05); }
         .sim-logo { font-family:var(--fh); font-size:12px; font-weight:800; color:rgba(255,255,255,.3); letter-spacing:.1em; text-transform:uppercase; }
@@ -159,7 +169,7 @@ export function HeroSection() {
         .sim-name { font-family:var(--fh); font-size:22px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:-.01em; line-height:1.1; margin-bottom:3px; }
         .sim-dev { font-family:var(--fb); font-size:12px; color:rgba(255,255,255,.5); font-weight:500; margin-bottom:12px; }
 
-        .sim-btn { display:inline-flex; align-items:center; gap:6px; font-family:var(--fb); font-size:12px; font-weight:700; padding:10px 20px; border-radius:6px; background:rgba(255,255,255,.08); color:var(--dim); letter-spacing:.02em; transition:all .3s; }
+        .sim-btn { display:inline-flex; align-items:center; gap:6px; font-family:var(--fb); font-size:12px; font-weight:700; padding:10px 20px; border-radius:6px; background:rgba(255,255,255,.08); color:var(--dim); letter-spacing:.02em; transition:all .3s; position:relative; }
         .sim-btn-go { background:var(--accent); color:#0b0e11; box-shadow:0 0 20px rgba(57,255,20,.25); }
         .sim-btn-pressed { transform:scale(0.9); background:rgba(57,255,20,.15); color:var(--accent); box-shadow:0 0 12px rgba(57,255,20,.2); }
 
@@ -168,27 +178,20 @@ export function HeroSection() {
         .sim-progress-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--fb); font-size:11px; font-weight:700; color:#fff; letter-spacing:.04em; z-index:1; }
         @keyframes progressFill { 0%{width:0%} 100%{width:100%} }
 
-        /* Cursor: positioned absolute inside .sim-body */
         .sim-cursor { position:absolute; z-index:20; pointer-events:none; filter:drop-shadow(0 2px 6px rgba(0,0,0,.7)); }
 
-        /* Move: starts at top-right (70%, 15%), ends near button (18%, 85%) */
-        .sim-cursor-move {
-          animation: cursorSlide 1.5s ease-in-out forwards;
-        }
+        /* Cursor slides from top-right corner to directly on top of button (bottom:18px left:20px in sim-info, ~20px from bottom-left of sim-body) */
+        .sim-cursor-move { animation:cursorSlide 1.5s cubic-bezier(.4,0,.2,1) forwards; }
         @keyframes cursorSlide {
-          0%   { top:15%; left:70%; opacity:0; }
-          20%  { opacity:1; }
-          100% { top:82%; left:38%; opacity:1; }
+          0%   { bottom:auto; top:20%; left:75%; opacity:0; }
+          15%  { opacity:1; }
+          100% { bottom:auto; top:calc(100% - 42px); left:85px; opacity:1; }
         }
 
-        /* Click: stays at button position, does a press effect */
-        .sim-cursor-click {
-          top:82%; left:38%;
-          animation: cursorPress .5s ease forwards;
-        }
+        .sim-cursor-click { top:calc(100% - 42px); left:85px; animation:cursorPress .5s ease forwards; }
         @keyframes cursorPress {
           0%   { transform:scale(1); }
-          40%  { transform:scale(0.7) translateY(3px); }
+          35%  { transform:scale(0.7) translate(2px, 3px); }
           100% { transform:scale(1); opacity:0; }
         }
 
