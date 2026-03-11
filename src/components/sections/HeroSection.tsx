@@ -196,9 +196,9 @@ export function HeroSection() {
         }
 
         @media (max-width:900px) {
-          .hero-layout { flex-direction:column; gap:24px; }
-          .hero-left { text-align:center; }
-          .hero-right { justify-content:center; width:100%; }
+          .hero-layout { flex-direction:column; gap:16px; }
+          .hero-left { text-align:center; order:2; }
+          .hero-right { justify-content:center; width:100%; order:1; }
           .hero-sub { margin:0 auto; }
           .hero-btns { justify-content:center; flex-direction:column; align-items:stretch; }
           .hero-trust { justify-content:center; }
@@ -210,7 +210,7 @@ export function HeroSection() {
           .hero-trust { gap:12px; }
           .trust-pill { font-size:10px; }
           .sim-wrap { max-width:100%; width:100%; }
-          .sim-img { padding-bottom:50%; }
+          .sim-img { padding-bottom:46.7%; background-size:contain; background-repeat:no-repeat; background-color:#0c0e12; }
           .sim-name { font-size:18px; }
           .sim-dev { font-size:11px; margin-bottom:10px; }
           .sim-btn { font-size:12px; padding:10px 18px; }
