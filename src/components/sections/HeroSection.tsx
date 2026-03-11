@@ -30,6 +30,10 @@ export function HeroSection() {
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
   const loopRef = useRef(0);
 
+  // Mobile simple toggle state
+  const [mobileUnlocked, setMobileUnlocked] = useState(false);
+  const [mobileFading, setMobileFading] = useState(false);
+
   const featured = FEATURED_GAMES[featuredIdx];
   const unlocked = phase === 'unlocked';
   const activating = phase === 'activating';
@@ -102,6 +106,28 @@ export function HeroSection() {
     }
   }, [phase, runSequence]);
 
+  // Mobile animation loop: simple unlock toggle with game rotation
+  useEffect(() => {
+    const loop = () => {
+      // Unlock
+      setMobileUnlocked(true);
+      return setTimeout(() => {
+        // Fade out, switch game, lock
+        setMobileFading(true);
+        setTimeout(() => {
+          setMobileUnlocked(false);
+          setFeaturedIdx(prev => (prev + 1) % FEATURED_GAMES.length);
+          setMobileFading(false);
+        }, 400);
+        return setTimeout(loop, 3200);
+      }, 2800);
+    };
+    const initial = setTimeout(loop, 1500);
+    return () => clearTimeout(initial);
+  }, []);
+
+  const mobileGame = FEATURED_GAMES[featuredIdx];
+
   return (
     <section id="hero" className="hero-section">
       <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -124,6 +150,28 @@ export function HeroSection() {
           <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
         </div>
 
+        {/* Mobile mini simulator */}
+        <div className={`sim-mobile reveal rd2 ${mobileUnlocked ? 'unlocked' : ''} ${mobileFading ? 'fading' : ''}`}>
+          <div className="sim-m-header">
+            <div className="sim-m-logo">OVERISE</div>
+            <div className={`sim-m-status ${mobileUnlocked ? 'active' : ''}`}>
+              {mobileUnlocked ? 'DESBLOQUEADO' : 'BLOQUEADO'}
+            </div>
+          </div>
+          <div className="sim-m-card">
+            <img src={mobileGame.img} alt={mobileGame.name} />
+            <div className="sim-m-overlay" />
+            <div className="sim-m-info">
+              <div className="sim-m-name">{mobileGame.name}</div>
+              <div className="sim-m-dev">{mobileGame.dev}</div>
+              <div className={`sim-m-btn ${mobileUnlocked ? 'go' : ''}`}>
+                {mobileUnlocked ? 'Instalar Agora' : `Steam: ${mobileGame.price}`}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop full simulator */}
         <div className="sim-wrap reveal rd2">
           <div className="sim-bar">
             <div className="sim-dots"><span /><span /><span /></div>
@@ -227,6 +275,10 @@ export function HeroSection() {
         .hero-sub { font-size: 16px; font-weight: 400; color: var(--muted); max-width: 560px; line-height: 1.65; margin: 0 auto; font-family: var(--fb); }
         .hero-sub strong { color: var(--white); font-weight: 600; }
 
+        /* Mobile mini simulator — hidden on desktop */
+        .sim-mobile { display: none; }
+
+        /* Desktop full simulator */
         .sim-wrap { max-width: 960px; width: 100%; margin: 40px auto 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 0 60px rgba(57,255,20,.03), 0 32px 64px rgba(0,0,0,.5); background: #0c0e12; }
         .sim-bar { display: flex; align-items: center; padding: 10px 16px; background: #111318; border-bottom: 1px solid rgba(255,255,255,.05); }
         .sim-dots { display: flex; gap: 7px; }
@@ -292,31 +344,38 @@ export function HeroSection() {
         .trust-pill:hover { color: var(--accent); transform: scale(1.05); }
         .trust-pill .chk { color: var(--accent); font-weight: 900; }
 
+        /* ===== MOBILE MINI SIMULATOR ===== */
+        .sim-m-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: #111318; border-bottom: 1px solid rgba(255,255,255,.05); border-radius: 10px 10px 0 0; }
+        .sim-m-logo { font-family: var(--fh); font-size: 11px; font-weight: 800; color: rgba(255,255,255,.3); letter-spacing: .1em; text-transform: uppercase; }
+        .sim-m-status { font-family: var(--fb); font-size: 9px; font-weight: 700; letter-spacing: .06em; padding: 4px 10px; border-radius: 4px; background: rgba(255,68,68,.08); color: var(--red); transition: all .5s; text-transform: uppercase; }
+        .sim-m-status.active { background: rgba(57,255,20,.1); color: var(--accent); box-shadow: 0 0 12px rgba(57,255,20,.15); }
+        .sim-m-card { position: relative; overflow: hidden; border-radius: 0 0 10px 10px; }
+        .sim-m-card img { width: 100%; aspect-ratio: 460/215; object-fit: cover; display: block; transition: filter .6s, transform .6s; }
+        .sim-mobile:not(.unlocked) .sim-m-card img { filter: grayscale(80%) brightness(.6); }
+        .sim-mobile.unlocked .sim-m-card img { filter: grayscale(0%) brightness(1); transform: scale(1.02); }
+        .sim-mobile.fading .sim-m-card img { opacity: 0; transform: scale(1.06); }
+        .sim-m-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,14,17,.9) 0%, rgba(11,14,17,.3) 40%, transparent 70%); pointer-events: none; }
+        .sim-m-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px; text-align: left; }
+        .sim-m-name { font-family: var(--fh); font-size: 16px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.1; margin-bottom: 2px; }
+        .sim-m-dev { font-family: var(--fb); font-size: 11px; color: rgba(255,255,255,.5); font-weight: 500; margin-bottom: 10px; }
+        .sim-m-btn { display: inline-block; font-family: var(--fb); font-size: 11px; font-weight: 700; padding: 8px 16px; border-radius: 6px; transition: all .5s; background: rgba(255,255,255,.06); color: var(--dim); letter-spacing: .02em; }
+        .sim-m-btn.go { background: var(--accent); color: #0b0e11; box-shadow: 0 0 16px rgba(57,255,20,.2); }
+        .sim-mobile.fading .sim-m-info { opacity: 0; transition: opacity .3s; }
+        .sim-mobile:not(.fading) .sim-m-info { opacity: 1; transition: opacity .4s .1s; }
+
         @media (max-width: 768px) {
           .hero-section { padding: 24px 0 32px; }
           .hero-badge { font-size: 10px; padding: 4px 10px; margin-bottom: 12px; }
           .hero-h1 { font-size: clamp(26px,8vw,42px); margin-bottom: 10px; line-height: .88; }
-          .hero-sub { font-size: 13px; line-height: 1.55; margin-bottom: 0; }
+          .hero-sub { font-size: 13px; line-height: 1.55; }
           .hero-btns { margin-top: 16px; margin-bottom: 10px; flex-direction: column; align-items: stretch; gap: 8px; }
           .hero-btns .btn-xl { font-size: 14px; padding: 14px 20px; }
           .hero-trust { gap: 12px; margin-bottom: 0; }
           .trust-pill { font-size: 10px; }
-          .sim-wrap { margin: 20px 0 0; border-radius: 10px; }
-          .sim-body { flex-direction: column; min-height: auto; }
-          .sim-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 10px; gap: 6px; align-items: center; }
-          .sim-logo-text { font-size: 10px; }
-          .sim-nav { flex-direction: row; gap: 4px; }
-          .sim-nav-item { padding: 6px 8px; font-size: 10px; gap: 5px; }
-          .sim-activate-btn { margin-top: 0; margin-left: auto; padding: 8px 12px; font-size: 9px; }
-          .sim-main { padding: 10px; gap: 10px; }
-          .sim-featured { flex-direction: column; }
-          .sim-featured-img { width: 100%; }
-          .sim-featured-info { padding: 10px; }
-          .sim-featured-name { font-size: 16px; }
-          .sim-featured-dev { font-size: 11px; margin-bottom: 10px; }
-          .sim-price-value { font-size: 15px; }
-          .sim-catalog-grid { grid-template-columns: repeat(4, 1fr); }
-          .sim-cursor { display: none; }
+
+          /* Show mobile sim, hide desktop sim */
+          .sim-mobile { display: block; width: 100%; margin-top: 16px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); background: #0c0e12; box-shadow: 0 16px 48px rgba(0,0,0,.4); }
+          .sim-wrap { display: none; }
         }
       `}</style>
     </section>
