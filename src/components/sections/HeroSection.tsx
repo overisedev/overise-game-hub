@@ -112,7 +112,7 @@ export function HeroSection() {
                   </div>
                 ) : (
                   <div className={`sim-btn ${isUnlocked ? 'sim-btn-go' : ''} ${phase === 'cursor-clicking' ? 'sim-btn-pressed' : ''}`}>
-                    {isUnlocked ? '▶ Instalar Agora' : 'Desbloquear Jogo'}
+                    {isUnlocked ? 'Instalar Agora' : 'Desbloquear Jogo'}
                   </div>
                 )}
               </div>
