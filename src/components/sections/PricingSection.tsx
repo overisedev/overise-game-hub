@@ -45,7 +45,7 @@ const PLANS = [
     featured: false,
     vitalicio: false,
     features: [
-      { text: '+500 jogos desbloqueados', yes: true },
+      { text: '+1000 jogos desbloqueados', yes: true, bold: true },
       { text: 'Entrega instantânea', yes: true },
       { text: 'Atualizações por 6 meses', yes: true },
       { text: 'Anti-ban e seguro', yes: true },
