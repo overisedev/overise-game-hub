@@ -71,7 +71,7 @@ export function HeroSection() {
     <section id="hero" className="hero-section">
       <div className="container hero-layout">
         <div className="hero-left">
-          <div className="hero-badge reveal">Taxa única R$9,97 · licença vitalícia</div>
+          
           <h1 className="hero-h1 reveal rd1">
             Desbloqueie sua Steam.<br />
             <em>+1000 jogos por R$9,97.</em>
