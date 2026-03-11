@@ -42,7 +42,7 @@ export function GamesGridSection() {
       </div>
       <style>{`
         .games-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; margin-top: 44px; }
-        .game-tile { border-radius: 6px; overflow: hidden; aspect-ratio: 46/21; position: relative; border: 1px solid var(--border); transition: all .25s; }
+        .game-tile { border-radius: 6px; overflow: hidden; aspect-ratio: 460/215; position: relative; border: 1px solid var(--border); transition: all .25s; }
         .game-tile:hover { transform: scale(1.04); border-color: rgba(57,255,20,.25); box-shadow: 0 4px 20px rgba(0,0,0,.4); }
         .game-tile img { width: 100%; height: 100%; object-fit: cover; }
         .game-tile-ov { position: absolute; inset: 0; background: linear-gradient(to top,rgba(11,14,17,.85) 0%,transparent 50%); }

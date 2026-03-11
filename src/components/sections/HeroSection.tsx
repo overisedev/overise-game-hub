@@ -264,7 +264,7 @@ export function HeroSection() {
         .sim-main { flex: 1; padding: 18px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; text-align: left; }
 
         .sim-featured { display: flex; background: rgba(255,255,255,.015); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,.04); }
-        .sim-featured-img { width: 55%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .sim-featured-img { width: 55%; aspect-ratio: 460/215; object-fit: cover; display: block; }
         .sim-featured-info { padding: 18px; display: flex; flex-direction: column; justify-content: center; flex: 1; }
         .sim-featured-name { font-family: var(--fh); font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -.01em; text-transform: uppercase; margin-bottom: 4px; line-height: 1.1; }
         .sim-featured-dev { font-family: var(--fb); font-size: 12px; color: var(--dim); margin-bottom: 16px; font-weight: 500; }
@@ -285,7 +285,7 @@ export function HeroSection() {
         .sim-catalog-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
         .sim-game-card { border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,.03); filter: grayscale(100%) brightness(.55); opacity: .45; position: relative; transition: all .5s cubic-bezier(.16,1,.3,1); }
         .sim-game-card.unlocked { filter: grayscale(0%) brightness(1); opacity: 1; border-color: rgba(57,255,20,.1); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
-        .sim-game-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .sim-game-card img { width: 100%; aspect-ratio: 460/215; object-fit: cover; display: block; }
         .sim-game-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 4px 6px; font-size: 8px; font-weight: 600; color: #fff; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); font-family: var(--fb); opacity: 0; transition: opacity .4s; }
         .sim-game-card.unlocked .sim-game-name { opacity: 1; }
 

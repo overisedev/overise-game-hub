@@ -184,7 +184,7 @@ export function PricingSection() {
         .pln-btn--vit:hover { background: #ff8050; box-shadow: 0 4px 24px rgba(255,107,53,.25); }
         @media (max-width: 900px) {
           .plans-row { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; gap: 20px; }
-          .pln--dest { order: -1; }
+          .pln--dest { order: 0; }
           .pln-price span { font-size: 48px !important; }
         }
       `}</style>
