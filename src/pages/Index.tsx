@@ -16,7 +16,7 @@ import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
 import { BuyNotification } from '@/components/ui/BuyNotification';
-import { FloatingCTA } from '@/components/ui/FloatingCTA';
+
 import { ChatWidget } from '@/components/ui/ChatWidget';
 
 const Index = () => {
