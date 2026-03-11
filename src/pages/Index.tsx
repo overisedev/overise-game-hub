@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Header } from '@/components/layout/Header';
+import { ScrollDistortion } from '@/components/ui/ScrollDistortion';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { MarqueeSection } from '@/components/sections/MarqueeSection';
@@ -16,7 +17,7 @@ import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
 import { BuyNotification } from '@/components/ui/BuyNotification';
-import { FloatingCTA } from '@/components/ui/FloatingCTA';
+
 import { ChatWidget } from '@/components/ui/ChatWidget';
 
 const Index = () => {
@@ -62,7 +63,8 @@ const Index = () => {
       <FinalCTASection />
       <Footer />
       <BuyNotification />
-      <FloatingCTA />
+      {/* Scroll distortion overlay */}
+      <ScrollDistortion />
       <ChatWidget />
     </div>
   );
