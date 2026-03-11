@@ -141,13 +141,13 @@ export function BenefitsResumeSection() {
 
         .tl-card-img-wrap {
           position: relative;
-          aspect-ratio: 16/9;
           overflow: hidden;
+          background: #1a1a1a;
         }
         .tl-card-img {
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
+          display: block;
         }
         .tl-card-num {
           position: absolute;
