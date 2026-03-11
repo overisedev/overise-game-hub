@@ -1,787 +1,191 @@
-import { motion } from "framer-motion";
-import { Zap, Download, Shield, Headphones, Gamepad2, RefreshCw, MessageCircle } from "lucide-react";
+function fireIC(value: number) {
+  if (typeof window !== 'undefined' && (window as any).fbq) {
+    (window as any).fbq('track', 'InitiateCheckout', { value, currency: 'BRL' });
+  }
+}
 
-// Import testimonial avatars for social proof
-import jzAvatar from "@/assets/testimonials/jz.jpg";
-import adriellyAvatar from "@/assets/testimonials/adrielly.jpg";
-import maiconAvatar from "@/assets/testimonials/maicon.jpg";
-import wlAvatar from "@/assets/testimonials/wl.jpeg";
-
-function getUTMParams(): string {
+function getUtms(): string {
   const params = new URLSearchParams(window.location.search);
   const utmParams = new URLSearchParams();
-  const utmKeys = [
-    "utm_source",
-    "utm_medium",
-    "utm_campaign",
-    "utm_term",
-    "utm_content",
-    "utm_id",
-    "fbclid",
-    "gclid",
-    "ttclid",
-    "sck",
-    "src",
-  ];
-  utmKeys.forEach((key) => {
-    const value = params.get(key);
-    if (value) utmParams.append(key, value);
+  ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src','sck','xcod','fbclid','gclid'].forEach(k => {
+    const v = params.get(k);
+    if (v) utmParams.append(k, v);
   });
   try {
-    const storedUtms = localStorage.getItem("__utmify_session_data");
-    if (storedUtms) {
-      const parsed = JSON.parse(storedUtms);
-      if (parsed.utm_source && !utmParams.has("utm_source")) utmParams.append("utm_source", parsed.utm_source);
-      if (parsed.utm_medium && !utmParams.has("utm_medium")) utmParams.append("utm_medium", parsed.utm_medium);
-      if (parsed.utm_campaign && !utmParams.has("utm_campaign")) utmParams.append("utm_campaign", parsed.utm_campaign);
+    const stored = localStorage.getItem('__utmify_session_data');
+    if (stored) {
+      const p = JSON.parse(stored);
+      if (p.utm_source && !utmParams.has('utm_source')) utmParams.append('utm_source', p.utm_source);
     }
-  } catch (e) {}
-  return utmParams.toString();
+  } catch {}
+  if (utmParams.toString()) return utmParams.toString();
+  const match = document.cookie.match(/overise_utms=([^;]+)/);
+  if (match) return decodeURIComponent(match[1]);
+  try { return sessionStorage.getItem('overise_utms') || ''; } catch { return ''; }
 }
 
-const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ";
+function checkout(url: string, value: number) {
+  fireIC(value);
+  const utms = getUtms();
+  const sep = url.includes('?') ? '&' : '?';
+  const finalUrl = utms ? `${url}${sep}${utms}` : url;
+  setTimeout(() => { window.location.href = finalUrl; }, 800);
+}
 
-const BONUSES = [
-  { icon: Zap, title: "Ativação Instantânea", desc: "Acesso liberado em menos de 2 minutos após o pagamento." },
-  { icon: Download, title: "Download pela Steam", desc: "Baixe direto dos servidores oficiais na velocidade máxima." },
+const PLANS = [
   {
-    icon: RefreshCw,
-    title: "Atualizações Automáticas",
-    desc: "Seus jogos sempre na versão mais recente, sem fazer nada.",
+    name: 'Básico',
+    forText: 'Para experimentar',
+    oldPrice: 'R$29,97',
+    price: '9',
+    cents: ',97',
+    freq: 'pagamento único',
+    url: 'https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ',
+    value: 9.97,
+    featured: false,
+    vitalicio: false,
+    features: [
+      { text: '+500 jogos desbloqueados', yes: true },
+      { text: 'Entrega instantânea', yes: true },
+      { text: 'Atualizações por 6 meses', yes: true },
+      { text: 'Anti-ban e seguro', yes: true },
+      { text: 'Suporte por email', yes: true },
+      { text: 'Garantia de 7 dias', yes: true },
+      { text: 'Online desbloqueado', yes: false },
+      { text: 'Jogos Rockstar / Ubisoft', yes: false },
+    ],
+    btnText: 'Assinar Básico',
+    btnClass: '',
+    tag: null,
   },
-  { icon: MessageCircle, title: "Suporte via WhatsApp", desc: "Equipe real pronta para te ajudar a qualquer momento." },
-  { icon: Gamepad2, title: "Pedidos de Novos Jogos", desc: "Solicite jogos e nossa equipe adiciona ao catálogo." },
-  { icon: Shield, title: "Garantia de 7 Dias", desc: "Não curtiu? Devolvemos seu dinheiro sem burocracia." },
+  {
+    name: 'Avançado',
+    forText: 'O favorito dos jogadores',
+    oldPrice: 'R$59,97',
+    price: '19',
+    cents: ',97',
+    freq: 'pagamento único',
+    url: 'https://www.ggcheckout.com/checkout/v4/BvIb4ex53LM73mU3DJsX',
+    value: 19.97,
+    featured: true,
+    vitalicio: false,
+    features: [
+      { text: '+1000 jogos desbloqueados', yes: true, bold: true },
+      { text: 'Entrega instantânea', yes: true },
+      { text: 'Atualizações por 1 ano', yes: true },
+      { text: 'Anti-ban e seguro', yes: true },
+      { text: 'Online desbloqueado', yes: true },
+      { text: 'Jogos Rockstar / Ubisoft', yes: true },
+      { text: 'Suporte WhatsApp', yes: true },
+      { text: 'Garantia de 7 dias', yes: true },
+    ],
+    btnText: 'Assinar Avançado',
+    btnClass: 'pln-btn--dest',
+    tag: 'MAIS ESCOLHIDO',
+  },
+  {
+    name: 'Vitalício',
+    forText: 'Acesso total, pra sempre',
+    oldPrice: 'R$149,97',
+    price: '49',
+    cents: ',97',
+    freq: 'pagamento único',
+    url: 'https://www.ggcheckout.com/checkout/v4/pdDOCAlm20ZQxjUiglc3',
+    value: 49.97,
+    featured: false,
+    vitalicio: true,
+    features: [
+      { text: '+1000 jogos desbloqueados', yes: true, bold: true },
+      { text: 'Entrega instantânea', yes: true },
+      { text: 'Atualizações vitalícias', yes: true, bold: true },
+      { text: 'Anti-ban e seguro', yes: true },
+      { text: 'Online desbloqueado', yes: true },
+      { text: 'Jogos Rockstar / Ubisoft', yes: true },
+      { text: 'Suporte WhatsApp prioritário', yes: true, bold: true },
+      { text: 'Acesso a lançamentos', yes: true },
+    ],
+    btnText: 'Assinar Vitalício',
+    btnClass: 'pln-btn--vit',
+    tag: 'MELHOR CUSTO-BENEFÍCIO',
+  },
 ];
-
-function handleCheckout() {
-  if (typeof window !== "undefined" && (window as any).fbq) {
-    (window as any).fbq("track", "InitiateCheckout", {
-      content_name: "Acesso Completo",
-      value: 9.97,
-      currency: "BRL",
-    });
-  }
-  const utmString = getUTMParams();
-  const separator = CHECKOUT_URL.includes("?") ? "&" : "?";
-  const finalUrl = utmString ? `${CHECKOUT_URL}${separator}${utmString}` : CHECKOUT_URL;
-  window.open(finalUrl, "_blank", "noopener,noreferrer");
-}
 
 export function PricingSection() {
   return (
-    <section id="planos" className="pricing-section section-light">
-      <div className="container-main">
-        {/* Label */}
-        <motion.div
-          className="pricing-top"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="pricing-label">
-            <Zap size={14} />
-            Investimento
-          </span>
-        </motion.div>
-
-        {/* Headline */}
-        <motion.div
-          className="pricing-headline"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-        >
-          <h2>
-            Quanto custa ter acesso a<br />
-            <span className="pricing-hl-accent">+1000 jogos famosos?</span>
-          </h2>
-          <p className="pricing-hl-sub">Menos do que um lanche. Pagou uma vez, é seu pra sempre.</p>
-        </motion.div>
-
-        {/* Price Card */}
-        <motion.div
-          className="pricing-card"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <div className="pc-inner">
-            {/* Plan Name */}
-            <h3 className="pc-plan-name">OVERISE</h3>
-            <span className="pc-plan-sub">ACESSO COMPLETO</span>
-
-            <span className="pc-from">
-              De <s>R$ 15.000</s> em jogos
-            </span>
-
-            <div className="pc-price-row">
-              <span className="pc-currency">R$</span>
-              <span className="pc-value">9</span>
-              <span className="pc-cents">,97</span>
+    <section id="pricing" className="sec-dark">
+      <div className="container text-center">
+        <div className="reveal">
+          <div className="tag g">Planos e preços</div>
+          <h2 className="h2 on-dark">Escolha seu<br /><em>plano de acesso</em></h2>
+          <p className="sub on-dark center">Pague uma vez, jogue pra sempre. Sem mensalidade, sem surpresas.</p>
+        </div>
+        <div className="plans-row reveal rd1">
+          {PLANS.map((plan, i) => (
+            <div key={i} className={`pln ${plan.featured ? 'pln--dest' : ''} ${plan.vitalicio ? 'pln--vit' : ''}`}>
+              {plan.tag && <div className={`pln-tag ${plan.vitalicio ? 'pln-tag--vit' : ''}`}>{plan.tag}</div>}
+              <div className="pln-head">
+                <div className="pln-name">{plan.name}</div>
+                <div className="pln-for">{plan.forText}</div>
+              </div>
+              <div className="pln-price-wrap">
+                <div className="pln-old">de <s>{plan.oldPrice}</s></div>
+                <div className="pln-price">R$<span>{plan.price}</span>{plan.cents}</div>
+                <div className="pln-freq">{plan.freq}</div>
+              </div>
+              <ul className="pln-feats">
+                {plan.features.map((f, j) => (
+                  <li key={j} className={f.yes ? 'yes' : 'no'}>
+                    {f.bold ? <strong>{f.text}</strong> : f.text}
+                  </li>
+                ))}
+              </ul>
+              <button className={`pln-btn ${plan.btnClass}`} onClick={() => checkout(plan.url, plan.value)}>
+                {plan.btnText}
+              </button>
             </div>
-
-            <span className="pc-label">Taxa Única</span>
-
-            <div className="pc-divider" />
-
-            <div className="pc-benefits">
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title pc-bold">+1000 Jogos (+Lançamentos)</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Seus pra Sempre (Vitalício)</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title pc-bold">Modo Online (Selecionados)</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Download pela Steam</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Atualizações Automáticas</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Suporte WhatsApp</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Pedidos de Jogos</span>
-              </div>
-              <div className="pc-benefit">
-                <svg
-                  className="pc-check-svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--neon)"
-                  strokeWidth="3"
-                >
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-                <span className="pc-benefit-title">Garantia de 7 dias</span>
-              </div>
-            </div>
-
-            <button className="pc-cta" onClick={handleCheckout}>
-              Quero Meu Acesso
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Social Proof */}
-            <div className="pc-social">
-              <div className="pc-avatars">
-                <img src={jzAvatar} alt="" />
-                <img src={adriellyAvatar} alt="" />
-                <img src={maiconAvatar} alt="" />
-                <img src={wlAvatar} alt="" />
-              </div>
-              <div className="pc-social-text">
-                <span className="pc-stars">★★★★★</span>
-                <span>+5K clientes satisfeitos</span>
-              </div>
-            </div>
-
-            <p className="pc-secure">Compra 100% segura. Acesso liberado imediatamente após a confirmação.</p>
-          </div>
-
-          <div className="pc-glow" />
-        </motion.div>
-
-        {/* Bonuses Section */}
-        <motion.div
-          className="bonuses-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <span className="pricing-label">
-            <Shield size={14} />
-            Inclusos no Acesso
-          </span>
-          <h3 className="bonuses-title">
-            Tudo isso por apenas
-            <br />
-            <span className="pricing-hl-accent">R$ 9,97</span>
-          </h3>
-        </motion.div>
-
-        <motion.div
-          className="bonuses-list"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
-        >
-          {BONUSES.map((bonus, i) => (
-            <motion.div
-              key={i}
-              className="bonus-row"
-              variants={{
-                hidden: { opacity: 0, x: -30 },
-                visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
-              }}
-            >
-              <div className="bonus-row-icon">
-                <bonus.icon size={22} />
-              </div>
-              <div className="bonus-row-content">
-                <h4>{bonus.title}</h4>
-                <p>{bonus.desc}</p>
-              </div>
-              <div className="bonus-row-check">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <path d="M5 12l5 5L20 7" />
-                </svg>
-              </div>
-            </motion.div>
           ))}
-        </motion.div>
-
-        {/* Final CTA */}
-        <motion.div
-          className="pricing-final-cta"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <button className="pc-cta pc-cta-final" onClick={handleCheckout}>
-            Garantir Meu Acesso por R$ 9,97
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
-        </motion.div>
+        </div>
+        <div style={{ marginTop: '28px' }} className="reveal rd2">
+          <div style={{ fontFamily: 'var(--fh)', fontSize: '11px', fontWeight: 700, color: 'var(--dim)', letterSpacing: '.08em' }}>PIX · CARTÃO · BOLETO · PAGAMENTO ÚNICO</div>
+          <div style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.7 }}><span style={{ color: 'var(--text)' }}>Acesso imediato</span> · <span style={{ color: 'var(--text)' }}>Garantia de 7 dias</span></div>
+        </div>
       </div>
-
       <style>{`
-        .pricing-section {
-          padding: 100px 0 80px;
-          overflow: hidden;
-        }
-
-        /* Top Label */
-        .pricing-top {
-          text-align: center;
-          margin-bottom: 16px;
-        }
-        .pricing-label {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 8px 16px;
-          background: rgba(0,255,65,.08);
-          border: 1px solid rgba(0,255,65,.25);
-          border-radius: 999px;
-          font-size: 12px;
-          font-weight: 800;
-          color: var(--neon);
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
-
-        /* Headline */
-        .pricing-headline {
-          text-align: center;
-          margin-bottom: 40px;
-        }
-        .pricing-headline h2 {
-          font-size: clamp(28px, 5vw, 44px);
-          font-weight: 950;
-          color: #fff;
-          letter-spacing: -1.5px;
-          line-height: 1.1;
-          margin: 0;
-        }
-        .pricing-hl-accent {
-          color: var(--neon);
-          font-style: italic;
-        }
-        .pricing-hl-sub {
-          color: rgba(255,255,255,.75);
-          font-size: 16px;
-          margin-top: 12px;
-          font-weight: 600;
-        }
-
-        /* Price Card */
-        .pricing-card {
-          max-width: 420px;
-          margin: 0 auto;
-          position: relative;
-          border-radius: 28px;
-          border: 1.5px solid rgba(0,255,65,.3);
-          background: linear-gradient(180deg, rgba(10,10,10,.97) 0%, rgba(3,3,3,1) 100%);
-          overflow: hidden;
-          box-shadow: 
-            0 40px 80px rgba(0,0,0,.5),
-            0 0 80px rgba(0,255,65,.08),
-            inset 0 1px 0 rgba(0,255,65,.1);
-        }
-        .pc-inner {
-          position: relative;
-          z-index: 1;
-          padding: 48px 36px 36px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-        .pc-glow {
-          position: absolute;
-          top: -50%;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 500px;
-          height: 300px;
-          background: radial-gradient(ellipse, rgba(0,255,65,.1), transparent 70%);
-          pointer-events: none;
-        }
-
-        /* Badge */
-        .pc-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 8px 20px;
-          background: var(--neon);
-          color: #000;
-          font-size: 11px;
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-          border-radius: 999px;
-          margin-bottom: 28px;
-          box-shadow: 0 4px 20px rgba(0,255,65,.3);
-        }
-
-        /* Plan Name */
-        .pc-plan-name {
-          font-family: 'Sora', sans-serif;
-          font-size: 32px;
-          font-weight: 950;
-          color: #fff;
-          letter-spacing: -1px;
-          margin: 0 0 4px;
-          text-transform: uppercase;
-        }
-        .pc-plan-sub {
-          font-size: 13px;
-          font-weight: 800;
-          color: var(--neon);
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          margin-bottom: 20px;
-        }
-
-        .pc-from {
-          font-size: 14px;
-          color: rgba(255,255,255,.7);
-          font-weight: 600;
-          margin-bottom: 4px;
-        }
-        .pc-from s { text-decoration: line-through; color: rgba(255,255,255,.5); }
-
-        .pc-price-row {
-          display: flex;
-          align-items: flex-start;
-          line-height: 1;
-        }
-        .pc-currency {
-          font-size: 24px;
-          font-weight: 800;
-          color: var(--neon);
-          margin-top: 20px;
-          margin-right: 4px;
-        }
-        .pc-value {
-          font-size: 110px;
-          font-weight: 900;
-          color: #fff;
-          letter-spacing: -5px;
-          filter: drop-shadow(0 0 40px rgba(0,255,65,.2));
-        }
-        .pc-cents {
-          font-size: 34px;
-          font-weight: 800;
-          color: #fff;
-          margin-top: 22px;
-        }
-        .pc-label {
-          font-size: 11px;
-          font-weight: 800;
-          color: var(--neon);
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          margin-top: 2px;
-          margin-bottom: 24px;
-        }
-
-        .pc-divider {
-          width: 100%;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
-          margin-bottom: 24px;
-        }
-
-        .pc-benefits {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          margin-bottom: 28px;
-        }
-        .pc-benefit {
-          display: flex;
-          align-items: center;
-          gap: 14px;
-          padding: 13px 0;
-          border-bottom: 1px solid rgba(255,255,255,.08);
-        }
-        .pc-benefit:last-child {
-          border-bottom: none;
-        }
-        .pc-check-svg {
-          flex-shrink: 0;
-        }
-        .pc-benefit-title {
-          font-size: 15px;
-          font-weight: 500;
-          color: rgba(255,255,255,.85);
-          letter-spacing: -.2px;
-          text-align: left;
-        }
-        .pc-benefit-title.pc-bold {
-          font-weight: 800;
-          color: #fff;
-          font-size: 16px;
-        }
-
-        .pc-cta {
-          width: 100%;
-          padding: 18px;
-          background: var(--neon);
-          color: #000;
-          font-size: 14px;
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: .5px;
-          border: none;
-          border-radius: 14px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
-          transition: all .25s ease;
-          box-shadow: 0 8px 30px rgba(0,255,65,.25);
-        }
-        .pc-cta:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 40px rgba(0,255,65,.4);
-        }
-
-        .pc-social {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-top: 20px;
-        }
-        .pc-avatars {
-          display: flex;
-        }
-        .pc-avatars img {
-          width: 28px;
-          height: 28px;
-          border-radius: 50%;
-          border: 2px solid #0a0a0a;
-          object-fit: cover;
-          margin-left: -8px;
-        }
-        .pc-avatars img:first-child { margin-left: 0; }
-        .pc-social-text {
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-        }
-        .pc-stars {
-          color: var(--neon);
-          font-size: 11px;
-          letter-spacing: 1px;
-        }
-        .pc-social-text span:last-child {
-          font-size: 12px;
-          font-weight: 700;
-          color: rgba(255,255,255,.75);
-        }
-
-        .pc-secure {
-          font-size: 12px;
-          color: rgba(255,255,255,.6);
-          margin-top: 16px;
-          font-weight: 600;
-          line-height: 1.5;
-        }
-
-        /* Bonuses */
-        .bonuses-header {
-          text-align: center;
-          margin-top: 80px;
-          margin-bottom: 12px;
-        }
-        .bonuses-title {
-          text-align: center;
-          font-size: clamp(24px, 4vw, 34px);
-          font-weight: 950;
-          color: #fff;
-          letter-spacing: -1px;
-          line-height: 1.15;
-          margin: 16px 0 40px;
-        }
-
-        .bonuses-list {
-          max-width: 560px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-        }
-
-        .bonus-row {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-          padding: 22px 24px;
-          border-bottom: 1px solid rgba(255,255,255,.06);
-          position: relative;
-          transition: background .2s ease;
-        }
-        .bonus-row:first-child {
-          border-top: 1px solid rgba(255,255,255,.06);
-        }
-        .bonus-row:hover {
-          background: rgba(0,255,65,.03);
-        }
-        .bonus-row::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 2px;
-          height: 0;
-          background: var(--neon);
-          transition: height .25s ease;
-          border-radius: 2px;
-        }
-        .bonus-row:hover::before {
-          height: 60%;
-        }
-
-        .bonus-row-icon {
-          width: 48px;
-          height: 48px;
-          border-radius: 14px;
-          background: rgba(0,255,65,.08);
-          border: 1px solid rgba(0,255,65,.15);
-          color: var(--neon);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .bonus-row-content {
-          flex: 1;
-          min-width: 0;
-        }
-        .bonus-row-content h4 {
-          font-size: 16px;
-          font-weight: 800;
-          color: #fff;
-          margin: 0 0 3px;
-          letter-spacing: -.3px;
-        }
-        .bonus-row-content p {
-          font-size: 13px;
-          color: rgba(255,255,255,.7);
-          line-height: 1.45;
-          margin: 0;
-          font-weight: 500;
-        }
-
-        .bonus-row-check {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: rgba(0,255,65,.1);
-          border: 1px solid rgba(0,255,65,.2);
-          color: var(--neon);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        /* Final CTA */
-        .pricing-final-cta {
-          text-align: center;
-          margin-top: 40px;
-        }
-        .pc-cta-final {
-          max-width: 420px;
-          margin: 0 auto;
-        }
-
-        @media (max-width: 640px) {
-          .pricing-section {
-            padding: 56px 0 48px;
-          }
-          .pricing-headline {
-            margin-bottom: 28px;
-          }
-          .pc-inner {
-            padding: 40px 20px 24px;
-          }
-          .pc-badge {
-            margin-bottom: 20px;
-            font-size: 10px;
-            padding: 6px 16px;
-          }
-          .pc-plan-name {
-            font-size: 26px;
-          }
-          .pc-plan-sub {
-            font-size: 11px;
-            margin-bottom: 14px;
-          }
-          .pc-value {
-            font-size: 80px;
-          }
-          .pc-cents {
-            font-size: 28px;
-          }
-          .pc-benefit {
-            padding: 11px 0;
-          }
-          .pc-benefit-title {
-            font-size: 14px;
-          }
-          .pc-benefit-title.pc-bold {
-            font-size: 14px;
-          }
-          .bonuses-header {
-            margin-top: 56px;
-          }
-          .bonuses-title {
-            margin-bottom: 24px;
-          }
-          .bonus-row {
-            padding: 16px 12px;
-            gap: 14px;
-          }
-          .bonus-row-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-          }
-          .bonus-row-content h4 {
-            font-size: 14px;
-          }
-          .bonus-row-content p {
-            font-size: 12px;
-          }
-          .bonus-row-check {
-            width: 28px;
-            height: 28px;
-          }
-          .pricing-final-cta {
-            margin-top: 28px;
-          }
+        .plans-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; align-items: start; }
+        .pln { background: var(--card); border: 1px solid var(--border2); border-radius: 16px; padding: 32px 28px; text-align: center; position: relative; display: flex; flex-direction: column; transition: border-color .3s, transform .3s, box-shadow .3s; }
+        .pln:hover { border-color: rgba(255,255,255,.12); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.4); }
+        .pln--dest { border: 2px solid var(--accent); box-shadow: 0 0 60px rgba(57,255,20,.07),0 24px 64px rgba(0,0,0,.5); padding: 40px 28px 32px; animation: glowPulse 4s ease-in-out infinite; }
+        .pln--vit { border: 1px solid rgba(255,107,53,.2); }
+        .pln--vit:hover { border-color: rgba(255,107,53,.4); }
+        .pln-tag { position: absolute; top: 0; left: 50%; transform: translate(-50%,-50%); font-family: var(--fh); font-size: 10px; font-weight: 800; letter-spacing: .16em; padding: 6px 22px; background: var(--accent); color: #0b0e11; border-radius: 50px; white-space: nowrap; }
+        .pln-tag--vit { background: #ff6b35; color: #fff; }
+        .pln-head { margin-bottom: 20px; }
+        .pln-name { font-family: var(--fh); font-size: 28px; font-weight: 900; text-transform: uppercase; color: var(--white); letter-spacing: .02em; line-height: 1; }
+        .pln--dest .pln-name { font-size: 32px; }
+        .pln-for { font-size: 14px; color: var(--dim); margin-top: 4px; }
+        .pln-price-wrap { margin-bottom: 24px; }
+        .pln-old { font-size: 13px; color: var(--dim); }
+        .pln-old s { color: var(--red); opacity: .5; }
+        .pln-price { font-family: var(--fh); font-weight: 900; font-size: 22px; color: var(--accent); line-height: 1; margin: 6px 0 4px; }
+        .pln-price span { font-size: 56px; }
+        .pln--dest .pln-price span { font-size: 64px; }
+        .pln-freq { font-family: var(--fh); font-size: 11px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
+        .pln-feats { list-style: none; padding: 0; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; max-width: 280px; text-align: left; }
+        .pln-feats li { font-size: 14px; font-weight: 500; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
+        .pln-feats li strong { font-weight: 700; color: var(--white); }
+        .pln-feats li.yes { color: var(--text); }
+        .pln-feats li.yes::before { content: ""; width: 20px; height: 20px; flex-shrink: 0; background: var(--accent); border-radius: 6px; display: inline-block; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230b0e11' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 11px; }
+        .pln-feats li.no { color: var(--dim); opacity: .3; }
+        .pln-feats li.no::before { content: ""; width: 20px; height: 20px; flex-shrink: 0; background: rgba(255,255,255,.06); border-radius: 6px; display: inline-block; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23727a85' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 10px; }
+        .pln-btn { display: block; width: 100%; padding: 16px; font-family: var(--fh); font-size: 16px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; text-align: center; cursor: pointer; transition: all .25s; margin-top: 24px; border: none; background: var(--accent); color: #0b0e11; box-shadow: 0 0 16px rgba(57,255,20,.12); }
+        .pln-btn:hover { background: #4dff33; transform: translateY(-2px); box-shadow: 0 4px 24px rgba(57,255,20,.2); }
+        .pln-btn--dest { font-size: 18px; padding: 18px; box-shadow: 0 0 32px var(--accent-glow); }
+        .pln-btn--vit { background: #ff6b35; color: #fff; box-shadow: 0 0 16px rgba(255,107,53,.15); }
+        .pln-btn--vit:hover { background: #ff8050; box-shadow: 0 4px 24px rgba(255,107,53,.25); }
+        @media (max-width: 900px) {
+          .plans-row { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; gap: 20px; }
+          .pln--dest { order: -1; }
+          .pln-price span { font-size: 48px !important; }
         }
       `}</style>
     </section>
