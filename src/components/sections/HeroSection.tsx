@@ -125,7 +125,7 @@ export function HeroSection() {
     return () => { cancelled = true; };
   }, []);
 
-  const mobileGame = FEATURED_GAMES[featuredIdx];
+  const mobileGame = FEATURED_GAMES[mobileIdx];
 
   return (
     <section id="hero" className="hero-section">
