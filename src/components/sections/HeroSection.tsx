@@ -108,14 +108,21 @@ export function HeroSection() {
         <div className="hero-badge reveal">Taxa única R$9,97 · licença vitalícia</div>
         <h1 className="hero-h1 reveal rd1">
           Desbloqueie sua Steam.<br />
-          <em>+1000 jogos por R$9,97.</em><br />
-          <span style={{ fontSize: '.35em', fontWeight: 600, color: 'var(--muted)', letterSpacing: '.02em', textTransform: 'none' }}>
-            Taxa única. Licença vitalícia. Sem mensalidade.
-          </span>
+          <em>+1000 jogos por R$9,97.</em>
         </h1>
         <p className="hero-sub reveal rd1">
           Ative o desbloqueador, escolha o jogo e baixe direto pela Steam. <strong>100% seguro, anti-ban e invisível.</strong> Pague uma vez, use pra sempre.
         </p>
+
+        <div className="hero-btns reveal rd1">
+          <a href="#pricing" className="btn btn-accent btn-xl">Desbloquear minha Steam</a>
+          <a href="#how" className="btn btn-ghost btn-xl">Ver como funciona</a>
+        </div>
+        <div className="hero-trust reveal rd1">
+          <div className="trust-pill"><span className="chk">✔</span> 7 dias de garantia</div>
+          <div className="trust-pill"><span className="chk">✔</span> Jogando em 5 min</div>
+          <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
+        </div>
 
         <div className="sim-wrap reveal rd2">
           <div className="sim-bar">
@@ -208,26 +215,16 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-
-        <div className="hero-btns reveal rd2">
-          <a href="#pricing" className="btn btn-accent btn-xl">Desbloquear minha Steam</a>
-          <a href="#how" className="btn btn-ghost btn-xl">Ver como funciona</a>
-        </div>
-        <div className="hero-trust reveal rd3">
-          <div className="trust-pill"><span className="chk">✔</span> 7 dias de garantia</div>
-          <div className="trust-pill"><span className="chk">✔</span> Jogando em 5 min</div>
-          <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
-        </div>
       </div>
 
       <style>{`
-        .hero-section { background: var(--bg); padding: 72px 0 64px; position: relative; overflow: hidden; text-align: center; }
+        .hero-section { background: var(--bg); padding: 48px 0 64px; position: relative; overflow: hidden; text-align: center; }
         .hero-section::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(ellipse,rgba(57,255,20,.035) 0%,transparent 65%); pointer-events: none; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid rgba(57,255,20,.15); border-radius: 4px; padding: 6px 14px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; animation: floatY 3s ease-in-out infinite, borderGlow 3s ease-in-out infinite; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid rgba(57,255,20,.15); border-radius: 4px; padding: 5px 12px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; animation: floatY 3s ease-in-out infinite, borderGlow 3s ease-in-out infinite; }
         .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); animation: livep 1.3s ease-in-out infinite; }
-        .hero-h1 { font-family: var(--fh); font-size: clamp(36px,7vw,88px); font-weight: 900; line-height: .9; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
+        .hero-h1 { font-family: var(--fh); font-size: clamp(36px,7vw,88px); font-weight: 900; line-height: .9; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
         .hero-h1 em { color: var(--accent); font-style: normal; }
-        .hero-sub { font-size: 17px; font-weight: 400; color: var(--muted); max-width: 560px; line-height: 1.75; margin: 0 auto; font-family: var(--fb); }
+        .hero-sub { font-size: 16px; font-weight: 400; color: var(--muted); max-width: 560px; line-height: 1.65; margin: 0 auto; font-family: var(--fb); }
         .hero-sub strong { color: var(--white); font-weight: 600; }
 
         .sim-wrap { max-width: 960px; width: 100%; margin: 40px auto 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 0 60px rgba(57,255,20,.03), 0 32px 64px rgba(0,0,0,.5); background: #0c0e12; }
@@ -289,33 +286,37 @@ export function HeroSection() {
         .sim-game-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 4px 6px; font-size: 8px; font-weight: 600; color: #fff; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); font-family: var(--fb); opacity: 0; transition: opacity .4s; }
         .sim-game-card.unlocked .sim-game-name { opacity: 1; }
 
-        .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 32px; margin-bottom: 24px; }
-        .hero-trust { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px; margin-bottom: 16px; }
+        .hero-trust { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 8px; }
         .trust-pill { display: flex; align-items: center; gap: 6px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--dim); transition: all .2s ease; }
         .trust-pill:hover { color: var(--accent); transform: scale(1.05); }
         .trust-pill .chk { color: var(--accent); font-weight: 900; }
 
         @media (max-width: 768px) {
-          .hero-section { padding: 48px 0; }
-          .hero-h1 { font-size: clamp(28px,8.5vw,48px); }
-          .hero-sub { font-size: 15px; }
-          .sim-wrap { margin: 24px 0 0; border-radius: 10px; }
+          .hero-section { padding: 24px 0 32px; }
+          .hero-badge { font-size: 10px; padding: 4px 10px; margin-bottom: 12px; }
+          .hero-h1 { font-size: clamp(26px,8vw,42px); margin-bottom: 10px; line-height: .88; }
+          .hero-sub { font-size: 13px; line-height: 1.55; margin-bottom: 0; }
+          .hero-btns { margin-top: 16px; margin-bottom: 10px; flex-direction: column; align-items: stretch; gap: 8px; }
+          .hero-btns .btn-xl { font-size: 14px; padding: 14px 20px; }
+          .hero-trust { gap: 12px; margin-bottom: 0; }
+          .trust-pill { font-size: 10px; }
+          .sim-wrap { margin: 20px 0 0; border-radius: 10px; }
           .sim-body { flex-direction: column; min-height: auto; }
-          .sim-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 12px; gap: 8px; align-items: center; }
-          .sim-logo-text { font-size: 11px; }
+          .sim-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 10px; gap: 6px; align-items: center; }
+          .sim-logo-text { font-size: 10px; }
           .sim-nav { flex-direction: row; gap: 4px; }
-          .sim-nav-item { padding: 8px 10px; font-size: 11px; gap: 6px; }
-          .sim-activate-btn { margin-top: 0; margin-left: auto; padding: 10px 14px; font-size: 10px; }
-          .sim-main { padding: 12px; gap: 12px; }
+          .sim-nav-item { padding: 6px 8px; font-size: 10px; gap: 5px; }
+          .sim-activate-btn { margin-top: 0; margin-left: auto; padding: 8px 12px; font-size: 9px; }
+          .sim-main { padding: 10px; gap: 10px; }
           .sim-featured { flex-direction: column; }
           .sim-featured-img { width: 100%; }
-          .sim-featured-info { padding: 14px; }
-          .sim-featured-name { font-size: 18px; }
-          .sim-price-value { font-size: 16px; }
+          .sim-featured-info { padding: 10px; }
+          .sim-featured-name { font-size: 16px; }
+          .sim-featured-dev { font-size: 11px; margin-bottom: 10px; }
+          .sim-price-value { font-size: 15px; }
           .sim-catalog-grid { grid-template-columns: repeat(4, 1fr); }
           .sim-cursor { display: none; }
-          .hero-btns { flex-direction: column; align-items: stretch; margin-top: 24px; }
-          .hero-btns .btn-xl { font-size: 15px; padding: 15px 20px; }
         }
       `}</style>
     </section>
