@@ -17,10 +17,8 @@ import feedbackWhatsapp3 from '@/assets/proofs/feedback-whatsapp-3.jpg';
 
 const testimonials = [
   { name: 'Jz', avatar: jzAvatar, text: 'Sinceramente achei que fosse mentira pelo preço baixo. Paguei para ver e me surpreendi. Em 10 minutos eu já estava baixando o jogo pela minha Steam com velocidade total. É surreal.' },
-  { name: 'Adrielly', avatar: adriellyAvatar, text: 'Eu não entendo nada de computador e tinha medo de ser difícil de instalar. Mas o sistema faz tudo sozinho. É só clicar em Ativar e o jogo aparece na biblioteca pronto para jogar.' },
   { name: 'Maicon', avatar: maiconAvatar, text: 'O melhor para mim é baixar na velocidade máxima. Nada daqueles sites lentos cheios de vírus. Aqui vem direto do servidor oficial e jogo online com meus amigos sem travar.' },
   { name: 'Wl', avatar: wlAvatar, text: 'Só neste mês eu economizei uns 500 reais. Eu ia comprar dois lançamentos caros mas peguei o plano vitalício aqui e já estou jogando os dois. Recomendo demais.' },
-  { name: 'Lynguinho', avatar: null, text: 'Simplesmente uma obra prima, comprei e deu tudo certinho, e o suporte atende muito rápido além de ser bom, super recomendo.' },
   { name: 'Cliente', avatar: null, text: 'Obrigado irmão slc. Tem tudo mesmo. Brabo demais!' },
 ];
 
