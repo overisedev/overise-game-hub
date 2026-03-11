@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const FEATURED_GAMES = [
   { name: 'Elden Ring', dev: 'Ação, RPG · FromSoftware', img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg' },
@@ -8,32 +8,69 @@ const FEATURED_GAMES = [
   { name: 'Baldur\'s Gate 3', dev: 'RPG · Larian Studios', img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg' },
 ];
 
+// Preload all images on mount
+FEATURED_GAMES.forEach(g => { new Image().src = g.img; });
+
 export function HeroSection() {
   const [gameIdx, setGameIdx] = useState(0);
   const [unlocked, setUnlocked] = useState(false);
+  // For crossfade: keep previous game visible while transitioning
+  const [displayIdx, setDisplayIdx] = useState(0);
+  const [prevIdx, setPrevIdx] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+  const timeoutRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
     let cancelled = false;
+
+    const clearAllTimeouts = () => {
+      timeoutRefs.current.forEach(clearTimeout);
+      timeoutRefs.current = [];
+    };
+
+    const wait = (ms: number) => new Promise<void>(resolve => {
+      const t = setTimeout(resolve, ms);
+      timeoutRefs.current.push(t);
+    });
+
     const run = async () => {
+      let idx = 0;
       while (!cancelled) {
+        // Locked phase
         setUnlocked(false);
-        await new Promise(r => setTimeout(r, 1800));
+        setTransitioning(false);
+        setDisplayIdx(idx);
+        await wait(1800);
         if (cancelled) break;
+
+        // Unlock
         setUnlocked(true);
-        await new Promise(r => setTimeout(r, 3000));
+        await wait(3000);
         if (cancelled) break;
-        // Preload next
-        const nextIdx = (gameIdx + 1) % FEATURED_GAMES.length;
-        new Image().src = FEATURED_GAMES[nextIdx].img;
-        setGameIdx(prev => (prev + 1) % FEATURED_GAMES.length);
-        await new Promise(r => setTimeout(r, 300));
+
+        // Transition to next game
+        const nextIdx = (idx + 1) % FEATURED_GAMES.length;
+        setPrevIdx(idx);
+        setDisplayIdx(nextIdx);
+        setTransitioning(true);
+        setUnlocked(false);
+        await wait(600);
+        if (cancelled) break;
+
+        setTransitioning(false);
+        idx = nextIdx;
       }
     };
-    run();
-    return () => { cancelled = true; };
-  }, []); // eslint-disable-line
 
-  const game = FEATURED_GAMES[gameIdx];
+    run();
+    return () => {
+      cancelled = true;
+      clearAllTimeouts();
+    };
+  }, []);
+
+  const game = FEATURED_GAMES[displayIdx];
+  const prevGame = FEATURED_GAMES[prevIdx];
 
   return (
     <section id="hero" className="hero-section">
@@ -65,7 +102,19 @@ export function HeroSection() {
             </div>
           </div>
           <div className="sim-card-body">
-            <img src={game.img} alt={game.name} className="sim-card-img" key={game.name} />
+            {/* Previous image (stays visible during transition) */}
+            <img
+              src={prevGame.img}
+              alt=""
+              className="sim-card-img sim-card-img-prev"
+              style={{ opacity: transitioning ? 1 : 0 }}
+            />
+            {/* Current image */}
+            <img
+              src={game.img}
+              alt={game.name}
+              className={`sim-card-img sim-card-img-current ${transitioning ? 'fading-in' : ''}`}
+            />
             <div className="sim-card-gradient" />
             <div className="sim-card-info">
               <div className="sim-card-name">{game.name}</div>
@@ -103,14 +152,18 @@ export function HeroSection() {
         .sim-card-status { font-family: var(--fb); font-size: 10px; font-weight: 700; letter-spacing: .06em; padding: 5px 12px; border-radius: 4px; background: rgba(255,68,68,.08); color: var(--red); transition: all .5s; text-transform: uppercase; }
         .sim-card-status.active { background: rgba(57,255,20,.1); color: var(--accent); box-shadow: 0 0 14px rgba(57,255,20,.15); }
 
-        .sim-card-body { position: relative; overflow: hidden; }
-        .sim-card-img { width: 100%; aspect-ratio: 460/215; object-fit: cover; display: block; transition: filter .7s ease, transform .7s ease; }
-        .sim-card-wrap:not(.unlocked) .sim-card-img { filter: grayscale(85%) brightness(.55); }
-        .sim-card-wrap.unlocked .sim-card-img { filter: grayscale(0%) brightness(1); transform: scale(1.03); }
+        .sim-card-body { position: relative; overflow: hidden; background: #0c0e12; }
 
-        .sim-card-gradient { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,14,17,.92) 0%, rgba(11,14,17,.4) 35%, transparent 65%); pointer-events: none; }
+        .sim-card-img { width: 100%; aspect-ratio: 460/215; object-fit: cover; display: block; }
+        .sim-card-img-prev { position: absolute; top: 0; left: 0; z-index: 1; transition: opacity .5s ease; pointer-events: none; filter: grayscale(85%) brightness(.55); }
+        .sim-card-img-current { position: relative; z-index: 2; transition: filter .7s ease, transform .7s ease, opacity .5s ease; }
+        .sim-card-img-current.fading-in { opacity: 0.01; }
+        .sim-card-wrap:not(.unlocked) .sim-card-img-current:not(.fading-in) { filter: grayscale(85%) brightness(.55); opacity: 1; }
+        .sim-card-wrap.unlocked .sim-card-img-current { filter: grayscale(0%) brightness(1); transform: scale(1.03); opacity: 1; }
 
-        .sim-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 20px; text-align: left; }
+        .sim-card-gradient { position: absolute; inset: 0; z-index: 3; background: linear-gradient(to top, rgba(11,14,17,.92) 0%, rgba(11,14,17,.4) 35%, transparent 65%); pointer-events: none; }
+
+        .sim-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 20px; text-align: left; z-index: 4; }
         .sim-card-name { font-family: var(--fh); font-size: 22px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.1; margin-bottom: 3px; }
         .sim-card-dev { font-family: var(--fb); font-size: 12px; color: rgba(255,255,255,.5); font-weight: 500; margin-bottom: 12px; }
         .sim-card-btn { display: inline-block; font-family: var(--fb); font-size: 12px; font-weight: 700; padding: 10px 20px; border-radius: 6px; transition: all .5s; background: rgba(255,255,255,.06); color: var(--dim); letter-spacing: .02em; }
