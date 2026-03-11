@@ -62,7 +62,8 @@ const Index = () => {
       <FinalCTASection />
       <Footer />
       <BuyNotification />
-      <FloatingCTA />
+      {/* Scroll distortion overlay */}
+      <ScrollDistortion />
       <ChatWidget />
     </div>
   );

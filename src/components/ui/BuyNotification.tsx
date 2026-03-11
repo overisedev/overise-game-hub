@@ -22,7 +22,7 @@ export function BuyNotification() {
   return (
     <>
       <div className={`buy-notif ${show ? 'show' : ''}`}>
-        <div className="bn-icon">🔓</div>
+        <div className="bn-icon">✔</div>
         <div className="bn-body">
           <div className="bn-header"><span className="bn-app">Overise</span><span className="bn-time">agora</span></div>
           <strong className="bn-name">{name}</strong>
