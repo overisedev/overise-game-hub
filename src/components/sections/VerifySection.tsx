@@ -91,7 +91,7 @@ export function VerifySection() {
         .verify-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 12px; }
         .v-card { background: #fff; border: 1px solid var(--light-border); border-radius: 8px; overflow: hidden; text-align: left; transition: all .25s; }
         .v-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-        .v-card img { width: 100%; aspect-ratio: 46/21; object-fit: cover; }
+        .v-card img { width: 100%; aspect-ratio: 460/215; object-fit: cover; }
         .v-card-body { padding: 10px 12px; }
         .v-card-name { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--on-light); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
         .v-card-row { display: flex; align-items: center; justify-content: space-between; }

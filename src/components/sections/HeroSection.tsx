@@ -264,7 +264,7 @@ export function HeroSection() {
         .sim-main { flex: 1; padding: 18px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; text-align: left; }
 
         .sim-featured { display: flex; background: rgba(255,255,255,.015); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,.04); }
-        .sim-featured-img { width: 55%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .sim-featured-img { width: 55%; aspect-ratio: 460/215; object-fit: cover; display: block; }
         .sim-featured-info { padding: 18px; display: flex; flex-direction: column; justify-content: center; flex: 1; }
         .sim-featured-name { font-family: var(--fh); font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -.01em; text-transform: uppercase; margin-bottom: 4px; line-height: 1.1; }
         .sim-featured-dev { font-family: var(--fb); font-size: 12px; color: var(--dim); margin-bottom: 16px; font-weight: 500; }
