@@ -1,6 +1,15 @@
 import { useState } from 'react';
 
+import feedbackInstagram from '@/assets/proofs/feedback-instagram.jpg';
+import feedbackWhatsapp1 from '@/assets/proofs/feedback-whatsapp-1.jpg';
+import feedbackWhatsapp2 from '@/assets/proofs/feedback-whatsapp-2.jpg';
+import feedbackYoutube from '@/assets/proofs/feedback-youtube.jpg';
+import feedbackDm1 from '@/assets/proofs/feedback-dm-1.jpg';
+import feedbackDm2 from '@/assets/proofs/feedback-dm-2.jpg';
+import feedbackWhatsapp3 from '@/assets/proofs/feedback-whatsapp-3.jpg';
+
 const PROOF_IMAGES = [
+  // External hosted
   'https://i.ibb.co/zhHvmK4h/print1.png',
   'https://i.ibb.co/k2mqbhTJ/print2.png',
   'https://i.ibb.co/YTdCRQzH/print3.png',
@@ -17,6 +26,14 @@ const PROOF_IMAGES = [
   'https://i.ibb.co/VWxPxRfs/print14.png',
   'https://i.ibb.co/MkNsGg5Z/print15.png',
   'https://i.ibb.co/WvFqnq8H/print16.png',
+  // Uploaded real feedback images
+  feedbackInstagram,
+  feedbackWhatsapp1,
+  feedbackWhatsapp2,
+  feedbackYoutube,
+  feedbackDm1,
+  feedbackDm2,
+  feedbackWhatsapp3,
 ];
 
 export function ProofSection() {
