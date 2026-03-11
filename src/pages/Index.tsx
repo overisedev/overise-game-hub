@@ -10,6 +10,7 @@ import { EmotionalBenefitsSection } from '@/components/sections/EmotionalBenefit
 import { VerifySection } from '@/components/sections/VerifySection';
 import { PiracySection } from '@/components/sections/PiracySection';
 import { ProofSection } from '@/components/sections/ProofSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { PricingSection } from '@/components/sections/PricingSection';
 import { BenefitsResumeSection } from '@/components/sections/BenefitsResumeSection';
 import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
