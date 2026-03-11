@@ -286,33 +286,37 @@ export function HeroSection() {
         .sim-game-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 4px 6px; font-size: 8px; font-weight: 600; color: #fff; background: linear-gradient(to top, rgba(0,0,0,.8), transparent); font-family: var(--fb); opacity: 0; transition: opacity .4s; }
         .sim-game-card.unlocked .sim-game-name { opacity: 1; }
 
-        .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 32px; margin-bottom: 24px; }
-        .hero-trust { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
+        .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 20px; margin-bottom: 16px; }
+        .hero-trust { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 8px; }
         .trust-pill { display: flex; align-items: center; gap: 6px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--dim); transition: all .2s ease; }
         .trust-pill:hover { color: var(--accent); transform: scale(1.05); }
         .trust-pill .chk { color: var(--accent); font-weight: 900; }
 
         @media (max-width: 768px) {
-          .hero-section { padding: 48px 0; }
-          .hero-h1 { font-size: clamp(28px,8.5vw,48px); }
-          .hero-sub { font-size: 15px; }
-          .sim-wrap { margin: 24px 0 0; border-radius: 10px; }
+          .hero-section { padding: 24px 0 32px; }
+          .hero-badge { font-size: 10px; padding: 4px 10px; margin-bottom: 12px; }
+          .hero-h1 { font-size: clamp(26px,8vw,42px); margin-bottom: 10px; line-height: .88; }
+          .hero-sub { font-size: 13px; line-height: 1.55; margin-bottom: 0; }
+          .hero-btns { margin-top: 16px; margin-bottom: 10px; flex-direction: column; align-items: stretch; gap: 8px; }
+          .hero-btns .btn-xl { font-size: 14px; padding: 14px 20px; }
+          .hero-trust { gap: 12px; margin-bottom: 0; }
+          .trust-pill { font-size: 10px; }
+          .sim-wrap { margin: 20px 0 0; border-radius: 10px; }
           .sim-body { flex-direction: column; min-height: auto; }
-          .sim-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 12px; gap: 8px; align-items: center; }
-          .sim-logo-text { font-size: 11px; }
+          .sim-sidebar { width: 100%; flex-direction: row; flex-wrap: wrap; padding: 10px; gap: 6px; align-items: center; }
+          .sim-logo-text { font-size: 10px; }
           .sim-nav { flex-direction: row; gap: 4px; }
-          .sim-nav-item { padding: 8px 10px; font-size: 11px; gap: 6px; }
-          .sim-activate-btn { margin-top: 0; margin-left: auto; padding: 10px 14px; font-size: 10px; }
-          .sim-main { padding: 12px; gap: 12px; }
+          .sim-nav-item { padding: 6px 8px; font-size: 10px; gap: 5px; }
+          .sim-activate-btn { margin-top: 0; margin-left: auto; padding: 8px 12px; font-size: 9px; }
+          .sim-main { padding: 10px; gap: 10px; }
           .sim-featured { flex-direction: column; }
           .sim-featured-img { width: 100%; }
-          .sim-featured-info { padding: 14px; }
-          .sim-featured-name { font-size: 18px; }
-          .sim-price-value { font-size: 16px; }
+          .sim-featured-info { padding: 10px; }
+          .sim-featured-name { font-size: 16px; }
+          .sim-featured-dev { font-size: 11px; margin-bottom: 10px; }
+          .sim-price-value { font-size: 15px; }
           .sim-catalog-grid { grid-template-columns: repeat(4, 1fr); }
           .sim-cursor { display: none; }
-          .hero-btns { flex-direction: column; align-items: stretch; margin-top: 24px; }
-          .hero-btns .btn-xl { font-size: 15px; padding: 15px 20px; }
         }
       `}</style>
     </section>
