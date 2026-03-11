@@ -30,9 +30,9 @@ export function HeroSection() {
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
   const loopRef = useRef(0);
 
-  // Mobile simple toggle state
+  // Mobile: separate index so desktop loop doesn't conflict
+  const [mobileIdx, setMobileIdx] = useState(0);
   const [mobileUnlocked, setMobileUnlocked] = useState(false);
-  const [mobileFading, setMobileFading] = useState(false);
 
   const featured = FEATURED_GAMES[featuredIdx];
   const unlocked = phase === 'unlocked';
