@@ -218,13 +218,13 @@ export function HeroSection() {
       </div>
 
       <style>{`
-        .hero-section { background: var(--bg); padding: 72px 0 64px; position: relative; overflow: hidden; text-align: center; }
+        .hero-section { background: var(--bg); padding: 48px 0 64px; position: relative; overflow: hidden; text-align: center; }
         .hero-section::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(ellipse,rgba(57,255,20,.035) 0%,transparent 65%); pointer-events: none; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid rgba(57,255,20,.15); border-radius: 4px; padding: 6px 14px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; animation: floatY 3s ease-in-out infinite, borderGlow 3s ease-in-out infinite; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-dim); border: 1px solid rgba(57,255,20,.15); border-radius: 4px; padding: 5px 12px; font-family: var(--fh); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; animation: floatY 3s ease-in-out infinite, borderGlow 3s ease-in-out infinite; }
         .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); animation: livep 1.3s ease-in-out infinite; }
-        .hero-h1 { font-family: var(--fh); font-size: clamp(36px,7vw,88px); font-weight: 900; line-height: .9; text-transform: uppercase; color: #fff; margin-bottom: 20px; }
+        .hero-h1 { font-family: var(--fh); font-size: clamp(36px,7vw,88px); font-weight: 900; line-height: .9; text-transform: uppercase; color: #fff; margin-bottom: 16px; }
         .hero-h1 em { color: var(--accent); font-style: normal; }
-        .hero-sub { font-size: 17px; font-weight: 400; color: var(--muted); max-width: 560px; line-height: 1.75; margin: 0 auto; font-family: var(--fb); }
+        .hero-sub { font-size: 16px; font-weight: 400; color: var(--muted); max-width: 560px; line-height: 1.65; margin: 0 auto; font-family: var(--fb); }
         .hero-sub strong { color: var(--white); font-weight: 600; }
 
         .sim-wrap { max-width: 960px; width: 100%; margin: 40px auto 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,.08); box-shadow: 0 0 60px rgba(57,255,20,.03), 0 32px 64px rgba(0,0,0,.5); background: #0c0e12; }
