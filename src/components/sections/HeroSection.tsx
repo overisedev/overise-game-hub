@@ -8,7 +8,6 @@ const FEATURED_GAMES = [
   { name: "Baldur's Gate 3", dev: 'RPG · Larian Studios', img: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1086940/header.jpg' },
 ];
 
-// Preload
 FEATURED_GAMES.forEach(g => { const i = new Image(); i.src = g.img; });
 
 type Phase = 'locked' | 'cursor-moving' | 'cursor-clicking' | 'unlocking' | 'unlocked';
@@ -17,8 +16,6 @@ export function HeroSection() {
   const [gameIdx, setGameIdx] = useState(0);
   const [phase, setPhase] = useState<Phase>('locked');
   const alive = useRef(true);
-  const btnRef = useRef<HTMLDivElement>(null);
-  const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     alive.current = true;
@@ -26,40 +23,31 @@ export function HeroSection() {
 
     const wait = (ms: number) =>
       new Promise<void>((res, rej) => {
-        const t = setTimeout(() => (alive.current ? res() : rej()), ms);
+        setTimeout(() => (alive.current ? res() : rej()), ms);
       });
 
     (async () => {
       try {
         while (alive.current) {
-          // 1. Show game in LOCKED state
           setGameIdx(idx);
           setPhase('locked');
           await wait(2500);
 
-          // 2. Cursor appears and moves toward button
-          updateCursorPositions();
           setPhase('cursor-moving');
           await wait(1500);
 
-          // 3. Cursor clicks button
           setPhase('cursor-clicking');
           await wait(500);
 
-          // 4. Progress bar
           setPhase('unlocking');
           await wait(2200);
 
-          // 5. UNLOCKED — colors, green glow
           setPhase('unlocked');
           await wait(4000);
 
-          // 6. Move to next game (will appear locked at top of loop)
           idx = (idx + 1) % FEATURED_GAMES.length;
         }
-      } catch {
-        /* unmounted */
-      }
+      } catch { /* unmounted */ }
     })();
 
     return () => { alive.current = false; };
@@ -67,38 +55,11 @@ export function HeroSection() {
 
   const game = FEATURED_GAMES[gameIdx];
   const isUnlocked = phase === 'unlocked';
-  const showCursor = phase === 'cursor-moving' || phase === 'cursor-clicking';
-  const isClicking = phase === 'cursor-clicking';
   const isUnlocking = phase === 'unlocking';
-
-  // Cursor style: animate from start to target
-  const cursorStyle: React.CSSProperties = showCursor
-    ? {
-        position: 'absolute',
-        left: isClicking ? cursorTarget.x : undefined,
-        top: isClicking ? cursorTarget.y : undefined,
-        zIndex: 20,
-        pointerEvents: 'none',
-        filter: 'drop-shadow(0 2px 6px rgba(0,0,0,.7))',
-        transition: 'none',
-        // For moving phase, we use CSS animation
-        ...(phase === 'cursor-moving'
-          ? {
-              left: cursorPos.x,
-              top: cursorPos.y,
-              animation: `cursorToBtn 1.5s ease-in-out forwards`,
-            }
-          : {
-              transform: isClicking ? 'scale(0.75)' : 'scale(1)',
-              transition: 'transform 0.15s ease',
-            }),
-      }
-    : {};
 
   return (
     <section id="hero" className="hero-section">
       <div className="container hero-layout">
-        {/* Left: Text */}
         <div className="hero-left">
           <div className="hero-badge reveal">Taxa única R$9,97 · licença vitalícia</div>
           <h1 className="hero-h1 reveal rd1">
@@ -120,46 +81,35 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Right: Simulator */}
         <div className="hero-right">
           <div className={`sim-wrap ${isUnlocked ? 'sim-unlocked' : ''}`}>
-            {/* Header */}
             <div className="sim-header">
               <div className="sim-logo">OVERISE</div>
               <div className={`sim-status ${isUnlocked ? 'on' : ''}`}>
                 {isUnlocked ? '● DESBLOQUEADO' : '○ BLOQUEADO'}
               </div>
             </div>
-
-            {/* Body */}
-            <div className="sim-body" ref={bodyRef}>
-              <div
-                className="sim-img"
-                style={{ backgroundImage: `url(${game.img})` }}
-              />
+            <div className="sim-body">
+              <div className="sim-img" style={{ backgroundImage: `url(${game.img})` }} />
               <div className="sim-overlay" />
               <div className="sim-info">
                 <div className="sim-name">{game.name}</div>
                 <div className="sim-dev">{game.dev}</div>
-
                 {isUnlocking ? (
                   <div className="sim-progress">
                     <div className="sim-progress-fill" />
                     <span className="sim-progress-text">Desbloqueando...</span>
                   </div>
                 ) : (
-                  <div
-                    ref={btnRef}
-                    className={`sim-btn ${isUnlocked ? 'sim-btn-go' : ''} ${isClicking ? 'sim-btn-pressed' : ''}`}
-                  >
+                  <div className={`sim-btn ${isUnlocked ? 'sim-btn-go' : ''} ${phase === 'cursor-clicking' ? 'sim-btn-pressed' : ''}`}>
                     {isUnlocked ? '▶ Instalar Agora' : '🔓 Desbloquear Jogo'}
                   </div>
                 )}
               </div>
 
-              {/* Cursor */}
-              {showCursor && (
-                <div style={cursorStyle}>
+              {/* Cursor: pure CSS animation, starts top-right, ends on button (bottom-left) */}
+              {(phase === 'cursor-moving' || phase === 'cursor-clicking') && (
+                <div className={`sim-cursor ${phase === 'cursor-clicking' ? 'sim-cursor-click' : 'sim-cursor-move'}`}>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                     <path d="M5 3l14 8-6 2-4 6-4-16z" fill="#fff" stroke="#111" strokeWidth="1.2" />
                   </svg>
@@ -171,7 +121,7 @@ export function HeroSection() {
       </div>
 
       <style>{`
-        .hero-section { background: var(--bg); padding: 48px 0 64px; position: relative; overflow: hidden; }
+        .hero-section { background:var(--bg); padding:48px 0 64px; position:relative; overflow:hidden; }
         .hero-section::before { content:''; position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:900px; height:500px; background:radial-gradient(ellipse,rgba(57,255,20,.035) 0%,transparent 65%); pointer-events:none; }
 
         .hero-layout { display:flex; align-items:center; gap:48px; }
@@ -190,7 +140,6 @@ export function HeroSection() {
         .trust-pill:hover { color:var(--accent); transform:scale(1.05); }
         .trust-pill .chk { color:var(--accent); font-weight:900; }
 
-        /* ---- Simulator ---- */
         .sim-wrap { max-width:520px; width:100%; border-radius:12px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#0c0e12; box-shadow:0 0 60px rgba(57,255,20,.03),0 24px 56px rgba(0,0,0,.5); transition:border-color .6s, box-shadow .6s; }
         .sim-wrap.sim-unlocked { border-color:rgba(57,255,20,.22); box-shadow:0 0 80px rgba(57,255,20,.12),0 24px 56px rgba(0,0,0,.5); }
 
@@ -214,18 +163,33 @@ export function HeroSection() {
         .sim-btn-go { background:var(--accent); color:#0b0e11; box-shadow:0 0 20px rgba(57,255,20,.25); }
         .sim-btn-pressed { transform:scale(0.9); background:rgba(57,255,20,.15); color:var(--accent); box-shadow:0 0 12px rgba(57,255,20,.2); }
 
-        /* Progress bar */
         .sim-progress { position:relative; height:36px; background:rgba(255,255,255,.06); border-radius:6px; overflow:hidden; }
         .sim-progress-fill { position:absolute; top:0; left:0; height:100%; width:0; background:linear-gradient(90deg, var(--accent), #2dd40e); border-radius:6px; animation:progressFill 2.2s ease-in-out forwards; }
         .sim-progress-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--fb); font-size:11px; font-weight:700; color:#fff; letter-spacing:.04em; z-index:1; }
-
         @keyframes progressFill { 0%{width:0%} 100%{width:100%} }
 
-        /* Cursor animation - moves from start pos to button */
-        @keyframes cursorToBtn {
-          0% { transform:translate(0,0); opacity:0; }
-          15% { opacity:1; }
-          100% { transform:translate(var(--dx), var(--dy)); opacity:1; }
+        /* Cursor: positioned absolute inside .sim-body */
+        .sim-cursor { position:absolute; z-index:20; pointer-events:none; filter:drop-shadow(0 2px 6px rgba(0,0,0,.7)); }
+
+        /* Move: starts at top-right (70%, 15%), ends near button (18%, 85%) */
+        .sim-cursor-move {
+          animation: cursorSlide 1.5s ease-in-out forwards;
+        }
+        @keyframes cursorSlide {
+          0%   { top:15%; left:70%; opacity:0; }
+          20%  { opacity:1; }
+          100% { top:82%; left:38%; opacity:1; }
+        }
+
+        /* Click: stays at button position, does a press effect */
+        .sim-cursor-click {
+          top:82%; left:38%;
+          animation: cursorPress .5s ease forwards;
+        }
+        @keyframes cursorPress {
+          0%   { transform:scale(1); }
+          40%  { transform:scale(0.7) translateY(3px); }
+          100% { transform:scale(1); opacity:0; }
         }
 
         @media (max-width:900px) {
