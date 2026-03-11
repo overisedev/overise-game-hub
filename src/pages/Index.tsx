@@ -58,8 +58,8 @@ const Index = () => {
       <VerifySection />
       <PiracySection />
       <TestimonialsSection />
-      <PricingSection />
       <BenefitsResumeSection />
+      <PricingSection />
       <GuaranteeSection />
       <FAQSection />
       <FinalCTASection />
