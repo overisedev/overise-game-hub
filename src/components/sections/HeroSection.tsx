@@ -19,25 +19,6 @@ export function HeroSection() {
   const alive = useRef(true);
   const btnRef = useRef<HTMLDivElement>(null);
   const bodyRef = useRef<HTMLDivElement>(null);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [cursorTarget, setCursorTarget] = useState({ x: 0, y: 0 });
-
-  // Calculate cursor positions relative to the card body
-  const updateCursorPositions = () => {
-    if (!btnRef.current || !bodyRef.current) return;
-    const body = bodyRef.current.getBoundingClientRect();
-    const btn = btnRef.current.getBoundingClientRect();
-    // Start position: top-right area of the card
-    setCursorPos({
-      x: body.width - 30,
-      y: 20,
-    });
-    // Target: center of the button
-    setCursorTarget({
-      x: btn.left - body.left + btn.width / 2,
-      y: btn.top - body.top + btn.height / 2,
-    });
-  };
 
   useEffect(() => {
     alive.current = true;
