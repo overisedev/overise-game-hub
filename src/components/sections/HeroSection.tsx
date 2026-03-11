@@ -150,7 +150,7 @@ export function HeroSection() {
         </div>
 
         {/* Mobile mini simulator */}
-        <div className={`sim-mobile reveal rd2 ${mobileUnlocked ? 'unlocked' : ''} ${mobileFading ? 'fading' : ''}`}>
+        <div className={`sim-mobile reveal rd2 ${mobileUnlocked ? 'unlocked' : ''}`}>
           <div className="sim-m-header">
             <div className="sim-m-logo">OVERISE</div>
             <div className={`sim-m-status ${mobileUnlocked ? 'active' : ''}`}>
