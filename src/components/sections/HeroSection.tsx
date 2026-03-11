@@ -108,22 +108,21 @@ export function HeroSection() {
 
   // Mobile animation loop: simple unlock toggle with game rotation
   useEffect(() => {
-    const loop = () => {
-      // Unlock
-      setMobileUnlocked(true);
-      return setTimeout(() => {
-        // Fade out, switch game, lock
-        setMobileFading(true);
-        setTimeout(() => {
-          setMobileUnlocked(false);
-          setFeaturedIdx(prev => (prev + 1) % FEATURED_GAMES.length);
-          setMobileFading(false);
-        }, 400);
-        return setTimeout(loop, 3200);
-      }, 2800);
+    let cancelled = false;
+    const run = async () => {
+      while (!cancelled) {
+        await new Promise(r => setTimeout(r, 1500));
+        if (cancelled) break;
+        setMobileUnlocked(true);
+        await new Promise(r => setTimeout(r, 2800));
+        if (cancelled) break;
+        setMobileUnlocked(false);
+        setMobileIdx(prev => (prev + 1) % FEATURED_GAMES.length);
+        await new Promise(r => setTimeout(r, 800));
+      }
     };
-    const initial = setTimeout(loop, 1500);
-    return () => clearTimeout(initial);
+    run();
+    return () => { cancelled = true; };
   }, []);
 
   const mobileGame = FEATURED_GAMES[featuredIdx];
