@@ -58,7 +58,6 @@ const Index = () => {
       <VerifySection />
       <PiracySection />
       <TestimonialsSection />
-      <ProofSection />
       <PricingSection />
       <BenefitsResumeSection />
       <GuaranteeSection />
