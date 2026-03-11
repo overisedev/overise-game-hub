@@ -198,7 +198,7 @@ export function HeroSection() {
         @media (max-width:900px) {
           .hero-layout { flex-direction:column; gap:24px; }
           .hero-left { text-align:center; }
-          .hero-right { justify-content:center; }
+          .hero-right { justify-content:center; width:100%; }
           .hero-sub { margin:0 auto; }
           .hero-btns { justify-content:center; flex-direction:column; align-items:stretch; }
           .hero-trust { justify-content:center; }
@@ -209,10 +209,11 @@ export function HeroSection() {
           .hero-btns .btn-xl { font-size:14px; padding:14px 20px; }
           .hero-trust { gap:12px; }
           .trust-pill { font-size:10px; }
-          .sim-wrap { max-width:100%; }
-          .sim-name { font-size:16px; }
+          .sim-wrap { max-width:100%; width:100%; }
+          .sim-img { padding-bottom:50%; }
+          .sim-name { font-size:18px; }
           .sim-dev { font-size:11px; margin-bottom:10px; }
-          .sim-btn { font-size:11px; padding:8px 16px; }
+          .sim-btn { font-size:12px; padding:10px 18px; }
           .sim-header { padding:10px 14px; }
           .sim-logo { font-size:11px; }
           .sim-status { font-size:9px; padding:4px 10px; }
