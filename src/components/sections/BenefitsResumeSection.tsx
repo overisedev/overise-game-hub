@@ -117,8 +117,8 @@ export function BenefitsResumeSection() {
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background: var(--accent2);
-          border: 3px solid #fff;
+          background: var(--accent);
+          border: 3px solid #000;
           transform: translate(-50%, -50%);
           box-shadow: 0 0 12px rgba(45,212,14,.3);
           z-index: 2;
