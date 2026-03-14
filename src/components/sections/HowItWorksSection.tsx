@@ -38,11 +38,11 @@ export function HowItWorksSection() {
       </div>
       <style>{`
         .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto; }
-        .step { background: var(--light); border: 1px solid var(--light-border); border-radius: 10px; padding: 32px 22px; text-align: center; position: relative; transition: border-color .3s, transform .3s; }
-        .step:hover { border-color: rgba(45,212,14,.2); transform: translateY(-4px); }
-        .step-num { font-family: var(--fh); font-size: 48px; font-weight: 900; color: var(--accent2); opacity: .12; position: absolute; top: 12px; right: 16px; line-height: 1; }
-        .step-title { font-family: var(--fh); font-size: 20px; font-weight: 800; color: var(--on-light); text-transform: uppercase; margin-bottom: 8px; letter-spacing: .02em; }
-        .step-desc { font-size: 14px; color: var(--on-light-muted); line-height: 1.7; }
+        .step { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 32px 22px; text-align: center; position: relative; transition: border-color .3s, transform .3s; }
+        .step:hover { border-color: rgba(57,255,20,.2); transform: translateY(-4px); }
+        .step-num { font-family: var(--fh); font-size: 48px; font-weight: 900; color: var(--accent); opacity: .12; position: absolute; top: 12px; right: 16px; line-height: 1; }
+        .step-title { font-family: var(--fh); font-size: 20px; font-weight: 800; color: var(--white); text-transform: uppercase; margin-bottom: 8px; letter-spacing: .02em; }
+        .step-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
         .step-result { background: var(--accent2); border-radius: 10px; padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 900px; margin: 24px auto 0; }
         .step-result-left { display: flex; align-items: center; gap: 14px; }
         .step-result-ico { width: 40px; height: 40px; background: rgba(0,0,0,.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
