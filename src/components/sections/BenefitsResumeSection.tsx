@@ -120,7 +120,7 @@ export function BenefitsResumeSection() {
           background: var(--accent);
           border: 3px solid #000;
           transform: translate(-50%, -50%);
-          box-shadow: 0 0 12px rgba(45,212,14,.3);
+          box-shadow: 0 0 12px rgba(57,255,20,.3);
           z-index: 2;
         }
 
