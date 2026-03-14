@@ -40,12 +40,12 @@ export function VerifySection() {
   };
 
   return (
-    <section id="verify" className="sec-white">
+    <section id="verify" className="sec-dark">
       <div className="container text-center">
         <div className="reveal">
-          <div className="tag dark">Verificar disponibilidade</div>
-          <h2 className="h2 on-light">O jogo que você quer<br /><em>tá aqui?</em></h2>
-          <p className="sub on-light center">Pesquisa pelo nome. Se tiver no catálogo, você joga hoje mesmo.</p>
+          <div className="tag g">Verificar disponibilidade</div>
+          <h2 className="h2 on-dark">O jogo que você quer<br /><em>tá aqui?</em></h2>
+          <p className="sub on-dark center">Pesquisa pelo nome. Se tiver no catálogo, você joga hoje mesmo.</p>
         </div>
         <div className="verify-box reveal rd1">
           <div className="verify-row">
@@ -80,25 +80,25 @@ export function VerifySection() {
         </div>
       </div>
       <style>{`
-        .verify-box { background: var(--light); border: 1px solid var(--light-border); border-radius: 10px; padding: 28px; margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .verify-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 28px; margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
         .verify-row { display: flex; gap: 8px; margin-bottom: 12px; }
-        .verify-input { flex: 1; background: #fff; border: 2px solid rgba(0,0,0,.08); border-radius: 6px; padding: 13px 16px; font-size: 15px; font-weight: 500; color: var(--on-light); font-family: var(--fb); transition: border-color .2s; }
-        .verify-input::placeholder { color: rgba(0,0,0,.3); }
-        .verify-input:focus { outline: none; border-color: var(--accent2); }
-        .verify-btn { background: var(--accent2); color: #fff; font-family: var(--fh); font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 13px 24px; border-radius: 6px; border: none; cursor: pointer; transition: all .2s; }
-        .verify-btn:hover { background: var(--accent); color: #0b0e11; }
+        .verify-input { flex: 1; background: rgba(255,255,255,.06); border: 2px solid var(--border); border-radius: 6px; padding: 13px 16px; font-size: 15px; font-weight: 500; color: var(--white); font-family: var(--fb); transition: border-color .2s; }
+        .verify-input::placeholder { color: var(--dim); }
+        .verify-input:focus { outline: none; border-color: var(--accent); }
+        .verify-btn { background: var(--accent); color: #0b0e11; font-family: var(--fh); font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 13px 24px; border-radius: 6px; border: none; cursor: pointer; transition: all .2s; }
+        .verify-btn:hover { background: #4dff33; }
         .verify-status { font-family: var(--fh); font-size: 13px; font-weight: 700; margin-bottom: 12px; }
         .verify-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 12px; }
-        .v-card { background: #fff; border: 1px solid var(--light-border); border-radius: 8px; overflow: hidden; text-align: left; transition: all .25s; }
-        .v-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+        .v-card { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; text-align: left; transition: all .25s; }
+        .v-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.3); border-color: rgba(57,255,20,.15); }
         .v-card img { width: 100%; aspect-ratio: 460/215; object-fit: cover; }
         .v-card-body { padding: 10px 12px; }
-        .v-card-name { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--on-light); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
+        .v-card-name { font-family: var(--fh); font-size: 13px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: .02em; margin-bottom: 6px; }
         .v-card-row { display: flex; align-items: center; justify-content: space-between; }
-        .v-card-old { font-size: 11px; color: var(--on-light-muted); text-decoration: line-through; opacity: .6; }
-        .v-card-tag { font-family: var(--fh); font-size: 10px; font-weight: 700; background: rgba(45,212,14,.1); color: var(--accent2); padding: 2px 8px; border-radius: 3px; letter-spacing: .06em; }
+        .v-card-old { font-size: 11px; color: var(--dim); text-decoration: line-through; opacity: .6; }
+        .v-card-tag { font-family: var(--fh); font-size: 10px; font-weight: 700; background: rgba(57,255,20,.1); color: var(--accent); padding: 2px 8px; border-radius: 3px; letter-spacing: .06em; }
         .verify-cta-row { margin-top: 16px; text-align: center; }
-        .verify-cta-sub { font-size: 13px; color: var(--on-light-muted); margin-top: 8px; }
+        .verify-cta-sub { font-size: 13px; color: var(--dim); margin-top: 8px; }
         @media (max-width: 768px) {
           .verify-row { flex-direction: column; }
           .verify-grid { grid-template-columns: 1fr 1fr; }

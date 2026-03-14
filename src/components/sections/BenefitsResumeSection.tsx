@@ -41,12 +41,12 @@ const steps = [
 
 export function BenefitsResumeSection() {
   return (
-    <section className="sec-white" style={{ padding: '80px 0', overflow: 'hidden' }}>
+    <section className="sec-dark" style={{ padding: '80px 0', overflow: 'hidden' }}>
       <div className="container">
         <motion.div className="text-center reveal" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className="tag dark">Tudo isso por R$9,97 · paga uma vez</div>
-          <h2 className="h2 on-light" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>O que você<br /><em>desbloqueia</em></h2>
-          <p className="sub on-light center">Do pagamento ao jogo em menos de 5 minutos.</p>
+          <div className="tag g">Tudo isso por R$9,97 · paga uma vez</div>
+          <h2 className="h2 on-dark" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>O que você<br /><em>desbloqueia</em></h2>
+          <p className="sub on-dark center">Do pagamento ao jogo em menos de 5 minutos.</p>
         </motion.div>
 
         {/* Zigzag Timeline */}
@@ -80,7 +80,7 @@ export function BenefitsResumeSection() {
         </div>
 
         <div className="text-center" style={{ marginTop: 8 }}>
-          <a href="#pricing" className="btn btn-accent-dark btn-lg">Garantir Meu Acesso →</a>
+          <a href="#pricing" className="btn btn-accent btn-lg">Garantir Meu Acesso →</a>
         </div>
       </div>
 
@@ -96,7 +96,7 @@ export function BenefitsResumeSection() {
           top: 0;
           bottom: 0;
           width: 2px;
-          background: linear-gradient(180deg, rgba(45,212,14,.5), rgba(45,212,14,.08));
+          background: linear-gradient(180deg, rgba(57,255,20,.5), rgba(57,255,20,.08));
           transform: translateX(-50%);
         }
         .tl-row {
@@ -117,26 +117,26 @@ export function BenefitsResumeSection() {
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background: var(--accent2);
-          border: 3px solid #fff;
+          background: var(--accent);
+          border: 3px solid #000;
           transform: translate(-50%, -50%);
-          box-shadow: 0 0 12px rgba(45,212,14,.3);
+          box-shadow: 0 0 12px rgba(57,255,20,.3);
           z-index: 2;
         }
 
         .tl-card {
-          background: #fff;
-          border: 1px solid var(--light-border);
+          background: var(--card);
+          border: 1px solid var(--border);
           border-radius: 12px;
           overflow: hidden;
           transition: all .3s;
           width: 100%;
-          box-shadow: 0 2px 12px rgba(0,0,0,.06);
+          box-shadow: 0 2px 12px rgba(0,0,0,.3);
         }
         .tl-card:hover {
-          border-color: rgba(45,212,14,.25);
+          border-color: rgba(57,255,20,.25);
           transform: translateY(-3px);
-          box-shadow: 0 12px 32px rgba(0,0,0,.1);
+          box-shadow: 0 12px 32px rgba(0,0,0,.4);
         }
 
         .tl-card-img-wrap {
@@ -169,14 +169,14 @@ export function BenefitsResumeSection() {
           font-family: var(--fh);
           font-size: 14px;
           font-weight: 800;
-          color: var(--on-light);
+          color: var(--white);
           text-transform: uppercase;
           letter-spacing: .02em;
           margin: 0 0 4px;
         }
         .tl-card-desc {
           font-size: 13px;
-          color: var(--on-light-muted);
+          color: var(--muted);
           line-height: 1.6;
           margin: 0;
         }
