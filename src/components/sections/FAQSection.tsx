@@ -15,11 +15,11 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="sec-white">
+    <section id="faq" className="sec-dark">
       <div className="container">
         <div className="reveal text-center">
-          <div className="tag dark">Dúvidas frequentes</div>
-          <h2 className="h2 on-light">FAQ</h2>
+          <div className="tag g">Dúvidas frequentes</div>
+          <h2 className="h2 on-dark">FAQ</h2>
         </div>
         <div className="faq-list">
           {FAQS.map((f, i) => (
