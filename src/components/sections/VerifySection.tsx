@@ -40,12 +40,12 @@ export function VerifySection() {
   };
 
   return (
-    <section id="verify" className="sec-white">
+    <section id="verify" className="sec-dark">
       <div className="container text-center">
         <div className="reveal">
-          <div className="tag dark">Verificar disponibilidade</div>
-          <h2 className="h2 on-light">O jogo que você quer<br /><em>tá aqui?</em></h2>
-          <p className="sub on-light center">Pesquisa pelo nome. Se tiver no catálogo, você joga hoje mesmo.</p>
+          <div className="tag g">Verificar disponibilidade</div>
+          <h2 className="h2 on-dark">O jogo que você quer<br /><em>tá aqui?</em></h2>
+          <p className="sub on-dark center">Pesquisa pelo nome. Se tiver no catálogo, você joga hoje mesmo.</p>
         </div>
         <div className="verify-box reveal rd1">
           <div className="verify-row">
