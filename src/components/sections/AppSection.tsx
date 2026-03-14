@@ -66,7 +66,7 @@ export function AppSection() {
   }, [started]);
 
   return (
-    <section className="sec-white">
+    <section className="sec-dark">
       <div className="container">
         <div className="app-layout reveal">
           <div>
