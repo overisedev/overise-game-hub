@@ -96,7 +96,7 @@ export function BenefitsResumeSection() {
           top: 0;
           bottom: 0;
           width: 2px;
-          background: linear-gradient(180deg, rgba(45,212,14,.5), rgba(45,212,14,.08));
+          background: linear-gradient(180deg, rgba(57,255,20,.5), rgba(57,255,20,.08));
           transform: translateX(-50%);
         }
         .tl-row {
