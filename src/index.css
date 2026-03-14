@@ -99,14 +99,14 @@
 .h2 { font-family: var(--fh); font-size: clamp(34px,5vw,62px); font-weight: 900; line-height: .94; text-transform: uppercase; letter-spacing: -.01em; }
 .h2.on-dark { color: var(--white); }
 .h2.on-dark em { font-style: normal; color: var(--accent); }
-.h2.on-light { color: var(--on-light); }
-.h2.on-light em { font-style: normal; color: var(--accent2); }
+.h2.on-light { color: var(--white); }
+.h2.on-light em { font-style: normal; color: var(--accent); }
 .sub { font-size: 16px; font-weight: 400; line-height: 1.75; margin-top: 14px; max-width: 530px; }
 .sub.on-dark { color: var(--muted); }
-.sub.on-light { color: var(--on-light-muted); }
+.sub.on-light { color: var(--muted); }
 .sub strong { font-weight: 600; }
 .sub.on-dark strong { color: var(--white); }
-.sub.on-light strong { color: var(--on-light); }
+.sub.on-light strong { color: var(--white); }
 .sub.center { margin-left: auto; margin-right: auto; }
 .text-center { text-align: center; }
 
