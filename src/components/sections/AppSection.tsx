@@ -66,7 +66,7 @@ export function AppSection() {
   }, [started]);
 
   return (
-    <section className="sec-dark">
+    <section className="sec-dark section-grid">
       <div className="container">
         <div className="app-layout reveal">
           <div>
