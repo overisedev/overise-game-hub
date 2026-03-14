@@ -52,7 +52,7 @@ const PLANS = [
       { text: 'Suporte por email', yes: true },
       { text: 'Garantia de 7 dias', yes: true },
       { text: 'Online desbloqueado', yes: false },
-      { text: 'Jogos Rockstar / Ubisoft', yes: false },
+      { text: 'Jogos Rockstar / Ubisoft', yes: true },
     ],
     btnText: 'Assinar Básico',
     btnClass: '',
