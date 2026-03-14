@@ -129,6 +129,15 @@
 .sec-light { background: #000; padding: 88px 0; }
 .sec-white { background: #000; padding: 88px 0; }
 
+/* Grid texture background */
+.section-grid {
+  background:
+    radial-gradient(ellipse at center, transparent 0%, #000 70%),
+    linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 100% 100%, 50px 50px, 50px 50px;
+}
+
 /* Reveal */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
