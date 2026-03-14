@@ -125,9 +125,9 @@
 .btn-full { width: 100%; }
 
 /* Sections */
-.sec-dark { background: var(--bg); padding: 88px 0; }
-.sec-light { background: var(--off); padding: 88px 0; }
-.sec-white { background: var(--white); padding: 88px 0; }
+.sec-dark { background: #000; padding: 88px 0; }
+.sec-light { background: #000; padding: 88px 0; }
+.sec-white { background: #000; padding: 88px 0; }
 
 /* Reveal */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .55s ease, transform .55s ease; }
