@@ -1,6 +1,6 @@
 export function HowItWorksSection() {
   return (
-    <section id="how" className="sec-dark">
+    <section id="how" className="sec-dark section-grid">
       <div className="container text-center">
         <div className="reveal">
           <div className="tag g">Simples assim</div>

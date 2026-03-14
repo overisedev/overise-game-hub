@@ -40,7 +40,7 @@ export function VerifySection() {
   };
 
   return (
-    <section id="verify" className="sec-dark">
+    <section id="verify" className="sec-dark section-grid">
       <div className="container text-center">
         <div className="reveal">
           <div className="tag g">Verificar disponibilidade</div>
