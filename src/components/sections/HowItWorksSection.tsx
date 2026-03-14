@@ -1,10 +1,10 @@
 export function HowItWorksSection() {
   return (
-    <section id="how" className="sec-white">
+    <section id="how" className="sec-dark">
       <div className="container text-center">
         <div className="reveal">
-          <div className="tag dark">Simples assim</div>
-          <h2 className="h2 on-light">3 passos. 5 minutos.<br /><em>Jogando hoje.</em></h2>
+          <div className="tag g">Simples assim</div>
+          <h2 className="h2 on-dark">3 passos. 5 minutos.<br /><em>Jogando hoje.</em></h2>
         </div>
         <div className="steps reveal rd1">
           <div className="step">
