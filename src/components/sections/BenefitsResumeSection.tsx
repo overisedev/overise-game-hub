@@ -125,18 +125,18 @@ export function BenefitsResumeSection() {
         }
 
         .tl-card {
-          background: #fff;
-          border: 1px solid var(--light-border);
+          background: var(--card);
+          border: 1px solid var(--border);
           border-radius: 12px;
           overflow: hidden;
           transition: all .3s;
           width: 100%;
-          box-shadow: 0 2px 12px rgba(0,0,0,.06);
+          box-shadow: 0 2px 12px rgba(0,0,0,.3);
         }
         .tl-card:hover {
-          border-color: rgba(45,212,14,.25);
+          border-color: rgba(57,255,20,.25);
           transform: translateY(-3px);
-          box-shadow: 0 12px 32px rgba(0,0,0,.1);
+          box-shadow: 0 12px 32px rgba(0,0,0,.4);
         }
 
         .tl-card-img-wrap {
