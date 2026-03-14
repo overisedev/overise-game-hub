@@ -41,12 +41,12 @@ const steps = [
 
 export function BenefitsResumeSection() {
   return (
-    <section className="sec-white" style={{ padding: '80px 0', overflow: 'hidden' }}>
+    <section className="sec-dark" style={{ padding: '80px 0', overflow: 'hidden' }}>
       <div className="container">
         <motion.div className="text-center reveal" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <div className="tag dark">Tudo isso por R$9,97 · paga uma vez</div>
-          <h2 className="h2 on-light" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>O que você<br /><em>desbloqueia</em></h2>
-          <p className="sub on-light center">Do pagamento ao jogo em menos de 5 minutos.</p>
+          <div className="tag g">Tudo isso por R$9,97 · paga uma vez</div>
+          <h2 className="h2 on-dark" style={{ fontSize: 'clamp(28px,4vw,48px)' }}>O que você<br /><em>desbloqueia</em></h2>
+          <p className="sub on-dark center">Do pagamento ao jogo em menos de 5 minutos.</p>
         </motion.div>
 
         {/* Zigzag Timeline */}
