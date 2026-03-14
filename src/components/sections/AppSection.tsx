@@ -70,7 +70,7 @@ export function AppSection() {
       <div className="container">
         <div className="app-layout reveal">
           <div>
-            <div className="tag dark">Overise App</div>
+            <div className="tag g">Overise App</div>
             <div className="app-title">Baixe pela Steam.<br /><em>Velocidade máxima.</em></div>
             <p className="app-desc">O desbloqueador cuida de tudo. Puxa arquivos limpos e oficiais da Steam, em velocidade máxima, e instala de forma automática.</p>
             <div className="app-tags">
