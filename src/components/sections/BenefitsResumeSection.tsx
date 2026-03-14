@@ -169,14 +169,14 @@ export function BenefitsResumeSection() {
           font-family: var(--fh);
           font-size: 14px;
           font-weight: 800;
-          color: var(--on-light);
+          color: var(--white);
           text-transform: uppercase;
           letter-spacing: .02em;
           margin: 0 0 4px;
         }
         .tl-card-desc {
           font-size: 13px;
-          color: var(--on-light-muted);
+          color: var(--muted);
           line-height: 1.6;
           margin: 0;
         }

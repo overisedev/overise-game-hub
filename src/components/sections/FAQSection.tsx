@@ -35,12 +35,12 @@ export function FAQSection() {
       </div>
       <style>{`
         .faq-list { max-width: 680px; margin: 44px auto 0; text-align: left; }
-        .faq-item { border-bottom: 1px solid var(--light-border); }
-        .faq-q { width: 100%; background: none; color: var(--on-light); font-family: var(--fh); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color .2s; border: none; }
-        .faq-q:hover { color: var(--accent2); }
-        .faq-chev { width: 24px; height: 24px; border-radius: 4px; border: 1px solid var(--light-border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--accent2); transition: all .25s; flex-shrink: 0; }
-        .faq-q.open .faq-chev { background: var(--accent2); color: #fff; border-color: var(--accent2); transform: rotate(180deg); }
-        .faq-a { font-size: 14px; color: var(--on-light-muted); line-height: 1.8; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; padding: 0; }
+        .faq-item { border-bottom: 1px solid var(--border); }
+        .faq-q { width: 100%; background: none; color: var(--white); font-family: var(--fh); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: color .2s; border: none; }
+        .faq-q:hover { color: var(--accent); }
+        .faq-chev { width: 24px; height: 24px; border-radius: 4px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--accent); transition: all .25s; flex-shrink: 0; }
+        .faq-q.open .faq-chev { background: var(--accent); color: #0b0e11; border-color: var(--accent); transform: rotate(180deg); }
+        .faq-a { font-size: 14px; color: var(--muted); line-height: 1.8; max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; padding: 0; }
         .faq-a.open { max-height: 300px; padding-bottom: 18px; }
       `}</style>
     </section>

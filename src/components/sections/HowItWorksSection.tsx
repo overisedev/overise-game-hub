@@ -33,7 +33,7 @@ export function HowItWorksSection() {
               <div className="step-result-sub">Licença vitalícia · +1000 jogos · R$9,97 taxa única</div>
             </div>
           </div>
-          <a href="#pricing" className="btn btn-accent btn-lg" style={{ background: '#fff', color: 'var(--accent2)', boxShadow: 'none' }}>Desbloquear →</a>
+          <a href="#pricing" className="btn btn-accent btn-lg" style={{ background: '#000', color: 'var(--accent)', boxShadow: 'none' }}>Desbloquear →</a>
         </div>
       </div>
       <style>{`

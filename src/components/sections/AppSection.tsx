@@ -107,11 +107,11 @@ export function AppSection() {
       </div>
       <style>{`
         .app-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 48px; }
-        .app-title { font-family: var(--fh); font-size: clamp(28px,4vw,48px); font-weight: 900; text-transform: uppercase; color: var(--on-light); line-height: .95; margin-bottom: 14px; }
-        .app-title em { color: var(--accent2); font-style: normal; }
-        .app-desc { font-size: 15px; color: var(--on-light-muted); line-height: 1.75; margin-bottom: 24px; }
+        .app-title { font-family: var(--fh); font-size: clamp(28px,4vw,48px); font-weight: 900; text-transform: uppercase; color: var(--white); line-height: .95; margin-bottom: 14px; }
+        .app-title em { color: var(--accent); font-style: normal; }
+        .app-desc { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 24px; }
         .app-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-        .app-tag { background: var(--light); border: 1px solid var(--light-border); border-radius: 4px; padding: 6px 14px; font-family: var(--fh); font-size: 11px; font-weight: 700; color: var(--on-light-muted); letter-spacing: .06em; text-transform: uppercase; }
+        .app-tag { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 6px 14px; font-family: var(--fh); font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
         .dl-sim { background: #1b2838; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,.06); box-shadow: 0 8px 32px rgba(0,0,0,.3); }
         .dl-header { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.05); }
         .dl-cover { width: 80px; height: 38px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
