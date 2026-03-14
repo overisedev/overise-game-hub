@@ -80,7 +80,7 @@ export function BenefitsResumeSection() {
         </div>
 
         <div className="text-center" style={{ marginTop: 8 }}>
-          <a href="#pricing" className="btn btn-accent-dark btn-lg">Garantir Meu Acesso →</a>
+          <a href="#pricing" className="btn btn-accent btn-lg">Garantir Meu Acesso →</a>
         </div>
       </div>
 
