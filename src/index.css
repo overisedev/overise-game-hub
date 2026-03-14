@@ -94,7 +94,7 @@
 /* Typography */
 .tag { font-family: var(--fh); font-size: 12px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 12px; }
 .tag.g { color: var(--accent); }
-.tag.dark { color: var(--accent2); }
+.tag.dark { color: var(--accent); }
 .tag.muted { color: var(--on-light-muted); }
 .h2 { font-family: var(--fh); font-size: clamp(34px,5vw,62px); font-weight: 900; line-height: .94; text-transform: uppercase; letter-spacing: -.01em; }
 .h2.on-dark { color: var(--white); }
