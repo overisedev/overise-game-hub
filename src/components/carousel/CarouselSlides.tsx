@@ -1,6 +1,6 @@
 import { Download, List, Monitor, MessageCircle, ExternalLink } from 'lucide-react';
 
-// Paleta OVERISE (sem neon)
+/// Paleta OVERISE (sem neon)
 const palette = {
   accent: 'rgb(240, 48, 31)',
   bg: '#060606',
