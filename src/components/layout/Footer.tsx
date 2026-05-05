@@ -20,14 +20,14 @@ export function Footer() {
           </div>
           <div className="footer-col">
             <h5>Suporte</h5>
-            <a href="#">WhatsApp</a>
-            <a href="#">Reembolso</a>
+            <a href="https://wa.me/5568999215897?text=Olá!%20Vim%20do%20site%20da%20Overise%20e%20tenho%20uma%20dúvida" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="#guarantee">Reembolso</a>
             <a href="#">Termos de Uso</a>
             <a href="#faq">FAQ</a>
           </div>
         </div>
         <div className="footer-bottom">
-          <p className="footer-copy">© 2025 Overise. Todos os direitos reservados.</p>
+          <p className="footer-copy">© 2026 Overise. Todos os direitos reservados.</p>
           <div className="footer-pay">
             <div className="pay-chip">PIX</div>
             <div className="pay-chip">CARTÃO</div>
