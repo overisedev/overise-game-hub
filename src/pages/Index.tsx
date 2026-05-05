@@ -35,7 +35,7 @@ const Index = () => {
     <div>
       {/* Urgency Bar */}
       <div className="urgency-topbar">
-        Acesso imediato — <strong>+1000 jogos por R$9,97 · taxa única</strong>{' '}
+        🔥 PROMOÇÃO RELÂMPAGO — <strong>+1000 jogos por R$9,97 · válido só hoje ({new Date().toLocaleDateString('pt-BR')})</strong>{' '}
         <span style={{ opacity: .55, fontWeight: 600 }}>· licença vitalícia · 7 dias de garantia</span>
       </div>
       <style>{`
