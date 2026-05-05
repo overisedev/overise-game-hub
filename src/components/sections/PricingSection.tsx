@@ -36,7 +36,7 @@ const PLANS = [
   {
     name: 'Básico',
     forText: 'Para experimentar',
-    oldPrice: 'R$29,97',
+    oldPrice: 'R$97,00',
     price: '9',
     cents: ',97',
     freq: 'pagamento único',
@@ -61,7 +61,7 @@ const PLANS = [
   {
     name: 'Avançado',
     forText: 'O favorito dos jogadores',
-    oldPrice: 'R$59,97',
+    oldPrice: 'R$197,00',
     price: '19',
     cents: ',97',
     freq: 'pagamento único',
@@ -86,7 +86,7 @@ const PLANS = [
   {
     name: 'Vitalício',
     forText: 'Acesso total, pra sempre',
-    oldPrice: 'R$149,97',
+    oldPrice: 'R$497,00',
     price: '49',
     cents: ',97',
     freq: 'pagamento único',
