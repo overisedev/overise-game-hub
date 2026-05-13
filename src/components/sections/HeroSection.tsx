@@ -63,7 +63,7 @@ export function HeroSection() {
             <video
               ref={videoRef}
               className="vsl-video"
-              src="https://i.imgur.com/2S4kARM.mp4"
+              src="https://jz-vibecoder.wistia.com/medias/9xgnrtlc7b"
               muted
               loop
               playsInline
