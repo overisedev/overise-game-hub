@@ -3,9 +3,10 @@ import { useRef, useEffect, useState } from 'react';
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    // Auto-play muted when visible
+    // Auto-play mutado quando estiver visível na tela
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && videoRef.current) {
@@ -20,8 +21,11 @@ export function HeroSection() {
 
   const handlePlayClick = () => {
     if (!videoRef.current) return;
+    
     if (videoRef.current.muted) {
+      // Ao clicar pela primeira vez, desmuta, volta pro início e tira o overlay
       videoRef.current.muted = false;
+      setIsMuted(false);
       videoRef.current.currentTime = 0;
       videoRef.current.play();
       setIsPlaying(true);
@@ -37,173 +41,280 @@ export function HeroSection() {
   return (
     <section id="hero" className="hero-section">
       <div className="container hero-layout">
-        <div className="hero-left">
-          <h1 className="hero-h1 reveal rd1">
-            Desbloqueie sua Steam.<br />
-            <em>Milhares de jogos. Taxa única.</em>
-          </h1>
-          <p className="hero-sub reveal rd1">
-            Ative o desbloqueador, escolha o jogo e baixe direto pela Steam.{' '}
-            <strong>100% seguro, anti-ban e invisível.</strong> Pague uma vez, use pra sempre.
-          </p>
-          <div className="hero-btns reveal rd1">
-            <a href="#pricing" className="btn btn-accent btn-xl">Desbloquear minha Steam</a>
-            <a href="#how" className="btn btn-ghost btn-xl">Ver como funciona</a>
-          </div>
-          <div className="hero-trust reveal rd1">
-            <div className="trust-pill"><span className="chk">✔</span> 7 dias de garantia</div>
-            <div className="trust-pill"><span className="chk">✔</span> Jogando em 5 min</div>
-            <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
-          </div>
-        </div>
+        
+        {/* Nova Headline Centralizada */}
+        <h1 className="hero-h1 reveal rd1">
+          SUA BIBLIOTECA STEAM.<br />
+          <em>+43.725 JOGOS LIBERADOS.</em>
+        </h1>
 
-        <div className="hero-right reveal rd1">
+        {/* Player da VSL */}
+        <div className="vsl-wrapper reveal rd1">
           <div className="vsl-container" onClick={handlePlayClick}>
-            <div className="vsl-glow" />
+            {/* ATENÇÃO: Substitua "/sua-vsl.mp4" pelo link direto do seu vídeo MP4 */}
             <video
               ref={videoRef}
               className="vsl-video"
-              src="https://youtu.be/TIuC9b2pEDg"
+              src="/sua-vsl.mp4"
               muted
               loop
               playsInline
               preload="metadata"
               poster=""
             />
-            {!isPlaying && (
-              <div className="vsl-play-overlay">
-                <div className="vsl-play-btn">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M8 5v14l11-7L8 5z" fill="#0b0e11" />
+            {/* Overlay vermelho de "Ativar Áudio" como na imagem */}
+            {isMuted && (
+              <div className="vsl-audio-overlay">
+                <button className="vsl-audio-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                   </svg>
-                </div>
-                <span className="vsl-play-text">Assistir demonstração</span>
+                  TOQUE PARA ATIVAR O ÁUDIO
+                </button>
               </div>
             )}
           </div>
         </div>
+
+        {/* Textos, Botões e Provas Sociais Centralizados */}
+        <div className="hero-content reveal rd1">
+          <p className="hero-sub">
+            Acesse o catálogo completo com a Almaz Store. Escolha o jogo, baixe direto pela Steam e jogue. <strong>Instalação limpa, rápida e segura.</strong> Pague uma vez, use pra sempre.
+          </p>
+
+          <div className="hero-btns">
+            <a href="#pricing" className="btn btn-accent btn-xl">GARANTIR MEU ACESSO</a>
+            <a href="#how" className="btn btn-ghost btn-xl">VER COMO FUNCIONA</a>
+          </div>
+
+          <div className="hero-trust">
+            <div className="trust-pill"><span className="chk">✔</span> 7 dias de garantia</div>
+            <div className="trust-pill"><span className="chk">✔</span> Jogando em 5 min</div>
+            <div className="trust-pill"><span className="chk">✔</span> +5.000 clientes</div>
+          </div>
+        </div>
+
       </div>
 
       <style>{`
-        .hero-section { background:var(--bg); padding:48px 0 64px; position:relative; overflow:hidden; }
-        .hero-section::before { content:''; position:absolute; top:-120px; left:50%; transform:translateX(-50%); width:900px; height:500px; background:radial-gradient(ellipse,rgba(57,255,20,.035) 0%,transparent 65%); pointer-events:none; }
+        .hero-section {
+          background: var(--bg);
+          padding: 64px 0 80px;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .hero-section::before {
+          content: '';
+          position: absolute;
+          top: -120px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 900px;
+          height: 500px;
+          /* Brilho de fundo atualizado para o tom de vermelho/laranja */
+          background: radial-gradient(ellipse, rgba(254, 58, 47, 0.08) 0%, transparent 65%);
+          pointer-events: none;
+        }
 
-        .hero-layout { display:flex; align-items:center; gap:48px; }
-        .hero-left { flex:1; text-align:left; }
-        .hero-right { flex:1; display:flex; justify-content:flex-end; }
+        .hero-layout {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 32px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
 
-        .hero-h1 { font-family:var(--fh); font-size:clamp(36px,5vw,72px); font-weight:900; line-height:.9; text-transform:uppercase; color:#fff; margin-bottom:16px; }
-        .hero-h1 em { color:var(--accent); font-style:normal; }
-        .hero-sub { font-size:16px; font-weight:400; color:var(--muted); max-width:480px; line-height:1.65; font-family:var(--fb); }
-        .hero-sub strong { color:var(--white); font-weight:600; }
-        .hero-btns { display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; margin-bottom:18px; }
-        .hero-trust { display:flex; gap:16px; flex-wrap:wrap; }
-        .trust-pill { display:flex; align-items:center; gap:6px; font-family:var(--fh); font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--dim); transition:all .2s; }
-        .trust-pill:hover { color:var(--accent); transform:scale(1.05); }
-        .trust-pill .chk { color:var(--accent); font-weight:900; }
+        .hero-h1 {
+          font-family: var(--fh);
+          font-size: clamp(32px, 5.5vw, 64px);
+          font-weight: 900;
+          line-height: 1.05;
+          text-transform: uppercase;
+          color: #fff;
+          margin: 0;
+          letter-spacing: -0.02em;
+        }
+        
+        .hero-h1 em {
+          color: #fe3a2f; /* Cor vermelha vibrante igual da imagem */
+          font-style: normal;
+        }
 
         /* ── VSL Video ── */
+        .vsl-wrapper {
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
         .vsl-container {
-          position:relative;
-          max-width:560px;
-          width:100%;
-          border-radius:14px;
-          overflow:hidden;
-          border:1px solid rgba(57,255,20,.12);
-          background:#0c0e12;
-          box-shadow:0 0 60px rgba(57,255,20,.06), 0 24px 56px rgba(0,0,0,.5);
-          cursor:pointer;
-          transition:border-color .4s, box-shadow .4s, transform .3s;
+          position: relative;
+          width: 100%;
+          border-radius: 12px;
+          overflow: hidden;
+          border: 1px solid rgba(254, 58, 47, 0.15);
+          background: #0a0a0a;
+          box-shadow: 0 0 60px rgba(254, 58, 47, 0.08), 0 24px 56px rgba(0,0,0,.6);
+          cursor: pointer;
+          transition: transform .3s;
+          aspect-ratio: 16/9;
         }
+        
         .vsl-container:hover {
-          border-color:rgba(57,255,20,.25);
-          box-shadow:0 0 80px rgba(57,255,20,.12), 0 24px 56px rgba(0,0,0,.5);
-          transform:translateY(-2px);
-        }
-        .vsl-glow {
-          position:absolute;
-          inset:-2px;
-          border-radius:16px;
-          background:conic-gradient(from 180deg, rgba(57,255,20,.08), transparent 25%, transparent 75%, rgba(57,255,20,.08));
-          z-index:-1;
-          animation:vslGlowSpin 8s linear infinite;
-        }
-        @keyframes vslGlowSpin {
-          from { transform:rotate(0deg); }
-          to   { transform:rotate(360deg); }
+          transform: translateY(-4px);
         }
 
         .vsl-video {
-          display:block;
-          width:100%;
-          height:auto;
-          border-radius:14px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
 
-        /* Play overlay */
-        .vsl-play-overlay {
-          position:absolute;
-          inset:0;
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          justify-content:center;
-          gap:12px;
-          background:rgba(0,0,0,.45);
-          backdrop-filter:blur(2px);
-          border-radius:14px;
-          transition:opacity .3s;
-        }
-        .vsl-container:hover .vsl-play-overlay {
-          background:rgba(0,0,0,.35);
-        }
-        .vsl-play-btn {
-          width:64px;
-          height:64px;
-          border-radius:50%;
-          background:var(--accent);
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          box-shadow:0 0 30px rgba(57,255,20,.35);
-          transition:transform .2s, box-shadow .2s;
-        }
-        .vsl-container:hover .vsl-play-btn {
-          transform:scale(1.1);
-          box-shadow:0 0 50px rgba(57,255,20,.5);
-        }
-        .vsl-play-btn svg {
-          width:28px;
-          height:28px;
-          margin-left:3px;
-        }
-        .vsl-play-text {
-          font-family:var(--fh);
-          font-size:12px;
-          font-weight:700;
-          letter-spacing:.1em;
-          text-transform:uppercase;
-          color:rgba(255,255,255,.85);
-          text-shadow:0 1px 4px rgba(0,0,0,.5);
+        .vsl-audio-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0,0,0,0.4);
+          backdrop-filter: blur(3px);
+          transition: opacity 0.3s;
         }
 
-        @media (max-width:900px) {
-          .hero-layout { flex-direction:column; gap:16px; }
-          .hero-left { text-align:center; order:2; }
-          .hero-right { justify-content:center; width:100%; order:1; }
-          .hero-sub { margin:0 auto; }
-          .hero-btns { justify-content:center; flex-direction:column; align-items:stretch; }
-          .hero-trust { justify-content:center; }
-          .hero-section { padding:24px 0 32px; }
-          .hero-h1 { font-size:clamp(26px,8vw,42px); margin-bottom:10px; line-height:.88; }
-          .hero-sub { font-size:13px; line-height:1.55; }
-          .hero-btns .btn-xl { font-size:14px; padding:14px 20px; }
-          .hero-trust { gap:12px; }
-          .trust-pill { font-size:10px; }
-          .vsl-container { max-width:100%; }
-          .vsl-play-btn { width:52px; height:52px; }
-          .vsl-play-btn svg { width:22px; height:22px; }
-          .vsl-play-text { font-size:10px; }
+        .vsl-audio-btn {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          background: #fe3a2f;
+          color: #fff;
+          border: none;
+          padding: 16px 32px;
+          border-radius: 50px;
+          font-family: var(--fh, sans-serif);
+          font-weight: 800;
+          font-size: 15px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          box-shadow: 0 8px 24px rgba(254, 58, 47, 0.4);
+          animation: pulseRed 2s infinite;
+          transition: transform 0.2s;
+        }
+        
+        .vsl-audio-btn:hover {
+          transform: scale(1.05);
+        }
+
+        .vsl-audio-btn svg {
+          width: 22px;
+          height: 22px;
+        }
+
+        @keyframes pulseRed {
+          0% { box-shadow: 0 0 0 0 rgba(254, 58, 47, 0.6); }
+          70% { box-shadow: 0 0 0 15px rgba(254, 58, 47, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(254, 58, 47, 0); }
+        }
+
+        /* ── Textos e Botões Inferiores ── */
+        .hero-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 24px;
+        }
+
+        .hero-sub {
+          font-size: 16px;
+          font-weight: 400;
+          color: rgba(255,255,255,0.7);
+          max-width: 620px;
+          line-height: 1.6;
+          margin: 0;
+        }
+        
+        .hero-sub strong {
+          color: #fff;
+          font-weight: 600;
+        }
+
+        .hero-btns {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          width: 100%;
+        }
+        
+        .hero-btns .btn {
+          text-transform: uppercase;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          padding: 18px 36px;
+          font-size: 14px;
+        }
+        
+        .btn-accent {
+          background: #fe3a2f;
+          color: #fff;
+          border: none;
+          border-radius: 6px;
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        
+        .btn-accent:hover {
+          background: #e03228;
+        }
+        
+        .btn-ghost {
+          background: transparent;
+          color: #fff;
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 6px;
+          text-decoration: none;
+          transition: all 0.2s;
+        }
+        
+        .btn-ghost:hover {
+          border-color: rgba(255,255,255,0.4);
+          background: rgba(255,255,255,0.05);
+        }
+
+        .hero-trust {
+          display: flex;
+          gap: 24px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-top: 8px;
+        }
+        
+        .trust-pill {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 13px;
+          font-weight: 700;
+          color: rgba(255,255,255,0.5);
+        }
+        
+        .trust-pill .chk {
+          color: #fe3a2f;
+          font-weight: 900;
+        }
+
+        @media (max-width: 768px) {
+          .hero-section { padding: 40px 16px 64px; }
+          .hero-h1 { font-size: 28px; line-height: 1.1; }
+          .hero-sub { font-size: 14px; }
+          .hero-btns { flex-direction: column; }
+          .hero-btns .btn { width: 100%; text-align: center; }
+          .vsl-audio-btn { padding: 14px 24px; font-size: 13px; }
+          .hero-trust { gap: 12px; }
+          .trust-pill { font-size: 11px; }
         }
       `}</style>
     </section>
