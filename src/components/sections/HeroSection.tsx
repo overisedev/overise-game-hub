@@ -79,7 +79,7 @@ export function HeroSection() {
         {/* Textos, Botões e Provas Sociais Centralizados */}
         <div className="hero-content reveal rd1">
           <p className="hero-sub">
-            Acesse o catálogo completo com a Almaz Store. Escolha o jogo, baixe direto pela Steam e jogue. <strong>Instalação limpa, rápida e segura.</strong> Pague uma vez, use pra sempre.
+            Acesse o catálogo completo com a Overise Store. Escolha o jogo, baixe direto pela Steam e jogue. <strong>Instalação limpa, rápida e segura.</strong> Pague uma vez, use pra sempre.
           </p>
 
           <div className="hero-btns">
