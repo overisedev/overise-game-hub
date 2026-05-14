@@ -8,6 +8,7 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { GamesGridSection } from '@/components/sections/GamesGridSection';
 import { AppSection } from '@/components/sections/AppSection';
 import { EmotionalBenefitsSection } from '@/components/sections/EmotionalBenefitsSection';
+import { PricingSection } from '@/components/sections/PricingSection';
 import { PiracySection } from '@/components/sections/PiracySection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { BenefitsResumeSection } from '@/components/sections/BenefitsResumeSection';
@@ -52,6 +53,7 @@ const Index = () => {
       <AppSection />
       <EmotionalBenefitsSection />
       <PiracySection />
+      <PricingSection />
       <TestimonialsSection />
       <BenefitsResumeSection />
       <GuaranteeSection />
