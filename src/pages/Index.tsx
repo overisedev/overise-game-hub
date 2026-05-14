@@ -8,10 +8,8 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { GamesGridSection } from '@/components/sections/GamesGridSection';
 import { AppSection } from '@/components/sections/AppSection';
 import { EmotionalBenefitsSection } from '@/components/sections/EmotionalBenefitsSection';
-import { VerifySection } from '@/components/sections/VerifySection';
 import { PiracySection } from '@/components/sections/PiracySection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
-import { PricingSection } from '@/components/sections/PricingSection';
 import { BenefitsResumeSection } from '@/components/sections/BenefitsResumeSection';
 import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
@@ -53,11 +51,9 @@ const Index = () => {
       <GamesGridSection />
       <AppSection />
       <EmotionalBenefitsSection />
-      <VerifySection />
       <PiracySection />
       <TestimonialsSection />
       <BenefitsResumeSection />
-      <PricingSection />
       <GuaranteeSection />
       <FAQSection />
       <FinalCTASection />
