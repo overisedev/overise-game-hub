@@ -29,7 +29,7 @@ function checkout(url: string, value: number) {
   const utms = getUtms();
   const sep = url.includes('?') ? '&' : '?';
   const finalUrl = utms ? `${url}${sep}${utms}` : url;
-  setTimeout(() => { window.location.href = finalUrl; }, 800);
+  setTimeout(() => { window.location.href = finalUrl; }, 200);
 }
 
 const PLANS = [
@@ -51,37 +51,11 @@ const PLANS = [
       { text: 'Anti-ban e seguro', yes: true },
       { text: 'Suporte por email', yes: true },
       { text: 'Garantia de 7 dias', yes: true },
-      { text: 'Online desbloqueado', yes: false },
       { text: 'Jogos Rockstar / Ubisoft', yes: true },
     ],
-    btnText: 'Assinar Básico',
+    btnText: 'Garantir Básico',
     btnClass: '',
     tag: null,
-  },
-  {
-    name: 'Avançado',
-    forText: 'O favorito dos jogadores',
-    oldPrice: 'R$197,00',
-    price: '19',
-    cents: ',97',
-    freq: 'pagamento único',
-    url: 'https://www.ggcheckout.com/checkout/v5/BvIb4ex53LM73mU3DJsX',
-    value: 19.97,
-    featured: true,
-    vitalicio: false,
-    features: [
-      { text: '+24.000 jogos desbloqueados', yes: true, bold: true },
-      { text: 'Entrega instantânea', yes: true },
-      { text: 'Atualizações por 1 ano', yes: true },
-      { text: 'Anti-ban e seguro', yes: true },
-      { text: 'Online desbloqueado', yes: true },
-      { text: 'Jogos Rockstar / Ubisoft', yes: true },
-      { text: 'Suporte WhatsApp', yes: true },
-      { text: 'Garantia de 7 dias', yes: true },
-    ],
-    btnText: 'Assinar Avançado',
-    btnClass: 'pln-btn--dest',
-    tag: 'MAIS ESCOLHIDO',
   },
   {
     name: 'Vitalício',
@@ -92,7 +66,7 @@ const PLANS = [
     freq: 'pagamento único',
     url: 'https://www.ggcheckout.com/checkout/v5/pdDOCAlm20ZQxjUiglc3',
     value: 49.97,
-    featured: false,
+    featured: true,
     vitalicio: true,
     features: [
       { text: '+43.274 jogos desbloqueados', yes: true, bold: true },
@@ -104,9 +78,9 @@ const PLANS = [
       { text: 'Suporte WhatsApp prioritário', yes: true, bold: true },
       { text: 'Acesso a lançamentos', yes: true },
     ],
-    btnText: 'Assinar Vitalício',
+    btnText: 'Garantir Vitalício',
     btnClass: 'pln-btn--vit',
-    tag: 'MELHOR CUSTO-BENEFÍCIO',
+    tag: 'MAIS ESCOLHIDO',
   },
 ];
 
@@ -151,24 +125,25 @@ export function PricingSection() {
         </div>
       </div>
       <style>{`
-        .plans-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; align-items: start; }
+        .plans-row { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 48px; align-items: start; max-width: 720px; margin-left: auto; margin-right: auto; }
         .pln { background: var(--card); border: 1px solid var(--border2); border-radius: 16px; padding: 32px 28px; text-align: center; position: relative; display: flex; flex-direction: column; transition: border-color .3s, transform .3s, box-shadow .3s; }
         .pln:hover { border-color: rgba(255,255,255,.12); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.4); }
         .pln--dest { border: 2px solid var(--accent); box-shadow: 0 0 60px rgba(57,255,20,.07),0 24px 64px rgba(0,0,0,.5); padding: 40px 28px 32px; animation: glowPulse 4s ease-in-out infinite; }
-        .pln--vit { border: 1px solid rgba(255,107,53,.2); }
-        .pln--vit:hover { border-color: rgba(255,107,53,.4); }
+        .pln--vit { border: 2px solid rgba(255,107,53,.5); box-shadow: 0 0 60px rgba(255,107,53,.07),0 24px 64px rgba(0,0,0,.5); }
+        .pln--vit:hover { border-color: rgba(255,107,53,.7); }
         .pln-tag { position: absolute; top: 0; left: 50%; transform: translate(-50%,-50%); font-family: var(--fh); font-size: 10px; font-weight: 800; letter-spacing: .16em; padding: 6px 22px; background: var(--accent); color: #0b0e11; border-radius: 50px; white-space: nowrap; }
         .pln-tag--vit { background: #ff6b35; color: #fff; }
         .pln-head { margin-bottom: 20px; }
         .pln-name { font-family: var(--fh); font-size: 28px; font-weight: 900; text-transform: uppercase; color: var(--white); letter-spacing: .02em; line-height: 1; }
-        .pln--dest .pln-name { font-size: 32px; }
+        .pln--dest .pln-name, .pln--vit .pln-name { font-size: 32px; }
         .pln-for { font-size: 14px; color: var(--dim); margin-top: 4px; }
         .pln-price-wrap { margin-bottom: 24px; }
         .pln-old { font-size: 13px; color: var(--dim); }
         .pln-old s { color: var(--red); opacity: .5; }
         .pln-price { font-family: var(--fh); font-weight: 900; font-size: 22px; color: var(--accent); line-height: 1; margin: 6px 0 4px; }
         .pln-price span { font-size: 56px; }
-        .pln--dest .pln-price span { font-size: 64px; }
+        .pln--dest .pln-price span, .pln--vit .pln-price span { font-size: 64px; }
+        .pln--vit .pln-price { color: #ff6b35; }
         .pln-freq { font-family: var(--fh); font-size: 11px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
         .pln-feats { list-style: none; padding: 0; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; max-width: 280px; text-align: left; }
         .pln-feats li { font-size: 14px; font-weight: 500; display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
@@ -179,12 +154,10 @@ export function PricingSection() {
         .pln-feats li.no::before { content: ""; width: 20px; height: 20px; flex-shrink: 0; background: rgba(255,255,255,.06); border-radius: 6px; display: inline-block; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23727a85' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; background-size: 10px; }
         .pln-btn { display: block; width: 100%; padding: 16px; font-family: var(--fh); font-size: 16px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; text-align: center; cursor: pointer; transition: all .25s; margin-top: 24px; border: none; background: var(--accent); color: #0b0e11; box-shadow: 0 0 16px rgba(57,255,20,.12); }
         .pln-btn:hover { background: #4dff33; transform: translateY(-2px); box-shadow: 0 4px 24px rgba(57,255,20,.2); }
-        .pln-btn--dest { font-size: 18px; padding: 18px; box-shadow: 0 0 32px var(--accent-glow); }
-        .pln-btn--vit { background: #ff6b35; color: #fff; box-shadow: 0 0 16px rgba(255,107,53,.15); }
-        .pln-btn--vit:hover { background: #ff8050; box-shadow: 0 4px 24px rgba(255,107,53,.25); }
-        @media (max-width: 900px) {
-          .plans-row { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; gap: 20px; }
-          .pln--dest { order: 0; }
+        .pln-btn--vit { background: #ff6b35; color: #fff; font-size: 18px; padding: 18px; box-shadow: 0 0 32px rgba(255,107,53,.2); }
+        .pln-btn--vit:hover { background: #ff8050; box-shadow: 0 4px 24px rgba(255,107,53,.35); }
+        @media (max-width: 700px) {
+          .plans-row { grid-template-columns: 1fr; max-width: 420px; gap: 20px; }
           .pln-price span { font-size: 48px !important; }
         }
       `}</style>
