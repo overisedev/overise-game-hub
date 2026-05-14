@@ -8,8 +8,9 @@ import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { GamesGridSection } from '@/components/sections/GamesGridSection';
 import { AppSection } from '@/components/sections/AppSection';
 import { EmotionalBenefitsSection } from '@/components/sections/EmotionalBenefitsSection';
-import { BenefitsResumeSection } from '@/components/sections/BenefitsResumeSection';
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { PricingSection } from '@/components/sections/PricingSection';
+import { BenefitsResumeSection } from '@/components/sections/BenefitsResumeSection';
 import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
 import { FinalCTASection } from '@/components/sections/FinalCTASection';
@@ -32,7 +33,7 @@ const Index = () => {
     <div>
       {/* Urgency Bar */}
       <div className="urgency-topbar">
-        🔥 PROMOÇÃO RELÂMPAGO — <strong>+1000 jogos por R$9,97 · válido só hoje ({new Date().toLocaleDateString('pt-BR')})</strong>{' '}
+        🔥 PROMOÇÃO RELÂMPAGO — <strong>Milhares de jogos na Steam · válido só hoje ({new Date().toLocaleDateString('pt-BR')})</strong>{' '}
         <span style={{ opacity: .55, fontWeight: 600 }}>· licença vitalícia · 7 dias de garantia</span>
       </div>
       <style>{`
