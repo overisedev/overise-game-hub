@@ -45,7 +45,7 @@ const PLANS = [
     featured: false,
     vitalicio: false,
     features: [
-      { text: '+1000 jogos desbloqueados', yes: true, bold: true },
+      { text: '+1.000 jogos desbloqueados', yes: true, bold: true },
       { text: 'Entrega instantânea', yes: true },
       { text: 'Atualizações por 6 meses', yes: true },
       { text: 'Anti-ban e seguro', yes: true },
@@ -70,7 +70,7 @@ const PLANS = [
     featured: true,
     vitalicio: false,
     features: [
-      { text: '+1000 jogos desbloqueados', yes: true, bold: true },
+      { text: '+24.000 jogos desbloqueados', yes: true, bold: true },
       { text: 'Entrega instantânea', yes: true },
       { text: 'Atualizações por 1 ano', yes: true },
       { text: 'Anti-ban e seguro', yes: true },
@@ -95,7 +95,7 @@ const PLANS = [
     featured: false,
     vitalicio: true,
     features: [
-      { text: '+1000 jogos desbloqueados', yes: true, bold: true },
+      { text: '+43.274 jogos desbloqueados', yes: true, bold: true },
       { text: 'Entrega instantânea', yes: true },
       { text: 'Atualizações vitalícias', yes: true, bold: true },
       { text: 'Anti-ban e seguro', yes: true },
