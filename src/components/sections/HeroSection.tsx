@@ -51,7 +51,7 @@ export function HeroSection() {
         {/* Player da VSL */}
         <div className="vsl-wrapper reveal rd1">
           <div className="vsl-container" onClick={handlePlayClick}>
-            {/* ATENÇÃO: Substitua pelo link direto do seu vídeo MP4 ou iFrame */}
+            {/* ATENÇÃO: Substitua pelo link do seu vídeo compactado ou incorporação do Panda Video/VTurb quando for colocar no ar */}
             <video
               ref={videoRef}
               className="vsl-video"
@@ -79,7 +79,7 @@ export function HeroSection() {
         {/* Textos, Botões e Provas Sociais Centralizados */}
         <div className="hero-content reveal rd1">
           <p className="hero-sub">
-            Acesse o catálogo completo com a Overise Store. Escolha o jogo, baixe direto pela Steam e jogue. <strong>Instalação limpa, rápida e segura.</strong> Pague uma vez, use pra sempre.
+            Acesse o catálogo completo com a Almaz Store. Escolha o jogo, baixe direto pela Steam e jogue. <strong>Instalação limpa, rápida e segura.</strong> Pague uma vez, use pra sempre.
           </p>
 
           <div className="hero-btns">
@@ -121,14 +121,14 @@ export function HeroSection() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          gap: 40px; /* Aumentado espaço entre blocos */
-          max-width: 1000px; /* Aumentada largura máxima do container */
+          gap: 40px; 
+          max-width: 1000px; 
           margin: 0 auto;
         }
 
         .hero-h1 {
           font-family: var(--fh);
-          font-size: clamp(38px, 6vw, 72px); /* Aumentado tamanho geral */
+          font-size: clamp(38px, 6vw, 72px);
           font-weight: 900;
           line-height: 1.05;
           text-transform: uppercase;
@@ -140,12 +140,13 @@ export function HeroSection() {
         .hero-h1 em {
           color: #fe3a2f;
           font-style: normal;
+          white-space: nowrap; /* IMPEDE A QUEBRA DE LINHA */
         }
 
         /* ── VSL Video ── */
         .vsl-wrapper {
           width: 100%;
-          max-width: 900px; /* VSL maior no desktop */
+          max-width: 900px; 
           margin: 0 auto;
         }
 
@@ -191,11 +192,11 @@ export function HeroSection() {
           background: #fe3a2f;
           color: #fff;
           border: none;
-          padding: 20px 40px; /* Botão overlay maior */
+          padding: 20px 40px;
           border-radius: 50px;
           font-family: var(--fh, sans-serif);
           font-weight: 800;
-          font-size: 18px; /* Fonte maior no botão de áudio */
+          font-size: 18px; 
           text-transform: uppercase;
           letter-spacing: 0.5px;
           cursor: pointer;
@@ -228,7 +229,7 @@ export function HeroSection() {
         }
 
         .hero-sub {
-          font-size: 18px; /* Subtítulo maior no desktop */
+          font-size: 18px;
           font-weight: 400;
           color: rgba(255,255,255,0.7);
           max-width: 680px;
@@ -252,8 +253,8 @@ export function HeroSection() {
           text-transform: uppercase;
           font-weight: 800;
           letter-spacing: 0.5px;
-          padding: 20px 40px; /* Área de clique maior */
-          font-size: 16px; /* Fonte do botão maior */
+          padding: 20px 40px; 
+          font-size: 16px; 
         }
         
         .btn-accent {
@@ -295,7 +296,7 @@ export function HeroSection() {
           display: flex;
           align-items: center;
           gap: 6px;
-          font-size: 15px; /* Fonte maior */
+          font-size: 15px;
           font-weight: 700;
           color: rgba(255,255,255,0.5);
         }
@@ -308,7 +309,7 @@ export function HeroSection() {
         /* ── OTIMIZAÇÃO PARA MOBILE ── */
         @media (max-width: 768px) {
           .hero-section { 
-            padding: 40px 12px 64px; /* Diminui padding lateral para o VSL ganhar espaço */
+            padding: 40px 12px 64px; 
           }
           
           .hero-layout {
@@ -316,13 +317,14 @@ export function HeroSection() {
           }
 
           .hero-h1 { 
-            font-size: 36px; /* Bem maior no mobile do que os 28px antigos */
+            /* Fonte fluida ajustada para caber no celular sem quebrar a linha */
+            font-size: clamp(24px, 7.5vw, 36px); 
             line-height: 1.15; 
           }
           
           .vsl-audio-btn { 
             padding: 16px 28px; 
-            font-size: 15px; /* Aumentado no mobile */
+            font-size: 15px;
           }
           
           .vsl-audio-btn svg {
@@ -331,7 +333,7 @@ export function HeroSection() {
           }
 
           .hero-sub { 
-            font-size: 16px; /* Fonte confortável para leitura no mobile */
+            font-size: 16px; 
             line-height: 1.5;
             padding: 0 8px;
           }
@@ -352,7 +354,7 @@ export function HeroSection() {
           }
           
           .trust-pill { 
-            font-size: 14px; /* Aumentado no mobile */
+            font-size: 14px; 
           }
         }
       `}</style>
