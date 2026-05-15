@@ -1,66 +1,122 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useGames } from '@/hooks/useGames';
 import { Header } from '@/components/layout/Header';
-import { ScrollDistortion } from '@/components/ui/ScrollDistortion';
-import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { MarqueeSection } from '@/components/sections/MarqueeSection';
+import { GamesPreviewSection } from '@/components/sections/GamesPreviewSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
-import { GamesGridSection } from '@/components/sections/GamesGridSection';
-import { AppSection } from '@/components/sections/AppSection';
-import { EmotionalBenefitsSection } from '@/components/sections/EmotionalBenefitsSection';
+import { CatalogSection } from '@/components/sections/CatalogSection';
+import { AboutSection } from '@/components/sections/AboutSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { PricingSection } from '@/components/sections/PricingSection';
-import { BenefitsResumeSection } from '@/components/sections/BenefitsResumeSection';
 import { GuaranteeSection } from '@/components/sections/GuaranteeSection';
 import { FAQSection } from '@/components/sections/FAQSection';
-import { FinalCTASection } from '@/components/sections/FinalCTASection';
-import { BuyNotification } from '@/components/ui/BuyNotification';
-
+import { Footer } from '@/components/layout/Footer';
+import { GameModal } from '@/components/ui/GameModal';
+import { UrgencyBar } from '@/components/ui/UrgencyBar';
+import { ScarcityBadge } from '@/components/ui/ScarcityBadge';
 import { ChatWidget } from '@/components/ui/ChatWidget';
+import type { Game } from '@/types/game';
 
 const Index = () => {
-  // Reveal on scroll
+  const { games, aaaGames, loading, totalGames, searchGames, getGamesByCategory } = useGames();
+  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [urgencyBarVisible, setUrgencyBarVisible] = useState(false);
+
+  // Track urgency bar visibility
   useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((x) => { if (x.isIntersecting) x.target.classList.add('visible'); }),
-      { threshold: 0.06 }
-    );
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const threshold = window.innerHeight * 0.8;
+      setUrgencyBarVisible(scrollY > threshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <div>
-      {/* Urgency Bar */}
-      <div className="urgency-topbar">
-        🔥 PROMOÇÃO RELÂMPAGO — <strong>Milhares de jogos na Steam · válido só hoje ({new Date().toLocaleDateString('pt-BR')})</strong>{' '}
-        <span style={{ opacity: .55, fontWeight: 600 }}>· licença vitalícia · 7 dias de garantia</span>
-      </div>
-      <style>{`
-        .urgency-topbar { background: var(--accent); padding: 9px 16px; text-align: center; font-family: var(--fh); font-size: 12px; font-weight: 700; letter-spacing: .08em; color: #0b0e11; text-transform: uppercase; }
-        @media (max-width: 768px) {
-          .urgency-topbar { font-size: 9px; padding: 6px 10px; letter-spacing: .04em; }
-          .urgency-topbar span { display: none; }
-        }
-      `}</style>
+  // Rotate featured game with smooth transition
+  useEffect(() => {
+    if (aaaGames.length === 0) return;
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setFeaturedIndex((prev) => (prev + 1) % aaaGames.length);
+        setTimeout(() => setIsTransitioning(false), 100);
+      }, 600);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [aaaGames.length]);
 
-      <Header />
-      <HeroSection />
-      <MarqueeSection />
+  const featuredGame = aaaGames[featuredIndex];
+
+  const handlePrevFeatured = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setFeaturedIndex((prev) => (prev - 1 + aaaGames.length) % aaaGames.length);
+      setTimeout(() => setIsTransitioning(false), 100);
+    }, 500);
+  };
+
+  const handleNextFeatured = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setFeaturedIndex((prev) => (prev + 1) % aaaGames.length);
+      setTimeout(() => setIsTransitioning(false), 100);
+    }, 500);
+  };
+
+
+  return (
+    <div className="min-h-screen">
+      <UrgencyBar isVisible={urgencyBarVisible} />
+      <Header urgencyBarVisible={urgencyBarVisible} />
+      
+      <HeroSection 
+        featuredGame={featuredGame}
+        isTransitioning={isTransitioning}
+        onPrev={handlePrevFeatured}
+        onNext={handleNextFeatured}
+        onOpenDetails={setSelectedGame}
+      />
+      
+      <GamesPreviewSection 
+        games={games} 
+        totalGames={totalGames}
+        onOpenDetails={setSelectedGame}
+      />
+      
       <HowItWorksSection />
-      <GamesGridSection />
-      <AppSection />
-      <EmotionalBenefitsSection />
+      
+      <CatalogSection 
+        games={games}
+        totalGames={totalGames}
+        getGamesByCategory={getGamesByCategory}
+        searchGames={searchGames}
+        onOpenDetails={setSelectedGame}
+      />
+      
+      <AboutSection />
+      
       <TestimonialsSection />
-      <BenefitsResumeSection />
+      
       <PricingSection />
+      
       <GuaranteeSection />
+      
       <FAQSection />
-      <FinalCTASection />
+      
       <Footer />
-      <BuyNotification />
-      {/* Scroll distortion overlay */}
-      <ScrollDistortion />
+
+      {selectedGame && (
+        <GameModal 
+          game={selectedGame} 
+          onClose={() => setSelectedGame(null)} 
+        />
+      )}
+
+      
       <ChatWidget />
     </div>
   );

@@ -20,7 +20,7 @@ interface ChatOption {
 const FAQ_OPTIONS: ChatOption[] = [
   {
     label: "Qual o preço do acesso?",
-    response: "O acesso vitalício custa apenas R$9,97 em pagamento único! Você terá acesso a mais de 1.000 jogos para sempre, sem mensalidades."
+    response: "O acesso vitalício custa apenas R$39,99 por um pagamento único! Você terá acesso a mais de 6.500 jogos para sempre, sem mensalidades."
   },
   {
     label: "Como funciona o desbloqueio?",
@@ -32,7 +32,7 @@ const FAQ_OPTIONS: ChatOption[] = [
   },
   {
     label: "É seguro? Tem garantia?",
-    response: "100% seguro! Oferecemos garantia de 7 dias. Se não gostar, devolvemos seu dinheiro sem perguntas. Mais de 1.000 clientes satisfeitos!"
+    response: "100% seguro! Oferecemos garantia de 7 dias. Se não gostar, devolvemos seu dinheiro sem perguntas. Mais de 50 mil clientes satisfeitos!"
   },
   {
     label: "Recebo na hora?",
@@ -116,7 +116,7 @@ export function ChatWidget() {
       type: 'bot',
       content: "Obrigado pela sua mensagem! Para uma resposta mais rápida, escolha uma das opções abaixo ou acesse nosso suporte no WhatsApp.",
       options: [
-        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5568999215897?text=Olá!%20Vim%20do%20site%20da%20Overise%20e%20tenho%20uma%20dúvida", response: "" },
+        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5511999999999", response: "" },
         ...FAQ_OPTIONS.slice(0, 3)
       ]
     };
