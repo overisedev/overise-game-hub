@@ -22,6 +22,9 @@ export const AAA_GAME_NAMES = [
   'The Last of Us',
   'Resident Evil Village',
   'Hollow Knight: Silksong',
+  'LEGO Batman 3: Beyond Gotham',
+  'Forza Motorsport',
+  'Resident Evil Requiem',
 ];
 
 // Atalhos de busca
