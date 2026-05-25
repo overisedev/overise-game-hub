@@ -8,7 +8,7 @@ const PREFERRED_GAMES: Record<string, string[]> = {
   'The Last of Us': ['part i', 'part 1'],
   'Red Dead': ['redemption 2', 'rdr2'],
   'Dark Souls': ['dark souls iii', 'dark souls 3'],
-  'Resident Evil': ['village', 're village'],
+  'Resident Evil': ['requiem'],
   'Monster Hunter': ['world'],
   'Horizon': ['zero dawn'],
   'The Witcher': ['witcher 3', 'wild hunt'],
