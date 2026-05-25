@@ -1736,12 +1736,13 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg"
   },
   {
-    "name": "Forza Motorsport",
+    "name": "Forza Horizon 6",
     "categories": [
-      "CORRIDA"
+      "CORRIDA",
+      "MUNDO ABERTO"
     ],
-    "steam_appid": 2440510,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2440510/header.jpg"
+    "steam_appid": 2483190,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2483190/header.jpg"
   },
   {
     "name": "Frostpunk",
@@ -2625,13 +2626,13 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1904860/header.jpg"
   },
   {
-    "name": "LEGO Batman 3: Beyond Gotham",
+    "name": "LEGO Batman: Legacy of the Dark Knight",
     "categories": [
       "AÇÃO",
       "AVENTURA"
     ],
-    "steam_appid": 368020,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/368020/header.jpg"
+    "steam_appid": 2215200,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2215200/header.jpg"
   },
   {
     "name": "LEGO® 2K Drive",
@@ -4312,8 +4313,8 @@
       "TERROR",
       "AÇÃO"
     ],
-    "steam_appid": 3441820,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3441820/header.jpg"
+    "steam_appid": 3764200,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3764200/header.jpg"
   },
   {
     "name": "Resident Evil Resistance",

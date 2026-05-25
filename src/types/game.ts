@@ -22,8 +22,8 @@ export const AAA_GAME_NAMES = [
   'The Last of Us',
   'Resident Evil Village',
   'Hollow Knight: Silksong',
-  'LEGO Batman 3: Beyond Gotham',
-  'Forza Motorsport',
+  'LEGO Batman: Legacy of the Dark Knight',
+  'Forza Horizon 6',
   'Resident Evil Requiem',
 ];
 
