@@ -123,21 +123,32 @@ export function useGames() {
       });
   }, []);
 
+  // Jogos prioritários (aparecem primeiro no hero, nessa ordem)
+  const PRIORITY_APPIDS = [2215200, 2483190, 3764200]; // Lego Batman, Forza Horizon 6, RE Requiem
+
   // Filtrar jogos AAA e manter apenas 1 por franquia
   const aaaGames = useMemo(() => {
-    // Primeiro, filtrar jogos que correspondem à lista AAA E têm dados válidos
     const matchedGames = games.filter((game) => {
-      // Ignorar jogos sem cover ou steam_appid
       if (!game.cover || !game.steam_appid) return false;
-      
-      return AAA_GAME_NAMES.some((aaa) => 
-        game.name.toLowerCase().includes(aaa.toLowerCase()) || 
+      return AAA_GAME_NAMES.some((aaa) =>
+        game.name.toLowerCase().includes(aaa.toLowerCase()) ||
         aaa.toLowerCase().includes(game.name.toLowerCase())
       );
     });
-    
-    // Depois, filtrar para manter apenas 1 por franquia
-    return filterOnlyOnePerFranchise(matchedGames);
+
+    const filtered = filterOnlyOnePerFranchise(matchedGames);
+
+    // Reordenar: prioritários primeiro, na ordem definida
+    const priority: typeof filtered = [];
+    const rest: typeof filtered = [];
+    for (const g of filtered) {
+      if (PRIORITY_APPIDS.includes(g.steam_appid)) priority.push(g);
+      else rest.push(g);
+    }
+    priority.sort(
+      (a, b) => PRIORITY_APPIDS.indexOf(a.steam_appid) - PRIORITY_APPIDS.indexOf(b.steam_appid)
+    );
+    return [...priority, ...rest];
   }, [games]);
 
   const searchGames = (query: string): Game[] => {
