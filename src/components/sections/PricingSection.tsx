@@ -24,8 +24,11 @@ function getUTMParams(): string {
   return utmParams.toString();
 }
 
-// Mesma URL pra todos os planos (troque por URLs separadas quando criar no GGCheckout)
-const CHECKOUT_URL = "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ";
+const CHECKOUT_URLS = {
+  basico: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
+  avancado: "https://ggcheckout.app/checkout/v4/BvIb4ex53LM73mU3DJsX",
+  vitalicio: "https://ggcheckout.app/checkout/v5/pdDOCAlm20ZQxjUiglc3",
+};
 
 type Plan = {
   id: "basico" | "avancado" | "vitalicio";
@@ -112,9 +115,10 @@ function handleCheckout(plan: Plan) {
       currency: "BRL",
     });
   }
+  const checkoutUrl = CHECKOUT_URLS[plan.id];
   const utmString = getUTMParams();
-  const separator = CHECKOUT_URL.includes("?") ? "&" : "?";
-  const finalUrl = utmString ? `${CHECKOUT_URL}${separator}${utmString}` : CHECKOUT_URL;
+  const separator = checkoutUrl.includes("?") ? "&" : "?";
+  const finalUrl = utmString ? `${checkoutUrl}${separator}${utmString}` : checkoutUrl;
   window.open(finalUrl, "_blank", "noopener,noreferrer");
 }
 
