@@ -32,6 +32,38 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2784470/header.jpg"
   },
   {
+    "name": "A Plague Tale: Innocence",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 752590,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/752590/header.jpg"
+  },
+  {
+    "name": "A Plague Tale: Requiem",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1182900,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1182900/header.jpg"
+  },
+  {
+    "name": "A Valley Without Wind",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 209330,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/209330/header.jpg"
+  },
+  {
+    "name": "A Way Out",
+    "categories": [
+      "COOPERATIVO"
+    ],
+    "steam_appid": 1222700,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1222700/header.jpg"
+  },
+  {
     "name": "Abyssus",
     "categories": [
       "OUTROS"
@@ -70,14 +102,6 @@
     ],
     "steam_appid": 1514840,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1514840/header.jpg"
-  },
-  {
-    "name": "The Alters",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1601570,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1601570/header.jpg"
   },
   {
     "name": "American Truck Simulator",
@@ -152,14 +176,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2547090/header.jpg"
   },
   {
-    "name": "Assassin's Creed® III",
-    "categories": [
-      "AÇÃO"
-    ],
-    "steam_appid": 911400,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/911400/header.jpg"
-  },
-  {
     "name": "Assassin's Creed III Remastered",
     "categories": [
       "AÇÃO"
@@ -176,12 +192,12 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242050/header.jpg"
   },
   {
-    "name": "Assassin's Creed Unity",
+    "name": "Assassin's Creed Origins",
     "categories": [
       "AÇÃO"
     ],
-    "steam_appid": 289650,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/289650/header.jpg"
+    "steam_appid": 582160,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg"
   },
   {
     "name": "Assassin's Creed Syndicate",
@@ -192,12 +208,12 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/368500/header.jpg"
   },
   {
-    "name": "Assassin's Creed Origins",
+    "name": "Assassin's Creed Unity",
     "categories": [
       "AÇÃO"
     ],
-    "steam_appid": 582160,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg"
+    "steam_appid": 289650,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/289650/header.jpg"
   },
   {
     "name": "Assassin's Creed Valhalla",
@@ -206,6 +222,14 @@
     ],
     "steam_appid": 2208920,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2208920/header.jpg"
+  },
+  {
+    "name": "Assassin's Creed® III",
+    "categories": [
+      "AÇÃO"
+    ],
+    "steam_appid": 911400,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/911400/header.jpg"
   },
   {
     "name": "Assetto Corsa",
@@ -360,20 +384,20 @@
     "cover": null
   },
   {
-    "name": "Batman™: Arkham Origins",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 209000,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/209000/header.jpg"
-  },
-  {
     "name": "Batman™: Arkham Knight",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 208650,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/208650/header.jpg"
+  },
+  {
+    "name": "Batman™: Arkham Origins",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 209000,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/209000/header.jpg"
   },
   {
     "name": "Burnout Paradise: The Ultimate Box",
@@ -432,14 +456,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/311210/header.jpg"
   },
   {
-    "name": "Call of Juarez: Bound in Blood",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 21980,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/21980/header.jpg"
-  },
-  {
     "name": "Call of Juarez Gunslinger",
     "categories": [
       "OUTROS"
@@ -448,12 +464,12 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/204450/header.jpg"
   },
   {
-    "name": "The Callisto Protocol",
+    "name": "Call of Juarez: Bound in Blood",
     "categories": [
       "OUTROS"
     ],
-    "steam_appid": 1544020,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1544020/header.jpg"
+    "steam_appid": 21980,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/21980/header.jpg"
   },
   {
     "name": "Car Dealer Simulator",
@@ -568,14 +584,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/377330/header.jpg"
   },
   {
-    "name": "The Coffin of Andy and Leyley",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 2378900,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2378900/header.jpg"
-  },
-  {
     "name": "Combat Master",
     "categories": [
       "OUTROS"
@@ -688,20 +696,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/223710/header.jpg"
   },
   {
-    "name": "Crysis Remastered",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1715130,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1715130/header.jpg"
-  },
-  {
     "name": "Crysis 2 Maximum Edition",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 108800,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/108800/header.jpg"
+  },
+  {
+    "name": "Crysis Remastered",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1715130,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1715130/header.jpg"
   },
   {
     "name": "Cult of the Lamb",
@@ -832,20 +840,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1868140/header.jpg"
   },
   {
-    "name": "DDNet",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 412220,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/412220/header.jpg"
-  },
-  {
     "name": "Days Gone",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 1259420,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1259420/header.jpg"
+  },
+  {
+    "name": "DDNet",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 412220,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/412220/header.jpg"
   },
   {
     "name": "Dead by Daylight",
@@ -872,20 +880,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/934700/header.jpg"
   },
   {
-    "name": "Dead Space 2",
-    "categories": [
-      "TERROR"
-    ],
-    "steam_appid": 47780,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/47780/header.jpg"
-  },
-  {
     "name": "Dead Space (2008)",
     "categories": [
       "TERROR"
     ],
     "steam_appid": 17470,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/17470/header.jpg"
+  },
+  {
+    "name": "Dead Space 2",
+    "categories": [
+      "TERROR"
+    ],
+    "steam_appid": 47780,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/47780/header.jpg"
   },
   {
     "name": "Deadlock",
@@ -1128,20 +1136,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/403640/header.jpg"
   },
   {
-    "name": "Dishonored: Death of the Outsider",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 614570,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/614570/header.jpg"
-  },
-  {
     "name": "Dishonored RHCP",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": null,
     "cover": null
+  },
+  {
+    "name": "Dishonored: Death of the Outsider",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 614570,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/614570/header.jpg"
   },
   {
     "name": "DmC Devil May Cry",
@@ -1184,14 +1192,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/782330/header.jpg"
   },
   {
-    "name": "Dragon Ball: Sparking! ZERO",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1790600,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1790600/header.jpg"
-  },
-  {
     "name": "Dragon Ball Xenoverse",
     "categories": [
       "OUTROS"
@@ -1214,6 +1214,14 @@
     ],
     "steam_appid": 851850,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/851850/header.jpg"
+  },
+  {
+    "name": "Dragon Ball: Sparking! ZERO",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1790600,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1790600/header.jpg"
   },
   {
     "name": "Dragon Quest XI S: Echoes of an Elusive Age",
@@ -1326,46 +1334,6 @@
     ],
     "steam_appid": 1245620,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg"
-  },
-  {
-    "name": "The Elder Scrolls III: Morrowind",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 22320,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22320/header.jpg"
-  },
-  {
-    "name": "The Elder Scrolls IV: Oblivion Game",
-    "categories": [
-      "RPG"
-    ],
-    "steam_appid": 22330,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22330/header.jpg"
-  },
-  {
-    "name": "The Elder Scrolls IV: Oblivion Remastered",
-    "categories": [
-      "RPG"
-    ],
-    "steam_appid": 2623190,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2623190/header.jpg"
-  },
-  {
-    "name": "The Elder Scrolls V: Skyrim",
-    "categories": [
-      "RPG"
-    ],
-    "steam_appid": 489830,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg"
-  },
-  {
-    "name": "The Elder Scrolls V: Skyrim Special Edition",
-    "categories": [
-      "RPG"
-    ],
-    "steam_appid": 489830,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg"
   },
   {
     "name": "Ember Knights",
@@ -1552,20 +1520,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2916430/header.jpg"
   },
   {
-    "name": "Fatal Frame / Project Zero: Mask of the Lunar Eclipse",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 2130460,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2130460/header.jpg"
-  },
-  {
     "name": "Fatal Frame / Project Zero: Maiden of Black Water",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 1732190,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1732190/header.jpg"
+  },
+  {
+    "name": "Fatal Frame / Project Zero: Mask of the Lunar Eclipse",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 2130460,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2130460/header.jpg"
   },
   {
     "name": "Favela Kick: The Final Goal",
@@ -1600,6 +1568,14 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2909400/header.jpg"
   },
   {
+    "name": "Final Fantasy X/X-2 HD Remaster",
+    "categories": [
+      "RPG"
+    ],
+    "steam_appid": 359870,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359870/header.jpg"
+  },
+  {
     "name": "Final Fantasy XII The Zodiac Age",
     "categories": [
       "RPG"
@@ -1614,22 +1590,6 @@
     ],
     "steam_appid": 2515020,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2515020/header.jpg"
-  },
-  {
-    "name": "Final Fantasy X/X-2 HD Remaster",
-    "categories": [
-      "RPG"
-    ],
-    "steam_appid": 359870,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359870/header.jpg"
-  },
-  {
-    "name": "The Fisherman – Fishing Planet",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1072480,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1072480/header.jpg"
   },
   {
     "name": "Fishing Planet",
@@ -1750,15 +1710,6 @@
     ],
     "steam_appid": 3111310,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3111310/header.jpg"
-  },
-  {
-    "name": "The Forest",
-    "categories": [
-      "TERROR",
-      "SOBREVIVÊNCIA"
-    ],
-    "steam_appid": 242760,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242760/header.jpg"
   },
   {
     "name": "Forgive Me Father",
@@ -1953,22 +1904,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/header.jpg"
   },
   {
-    "name": "Grand Theft Auto: San Andreas",
-    "categories": [
-      "MUNDO ABERTO"
-    ],
-    "steam_appid": 1547000,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547000/header.jpg"
-  },
-  {
-    "name": "Grand Theft Auto: San Andreas – The Definitive Edition",
-    "categories": [
-      "MUNDO ABERTO"
-    ],
-    "steam_appid": 1547000,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547000/header.jpg"
-  },
-  {
     "name": "Grand Theft Auto V Enhanced",
     "categories": [
       "MUNDO ABERTO"
@@ -1983,6 +1918,22 @@
     ],
     "steam_appid": null,
     "cover": null
+  },
+  {
+    "name": "Grand Theft Auto: San Andreas",
+    "categories": [
+      "MUNDO ABERTO"
+    ],
+    "steam_appid": 1547000,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547000/header.jpg"
+  },
+  {
+    "name": "Grand Theft Auto: San Andreas – The Definitive Edition",
+    "categories": [
+      "MUNDO ABERTO"
+    ],
+    "steam_appid": 1547000,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547000/header.jpg"
   },
   {
     "name": "Grand Theft Auto: Vice City",
@@ -2025,20 +1976,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/815370/header.jpg"
   },
   {
-    "name": "GRID 2",
-    "categories": [
-      "CORRIDA"
-    ],
-    "steam_appid": 248140,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/248140/header.jpg"
-  },
-  {
     "name": "GRID (2019)",
     "categories": [
       "CORRIDA"
     ],
     "steam_appid": null,
     "cover": null
+  },
+  {
+    "name": "GRID 2",
+    "categories": [
+      "CORRIDA"
+    ],
+    "steam_appid": 248140,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/248140/header.jpg"
   },
   {
     "name": "GRID Autosport",
@@ -2087,14 +2038,6 @@
     ],
     "steam_appid": 1630110,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1630110/header.jpg"
-  },
-  {
-    "name": "The Gunk",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1087760,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1087760/header.jpg"
   },
   {
     "name": "Gym Simulator",
@@ -2153,6 +2096,14 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1240440/header.jpg"
   },
   {
+    "name": "Halo Wars: Definitive Edition",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 459220,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/459220/header.jpg"
+  },
+  {
     "name": "Halo: Spartan Assault",
     "categories": [
       "OUTROS"
@@ -2167,14 +2118,6 @@
     ],
     "steam_appid": 976730,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/976730/header.jpg"
-  },
-  {
-    "name": "Halo Wars: Definitive Edition",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 459220,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/459220/header.jpg"
   },
   {
     "name": "Hard Bullet",
@@ -2207,14 +2150,6 @@
     ],
     "steam_appid": 1321680,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1321680/header.jpg"
-  },
-  {
-    "name": "The Hex",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 510420,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/510420/header.jpg"
   },
   {
     "name": "Hi-Fi Rush",
@@ -2297,20 +2232,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2420110/header.jpg"
   },
   {
-    "name": "Horizon Zero Dawn – Complete Edition",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1151640,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1151640/header.jpg"
-  },
-  {
     "name": "Horizon Zero Dawn Remastered",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 2561580,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2561580/header.jpg"
+  },
+  {
+    "name": "Horizon Zero Dawn – Complete Edition",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1151640,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1151640/header.jpg"
   },
   {
     "name": "Hot Wheels Unleashed 2 – Turbocharged",
@@ -2377,14 +2312,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3016840/header.jpg"
   },
   {
-    "name": "The Incredible Adventures of Van Helsing",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 215530,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/215530/header.jpg"
-  },
-  {
     "name": "Indiana Jones e o Grande Círculo",
     "categories": [
       "OUTROS"
@@ -2407,14 +2334,6 @@
     ],
     "steam_appid": 242700,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242700/header.jpg"
-  },
-  {
-    "name": "The Inn-Sanity",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 2688570,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2688570/header.jpg"
   },
   {
     "name": "Inside",
@@ -2666,22 +2585,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550050/header.jpg"
   },
   {
-    "name": "The Last of Us™ Part I",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1888930,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1888930/header.jpg"
-  },
-  {
-    "name": "The Last of Us™ Part II Remastered",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 2531310,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg"
-  },
-  {
     "name": "Le Mans Ultimate",
     "categories": [
       "OUTROS"
@@ -2720,6 +2623,15 @@
     ],
     "steam_appid": 1904860,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1904860/header.jpg"
+  },
+  {
+    "name": "LEGO Batman 3: Beyond Gotham",
+    "categories": [
+      "AÇÃO",
+      "AVENTURA"
+    ],
+    "steam_appid": 368020,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/368020/header.jpg"
   },
   {
     "name": "LEGO® 2K Drive",
@@ -2786,14 +2698,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1627720/header.jpg"
   },
   {
-    "name": "Life is Strange™",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 532210,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/532210/header.jpg"
-  },
-  {
     "name": "Life is Strange: Before the Storm",
     "categories": [
       "OUTROS"
@@ -2816,6 +2720,14 @@
     ],
     "steam_appid": 936790,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/936790/header.jpg"
+  },
+  {
+    "name": "Life is Strange™",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 532210,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/532210/header.jpg"
   },
   {
     "name": "Like a Dragon: Pirate Yakuza in Hawaii",
@@ -2915,14 +2827,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030840/header.jpg"
   },
   {
-    "name": "Mafia: Definitive Edition",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1030840,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030840/header.jpg"
-  },
-  {
     "name": "Mafia II (Classic)",
     "categories": [
       "OUTROS"
@@ -2937,6 +2841,14 @@
     ],
     "steam_appid": 1030830,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030830/header.jpg"
+  },
+  {
+    "name": "Mafia: Definitive Edition",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1030840,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030840/header.jpg"
   },
   {
     "name": "Mage Arena",
@@ -2979,20 +2891,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2651280/header.jpg"
   },
   {
-    "name": "Marvel’s Spider-Man: Miles Morales",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1817190,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1817190/header.jpg"
-  },
-  {
     "name": "Marvel’s Spider-Man Remastered",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 1817070,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1817070/header.jpg"
+  },
+  {
+    "name": "Marvel’s Spider-Man: Miles Morales",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1817190,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1817190/header.jpg"
   },
   {
     "name": "Master Detective Archives: RAIN CODE Plus",
@@ -3075,14 +2987,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/235460/header.jpg"
   },
   {
-    "name": "METAL GEAR SOLID – Master Collection Vol. 1",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 886313,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/886313/header.jpg"
-  },
-  {
     "name": "METAL GEAR SOLID 2: Sons of Liberty – Master Collection",
     "categories": [
       "OUTROS"
@@ -3113,6 +3017,14 @@
     ],
     "steam_appid": 2417610,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2417610/header.jpg"
+  },
+  {
+    "name": "METAL GEAR SOLID – Master Collection Vol. 1",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 886313,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/886313/header.jpg"
   },
   {
     "name": "METAL GEAR SURVIVE",
@@ -3619,14 +3531,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1020790/header.jpg"
   },
   {
-    "name": "NASCAR ’15 Victory Edition",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": null,
-    "cover": null
-  },
-  {
     "name": "NASCAR 21: Ignition",
     "categories": [
       "OUTROS"
@@ -3675,7 +3579,7 @@
     "cover": null
   },
   {
-    "name": "NBA 2K9",
+    "name": "NASCAR ’15 Victory Edition",
     "categories": [
       "OUTROS"
     ],
@@ -3724,6 +3628,14 @@
   },
   {
     "name": "NBA 2K23",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": null,
+    "cover": null
+  },
+  {
+    "name": "NBA 2K9",
     "categories": [
       "OUTROS"
     ],
@@ -3907,14 +3819,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/753640/header.jpg"
   },
   {
-    "name": "The Outer Worlds",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1449110,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1449110/header.jpg"
-  },
-  {
     "name": "Outlast",
     "categories": [
       "TERROR"
@@ -4027,14 +3931,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/header.jpg"
   },
   {
-    "name": "The Persistence",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1140100,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1140100/header.jpg"
-  },
-  {
     "name": "Phasmophobia",
     "categories": [
       "OUTROS"
@@ -4057,22 +3953,6 @@
     ],
     "steam_appid": 246620,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/246620/header.jpg"
-  },
-  {
-    "name": "A Plague Tale: Innocence",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 752590,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/752590/header.jpg"
-  },
-  {
-    "name": "A Plague Tale: Requiem",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1182900,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1182900/header.jpg"
   },
   {
     "name": "Plants vs. Zombies: Game of the Year Edition",
@@ -4121,14 +4001,6 @@
     ],
     "steam_appid": null,
     "cover": null
-  },
-  {
-    "name": "The Precinct",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 490110,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/490110/header.jpg"
   },
   {
     "name": "Primal Planet",
@@ -4211,12 +4083,12 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/474960/header.jpg"
   },
   {
-    "name": "The Quarry",
+    "name": "R.E.P.O.",
     "categories": [
       "OUTROS"
     ],
-    "steam_appid": 1577120,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1577120/header.jpg"
+    "steam_appid": 3241660,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg"
   },
   {
     "name": "Raft",
@@ -4339,14 +4211,6 @@
     "cover": null
   },
   {
-    "name": "Remnant: From the Ashes",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 617290,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/617290/header.jpg"
-  },
-  {
     "name": "Remnant II",
     "categories": [
       "OUTROS"
@@ -4355,12 +4219,12 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1282100/header.jpg"
   },
   {
-    "name": "R.E.P.O.",
+    "name": "Remnant: From the Ashes",
     "categories": [
       "OUTROS"
     ],
-    "steam_appid": 3241660,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3241660/header.jpg"
+    "steam_appid": 617290,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/617290/header.jpg"
   },
   {
     "name": "Resident Evil",
@@ -4435,20 +4299,29 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/418370/header.jpg"
   },
   {
-    "name": "Resident Evil Resistance",
-    "categories": [
-      "TERROR"
-    ],
-    "steam_appid": 1295350,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1295350/header.jpg"
-  },
-  {
     "name": "Resident Evil Re:Verse",
     "categories": [
       "TERROR"
     ],
     "steam_appid": null,
     "cover": null
+  },
+  {
+    "name": "Resident Evil Requiem",
+    "categories": [
+      "TERROR",
+      "AÇÃO"
+    ],
+    "steam_appid": 3441820,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3441820/header.jpg"
+  },
+  {
+    "name": "Resident Evil Resistance",
+    "categories": [
+      "TERROR"
+    ],
+    "steam_appid": 1295350,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1295350/header.jpg"
   },
   {
     "name": "Resident Evil Village",
@@ -4563,20 +4436,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1560250/header.jpg"
   },
   {
-    "name": "Risk of Rain 2",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 632360,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg"
-  },
-  {
     "name": "Risk of Rain (2013)",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 248820,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/248820/header.jpg"
+  },
+  {
+    "name": "Risk of Rain 2",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 632360,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/632360/header.jpg"
   },
   {
     "name": "RoadCraft",
@@ -4611,44 +4484,28 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2703850/header.jpg"
   },
   {
-    "name": "The Room",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 288160,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/288160/header.jpg"
-  },
-  {
-    "name": "The Room Two",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 425580,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/425580/header.jpg"
-  },
-  {
-    "name": "The Room Three",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 456750,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/456750/header.jpg"
-  },
-  {
-    "name": "The Room 4: Old Sins",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1361320,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1361320/header.jpg"
-  },
-  {
     "name": "Rust",
     "categories": [
       "SOBREVIVÊNCIA"
     ],
     "steam_appid": 252490,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg"
+  },
+  {
+    "name": "S.T.A.L.K.E.R. 2: Heart of Chornobyl",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1643320,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1643320/header.jpg"
+  },
+  {
+    "name": "S.T.A.L.K.E.R.: Call of Pripyat",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": null,
+    "cover": null
   },
   {
     "name": "Saints Row: Gat out of Hell",
@@ -4811,20 +4668,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1352080/header.jpg"
   },
   {
-    "name": "Sniper Elite V2",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 728740,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/728740/header.jpg"
-  },
-  {
     "name": "Sniper Elite 3",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 238090,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/238090/header.jpg"
+  },
+  {
+    "name": "Sniper Elite V2",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 728740,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/728740/header.jpg"
   },
   {
     "name": "Sniper Elite V2 Remastered",
@@ -4835,7 +4692,7 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/728740/header.jpg"
   },
   {
-    "name": "Sniper: Ghost Warrior",
+    "name": "Sniper Ghost Warrior 3",
     "categories": [
       "OUTROS"
     ],
@@ -4843,7 +4700,7 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/368070/header.jpg"
   },
   {
-    "name": "Sniper Ghost Warrior 3",
+    "name": "Sniper: Ghost Warrior",
     "categories": [
       "OUTROS"
     ],
@@ -4867,20 +4724,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1465360/header.jpg"
   },
   {
-    "name": "Sonic Adventure™ 2",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 213610,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/213610/header.jpg"
-  },
-  {
     "name": "Sonic Adventure DX",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 71250,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/71250/header.jpg"
+  },
+  {
+    "name": "Sonic Adventure™ 2",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 213610,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/213610/header.jpg"
   },
   {
     "name": "Sons Of The Forest",
@@ -4972,30 +4829,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/24720/header.jpg"
   },
   {
-    "name": "S.T.A.L.K.E.R. 2: Heart of Chornobyl",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1643320,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1643320/header.jpg"
-  },
-  {
-    "name": "S.T.A.L.K.E.R.: Call of Pripyat",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": null,
-    "cover": null
-  },
-  {
-    "name": "STAR WARS™ Battlefront™ II",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1237950,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1237950/header.jpg"
-  },
-  {
     "name": "STAR WARS Jedi: Fallen Order™",
     "categories": [
       "OUTROS"
@@ -5010,6 +4843,14 @@
     ],
     "steam_appid": 1774580,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1774580/header.jpg"
+  },
+  {
+    "name": "STAR WARS™ Battlefront™ II",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1237950,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1237950/header.jpg"
   },
   {
     "name": "Stardew Valley",
@@ -5132,14 +4973,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2670630/header.jpg"
   },
   {
-    "name": "The Surge",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 644830,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/644830/header.jpg"
-  },
-  {
     "name": "SurrounDead",
     "categories": [
       "OUTROS"
@@ -5156,20 +4989,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1612770/header.jpg"
   },
   {
-    "name": "Sword Art Online: Fatal Bullet",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 626690,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/626690/header.jpg"
-  },
-  {
     "name": "SWORD ART ONLINE Fractured Daydream",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 1858630,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1858630/header.jpg"
+  },
+  {
+    "name": "Sword Art Online: Fatal Bullet",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 626690,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/626690/header.jpg"
   },
   {
     "name": "Tails of Iron",
@@ -5258,6 +5091,264 @@
     ],
     "steam_appid": 1249970,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1249970/header.jpg"
+  },
+  {
+    "name": "The Alters",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1601570,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1601570/header.jpg"
+  },
+  {
+    "name": "The Callisto Protocol",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1544020,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1544020/header.jpg"
+  },
+  {
+    "name": "The Coffin of Andy and Leyley",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 2378900,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2378900/header.jpg"
+  },
+  {
+    "name": "The Elder Scrolls III: Morrowind",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 22320,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22320/header.jpg"
+  },
+  {
+    "name": "The Elder Scrolls IV: Oblivion Game",
+    "categories": [
+      "RPG"
+    ],
+    "steam_appid": 22330,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22330/header.jpg"
+  },
+  {
+    "name": "The Elder Scrolls IV: Oblivion Remastered",
+    "categories": [
+      "RPG"
+    ],
+    "steam_appid": 2623190,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2623190/header.jpg"
+  },
+  {
+    "name": "The Elder Scrolls V: Skyrim",
+    "categories": [
+      "RPG"
+    ],
+    "steam_appid": 489830,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg"
+  },
+  {
+    "name": "The Elder Scrolls V: Skyrim Special Edition",
+    "categories": [
+      "RPG"
+    ],
+    "steam_appid": 489830,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg"
+  },
+  {
+    "name": "The Fisherman – Fishing Planet",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1072480,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1072480/header.jpg"
+  },
+  {
+    "name": "The Forest",
+    "categories": [
+      "TERROR",
+      "SOBREVIVÊNCIA"
+    ],
+    "steam_appid": 242760,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242760/header.jpg"
+  },
+  {
+    "name": "The Gunk",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1087760,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1087760/header.jpg"
+  },
+  {
+    "name": "The Hex",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 510420,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/510420/header.jpg"
+  },
+  {
+    "name": "The Incredible Adventures of Van Helsing",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 215530,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/215530/header.jpg"
+  },
+  {
+    "name": "The Inn-Sanity",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 2688570,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2688570/header.jpg"
+  },
+  {
+    "name": "The Last of Us™ Part I",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1888930,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1888930/header.jpg"
+  },
+  {
+    "name": "The Last of Us™ Part II Remastered",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 2531310,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg"
+  },
+  {
+    "name": "The Outer Worlds",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1449110,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1449110/header.jpg"
+  },
+  {
+    "name": "The Persistence",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1140100,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1140100/header.jpg"
+  },
+  {
+    "name": "The Precinct",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 490110,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/490110/header.jpg"
+  },
+  {
+    "name": "The Quarry",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1577120,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1577120/header.jpg"
+  },
+  {
+    "name": "The Room",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 288160,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/288160/header.jpg"
+  },
+  {
+    "name": "The Room 4: Old Sins",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1361320,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1361320/header.jpg"
+  },
+  {
+    "name": "The Room Three",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 456750,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/456750/header.jpg"
+  },
+  {
+    "name": "The Room Two",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 425580,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/425580/header.jpg"
+  },
+  {
+    "name": "The Surge",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 644830,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/644830/header.jpg"
+  },
+  {
+    "name": "The Walking Dead",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 207610,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/207610/header.jpg"
+  },
+  {
+    "name": "The Walking Dead: Season Two",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 261030,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/261030/header.jpg"
+  },
+  {
+    "name": "The Walking Dead: Survival Instinct",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": null,
+    "cover": null
+  },
+  {
+    "name": "The Walking Dead: The Telltale Definitive Series",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1449690,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg"
+  },
+  {
+    "name": "The Wandering Village",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1121640,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1121640/header.jpg"
+  },
+  {
+    "name": "The Witcher 2: Assassins of Kings Enhanced Edition",
+    "categories": [
+      "AÇÃO",
+      "RPG"
+    ],
+    "steam_appid": 20920,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/20920/header.jpg"
+  },
+  {
+    "name": "The Witcher 3: Wild Hunt",
+    "categories": [
+      "RPG"
+    ],
+    "steam_appid": 292030,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg"
   },
   {
     "name": "theHunter: Call of the Wild",
@@ -5516,14 +5607,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/892970/header.jpg"
   },
   {
-    "name": "A Valley Without Wind",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 209330,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/209330/header.jpg"
-  },
-  {
     "name": "Vampire Survivors",
     "categories": [
       "OUTROS"
@@ -5546,46 +5629,6 @@
     ],
     "steam_appid": 3112260,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3112260/header.jpg"
-  },
-  {
-    "name": "The Walking Dead",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 207610,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/207610/header.jpg"
-  },
-  {
-    "name": "The Walking Dead: Season Two",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 261030,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/261030/header.jpg"
-  },
-  {
-    "name": "The Walking Dead: Survival Instinct",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": null,
-    "cover": null
-  },
-  {
-    "name": "The Walking Dead: The Telltale Definitive Series",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1449690,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg"
-  },
-  {
-    "name": "The Wandering Village",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1121640,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1121640/header.jpg"
   },
   {
     "name": "Watch Dogs: Legion",
@@ -5620,14 +5663,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1288320/header.jpg"
   },
   {
-    "name": "A Way Out",
-    "categories": [
-      "COOPERATIVO"
-    ],
-    "steam_appid": 1222700,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1222700/header.jpg"
-  },
-  {
     "name": "Whispers from the Star",
     "categories": [
       "OUTROS"
@@ -5652,23 +5687,6 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1911610/header.jpg"
   },
   {
-    "name": "The Witcher 2: Assassins of Kings Enhanced Edition",
-    "categories": [
-      "AÇÃO",
-      "RPG"
-    ],
-    "steam_appid": 20920,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/20920/header.jpg"
-  },
-  {
-    "name": "The Witcher 3: Wild Hunt",
-    "categories": [
-      "RPG"
-    ],
-    "steam_appid": 292030,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg"
-  },
-  {
     "name": "Wizard of Legend 2",
     "categories": [
       "OUTROS"
@@ -5685,20 +5703,20 @@
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2270/header.jpg"
   },
   {
-    "name": "Wolfenstein: Cyberpilot",
-    "categories": [
-      "OUTROS"
-    ],
-    "steam_appid": 1056970,
-    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1056970/header.jpg"
-  },
-  {
     "name": "Wolfenstein II: The New Colossus",
     "categories": [
       "OUTROS"
     ],
     "steam_appid": 612880,
     "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/612880/header.jpg"
+  },
+  {
+    "name": "Wolfenstein: Cyberpilot",
+    "categories": [
+      "OUTROS"
+    ],
+    "steam_appid": 1056970,
+    "cover": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1056970/header.jpg"
   },
   {
     "name": "Wolfenstein: The New Order",
