@@ -81,12 +81,13 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </p>
 
             <div className="hero-actions">
-              <a href="#planos" className="hero-cta">
-                Garantir Meu Acesso
+              <a href="#planos" className="hero-cta" data-utmify-ignore data-no-track>
+                Ver Planos
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
+
 
               {/* Social Proof with Real Avatars */}
               <div className="social-proof">
