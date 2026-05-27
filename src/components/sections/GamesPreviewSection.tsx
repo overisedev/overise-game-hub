@@ -117,7 +117,7 @@ export function GamesPreviewSection({
             </div>
             
             <h2 className="content-title">
-              Mais de <span className="highlight">1000+</span> jogos<br />
+              Mais de <span className="highlight">40.000</span> jogos<br />
               para jogar
             </h2>
             
