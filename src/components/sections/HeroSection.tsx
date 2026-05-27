@@ -36,13 +36,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                   <div className="hero-card-overlay" />
                 </div>
 
-                {/* Nav Buttons */}
-                <button onClick={onPrev} className="feat-nav feat-prev">
-                  ‹
-                </button>
-                <button onClick={onNext} className="feat-nav feat-next">
-                  ›
-                </button>
+
+
 
                 {/* Info */}
                 <div className="hero-card-info">
@@ -124,13 +119,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 <div className="hero-card-overlay" />
               </div>
 
-              {/* Nav Buttons */}
-              <button onClick={onPrev} className="feat-nav feat-prev">
-                ‹
-              </button>
-              <button onClick={onNext} className="feat-nav feat-next">
-                ›
-              </button>
+
+
 
               {/* Info */}
               <div className="hero-card-info">
