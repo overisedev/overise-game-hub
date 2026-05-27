@@ -87,7 +87,7 @@ const InstagramCarousel = () => {
               </h1>
 
               <p className="slide-subtext">
-                Acesso a <span className="text-neon">+1000 jogos AAA</span> por uma fração do preço.
+                Acesso a <span className="text-neon">+40.000 jogos AAA</span> por uma fração do preço.
                 <br />
                 <strong>Baixe direto dos servidores oficiais.</strong>
               </p>
@@ -194,7 +194,7 @@ const InstagramCarousel = () => {
                   <rect x="2" y="6" width="20" height="12" rx="2"/>
                   <path d="M6 12h4M14 12h4"/>
                 </svg>
-                +1000 jogos
+                +40.000 jogos
               </div>
             </div>
 
@@ -339,7 +339,7 @@ const InstagramCarousel = () => {
                     <rect x="2" y="6" width="20" height="12" rx="2"/>
                     <path d="M6 12h4M14 12h4"/>
                   </svg>
-                  +1000 jogos
+                  +40.000 jogos
                 </div>
                 <div className="pill">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
