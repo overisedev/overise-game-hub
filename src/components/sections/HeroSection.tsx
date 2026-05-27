@@ -62,8 +62,8 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
             </div>
 
             <h1 className="hero-title">
-              <span className="accent">+1000 jogos famosos</span>
-              <span className="title-dlc">+ 150 DLCs Premium • Para PC</span>
+              <span className="accent">desbloqueie toda a sua steam</span>
+              <span className="title-dlc">+40.000 jogos no seu PC</span>
             </h1>
 
             {/* Price Display - Clean */}
