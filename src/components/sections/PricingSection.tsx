@@ -74,7 +74,7 @@ const PLANS: Plan[] = [
     price: "6",
     cents: ",25",
     installmentsPrefix: "10x R$",
-    cashNote: "No cartão ou R$ 49,97 à vista",
+    cashNote: "No cartão ou R$ 49,97 no Pix",
     tagline: "Pacote com 20.000 Jogos",
     features: [
       "20.000 jogos inclusos",
@@ -92,11 +92,11 @@ const PLANS: Plan[] = [
     name: "PLANO VITALÍCIO",
     badge: "MELHOR CUSTO-BENEFÍCIO",
     badgeTone: "green",
-    from: "R$ 1.499,00",
+    from: "R$ 199,97",
     price: "12",
     cents: ",50",
     installmentsPrefix: "10x R$",
-    cashNote: "No cartão ou R$ 125,00 à vista",
+    cashNote: "No cartão ou R$ 99,97 no Pix",
     tagline: "Liberar a Lista Toda",
     features: [
       "40.000 jogos liberados",
@@ -109,7 +109,7 @@ const PLANS: Plan[] = [
     ],
     cta: "DESBLOQUEAR TUDO",
     tone: "green",
-    value: 125.00,
+    value: 99.97,
   },
 ];
 
