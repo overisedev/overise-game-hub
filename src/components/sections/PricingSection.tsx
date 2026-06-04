@@ -26,7 +26,7 @@ function getUTMParams(): string {
 
 const CHECKOUT_URLS = {
   basico: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
-  avancado: "https://ggcheckout.app/checkout/v4/BvIb4ex53LM73mU3DJsX",
+  avancado: "https://ggcheckout.app/checkout/v5/7BjTvFU3irTLaoud6UIO",
   vitalicio: "https://ggcheckout.app/checkout/v5/pdDOCAlm20ZQxjUiglc3",
 };
 
@@ -38,6 +38,8 @@ type Plan = {
   from: string;
   price: string;
   cents: string;
+  installmentsPrefix?: string;
+  cashNote?: string;
   tagline: string;
   features: string[];
   cta: string;
@@ -50,7 +52,7 @@ const PLANS: Plan[] = [
     id: "basico",
     name: "PLANO BÁSICO",
     from: "R$ 29,97",
-    price: "9",
+    price: "19",
     cents: ",97",
     tagline: "Pacote com 1000 Jogos",
     features: [
@@ -61,16 +63,18 @@ const PLANS: Plan[] = [
     ],
     cta: "ESCOLHER BÁSICO",
     tone: "blue",
-    value: 9.97,
+    value: 19.97,
   },
   {
     id: "avancado",
     name: "PLANO AVANÇADO",
     badge: "MAIS VENDIDO",
     badgeTone: "red",
-    from: "R$ 49,97",
-    price: "19",
-    cents: ",97",
+    from: "R$ 97,00",
+    price: "6",
+    cents: ",25",
+    installmentsPrefix: "10x R$",
+    cashNote: "ou R$ 49,97 à vista",
     tagline: "Pacote com 20.000 Jogos",
     features: [
       "20.000 jogos inclusos",
@@ -81,16 +85,18 @@ const PLANS: Plan[] = [
     ],
     cta: "QUERO ESSE",
     tone: "red",
-    value: 19.97,
+    value: 49.97,
   },
   {
     id: "vitalicio",
     name: "PLANO VITALÍCIO",
     badge: "MELHOR CUSTO-BENEFÍCIO",
     badgeTone: "green",
-    from: "R$ 120,97",
-    price: "49",
+    from: "R$ 1.499,00",
+    price: "99",
     cents: ",97",
+    installmentsPrefix: "10x R$",
+    cashNote: "ou R$ 999,70 à vista",
     tagline: "Liberar a Lista Toda",
     features: [
       "40.000 jogos liberados",
@@ -103,7 +109,7 @@ const PLANS: Plan[] = [
     ],
     cta: "DESBLOQUEAR TUDO",
     tone: "green",
-    value: 49.97,
+    value: 999.70,
   },
 ];
 
@@ -159,12 +165,12 @@ export function PricingSection() {
               <span className="plan-from">de <s>{plan.from}</s></span>
 
               <div className={`plan-price plan-price-${plan.tone}`}>
-                <span className="plan-currency">R$</span>
+                <span className="plan-currency">{plan.installmentsPrefix ?? "R$"}</span>
                 <span className="plan-value">{plan.price}</span>
                 <span className="plan-cents">{plan.cents}</span>
               </div>
 
-              <span className="plan-tax">TAXA ÚNICA</span>
+              <span className="plan-tax">{plan.cashNote ?? "TAXA ÚNICA"}</span>
 
               <p className="plan-tagline">{plan.tagline}</p>
 
