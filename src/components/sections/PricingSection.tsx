@@ -162,7 +162,10 @@ export function PricingSection() {
               )}
 
               <h3 className="plan-name">{plan.name}</h3>
-              <span className="plan-from">de <s>{plan.from}</s></span>
+
+              <div className="plan-promo">
+                <span>DE <s>{plan.from}</s> POR APENAS</span>
+              </div>
 
               <div className={`plan-price plan-price-${plan.tone}`}>
                 <span className="plan-currency">{plan.installmentsPrefix ?? "R$"}</span>
@@ -170,7 +173,7 @@ export function PricingSection() {
                 <span className="plan-cents">{plan.cents}</span>
               </div>
 
-              <span className="plan-tax">{plan.cashNote ?? "TAXA ÚNICA"}</span>
+              <span className="plan-tax">{plan.cashNote ?? "PAGAMENTO ÚNICO"}</span>
 
               <p className="plan-tagline">{plan.tagline}</p>
 
