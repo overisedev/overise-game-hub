@@ -167,8 +167,11 @@ export function PricingSection() {
                 <span>DE <s>{plan.from}</s> POR APENAS</span>
               </div>
 
+              {plan.installmentsPrefix && (
+                <span className={`plan-installments plan-price-${plan.tone}`}>{plan.installmentsPrefix.replace(" R$", "")}</span>
+              )}
               <div className={`plan-price plan-price-${plan.tone}`}>
-                <span className="plan-currency">{plan.installmentsPrefix ?? "R$"}</span>
+                <span className="plan-currency">R$</span>
                 <span className="plan-value">{plan.price}</span>
                 <span className="plan-cents">{plan.cents}</span>
               </div>
