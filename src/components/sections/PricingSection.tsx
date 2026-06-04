@@ -305,6 +305,15 @@ export function PricingSection() {
           margin: 0 0 14px;
           text-transform: uppercase;
         }
+        .plan-installments {
+          display: block;
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 28px;
+          font-weight: 900;
+          letter-spacing: 1px;
+          line-height: 1;
+          margin-bottom: 4px;
+        }
         .plan-promo {
           font-family: 'Barlow Condensed', sans-serif;
           font-size: 14px;
