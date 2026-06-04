@@ -347,13 +347,13 @@ export function PricingSection() {
         .plan-price-green{ color: #39ff14; filter: drop-shadow(0 0 30px rgba(57,255,20,.3)); }
 
         .plan-tax {
-          font-size: 11px;
-          font-weight: 800;
-          color: rgba(255,255,255,.7);
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-top: 4px;
+          font-size: 12px;
+          font-weight: 700;
+          color: rgba(255,255,255,.75);
+          letter-spacing: .5px;
+          margin-top: 6px;
           margin-bottom: 18px;
+          text-align: center;
         }
 
         .plan-tagline {
