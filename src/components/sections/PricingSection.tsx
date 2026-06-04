@@ -74,7 +74,7 @@ const PLANS: Plan[] = [
     price: "6",
     cents: ",25",
     installmentsPrefix: "10x R$",
-    cashNote: "ou R$ 49,97 à vista",
+    cashNote: "No cartão ou R$ 49,97 à vista",
     tagline: "Pacote com 20.000 Jogos",
     features: [
       "20.000 jogos inclusos",
@@ -93,10 +93,10 @@ const PLANS: Plan[] = [
     badge: "MELHOR CUSTO-BENEFÍCIO",
     badgeTone: "green",
     from: "R$ 1.499,00",
-    price: "99",
-    cents: ",97",
+    price: "12",
+    cents: ",50",
     installmentsPrefix: "10x R$",
-    cashNote: "ou R$ 999,70 à vista",
+    cashNote: "No cartão ou R$ 125,00 à vista",
     tagline: "Liberar a Lista Toda",
     features: [
       "40.000 jogos liberados",
@@ -109,7 +109,7 @@ const PLANS: Plan[] = [
     ],
     cta: "DESBLOQUEAR TUDO",
     tone: "green",
-    value: 999.70,
+    value: 125.00,
   },
 ];
 
@@ -162,7 +162,10 @@ export function PricingSection() {
               )}
 
               <h3 className="plan-name">{plan.name}</h3>
-              <span className="plan-from">de <s>{plan.from}</s></span>
+
+              <div className="plan-promo">
+                <span>DE <s>{plan.from}</s> POR APENAS</span>
+              </div>
 
               <div className={`plan-price plan-price-${plan.tone}`}>
                 <span className="plan-currency">{plan.installmentsPrefix ?? "R$"}</span>
@@ -170,7 +173,7 @@ export function PricingSection() {
                 <span className="plan-cents">{plan.cents}</span>
               </div>
 
-              <span className="plan-tax">{plan.cashNote ?? "TAXA ÚNICA"}</span>
+              <span className="plan-tax">{plan.cashNote ?? "PAGAMENTO ÚNICO"}</span>
 
               <p className="plan-tagline">{plan.tagline}</p>
 
@@ -299,13 +302,23 @@ export function PricingSection() {
           margin: 0 0 14px;
           text-transform: uppercase;
         }
-        .plan-from {
-          font-size: 13px;
-          color: rgba(255,255,255,.5);
-          font-weight: 500;
-          margin-bottom: 6px;
+        .plan-promo {
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 14px;
+          font-weight: 800;
+          letter-spacing: 1.5px;
+          color: rgba(255,255,255,.85);
+          text-transform: uppercase;
+          margin-bottom: 8px;
+          text-align: center;
         }
-        .plan-from s { text-decoration: line-through; }
+        .plan-promo s {
+          color: #ff4d4d;
+          text-decoration: line-through;
+          text-decoration-color: #ff4d4d;
+          text-decoration-thickness: 2px;
+          margin: 0 4px;
+        }
 
         .plan-price {
           display: flex;
@@ -334,13 +347,13 @@ export function PricingSection() {
         .plan-price-green{ color: #39ff14; filter: drop-shadow(0 0 30px rgba(57,255,20,.3)); }
 
         .plan-tax {
-          font-size: 11px;
-          font-weight: 800;
-          color: rgba(255,255,255,.7);
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-top: 4px;
+          font-size: 12px;
+          font-weight: 700;
+          color: rgba(255,255,255,.75);
+          letter-spacing: .5px;
+          margin-top: 6px;
           margin-bottom: 18px;
+          text-align: center;
         }
 
         .plan-tagline {
