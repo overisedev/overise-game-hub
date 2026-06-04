@@ -302,13 +302,23 @@ export function PricingSection() {
           margin: 0 0 14px;
           text-transform: uppercase;
         }
-        .plan-from {
-          font-size: 13px;
-          color: rgba(255,255,255,.5);
-          font-weight: 500;
-          margin-bottom: 6px;
+        .plan-promo {
+          font-family: 'Barlow Condensed', sans-serif;
+          font-size: 14px;
+          font-weight: 800;
+          letter-spacing: 1.5px;
+          color: rgba(255,255,255,.85);
+          text-transform: uppercase;
+          margin-bottom: 8px;
+          text-align: center;
         }
-        .plan-from s { text-decoration: line-through; }
+        .plan-promo s {
+          color: #ff4d4d;
+          text-decoration: line-through;
+          text-decoration-color: #ff4d4d;
+          text-decoration-thickness: 2px;
+          margin: 0 4px;
+        }
 
         .plan-price {
           display: flex;
