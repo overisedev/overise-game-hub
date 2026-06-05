@@ -25,8 +25,8 @@ function getUTMParams(): string {
 }
 
 const CHECKOUT_URLS = {
-  basico: "https://www.ggcheckout.com/checkout/v5/6Ed9FJE8HXebnxREUKCQ",
-  avancado: "https://ggcheckout.app/checkout/v5/7BjTvFU3irTLaoud6UIO",
+  basico: "https://www.ggcheckout.com/checkout/v4/6Ed9FJE8HXebnxREUKCQ",
+  avancado: "https://ggcheckout.app/checkout/v4/BvIb4ex53LM73mU3DJsX",
   vitalicio: "https://ggcheckout.app/checkout/v5/pdDOCAlm20ZQxjUiglc3",
 };
 
@@ -38,8 +38,6 @@ type Plan = {
   from: string;
   price: string;
   cents: string;
-  installmentsPrefix?: string;
-  cashNote?: string;
   tagline: string;
   features: string[];
   cta: string;
@@ -52,7 +50,7 @@ const PLANS: Plan[] = [
     id: "basico",
     name: "PLANO BÁSICO",
     from: "R$ 29,97",
-    price: "19",
+    price: "9",
     cents: ",97",
     tagline: "Pacote com 1000 Jogos",
     features: [
@@ -63,17 +61,16 @@ const PLANS: Plan[] = [
     ],
     cta: "ESCOLHER BÁSICO",
     tone: "blue",
-    value: 19.97,
+    value: 9.97,
   },
   {
     id: "avancado",
     name: "PLANO AVANÇADO",
     badge: "MAIS VENDIDO",
     badgeTone: "red",
-    from: "R$ 97,00",
-    price: "49",
+    from: "R$ 49,97",
+    price: "19",
     cents: ",97",
-    cashNote: "no Pix · ou 10x R$ 6,25 no cartão",
     tagline: "Pacote com 20.000 Jogos",
     features: [
       "20.000 jogos inclusos",
@@ -84,17 +81,16 @@ const PLANS: Plan[] = [
     ],
     cta: "QUERO ESSE",
     tone: "red",
-    value: 49.97,
+    value: 19.97,
   },
   {
     id: "vitalicio",
     name: "PLANO VITALÍCIO",
     badge: "MELHOR CUSTO-BENEFÍCIO",
     badgeTone: "green",
-    from: "R$ 199,97",
-    price: "79",
+    from: "R$ 120,97",
+    price: "49",
     cents: ",97",
-    cashNote: "no Pix · ou 10x R$ 10,00 no cartão",
     tagline: "Liberar a Lista Toda",
     features: [
       "40.000 jogos liberados",
@@ -107,7 +103,7 @@ const PLANS: Plan[] = [
     ],
     cta: "DESBLOQUEAR TUDO",
     tone: "green",
-    value: 99.97,
+    value: 49.97,
   },
 ];
 
@@ -160,21 +156,15 @@ export function PricingSection() {
               )}
 
               <h3 className="plan-name">{plan.name}</h3>
-
-              <div className="plan-promo">
-                <span>DE <s>{plan.from}</s> POR APENAS</span>
-              </div>
+              <span className="plan-from">de <s>{plan.from}</s></span>
 
               <div className={`plan-price plan-price-${plan.tone}`}>
-                {plan.installmentsPrefix && (
-                  <span className="plan-installments">{plan.installmentsPrefix.replace(" R$", "")}</span>
-                )}
                 <span className="plan-currency">R$</span>
                 <span className="plan-value">{plan.price}</span>
                 <span className="plan-cents">{plan.cents}</span>
               </div>
 
-              <span className="plan-tax">{plan.cashNote ?? "PAGAMENTO ÚNICO"}</span>
+              <span className="plan-tax">TAXA ÚNICA</span>
 
               <p className="plan-tagline">{plan.tagline}</p>
 
@@ -303,32 +293,13 @@ export function PricingSection() {
           margin: 0 0 14px;
           text-transform: uppercase;
         }
-        .plan-installments {
-          font-family: 'Barlow Condensed', sans-serif;
-          font-size: 36px;
-          font-weight: 900;
-          letter-spacing: 0;
-          line-height: 1;
-          margin-right: 8px;
-          align-self: center;
+        .plan-from {
+          font-size: 13px;
+          color: rgba(255,255,255,.5);
+          font-weight: 500;
+          margin-bottom: 6px;
         }
-        .plan-promo {
-          font-family: 'Barlow Condensed', sans-serif;
-          font-size: 14px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
-          color: rgba(255,255,255,.85);
-          text-transform: uppercase;
-          margin-bottom: 8px;
-          text-align: center;
-        }
-        .plan-promo s {
-          color: #ff4d4d;
-          text-decoration: line-through;
-          text-decoration-color: #ff4d4d;
-          text-decoration-thickness: 2px;
-          margin: 0 4px;
-        }
+        .plan-from s { text-decoration: line-through; }
 
         .plan-price {
           display: flex;
@@ -357,13 +328,13 @@ export function PricingSection() {
         .plan-price-green{ color: #39ff14; filter: drop-shadow(0 0 30px rgba(57,255,20,.3)); }
 
         .plan-tax {
-          font-size: 12px;
-          font-weight: 700;
-          color: rgba(255,255,255,.75);
-          letter-spacing: .5px;
-          margin-top: 6px;
+          font-size: 11px;
+          font-weight: 800;
+          color: rgba(255,255,255,.7);
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          margin-top: 4px;
           margin-bottom: 18px;
-          text-align: center;
         }
 
         .plan-tagline {
