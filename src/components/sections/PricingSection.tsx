@@ -92,9 +92,9 @@ const PLANS: Plan[] = [
     badge: "MELHOR CUSTO-BENEFÍCIO",
     badgeTone: "green",
     from: "R$ 199,97",
-    price: "99",
+    price: "79",
     cents: ",97",
-    cashNote: "no Pix · ou 10x R$ 12,50 no cartão",
+    cashNote: "no Pix · ou 10x R$ 10,00 no cartão",
     tagline: "Liberar a Lista Toda",
     features: [
       "40.000 jogos liberados",
