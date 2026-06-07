@@ -25,7 +25,7 @@ function getUTMParams(): string {
 }
 
 const CHECKOUT_URLS = {
-  basico: "https://www.ggcheckout.com/checkout/v5/6Ed9FJE8HXebnxREUKCQ",
+  basico: "https://ggcheckout.app/checkout/v5/C2TsYSeOioDeW1qtwYBZ",
   avancado: "https://ggcheckout.app/checkout/v5/BvIb4ex53LM73mU3DJsX",
   vitalicio: "https://ggcheckout.app/checkout/v5/pdDOCAlm20ZQxjUiglc3",
 };
