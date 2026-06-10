@@ -124,7 +124,7 @@ export function useGames() {
   }, []);
 
   // Jogos prioritários (aparecem primeiro no hero, nessa ordem)
-  const PRIORITY_APPIDS = [2215200, 2483190, 3764200]; // Lego Batman, Forza Horizon 6, RE Requiem
+  const PRIORITY_APPIDS = [3768760, 2215200, 2483190, 3764200]; // 007 First Light, Lego Batman, Forza Horizon 6, RE Requiem
 
   // Filtrar jogos AAA e manter apenas 1 por franquia
   const aaaGames = useMemo(() => {

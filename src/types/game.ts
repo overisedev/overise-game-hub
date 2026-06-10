@@ -13,6 +13,7 @@ export const CATEGORIES = [
 
 // Jogos principais das franquias (sem sequências)
 export const AAA_GAME_NAMES = [
+  '007 First Light',
   'Baldur\'s Gate 3',
   'Cyberpunk 2077',
   'Dark Souls III',
