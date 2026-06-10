@@ -1,5 +1,13 @@
 [
   {
+    "name": "007 First Light",
+    "categories": [
+      "AÇÃO"
+    ],
+    "steam_appid": 3768760,
+    "cover": "https://steamcdn-a.akamaihd.net/steam/apps/3768760/library_hero.jpg"
+  },
+  {
     "name": "171",
     "categories": [
       "OUTROS"
