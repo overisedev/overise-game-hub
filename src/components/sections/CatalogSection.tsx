@@ -23,6 +23,8 @@ export function CatalogSection({
   const [showFullCatalog, setShowFullCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [fullCatalogPage, setFullCatalogPage] = useState(0);
+  const [fullCatalog, setFullCatalog] = useState<Game[] | null>(null);
+  const [loadingFull, setLoadingFull] = useState(false);
 
   const filteredGames = useMemo(() => {
     if (!selectedCategory) return games;
@@ -92,18 +94,34 @@ export function CatalogSection({
     setShowcaseIndex(0);
   }, [selectedCategory]);
 
-  // Full catalog search
+  // Carrega o catálogo COMPLETO (40k) sob demanda, ao abrir o modal (mantém a home leve)
+  useEffect(() => {
+    if (showFullCatalog && !fullCatalog && !loadingFull) {
+      setLoadingFull(true);
+      fetch('/data/catalog_full.json')
+        .then((r) => r.json())
+        .then((data: Game[]) => setFullCatalog(data))
+        .catch(() => setFullCatalog(games))
+        .finally(() => setLoadingFull(false));
+    }
+  }, [showFullCatalog, fullCatalog, loadingFull, games]);
+
+  const catalogSource = fullCatalog || games;
+
+  // Full catalog search (sobre o catálogo completo)
   const fullCatalogGames = useMemo(() => {
-    const base = selectedCategory ? getGamesByCategory(selectedCategory) : games;
+    let base = catalogSource;
+    if (selectedCategory) {
+      base = base.filter((g) => g.categories?.some((c) => c.toUpperCase() === selectedCategory.toUpperCase()));
+    }
     if (!searchQuery.trim()) return base;
     const q = searchQuery.toLowerCase().trim();
-    return base.filter(g => g.name.toLowerCase().includes(q));
-  }, [searchQuery, selectedCategory, games, getGamesByCategory]);
+    return base.filter((g) => g.name.toLowerCase().includes(q));
+  }, [searchQuery, selectedCategory, catalogSource]);
 
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 24;
   const paginatedGames = useMemo(() => {
-    const start = fullCatalogPage * ITEMS_PER_PAGE;
-    return fullCatalogGames.slice(start, start + ITEMS_PER_PAGE);
+    return fullCatalogGames.slice(0, (fullCatalogPage + 1) * ITEMS_PER_PAGE);
   }, [fullCatalogGames, fullCatalogPage]);
 
   const hasMore = (fullCatalogPage + 1) * ITEMS_PER_PAGE < fullCatalogGames.length;
@@ -166,7 +184,20 @@ export function CatalogSection({
                   onClick={() => onOpenDetails(game)}
                 >
                   <div className="game-img">
-                    <img src={game.cover} alt={game.name} loading="lazy" />
+                    <img
+                      src={game.cover}
+                      alt={game.name}
+                      loading="lazy"
+                      onError={(e) => {
+                        const t = e.target as HTMLImageElement;
+                        if (!t.dataset.fb) {
+                          t.dataset.fb = '1';
+                          t.src = `https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steam_appid}/library_hero.jpg`;
+                        } else {
+                          t.style.opacity = '0';
+                        }
+                      }}
+                    />
                     <div className="game-grad" />
                   </div>
                   <div className="game-info">
@@ -213,7 +244,11 @@ export function CatalogSection({
               <div className="full-top">
                 <div>
                   <h3 className="full-title">Catálogo completo</h3>
-                  <p className="full-sub">Pesquise pelo nome e clique para ver detalhes.</p>
+                  <p className="full-sub">
+                    {loadingFull
+                      ? 'Carregando catálogo completo...'
+                      : <><b>{fullCatalogGames.length.toLocaleString('pt-BR')}</b> jogos · mostrando {paginatedGames.length}</>}
+                  </p>
                 </div>
                 <div className="full-search">
                   <span className="full-search-icon"><Search size={16} /></span>
@@ -249,8 +284,13 @@ export function CatalogSection({
                           alt={game.name} 
                           loading="lazy"
                           onError={(e) => {
-                            const target = e.target as HTMLImageElement;
-                            target.style.opacity = '0';
+                            const t = e.target as HTMLImageElement;
+                            if (!t.dataset.fb) {
+                              t.dataset.fb = '1';
+                              t.src = `https://cdn.cloudflare.steamstatic.com/steam/apps/${game.steam_appid}/library_hero.jpg`;
+                            } else {
+                              t.style.opacity = '0';
+                            }
                           }}
                         />
                         <div className="full-card-grad" />
