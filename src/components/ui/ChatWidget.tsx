@@ -20,23 +20,23 @@ interface ChatOption {
 const FAQ_OPTIONS: ChatOption[] = [
   {
     label: "Qual o preço do acesso?",
-    response: "O acesso vitalício custa apenas R$39,99 por um pagamento único! Você terá acesso a mais de 6.500 jogos para sempre, sem mensalidades."
+    response: "Temos 3 planos, todos com pagamento ÚNICO (sem mensalidade): Básico por R$9 (1.000 jogos), Avançado por R$19 (20.000 jogos) e Vitalício por R$49 (40.000 jogos + você recebe os lançamentos pra sempre). É só escolher o seu na seção Planos! 🎮"
   },
   {
     label: "Como funciona o desbloqueio?",
-    response: "Após a compra, você recebe acesso imediato à sua conta Steam desbloqueada. Basta fazer login no seu PC e todos os jogos estarão disponíveis para baixar e jogar!"
+    response: "Bem simples: depois da compra você baixa o app da OVERISE, faz login com o email que usou na compra e clica em Desbloquear. Em poucos minutos os jogos aparecem na SUA Steam, prontos pra baixar e jogar — tudo automático, no seu próprio PC! 🚀"
   },
   {
     label: "Funciona em qualquer PC?",
-    response: "Sim! Funciona em qualquer computador Windows. Basta ter a Steam instalada e fazer login com a conta desbloqueada."
+    response: "Sim! Funciona em qualquer PC com Windows e a Steam instalada. É só baixar o app, logar com seu email e desbloquear. ✅"
   },
   {
     label: "É seguro? Tem garantia?",
-    response: "100% seguro! Oferecemos garantia de 7 dias. Se não gostar, devolvemos seu dinheiro sem perguntas. Mais de 50 mil clientes satisfeitos!"
+    response: "100% seguro e com garantia de 7 dias — se não curtir, devolvemos seu dinheiro, sem perguntas. Já são milhares de clientes jogando! 🛡️"
   },
   {
     label: "Recebo na hora?",
-    response: "Sim! O acesso é liberado automaticamente após a confirmação do pagamento. Em poucos minutos você já estará jogando!"
+    response: "Sim! Assim que o pagamento é confirmado, seu acesso é liberado na hora. Em poucos minutos você já está desbloqueando os jogos. ⚡"
   }
 ];
 
@@ -46,7 +46,7 @@ export function ChatWidget() {
     {
       id: 1,
       type: 'bot',
-      content: "Olá! Sou o assistente da Overise. Tem alguma dúvida sobre o pacote de jogos? Estou aqui para ajudar!",
+      content: "Olá! 👋 Sou o assistente da OVERISE. Posso te ajudar com preços, como funciona o desbloqueio, garantia e mais. Como posso ajudar?",
     },
     {
       id: 2,
@@ -116,7 +116,7 @@ export function ChatWidget() {
       type: 'bot',
       content: "Obrigado pela sua mensagem! Para uma resposta mais rápida, escolha uma das opções abaixo ou acesse nosso suporte no WhatsApp.",
       options: [
-        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5511999999999", response: "" },
+        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5568999215897", response: "" },
         ...FAQ_OPTIONS.slice(0, 3)
       ]
     };
@@ -357,31 +357,32 @@ export function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Toggle Button */}
+      {/* Toggle Button — círculo discreto (dark glassy + verde sutil), abre o assistente */}
       <motion.button
         onClick={toggleChat}
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.95 }}
-        className="w-[60px] h-[60px] rounded-2xl flex items-center justify-center cursor-pointer border-none relative"
+        className="w-[56px] h-[56px] rounded-full flex items-center justify-center cursor-pointer border-none relative ml-auto"
         style={{
-          background: 'linear-gradient(135deg, #00FF41 0%, #00cc33 100%)',
-          boxShadow: '0 6px 25px rgba(0, 255, 65, 0.4)',
-          color: '#000'
+          background: 'rgba(13, 15, 14, 0.92)',
+          border: '1.5px solid rgba(0, 255, 65, 0.32)',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.5), 0 0 14px rgba(0,255,65,0.1)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
+          color: '#00FF41'
         }}
       >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
-        
-        {/* Notification Badge - Simple dot */}
+        {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
+        {/* indicador online discreto */}
         {showBadge && !isOpen && (
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 w-4 h-4 rounded-full"
+            className="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full"
             style={{
-              background: '#FF3B3B',
-              border: '3px solid #0a0a0a',
-              boxShadow: '0 0 10px rgba(255, 59, 59, 0.5)',
-              animation: 'pulse 2s infinite'
+              background: '#00FF41',
+              border: '2px solid #0a0a0a',
+              boxShadow: '0 0 8px rgba(0, 255, 65, 0.6)'
             }}
           />
         )}
