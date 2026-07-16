@@ -116,7 +116,7 @@ export function ChatWidget() {
       type: 'bot',
       content: "Obrigado pela sua mensagem! Para uma resposta mais rápida, escolha uma das opções abaixo ou acesse nosso suporte no WhatsApp.",
       options: [
-        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5568999215892", response: "" },
+        { label: "Falar no WhatsApp", isCTA: true, ctaLink: "https://wa.me/5568999215897", response: "" },
         ...FAQ_OPTIONS.slice(0, 3)
       ]
     };
