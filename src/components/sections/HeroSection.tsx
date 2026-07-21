@@ -68,7 +68,6 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
             {/* Price Display - Clean */}
             <div className="hero-price">
-              <span className="price-from">
               <span className="price-now">por R$ 9,97</span>
             </div>
 
