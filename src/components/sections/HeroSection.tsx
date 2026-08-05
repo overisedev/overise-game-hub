@@ -68,13 +68,13 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
 
             {/* Price Display - Clean */}
             <div className="hero-price">
-              <span className="price-now">por R$ 9,97</span>
+              <span className="price-now">a partir de R$ 9,97</span>
             </div>
 
             <p className="hero-sub">
-              A maior biblioteca do Brasil direto na sua Steam.
+              Pague uma vez, sem mensalidade.
               <br />
-              Entrega Instantânea e Automatizada. Exclusivo para PC.
+              Jogos originais baixados pela própria Steam, sem vírus e sem site estranho.
             </p>
 
             <div className="hero-actions">

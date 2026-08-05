@@ -3,6 +3,7 @@ import { useGames } from '@/hooks/useGames';
 import { Header } from '@/components/layout/Header';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { GamesPreviewSection } from '@/components/sections/GamesPreviewSection';
+import { FazAsContasSection } from '@/components/sections/FazAsContasSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { CatalogSection } from '@/components/sections/CatalogSection';
 import { AboutSection } from '@/components/sections/AboutSection';
@@ -86,7 +87,9 @@ const Index = () => {
         totalGames={totalGames}
         onOpenDetails={setSelectedGame}
       />
-      
+
+      <FazAsContasSection />
+
       <HowItWorksSection />
       
       <CatalogSection 
@@ -98,7 +101,7 @@ const Index = () => {
       />
       
       <AboutSection />
-      
+
       <TestimonialsSection />
       
       <PricingSection />

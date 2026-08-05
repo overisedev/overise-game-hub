@@ -124,7 +124,7 @@ export function useGames() {
   }, []);
 
   // Jogos prioritários (aparecem primeiro no hero, nessa ordem)
-  const PRIORITY_APPIDS = [2001760, 3321460, 1174180, 2483190, 3764200, 2840770]; // Beast, Crimson Desert, RDR2, Forza Horizon 6, RE Requiem, Avatar
+  const PRIORITY_APPIDS = [2483190, 3321460, 2001760, 1174180, 3764200, 2840770]; // Forza Horizon 6, Crimson Desert, Beast, RDR2, RE Requiem, Avatar
 
   // Filtrar jogos AAA e manter apenas 1 por franquia
   const aaaGames = useMemo(() => {
