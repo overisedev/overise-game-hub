@@ -27,7 +27,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
                 <div className="hero-card-glow" />
                 <div className="hero-card-media">
                   <img
-                    src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
+                    src={featuredGame.hero || `https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
                     alt={featuredGame.name}
                     onError={(e) => {
                       e.currentTarget.src = featuredGame.cover;
@@ -108,7 +108,7 @@ export function HeroSection({ featuredGame, isTransitioning, onPrev, onNext, onO
               <div className="hero-card-glow" />
               <div className="hero-card-media">
                 <img
-                  src={`https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
+                  src={featuredGame.hero || `https://steamcdn-a.akamaihd.net/steam/apps/${featuredGame.steam_appid}/library_hero.jpg`}
                   alt={featuredGame.name}
                   onError={(e) => {
                     e.currentTarget.src = featuredGame.cover;

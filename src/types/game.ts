@@ -3,6 +3,7 @@ export interface Game {
   categories: string[];
   steam_appid: number;
   cover: string;
+  hero?: string;
 }
 
 export const CATEGORIES = [
@@ -26,6 +27,10 @@ export const AAA_GAME_NAMES = [
   'LEGO Batman: Legacy of the Dark Knight',
   'Forza Horizon 6',
   'Resident Evil Requiem',
+  'Red Dead Redemption 2',
+  'Crimson Desert',
+  'Avatar: Frontiers of Pandora',
+  'Beast of Reincarnation',
 ];
 
 // Atalhos de busca
