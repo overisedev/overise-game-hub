@@ -23,7 +23,7 @@ export function FazAsContasSection() {
           <div className="fc-punch">
             <div className="fc-punch-glow" />
             <p className="fc-punch-big">
-              A lista inteira, e mais de 40.000 jogos, por <span className="neon">R$ 49,97</span>.
+              A lista inteira, e mais de 40.000 jogos, por <span className="neon">R$ 99,97</span>.
             </p>
             <p className="fc-punch-sub">Uma vez. Pra sempre. Sem mensalidade. Sem pagar de novo no próximo lançamento.</p>
             <a href="#planos" className="fc-cta">Liberar minha Steam</a>
