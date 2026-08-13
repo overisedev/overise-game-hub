@@ -132,11 +132,6 @@ export function PricingSection() {
           </div>
         </motion.div>
 
-        <div className="pricing-compare">
-          A mesma biblioteca que a concorrência cobra <b className="old">R$ 297</b> no premium.
-          Aqui, tudo por <b className="new">R$ 99,97</b>.
-        </div>
-
         <div className="pricing-grid pricing-grid-2">
           {PLANS.map((plan, i) => (
             <motion.div
@@ -201,15 +196,7 @@ export function PricingSection() {
         .pricing-timer { display: inline-flex; align-items: center; gap: 9px; margin-top: 20px; font-size: 14px; color: rgba(255,255,255,.7); font-weight: 600; }
         .pricing-timer .pt-clock { font-family: 'Sora', monospace; font-weight: 900; color: #fff; letter-spacing: 2px; background: rgba(0,0,0,.6); border: 1px solid rgba(0,255,65,.3); padding: 4px 12px; border-radius: 8px; }
 
-        .pricing-compare {
-          max-width: 720px; margin: 0 auto 40px; text-align: center; font-size: 15px; font-weight: 500;
-          color: rgba(255,255,255,.75); background: rgba(255,255,255,.03); border: 1px solid var(--border);
-          border-radius: 14px; padding: 14px 22px;
-        }
-        .pricing-compare .old { color: #ff8a8a; text-decoration: line-through; font-weight: 800; }
-        .pricing-compare .new { color: var(--neon); font-weight: 900; }
-
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1140px; margin: 0 auto; align-items: stretch; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1140px; margin: 40px auto 0; align-items: stretch; }
         .pricing-grid-2 { grid-template-columns: repeat(2, 1fr); max-width: 820px; }
 
         .plan-card {
