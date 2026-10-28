@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import type { Game } from '@/types/game';
-import { CATEGORIES } from '@/types/game';
+import { CATEGORIES, findGameByName } from '@/types/game';
 
 interface CatalogSectionProps {
   games: Game[];
@@ -11,12 +11,12 @@ interface CatalogSectionProps {
   onOpenDetails: (game: Game) => void;
 }
 
-export function CatalogSection({ 
-  games, 
+export function CatalogSection({
+  games,
   totalGames,
-  getGamesByCategory, 
+  getGamesByCategory,
   searchGames,
-  onOpenDetails 
+  onOpenDetails
 }: CatalogSectionProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [showcaseIndex, setShowcaseIndex] = useState(0);
@@ -33,31 +33,28 @@ export function CatalogSection({
 
   // Lista fixa de jogos para a vitrine rotativa (sem GTA V Legacy)
   const SHOWCASE_GAME_NAMES = [
-    'The Witcher 3: Wild Hunt',
-    'Sekiro: Shadows Die Twice',
-    'Dark Souls III',
-    'Horizon Forbidden West',
-    'Detroit: Become Human',
-    "Assassin's Creed Valhalla",
-    'Red Dead Redemption 2',
-    'ELDEN RING',
-    'Cyberpunk 2077',
-    'God of War Ragnarök',
-    'The Last of Us Part I',
-    "Baldur's Gate 3",
-    'Hogwarts Legacy',
-    'Forza Horizon 5',
-    'Counter-Strike 2',
+    "DEATH STRANDING 2: ON THE BEACH",
+    "Stellar Blade™",
+    "Mafia: The Old Country",
+    "NINJA GAIDEN 4",
+    "Dying Light: The Beast",
+    "ELDEN RING NIGHTREIGN",
+    "Borderlands 4",
+    "Indiana Jones and the Great Circle",
+    "TEKKEN 8",
+    "NBA 2K26",
+    "The Last of Us Part II Remastered",
+    "Black Myth: Wukong",
+    "Monster Hunter Wilds",
+    "Ghost of Tsushima DIRECTOR'S CUT",
+    "Red Dead Redemption 2",
   ];
 
   // Filtra apenas os jogos da lista de showcase
   const showcasePool = useMemo(() => {
-    const pool = games.filter(game => 
-      SHOWCASE_GAME_NAMES.some(name => 
-        game.name.toLowerCase().includes(name.toLowerCase()) ||
-        name.toLowerCase().includes(game.name.toLowerCase())
-      )
-    );
+    const pool = SHOWCASE_GAME_NAMES
+      .map((name) => findGameByName(games, name))
+      .filter((g): g is Game => !!g);
     // Embaralha aleatoriamente
     const shuffled = [...pool];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -80,11 +77,11 @@ export function CatalogSection({
 
   // Manual navigation - no auto-rotate
   const maxShowcaseIndex = Math.max(0, Math.floor(showcasePool.length / 3) - 1);
-  
+
   const handlePrevShowcase = () => {
     setShowcaseIndex(prev => Math.max(0, prev - 1));
   };
-  
+
   const handleNextShowcase = () => {
     setShowcaseIndex(prev => Math.min(maxShowcaseIndex, prev + 1));
   };
@@ -167,7 +164,7 @@ export function CatalogSection({
         <div className="catalog-main">
           {/* Showcase Carousel */}
           <div className="showcase-carousel">
-            <button 
+            <button
               className="showcase-arrow showcase-arrow-left"
               onClick={handlePrevShowcase}
               disabled={showcaseIndex === 0}
@@ -217,7 +214,7 @@ export function CatalogSection({
               ))}
             </div>
 
-            <button 
+            <button
               className="showcase-arrow showcase-arrow-right"
               onClick={handleNextShowcase}
               disabled={showcaseIndex >= maxShowcaseIndex}
@@ -228,8 +225,8 @@ export function CatalogSection({
 
           {/* More Button */}
           <div className="catalog-more-row">
-            <button 
-              onClick={() => setShowFullCatalog(!showFullCatalog)} 
+            <button
+              onClick={() => setShowFullCatalog(!showFullCatalog)}
               className="btn catalog-more-btn"
             >
               <span className="catalog-more-icon"><Search size={16} /></span>
@@ -261,7 +258,7 @@ export function CatalogSection({
                       setFullCatalogPage(0);
                     }}
                   />
-                  <button 
+                  <button
                     className="ghost-btn"
                     onClick={() => setShowFullCatalog(false)}
                   >
@@ -279,9 +276,9 @@ export function CatalogSection({
                       onClick={() => onOpenDetails(game)}
                     >
                       <div className="full-card-img">
-                        <img 
-                          src={game.cover} 
-                          alt={game.name} 
+                        <img
+                          src={game.cover}
+                          alt={game.name}
                           loading="lazy"
                           onError={(e) => {
                             const t = e.target as HTMLImageElement;
@@ -310,7 +307,7 @@ export function CatalogSection({
 
               <div className="full-bottom">
                 {hasMore && (
-                  <button 
+                  <button
                     className="btn btn-small"
                     onClick={() => setFullCatalogPage((p) => p + 1)}
                   >
@@ -388,7 +385,7 @@ export function CatalogSection({
             justify-content: flex-start;
           }
         }
-        
+
         .catalog-shell {
           display: grid;
           grid-template-columns: 280px 1fr;
@@ -396,12 +393,12 @@ export function CatalogSection({
           align-items: start;
         }
         @media (max-width: 980px) {
-          .catalog-shell { 
-            grid-template-columns: 1fr; 
+          .catalog-shell {
+            grid-template-columns: 1fr;
             gap: 16px;
           }
         }
-        
+
         .side {
           position: sticky;
           top: 86px;
@@ -484,7 +481,7 @@ export function CatalogSection({
           align-items: center;
           gap: 12px;
         }
-        
+
         .showcase-arrow {
           flex-shrink: 0;
           width: 42px;
@@ -543,7 +540,7 @@ export function CatalogSection({
             width: 100%;
           }
         }
-        
+
         .game {
           border-radius: 16px;
           border: 1px solid rgba(255,255,255,.10);
@@ -561,11 +558,11 @@ export function CatalogSection({
             border-radius: 14px;
           }
         }
-        
+
         .game.showcase-animate {
           animation: showcaseEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
         }
-        
+
         @keyframes showcaseEnter {
           from {
             opacity: 0;
@@ -576,7 +573,7 @@ export function CatalogSection({
             transform: translateY(0);
           }
         }
-        
+
         .game:hover {
           transform: translateY(-4px);
           border-color: rgba(0,255,65,.22);
@@ -632,16 +629,16 @@ export function CatalogSection({
             font-size: 11px;
           }
         }
-        .tag-row { 
-          display: flex; 
-          gap: 6px; 
+        .tag-row {
+          display: flex;
+          gap: 6px;
           flex-wrap: wrap;
           max-width: 100%;
           overflow: hidden;
         }
         @media (max-width: 640px) {
-          .tag-row { 
-            gap: 5px; 
+          .tag-row {
+            gap: 5px;
           }
         }
         .tag {
@@ -676,9 +673,9 @@ export function CatalogSection({
           margin-top: 4px;
         }
         @media (max-width: 640px) {
-          .game-cta { 
+          .game-cta {
             gap: 8px;
-            margin-top: 2px; 
+            margin-top: 2px;
           }
         }
         .tiny {

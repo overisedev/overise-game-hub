@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Game } from '@/types/game';
+import { findGameByName } from '@/types/game';
 import { Gamepad2, Shield, Zap, Users } from 'lucide-react';
 
 interface GamesPreviewSectionProps {
@@ -9,36 +10,33 @@ interface GamesPreviewSectionProps {
   onOpenDetails: (game: Game) => void;
 }
 
-export function GamesPreviewSection({ 
-  games, 
+export function GamesPreviewSection({
+  games,
   totalGames,
-  onOpenDetails 
+  onOpenDetails
 }: GamesPreviewSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Lista fixa de jogos para exibir no grid (ordem específica)
   const FEATURED_GAMES = [
-    'Baldur\'s Gate 3',
-    'Cyberpunk 2077', 
-    'Dark Souls III',
-    'ELDEN RING',
-    'Grand Theft Auto V',
-    'Hogwarts Legacy',
-    'Resident Evil 4',
-    'Silksong',
-    'God of War',
-    'Red Dead Redemption 2',
-    'Horizon Zero Dawn',
-    'Spider-Man',
+    "EA SPORTS FC™ 27",
+    "Forza Horizon 6",
+    "Resident Evil Requiem",
+    "SILENT HILL f",
+    "Crimson Desert",
+    "Ghost of Tsushima DIRECTOR'S CUT",
+    "Black Myth: Wukong",
+    "Monster Hunter Wilds",
+    "Red Dead Redemption 2",
+    "Assassin’s Creed Shadows",
+    "Cyberpunk 2077",
+    "Hogwarts Legacy",
   ];
 
   const aaaGames = useMemo(() => {
     const result: Game[] = [];
     for (const name of FEATURED_GAMES) {
-      const game = games.find(g => 
-        g.name.toLowerCase().includes(name.toLowerCase()) ||
-        name.toLowerCase().includes(g.name.toLowerCase())
-      );
+      const game = findGameByName(games, name);
       if (game && game.cover) {
         result.push(game);
       }
@@ -57,7 +55,7 @@ export function GamesPreviewSection({
         <div className="preview-container">
           {/* Grid de jogos à esquerda */}
           <div className="preview-grid-wrapper">
-            <motion.div 
+            <motion.div
               className="preview-grid"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -76,14 +74,14 @@ export function GamesPreviewSection({
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ 
-                      duration: 0.4, 
+                    transition={{
+                      duration: 0.4,
                       delay: index * 0.06,
                       ease: "easeOut"
                     }}
                     style={{ cursor: interactive ? 'pointer' : 'default' }}
                   >
-                    <motion.div 
+                    <motion.div
                       className="card-inner"
                       animate={{
                         scale: hoveredIndex === index && interactive ? 1.08 : 1,
@@ -104,7 +102,7 @@ export function GamesPreviewSection({
           </div>
 
           {/* Texto à direita */}
-          <motion.div 
+          <motion.div
             className="preview-content"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -115,14 +113,14 @@ export function GamesPreviewSection({
               <Gamepad2 size={16} />
               <span>Arquivos Oficiais Steam</span>
             </div>
-            
+
             <h2 className="content-title">
               Mais de <span className="highlight">40.000</span> jogos<br />
               para jogar
             </h2>
-            
+
             <p className="content-description">
-              Esqueça downloads lentos ou sites estranhos. Com a Overise, você transforma sua biblioteca. 
+              Esqueça downloads lentos ou sites estranhos. Com a Overise, você transforma sua biblioteca.
               Acesse lançamentos e clássicos baixando direto da fonte oficial.
             </p>
 
@@ -223,7 +221,7 @@ export function GamesPreviewSection({
 
         .preview-card.hovered .card-inner {
           border-color: rgba(0,255,65,.6);
-          box-shadow: 
+          box-shadow:
             0 12px 40px rgba(0,0,0,.7),
             0 0 40px rgba(0,255,65,.2),
             0 0 80px rgba(0,255,65,.1);

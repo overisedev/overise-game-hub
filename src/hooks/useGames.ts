@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { Game } from '@/types/game';
-import { AAA_GAME_NAMES, SEARCH_ALIASES } from '@/types/game';
+import { AAA_GAME_NAMES, SEARCH_ALIASES, findGameByName } from '@/types/game';
 
 // Jogos preferidos por franquia (estes serão priorizados)
 const PREFERRED_GAMES: Record<string, string[]> = {
@@ -56,7 +56,7 @@ function getFranchise(gameName: string): string | null {
 function isPreferredGame(gameName: string, franchise: string): boolean {
   const preferred = PREFERRED_GAMES[franchise];
   if (!preferred) return true;
-  
+
   const lower = gameName.toLowerCase();
   return preferred.some(pref => lower.includes(pref));
 }
@@ -65,16 +65,16 @@ function isPreferredGame(gameName: string, franchise: string): boolean {
 function filterOnlyOnePerFranchise(games: Game[]): Game[] {
   const franchiseGames = new Map<string, Game>();
   const noFranchiseGames: Game[] = [];
-  
+
   for (const game of games) {
     // Ignorar jogos sem cover ou steam_appid válido
     if (!game.cover || !game.steam_appid) continue;
-    
+
     const franchise = getFranchise(game.name);
-    
+
     if (franchise) {
       const existing = franchiseGames.get(franchise);
-      
+
       // Se é o jogo preferido E tem cover, sempre usar
       if (isPreferredGame(game.name, franchise)) {
         franchiseGames.set(franchise, game);
@@ -86,7 +86,7 @@ function filterOnlyOnePerFranchise(games: Game[]): Game[] {
       noFranchiseGames.push(game);
     }
   }
-  
+
   return [...franchiseGames.values(), ...noFranchiseGames];
 }
 
@@ -95,7 +95,7 @@ function hasValidCover(game: Game): boolean {
   if (!game.cover) return false;
   const cover = game.cover.toLowerCase();
   // Filtrar URLs inválidas ou placeholders
-  if (cover.includes('placeholder') || 
+  if (cover.includes('placeholder') ||
       cover.includes('default') ||
       cover === '' ||
       cover.includes('missing')) {
@@ -124,17 +124,14 @@ export function useGames() {
   }, []);
 
   // Jogos prioritários (aparecem primeiro no hero, nessa ordem)
-  const PRIORITY_APPIDS = [2483190, 3321460, 2001760, 1174180, 3764200, 2840770]; // Forza Horizon 6, Crimson Desert, Beast, RDR2, RE Requiem, Avatar
+  const PRIORITY_APPIDS = [4080220, 2483190, 3764200, 3321460, 2947440, 3768760]; // FC 27, Forza Horizon 6, RE Requiem, Crimson Desert, Silent Hill f, 007 First Light
 
   // Filtrar jogos AAA e manter apenas 1 por franquia
   const aaaGames = useMemo(() => {
-    const matchedGames = games.filter((game) => {
-      if (!game.cover || !game.steam_appid) return false;
-      return AAA_GAME_NAMES.some((aaa) =>
-        game.name.toLowerCase().includes(aaa.toLowerCase()) ||
-        aaa.toLowerCase().includes(game.name.toLowerCase())
-      );
-    });
+    const seenIds = new Set<number>();
+    const matchedGames = AAA_GAME_NAMES
+      .map((aaa) => findGameByName(games.filter((g) => g.steam_appid), aaa))
+      .filter((g): g is Game => !!g && !seenIds.has(g.steam_appid) && !!seenIds.add(g.steam_appid));
 
     const filtered = filterOnlyOnePerFranchise(matchedGames);
 
@@ -153,24 +150,24 @@ export function useGames() {
 
   const searchGames = (query: string): Game[] => {
     if (!query.trim()) return games;
-    
+
     const q = query.toLowerCase().trim();
-    
+
     // Check aliases
     for (const [alias, names] of Object.entries(SEARCH_ALIASES)) {
       if (q.includes(alias)) {
-        return games.filter(g => 
+        return games.filter(g =>
           names.some(name => g.name.toLowerCase().includes(name.toLowerCase()))
         );
       }
     }
-    
+
     return games.filter(g => g.name.toLowerCase().includes(q));
   };
 
   const getGamesByCategory = (category: string): Game[] => {
     if (!category || category === 'ALL') return games;
-    return games.filter(g => 
+    return games.filter(g =>
       g.categories.some(c => c.toUpperCase() === category.toUpperCase())
     );
   };

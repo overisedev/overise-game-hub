@@ -1,5 +1,5 @@
 const WISHLIST = [
-  { name: 'EA FC 25 (o Fifa)', price: 'R$ 349' },
+  { name: 'EA FC 27 (o Fifa)', price: 'R$ 349' },
   { name: 'Call of Duty', price: 'R$ 349' },
   { name: 'Forza Horizon 6', price: 'R$ 299' },
   { name: 'Red Dead Redemption 2', price: 'R$ 199' },
